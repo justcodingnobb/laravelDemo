@@ -22,10 +22,4 @@ api认证使用JWT包，但是中间件自己写的JWT.php文件，主要判断�
 
 api的返回值记得统一data为一种类型{}或者[]
 
-更新富文本编辑器为Ueditor上传组件为webuploader，文章中的图片及附件不再进行记录（需要进一步优化，做记录），只记录缩略图及附件
-
-更新webuploader功能，缩略图片压缩尺寸并存入thumb文件夹，其它存入attrs文件夹
-
-Ueditor整合到laraver中，注意csrf取消对url的token，进行存储记录
-
 数据库备份功能（改造自V9）

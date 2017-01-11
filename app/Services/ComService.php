@@ -34,7 +34,7 @@ class ComService
 	// 转成树形菜单数组
     public function toTree($data,$pid)
     {
-        $tree = '';
+        $tree = [];
         if ($data->count() > 0) {
             foreach($data as $v)
             {
