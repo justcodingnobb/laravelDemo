@@ -1,0 +1,28 @@
+@extends('admin.right')
+
+@section('content')
+<form action="" class="pure-form pure-form-stacked" method="post">
+	{{ csrf_field() }}
+	<!-- 提交返回用的url参数 -->
+    <input type="hidden" name="ref" value="{!! $ref !!}">
+	<label for="name">部门名称：<span class="color-red">*</span></label>
+	<input type="text" name="data[name]" class="pure-input-1-4" value="{{ $info['name'] }}">
+	@if ($errors->has('data.name'))
+        <span class="help-block">
+        	{{ $errors->first('data.name') }}
+        </span>
+    @endif
+	<!-- 超管不能被禁用及删除 -->
+	<div class="pure-radio">
+		<label for="status">状态：</label>
+		@if ($info['status'] == 1)
+		<input type="radio" name="data[status]" checked="checked" class="input-radio" value="1"> 启用
+		<input type="radio" name="data[status]" class="input-radio" value="0"> 禁用
+		@else
+		<input type="radio" name="data[status]" class="input-radio" value="1"> 启用
+		<input type="radio" name="data[status]" checked="checked" class="input-radio" value="0"> 禁用
+		@endif
+	</div>
+	<button type="submit" name="dosubmit" class="pure-button pure-button-primary pure-u-1-12 mr10">提交</button> <button type="reset" name="reset" class="pure-button pure-u-1-12">重填</button>
+</form>
+@endsection
