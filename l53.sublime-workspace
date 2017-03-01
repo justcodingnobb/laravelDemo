@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
+				"med",
+				"media_id"
+			],
+			[
+				"post",
+				"postStr"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"gete",
+				"getEmptycache\t(WxController.php)"
+			],
+			[
 				"bgc",
 				"bgc\tbackground-color: #${1:fff};"
 			],
 			[
 				"noti",
 				"notify_url"
-			],
-			[
-				"json",
-				"json_decode"
 			],
 			[
 				"string",
@@ -502,18 +514,6 @@
 			[
 				"修改",
 				"修改密码"
-			],
-			[
-				"bx",
-				"bxsh\tbox-shadow"
-			],
-			[
-				"v",
-				"value"
-			],
-			[
-				"Test",
-				"TestService"
 			]
 		]
 	},
@@ -543,10 +543,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 311.0,
-		"last_filter": "mov",
+		"height": 392.0,
+		"last_filter": "re",
 		"selected_items":
 		[
+			[
+				"re",
+				"File: Rename"
+			],
 			[
 				"mov",
 				"File: Move"
@@ -554,10 +558,6 @@
 			[
 				"dele",
 				"File: Delete"
-			],
-			[
-				"re",
-				"File: Rename"
 			],
 			[
 				"move",
@@ -704,7 +704,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 424.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -734,17 +734,87 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/l53",
+		"/F/wwwroot/l53/app",
+		"/F/wwwroot/l53/app/Http",
 		"/F/wwwroot/l53/app/Http/Controllers",
-		"/F/wwwroot/l53/app/Http/Middleware",
-		"/F/wwwroot/l53/public/statics",
-		"/F/wwwroot/l53/public/statics/common",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx",
+		"/F/wwwroot/l53/app/Services",
+		"/F/wwwroot/l53/database/migrations",
 		"/F/wwwroot/l53/resources",
 		"/F/wwwroot/l53/resources/views",
 		"/F/wwwroot/l53/resources/views/admin",
-		"/F/wwwroot/l53/resources/views/admin/art"
+		"/F/wwwroot/l53/resources/views/admin/wxattr",
+		"/F/wwwroot/l53/routes"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/l53/routes/web.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.class.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxattrController.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxattrController.class.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApi.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addart.html",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/index.html",
+		"/F/wwwroot/l53/resources/views/admin/wxattr/nums.blade.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/attrnums.html",
+		"/F/wwwroot/l53/resources/views/admin/wxattr/add.blade.php",
+		"/F/wwwroot/l53/app/Services/ComService.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/262CC54C_edit.tmp/20170301092241785.png",
+		"/F/wwwroot/l53/config/view.php",
+		"/F/wwwroot/l53/app/Http/Requests/WxattrRequest.php",
+		"/F/wwwroot/l53/app/Http/Middleware/VerifyCsrfToken.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addattr.html",
+		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
+		"/F/wwwroot/l53/database/migrations/2017_03_01_085528_create_wxattr_table.php",
+		"/F/wwwroot/l53/app/Models/Wxattr.php",
+		"/C/Users/Li/Downloads/天火大道 www.mianhuatang.cc(all).txt",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxController.php",
+		"/F/yan/xi-yi.txt",
+		"/E/BaiduYunDownload/xi-yi.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/user.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/msg.log",
+		"/F/wwwroot/laravel/app/Http/Controllers/WxController.php",
+		"/F/wwwroot/MzsjCms/App/Index/Controller/WxController.class.php",
+		"/F/wwwroot/l53/routes/api.php",
+		"/F/wwwroot/l53/app/Http/Kernel.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmenuController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxmenu/index.blade.php",
+		"/F/wwwroot/l53/sftp-config.json",
+		"/F/wwwroot/l53/sql/20170224-wx.sql",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/C8517A85_edit.tmp/.env",
+		"/F/wwwroot/l53/sql/default-wx.sql",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/CA4E588C_edit.tmp/config.php",
+		"/F/wwwroot/MzsjCms/App/Common/Api/WxApi.class.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxAuthController.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxController.class.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApiController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxmsg/add.blade.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/AdminController.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxlinkageController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxlinkage/add.blade.php",
+		"/F/wwwroot/MzsjCms/mzsj.sql",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/E/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
+		"/F/wwwroot/MzsjCms/App/Common/Conf/uc_config.php",
+		"/F/wwwroot/MzsjCms/App/Common/Conf/config.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxController.php",
+		"/F/wwwroot/MzsjCms/sql.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/Api/CacheApi.class.php",
+		"/C/Users/Li/AppData/Local/Temp/HZ$D.017.4820/HZ$D.017.4821/MzsjCms-master/mzsj.sql",
+		"/C/Users/Li/AppData/Local/Temp/HZ$D.756.1916/HZ$D.756.1917/mzsj.sql",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmsgController.php",
+		"/F/wwwroot/laravel/app/Http/routes.php",
+		"/F/wwwroot/l53/app/Models/Wxuser.php",
+		"/F/wwwroot/l53/app/Models/Wxconfig.php",
+		"/F/wwwroot/l53/app/Models/Wxgroup.php",
+		"/F/wwwroot/l53/app/Models/Wxlinkage.php",
+		"/F/wwwroot/l53/app/Models/Wxmenu.php",
+		"/F/wwwroot/l53/app/Models/Wxmsg.php",
+		"/F/wwwroot/l53/app/Models/Type.php",
+		"/F/wwwroot/l53/wx.sql",
+		"/F/wwwroot/laravel/laravel.sql",
+		"/F/wwwroot/l53/app/Exceptions/Handler.php",
 		"/F/wwwroot/l53/resources/views/admin/art/add.blade.php",
 		"/F/wwwroot/l53/resources/views/admin/right.blade.php",
 		"/F/wwwroot/l53/public/statics/common/kindeditor/plugins/multiimage/multiimage.js",
@@ -755,14 +825,12 @@
 		"/F/复明/网站/map.html",
 		"/F/wwwroot/l53/public/statics/common/kindeditor/lang/zh-CN.js",
 		"/F/wwwroot/blog/resources/views/admin/art/edit.blade.php",
-		"/F/wwwroot/l53/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/AttrController.php",
 		"/F/wwwroot/blog/resources/views/admin/art/add.blade.php",
 		"/F/wwwroot/blog/resources/views/admin/right.blade.php",
 		"/F/wwwroot/l53/.env",
 		"/F/wwwroot/blog/resources/views/admin/cate/add.blade.php",
 		"/F/wwwroot/l53/app/Http/Controllers/HomeController.php",
-		"/F/wwwroot/l53/routes/web.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/v1/AbilityController.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/AttrController.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/PayController.php",
@@ -797,7 +865,6 @@
 		"/F/wwwroot/roadtime/app/Http/Controllers/AlipayController_old.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/73973F55_edit.tmp/wxpay.log",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/BaseAbstractGateway.php",
-		"/F/wwwroot/laravel/app/Http/Controllers/WxController.php",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Responses/AopCompletePurchaseResponse.php",
 		"/F/wwwroot/roadtime/public/storage/wxpay.log",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/Message/CreateMicroOrderRequest.php",
@@ -809,80 +876,19 @@
 		"/F/wwwroot/roadtime/vendor/omnipay/common/src/Omnipay/Common/Message/RequestInterface.php",
 		"/F/wwwroot/roadtime/vendor/guzzle/guzzle/src/Guzzle/Http/Client.php",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Requests/AopTradeAppPayRequest.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/AopAppGateway.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/HomeController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/F9F5108C_edit.tmp/wxpay.log",
-		"/F/wwwroot/roadtime/config/filesystems.php",
-		"/E/wwwroot/roadtime/routes/api.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/AlipayController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/AopClient.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/request/AlipayOpenPublicTemplateMessageIndustryModifyRequest.php",
-		"/E/wwwroot/roadtime/config/alipay_app.php",
-		"/C/Users/Administrator/Desktop/secret_key_tools_RSA_win/rsa_private_key.pem",
-		"/E/wwwroot/roadtime/database/migrations/2016_12_09_200519_create_authstatus.php",
-		"/C/Users/Administrator/Desktop/secret_key_tools_RSA_win/rsa_public_key.pem",
-		"/C/Users/Administrator/Desktop/secret_key_tools_RSA_win/rsa_private_key_pkcs8.pem",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/SignData.php",
-		"/E/迅雷下载/aop/request/AlipayOpenPublicTemplateMessageIndustryModifyRequest.php",
-		"/E/迅雷下载/aop/test/TestImage.php",
-		"/E/迅雷下载/AopSdk.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/AopEncrypt.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/request/AlipayUserUserinfoShareRequest.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Alipay/webapp/AlipayController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Admin/DatabaseController.php",
-		"/E/wwwroot/roadtime/app/Services/ComService.php",
-		"/E/wwwroot/l53/app/Services/ComService.php",
-		"/E/wwwroot/laravel/app/Http/Controllers/WxApiController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Hxsms.php",
-		"/E/wwwroot/laravel/app/Http/Controllers/WxAuthController.php",
-		"/E/wwwroot/laravel/app/Http/Controllers/WxController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Push/HttpRequest.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Umeng/Ios/IOSCustomizedcast.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Emchat/Easemob.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/v1/UserController.php",
-		"/E/wwwroot/index.php",
-		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.342.971/HZ$D.342.972/php/index.php",
-		"/F/soft/FlashFXP4/Cache/~flashfxp/1A936946_edit.tmp/ddd.php",
-		"/F/soft/FlashFXP4/Cache/~flashfxp/1A936946.tmp/ddd.php",
-		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.503.1698/HZ$D.503.1699/php/index.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/v1/UserJwtController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/v1/ArticleController.php",
-		"/E/wwwroot/roadtime/resources/views/v1/art/list.blade.php",
-		"/E/wwwroot/roadtime/resources/views/v1/art/show.blade.php",
-		"/E/wwwroot/roadtime/public/statics/home/v1/css/reset.scss",
-		"/E/wwwroot/roadtime/public/statics/admin/css/reset.scss",
-		"/E/wwwroot/roadtime/app/Http/Controllers/v1/UpdateController.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/RoadtimeComFunc.php",
-		"/E/wwwroot/market/.env",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/E/wamp/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Admin/UpdateController.php",
-		"/E/wwwroot/roadtime/resources/views/admin/update/add.blade.php",
-		"/E/wwwroot/roadtime/app/Http/Requests/UpdateRequest.php",
-		"/E/wwwroot/roadtime/resources/views/admin/art/add.blade.php",
-		"/E/wwwroot/roadtime/resources/views/admin/update/edit.blade.php",
-		"/E/wwwroot/roadtime/resources/views/admin/right.blade.php",
-		"/E/wwwroot/laravel/resources/views/admin/right.blade.php",
-		"/E/wwwroot/CIS/resources/views/admin/right.blade.php",
-		"/E/wwwroot/roadtime/public/statics/common/meditor/editormd.js",
-		"/E/wwwroot/roadtime/resources/views/admin/update/index.blade.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/Admin/AttrController.php",
-		"/E/wwwroot/roadtime/app/Http/Middleware/VerifyCsrfToken.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/AttrController.php",
-		"/E/wwwroot/roadtime/resources/views/home.blade.php",
-		"/E/wwwroot/roadtime/app/Http/Controllers/HomeController.php",
-		"/E/wwwroot/l53/resources/views/home.blade.php",
-		"/E/wwwroot/roadtime/routes/web.php"
+		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/AopAppGateway.php"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\l53\\config",
+			"F:\\wwwroot\\l53\\app\\Http\\Controllers",
 			"F:\\wwwroot\\l53\\public\\statics\\common\\kindeditor",
 			"F:\\wwwroot\\roadtime\\app\\Http\\Controllers\\Llpay\\lib",
 			"F:\\wwwroot\\roadtime\\app\\Http\\Controllers\\Llpay",
@@ -954,6 +960,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getlist",
+			"getuserinfo",
+			"WxgroupController",
+			"wxgroup/",
+			"WxmsgController",
+			"wxmsg/",
+			"add",
+			"con",
+			"CURLOPT_SAFE_UPLOAD",
+			"path",
+			"$req->type",
+			"this->",
+			"wxapi",
+			"I('type')",
+			"thumb-src",
+			"mediaid",
+			"all",
+			"wxmsg",
+			"WxmsgController",
+			"wxmsg/",
+			"循环赛开始",
+			"getuserinfo",
+			"checkuser",
+			"Storage",
+			"wxapi",
+			"getuserinfo",
+			"checkuser",
+			"subscribe",
+			"msg_nokey",
+			"msgtype",
+			"subscribe",
+			"msgtype",
+			"关注",
+			"where(",
+			"\\App\\W",
+			"clickeven",
+			"msgtype",
+			"wx/index",
+			"$_GET",
+			"sha",
+			"getJsApiTicket",
+			"createNonceStr",
+			"share",
+			"httpget",
+			"token()",
+			"wxapi",
+			"WxmenuController",
+			"wxmenu/",
+			"WxlinkageController",
+			"wxlinkage/",
+			"Add",
 			"multiimage",
 			"application/x-shockwave-flash",
 			"object",
@@ -1030,58 +1087,7 @@
 			"android",
 			"pwd",
 			"android",
-			"admin",
-			"activity.",
-			"Activity",
-			"activity",
-			"ActivityRequest",
-			"ActivityC",
-			"uid",
-			"orderid",
-			"abilityid",
-			"status",
-			"authtype",
-			"authstatus",
-			"authtype",
-			"role_id",
-			"name",
-			"uid",
-			"authstatus",
-			"starttime",
-			"authtype",
-			"key",
-			"authtype",
-			"Complatint",
-			"new",
-			"fromuid",
-			"收藏",
-			"FavoriteController",
-			"new",
-			"? 0",
-			"price",
-			"maxprice",
-			"skill",
-			"maxage",
-			"maxprice",
-			"max",
-			"height",
-			"skill",
-			"maxprice",
-			"添加",
-			"Activity",
-			"activity/",
-			"string",
-			"200",
-			"180",
-			"资料",
-			"name",
-			"starttime",
-			"link",
-			"url",
-			"source",
-			"content",
-			"describe",
-			"title"
+			"admin"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1164,7 +1170,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1221,7 +1227,7 @@
 	"project": "l53.sublime-project",
 	"replace":
 	{
-		"height": 66.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1230,6 +1236,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"wxmsg/add",
+				"resources\\views\\admin\\wxmsg\\add.blade.php"
+			],
+			[
+				"wxlinkage/add",
+				"resources\\views\\admin\\wxlinkage\\add.blade.php"
+			],
 			[
 				"aopnotifyrequest",
 				"vendor\\lokielse\\omnipay-alipay\\src\\Requests\\AopNotifyRequest.php"
@@ -1733,14 +1747,6 @@
 			[
 				"type/edit",
 				"resources\\views\\admin\\type\\edit.blade.php"
-			],
-			[
-				"foucs/ind",
-				"resources\\views\\admin\\foucs\\index.blade.php"
-			],
-			[
-				"foucscon",
-				"app\\Http\\Controllers\\Admin\\FoucsController.php"
 			]
 		],
 		"width": 0.0

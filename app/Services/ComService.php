@@ -231,7 +231,7 @@ class ComService
             $thumbHeight = isset($res->thumbHeight) ? $res->thumbHeight : 160;
             $srcWidth = getimagesize($res->file('imgFile'))[0];
             $srcHeight = getimagesize($res->file('imgFile'))[1];
-            switch($ext) {
+            switch(strtolower($ext)) {
                 case 'gif' :
                     // 新图像
                     $dstThumbPic = imagecreatetruecolor($thumbWidth, $thumbHeight);
@@ -273,6 +273,14 @@ class ComService
                     $isTrue = imagejpeg($dstThumbPic, $outPath, 100);
                     break;
                 default :
+                    // 新图像
+                    $dstThumbPic = imagecreatetruecolor($thumbWidth, $thumbHeight);
+                    // 原始图像
+                    $source_img = imagecreatefromjpeg($res->file('imgFile'));
+                    // 复制原始图像到新图像大小上
+                    imagecopyresampled($dstThumbPic, $source_img, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $srcWidth, $srcHeight);
+                    // 保存新图像
+                    $isTrue = imagejpeg($dstThumbPic, $outPath, 100);
                     break;
             }
             $localurl = '/thumb/'.date('Ymd').'/'.$filename.'.jpg';

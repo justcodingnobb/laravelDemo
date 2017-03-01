@@ -13,7 +13,6 @@
 
 Route::get('/','HomeController@index');
 
-
 // API路由
 Route::group(['prefix'=>'api','middleware' => ['apis','jwt']],function(){
     // 用户
@@ -26,11 +25,6 @@ Route::group(['prefix'=>'api','middleware' => ['apis','jwt']],function(){
     // 短信、阿里大鱼
     Route::post('sms/index', 'SmsController@postIndex');
 });
-
-Route::group(['prefix'=>'com','middleware' => ['apis']],function(){
-
-});
-
 
 // 后台路由
 Route::group(['prefix'=>'admin','middleware' => ['web']],function(){
@@ -119,4 +113,52 @@ Route::group(['prefix'=>'admin','middleware' => ['web','auth:admin','rbac']],fun
     Route::get('type/edit/{id?}', 'Admin\TypeController@getEdit');
     Route::post('type/edit/{id?}', 'Admin\TypeController@postEdit');
     Route::get('type/del/{id?}', 'Admin\TypeController@getDel');
+    // 微信 配置
+    Route::get('wx/config', 'Admin\WxController@getConfig');
+    Route::post('wx/config', 'Admin\WxController@postConfig');
+    Route::get('wx/emptycache', 'Admin\WxController@getEmptycache');
+    Route::get('wx/emptydata', 'Admin\WxController@getEmptydata');
+    // 微信 关联菜单
+    Route::get('wxlinkage/index/{pid?}', 'Admin\WxlinkageController@getIndex');
+    Route::get('wxlinkage/add/{pid?}', 'Admin\WxlinkageController@getAdd');
+    Route::post('wxlinkage/add/{pid?}', 'Admin\WxlinkageController@postAdd');
+    Route::get('wxlinkage/edit/{id}', 'Admin\WxlinkageController@getEdit');
+    Route::post('wxlinkage/edit/{id}', 'Admin\WxlinkageController@postEdit');
+    Route::get('wxlinkage/del/{id}', 'Admin\WxlinkageController@getDel');
+    // 微信 自定义菜单
+    Route::get('wxmenu/index/{pid?}', 'Admin\WxmenuController@getIndex');
+    Route::get('wxmenu/add/{pid?}', 'Admin\WxmenuController@getAdd');
+    Route::post('wxmenu/add/{pid?}', 'Admin\WxmenuController@postAdd');
+    Route::get('wxmenu/edit/{id}', 'Admin\WxmenuController@getEdit');
+    Route::post('wxmenu/edit/{id}', 'Admin\WxmenuController@postEdit');
+    Route::get('wxmenu/del/{id}', 'Admin\WxmenuController@getDel');
+    Route::get('wxmenu/update', 'Admin\WxmenuController@getUpdate');
+    // 微信 自定义回复
+    Route::get('wxmsg/index', 'Admin\WxmsgController@getIndex');
+    Route::get('wxmsg/add', 'Admin\WxmsgController@getAdd');
+    Route::post('wxmsg/add', 'Admin\WxmsgController@postAdd');
+    Route::get('wxmsg/edit/{id}', 'Admin\WxmsgController@getEdit');
+    Route::post('wxmsg/edit/{id}', 'Admin\WxmsgController@postEdit');
+    Route::get('wxmsg/del/{id}', 'Admin\WxmsgController@getDel');
+    // 微信素材管理
+    Route::get('wxattr/index', 'Admin\WxattrController@getIndex');
+    Route::get('wxattr/add', 'Admin\WxattrController@getAdd');
+    Route::post('wxattr/add', 'Admin\WxattrController@postAdd');
+    Route::get('wxattr/del/{id}', 'Admin\WxattrController@getDel');
+    Route::get('wxattr/nums', 'Admin\WxattrController@getNums');
+    Route::post('wxattr/uploadimg', 'Admin\WxattrController@postUploadimg');
+    // 微信 用户组管理
+    Route::get('wxgroup/index', 'Admin\WxgroupController@getIndex');
+    Route::get('wxgroup/add', 'Admin\WxgroupController@getAdd');
+    Route::post('wxgroup/add', 'Admin\WxgroupController@postAdd');
+    Route::get('wxgroup/edit/{id}', 'Admin\WxgroupController@getEdit');
+    Route::post('wxgroup/edit/{id}', 'Admin\WxgroupController@postEdit');
+    Route::get('wxgroup/del/{id}', 'Admin\WxgroupController@getDel');
+    Route::get('wxgroup/update', 'Admin\WxgroupController@getUpdate');
+    // 微信 用户管理
+    Route::get('wxuser/index', 'Admin\WxuserController@getIndex');
+    Route::get('wxuser/update', 'Admin\WxuserController@getUpdate');
+    Route::get('wxuser/remark/{id}', 'Admin\WxuserController@getRemark');
+    Route::post('wxuser/remark/{id}', 'Admin\WxuserController@postRemark');
+    Route::get('wxuser/togroup', 'Admin\WxuserController@getTogroup');
 });
