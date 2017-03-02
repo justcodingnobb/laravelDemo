@@ -4,16 +4,32 @@
 		"selected_items":
 		[
 			[
+				"Wx",
+				"Wxgroup\t(WxgroupController.php)"
+			],
+			[
+				"all",
+				"alldata"
+			],
+			[
+				"json_",
+				"json_decode"
+			],
+			[
+				"json",
+				"json_decode"
+			],
+			[
+				"jso",
+				"json_decode"
+			],
+			[
 				"med",
 				"media_id"
 			],
 			[
 				"post",
 				"postStr"
-			],
-			[
-				"json",
-				"json_encode"
 			],
 			[
 				"gete",
@@ -136,10 +152,6 @@
 				"comment_input"
 			],
 			[
-				"json_",
-				"json_decode\t(SendEmail.php)"
-			],
-			[
 				"ths",
 				"this"
 			],
@@ -190,10 +202,6 @@
 			[
 				"getE",
 				"getElementById(id)\tElement"
-			],
-			[
-				"all",
-				"allnewssid"
 			],
 			[
 				"fon",
@@ -506,14 +514,6 @@
 			[
 				"imp",
 				"implode"
-			],
-			[
-				"toTree",
-				"toTreeHtml"
-			],
-			[
-				"修改",
-				"修改密码"
 			]
 		]
 	},
@@ -740,7 +740,6 @@
 		"/F/wwwroot/l53/app/Http/Controllers/Admin",
 		"/F/wwwroot/l53/app/Http/Controllers/Wx",
 		"/F/wwwroot/l53/app/Services",
-		"/F/wwwroot/l53/database/migrations",
 		"/F/wwwroot/l53/resources",
 		"/F/wwwroot/l53/resources/views",
 		"/F/wwwroot/l53/resources/views/admin",
@@ -749,7 +748,20 @@
 	],
 	"file_history":
 	[
+		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
 		"/F/wwwroot/l53/routes/web.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxuserController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxuser/remark.blade.php",
+		"/F/wwwroot/l53/resources/views/admin/wxuser/index.blade.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxuser/remark.html",
+		"/F/wwwroot/l53/app/Models/Wxgroup.php",
+		"/F/wwwroot/l53/app/Models/Wxuser.php",
+		"/F/wwwroot/l53/resources/views/admin/wxgroup/index.blade.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxgroupController.class.php",
+		"/F/wwwroot/l53/resources/views/admin/wxgroup/edit.blade.php",
+		"/F/wwwroot/l53/resources/views/admin/wxgroup/add.blade.php",
+		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxgroup/addgroup.html",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.class.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxattrController.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxattrController.class.php",
@@ -765,7 +777,6 @@
 		"/F/wwwroot/l53/app/Http/Requests/WxattrRequest.php",
 		"/F/wwwroot/l53/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addattr.html",
-		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
 		"/F/wwwroot/l53/database/migrations/2017_03_01_085528_create_wxattr_table.php",
 		"/F/wwwroot/l53/app/Models/Wxattr.php",
 		"/C/Users/Li/Downloads/天火大道 www.mianhuatang.cc(all).txt",
@@ -805,9 +816,7 @@
 		"/C/Users/Li/AppData/Local/Temp/HZ$D.756.1916/HZ$D.756.1917/mzsj.sql",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmsgController.php",
 		"/F/wwwroot/laravel/app/Http/routes.php",
-		"/F/wwwroot/l53/app/Models/Wxuser.php",
 		"/F/wwwroot/l53/app/Models/Wxconfig.php",
-		"/F/wwwroot/l53/app/Models/Wxgroup.php",
 		"/F/wwwroot/l53/app/Models/Wxlinkage.php",
 		"/F/wwwroot/l53/app/Models/Wxmenu.php",
 		"/F/wwwroot/l53/app/Models/Wxmsg.php",
@@ -866,17 +875,7 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/73973F55_edit.tmp/wxpay.log",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/BaseAbstractGateway.php",
 		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Responses/AopCompletePurchaseResponse.php",
-		"/F/wwwroot/roadtime/public/storage/wxpay.log",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/Message/CreateMicroOrderRequest.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/Message/CreateOrderRequest.php",
-		"/F/wwwroot/roadtime/vendor/omnipay/common/src/Omnipay/Common/AbstractGateway.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/AppGateway.php",
-		"/F/wwwroot/roadtime/vendor/omnipay/common/src/Omnipay/Omnipay.php",
-		"/F/wwwroot/roadtime/vendor/omnipay/common/src/Omnipay/Common/Message/AbstractRequest.php",
-		"/F/wwwroot/roadtime/vendor/omnipay/common/src/Omnipay/Common/Message/RequestInterface.php",
-		"/F/wwwroot/roadtime/vendor/guzzle/guzzle/src/Guzzle/Http/Client.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Requests/AopTradeAppPayRequest.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/AopAppGateway.php"
+		"/F/wwwroot/roadtime/public/storage/wxpay.log"
 	],
 	"find":
 	{
@@ -960,6 +959,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" type=\"text\"",
+			"wxgroup",
+			"name",
+			"tagid_list",
+			"wxgroup",
+			"add",
+			"wxmsg",
 			"getlist",
 			"getuserinfo",
 			"WxgroupController",
@@ -1080,14 +1086,7 @@
 			"bold",
 			"ismust",
 			"ios_version",
-			"isneed",
-			"android_apk",
-			"android_size",
-			"android_version",
-			"android",
-			"pwd",
-			"android",
-			"admin"
+			"isneed"
 		],
 		"highlight": true,
 		"in_selection": false,

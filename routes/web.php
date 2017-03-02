@@ -11,7 +11,20 @@
 |
 */
 
-Route::get('/','HomeController@index');
+// 微信
+Route::group(['middleware' => ['web']],function(){
+    Route::get('/','HomeController@index');
+    Route::get('test','HomeController@test');
+});
+
+
+// 微信
+Route::group(['prefix'=>'wx','middleware' => ['web']],function(){
+    // 静默授权
+    Route::get('auth', 'Wx\WxAuthController@getIndex');
+    // 手动授权
+    Route::get('mauth', 'Wx\WxAuthController@getUserinfo');
+});
 
 // API路由
 Route::group(['prefix'=>'api','middleware' => ['apis','jwt']],function(){
@@ -25,6 +38,8 @@ Route::group(['prefix'=>'api','middleware' => ['apis','jwt']],function(){
     // 短信、阿里大鱼
     Route::post('sms/index', 'SmsController@postIndex');
 });
+
+
 
 // 后台路由
 Route::group(['prefix'=>'admin','middleware' => ['web']],function(){
