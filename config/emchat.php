@@ -7,27 +7,27 @@ return [
      *
      * @var string
      */
-    'client_id' => 'YXA662HggEjLEeaBEq_V7za7Kw',
+    'client_id' => '',
 
     /**
      * client_secret
      *
      * @var string
      */
-    'client_secret' => 'YXA6no5qK362TVjZqie1wXe5TKciERE',
+    'client_secret' => '',
 
     /**
      * org_name
      *
      * @var string
      */
-    'org_name' => 'boruifu',
+    'org_name' => '',
 
     /**
      * app_name
      *
      * @var string
      */
-    'app_name' => 'jinadoctor',
+    'app_name' => '',
 
 ];

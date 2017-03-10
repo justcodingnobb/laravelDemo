@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"he",
+				"height\tAttr"
+			],
+			[
 				"Wx",
 				"Wxgroup\t(WxgroupController.php)"
 			],
@@ -270,10 +274,6 @@
 			[
 				"mar",
 				"marginLeft\tStyle CSS"
-			],
-			[
-				"he",
-				"height"
 			],
 			[
 				"img",
@@ -734,22 +734,38 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/l53",
-		"/F/wwwroot/l53/app",
 		"/F/wwwroot/l53/app/Http",
 		"/F/wwwroot/l53/app/Http/Controllers",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx",
-		"/F/wwwroot/l53/app/Services",
-		"/F/wwwroot/l53/resources",
-		"/F/wwwroot/l53/resources/views",
-		"/F/wwwroot/l53/resources/views/admin",
-		"/F/wwwroot/l53/resources/views/admin/wxattr",
-		"/F/wwwroot/l53/routes"
+		"/F/wwwroot/l53/app/Http/Controllers/Admin"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
+		"/F/scss/fmeye2/pc/index.html",
+		"/F/scss/fmeye2/pc/css/reset.scss",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/9DF3C209_edit.tmp/index.html",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmenuController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxmenu/index.blade.php",
 		"/F/wwwroot/l53/routes/web.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxAuthController.php",
+		"/F/wwwroot/MzsjCms/App/Index/Controller/OauthController.class.php",
+		"/F/wwwroot/l53/app/Http/Controllers/HomeController.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxController.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/26F16920_edit.tmp/session.php",
+		"/F/wwwroot/l53/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
+		"/F/wwwroot/l53/app/Models/Admin.php",
+		"/F/wwwroot/MzsjCms/App/Index/View/default/Oauth/index.html",
+		"/F/wwwroot/MzsjCms/App/Index/Controller/CheckPrivController.class.php",
+		"/F/wwwroot/l53/vendor/symfony/http-foundation/Session/Session.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Admin/PublicController.php",
+		"/F/wwwroot/l53/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/l53/app/Http/Kernel.php",
+		"/F/wwwroot/MzsjCms/App/Index/Controller/WxController.class.php",
+		"/F/wwwroot/laravel/app/Http/Controllers/WxAuthController.php",
+		"/F/wwwroot/laravel/app/Http/routes.php",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApi.php",
+		"/F/wwwroot/l53/sftp-config.json",
+		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxController.php",
+		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxuserController.php",
 		"/F/wwwroot/l53/resources/views/admin/wxuser/remark.blade.php",
@@ -765,7 +781,6 @@
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.class.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxattrController.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxattrController.class.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApi.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addart.html",
 		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/index.html",
 		"/F/wwwroot/l53/resources/views/admin/wxattr/nums.blade.php",
@@ -780,24 +795,17 @@
 		"/F/wwwroot/l53/database/migrations/2017_03_01_085528_create_wxattr_table.php",
 		"/F/wwwroot/l53/app/Models/Wxattr.php",
 		"/C/Users/Li/Downloads/天火大道 www.mianhuatang.cc(all).txt",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxController.php",
 		"/F/yan/xi-yi.txt",
 		"/E/BaiduYunDownload/xi-yi.txt",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/user.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/msg.log",
 		"/F/wwwroot/laravel/app/Http/Controllers/WxController.php",
-		"/F/wwwroot/MzsjCms/App/Index/Controller/WxController.class.php",
 		"/F/wwwroot/l53/routes/api.php",
-		"/F/wwwroot/l53/app/Http/Kernel.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmenuController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxmenu/index.blade.php",
-		"/F/wwwroot/l53/sftp-config.json",
 		"/F/wwwroot/l53/sql/20170224-wx.sql",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/C8517A85_edit.tmp/.env",
 		"/F/wwwroot/l53/sql/default-wx.sql",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/CA4E588C_edit.tmp/config.php",
 		"/F/wwwroot/MzsjCms/App/Common/Api/WxApi.class.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxAuthController.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxController.class.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApiController.php",
 		"/F/wwwroot/l53/resources/views/admin/wxmsg/add.blade.php",
@@ -809,13 +817,11 @@
 		"/E/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
 		"/F/wwwroot/MzsjCms/App/Common/Conf/uc_config.php",
 		"/F/wwwroot/MzsjCms/App/Common/Conf/config.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxController.php",
 		"/F/wwwroot/MzsjCms/sql.php",
 		"/F/wwwroot/MzsjCms/App/Mzsj/Api/CacheApi.class.php",
 		"/C/Users/Li/AppData/Local/Temp/HZ$D.017.4820/HZ$D.017.4821/MzsjCms-master/mzsj.sql",
 		"/C/Users/Li/AppData/Local/Temp/HZ$D.756.1916/HZ$D.756.1917/mzsj.sql",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmsgController.php",
-		"/F/wwwroot/laravel/app/Http/routes.php",
 		"/F/wwwroot/l53/app/Models/Wxconfig.php",
 		"/F/wwwroot/l53/app/Models/Wxlinkage.php",
 		"/F/wwwroot/l53/app/Models/Wxmenu.php",
@@ -839,7 +845,6 @@
 		"/F/wwwroot/blog/resources/views/admin/right.blade.php",
 		"/F/wwwroot/l53/.env",
 		"/F/wwwroot/blog/resources/views/admin/cate/add.blade.php",
-		"/F/wwwroot/l53/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/v1/AbilityController.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/AttrController.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/PayController.php",
@@ -862,20 +867,7 @@
 		"/F/wwwroot/roadtime/app/Jobs/SendCodeEmail.php",
 		"/F/wwwroot/roadtime/app/Http/Controllers/v1/AuthController.php",
 		"/F/wwwroot/timeline/sql/default-20161215-nouser-nowx.sql",
-		"/F/wwwroot/roadtime/app/Http/Controllers/AlipayController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/B87E051D_edit.tmp/alipay.log",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/Message/CompletePurchaseResponse.php",
-		"/C/Users/Li/Documents/wxpay.log",
-		"/C/Users/Li/Documents/alipay.log",
-		"/C/Users/Li/Documents/llpay.log",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Requests/AopNotifyRequest.php",
-		"/F/wwwroot/roadtime/public/vue/static/js/app.f25a97e2f8ae430b5e28.js",
-		"/F/wwwroot/roadtime/app/Http/Controllers/Alipay/request/AlipayZdatafrontDatatransferedSendRequest.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/AlipayController_old.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/73973F55_edit.tmp/wxpay.log",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-wechatpay/src/BaseAbstractGateway.php",
-		"/F/wwwroot/roadtime/vendor/lokielse/omnipay-alipay/src/Responses/AopCompletePurchaseResponse.php",
-		"/F/wwwroot/roadtime/public/storage/wxpay.log"
+		"/F/wwwroot/roadtime/app/Http/Controllers/AlipayController.php"
 	],
 	"find":
 	{
@@ -959,6 +951,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"5",
+			"Session::get",
+			"session()->",
 			" type=\"text\"",
 			"wxgroup",
 			"name",
@@ -1083,10 +1078,7 @@
 			"{{ $sites['url'] }}{{ $sites['static']}}",
 			"admin/update",
 			"ios_log",
-			"bold",
-			"ismust",
-			"ios_version",
-			"isneed"
+			"bold"
 		],
 		"highlight": true,
 		"in_selection": false,

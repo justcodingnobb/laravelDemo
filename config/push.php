@@ -17,16 +17,16 @@ return [
      * 当代码中未设置apikey时,使用此apikey
      * @var string
      */
-    'default_apiKey' => 'yOaHDx79RtXmrpC2vCIvar5L',
-    'default_apiKey_pat' => 'i0md6ewByOPnCQCmqooEswZw',
+    'default_apiKey' => '',
+    'default_apiKey_pat' => '',
     
     /**
      * 开发者当前secretKey, 在应用重新生成secret key后, 旧的secret key将失效, 由开发者中心(http://developer.baidu.com)获取.
      * 当代码中未设置apikey时,使用此secretkey
      * @var string
      */
-    'default_secretkey' => 'GGOCaPdaxtNQx30XyluSaxgGxBteGkMk',
-    'default_secretkey_pat' => '4CivSG3EfVpCnWLwGTkRuG1YArwMbm56',
+    'default_secretkey' => '',
+    'default_secretkey_pat' => '',
     
     /**
      * 默认发送的devicetype
