@@ -2,28 +2,29 @@
 
 @if(App::make('com')->ifCan('log-del'))
 @section('rmenu')
-	<a href="{{ url('/admin/log/del') }}" class="btn-green f-l">[ 清除七天前日志 ]</a>
+	<a href="{{ url('/admin/log/del') }}" class="btn btn-info">清除七天前日志</a>
 @endsection
 @endif
 
 @section('content')
-@if(session('user')->id == session('user')->saas_id)
 <!-- 按用户查看 -->
-<div class="select-cat clearfix">
-	<form action="" class="pure-form" method="get">
-		<select name="admin_id" id="admin_id">
-			<option value="">请选择</option>
-			@foreach($admins as $a)
-			<option value="{{ $a->id }}">{{ $a->name }} - {{ $a->realname }}</option>
-			@endforeach
-		</select>
-		<button class="pure-button pure-button-secondary">查找</button>
+<div class="clearfix">
+	<form action="" method="get" class="form-inline">
+		<div class="form-group">
+			<select name="admin_id" id="admin_id" class="form-control">
+				<option value="">请选择</option>
+				@foreach($admins as $a)
+				<option value="{{ $a->id }}">{{ $a->name }} - {{ $a->realname }}</option>
+				@endforeach
+			</select>
+			<button class="btn btn-sm btn-info">查找</button>
+		</div>
 	</form>
 </div>
-@endif
-<table class="pure-table">
+
+<table class="table table-striped table-hover mt10">
 	<thead>
-		<tr>
+		<tr class="success">
 			<th width="50">ID</th>
 			<th width="120">用户</th>
 			<th>url</th>

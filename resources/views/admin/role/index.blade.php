@@ -2,14 +2,14 @@
 
 @if(App::make('com')->ifCan('role-add'))
 @section('rmenu')
-	<a href="{{ url('/admin/role/add') }}" class="btn-green f-l">[ 添加角色 ]</a>
+	<a href="{{ url('/admin/role/add') }}" class="btn btn-info">添加角色</a>
 @endsection
 @endif
 
 @section('content')
-<table class="pure-table">
+<table class="table table-striped table-hover">
 	<thead>
-		<tr>
+		<tr class="success">
 			<th width="50">ID</th>
 			<th>角色名</th>
 			<th>状态</th>
@@ -31,16 +31,16 @@
 			<td>
 				<!-- 超管有所有权限 -->
 				@if((session('user')->id == 1 || App::make('com')->ifCan('role-priv')) && $m->id != 1)
-				<a href="{{ url('/admin/role/priv',$m->id) }}">权限管理</a> | 
+				<a href="{{ url('/admin/role/priv',$m->id) }}" class="btn btn-sm btn-info">权限管理</a>
 				@endif
-				@if(App::make('com')->ifCan('role-catepriv') && $m->id != 1)
-				<a href="{{ url('/admin/role/catepriv',$m->id) }}">栏目权限</a> |
-				@endif
+				<!-- @if(App::make('com')->ifCan('role-catepriv') && $m->id != 1)
+				<a href="{{ url('/admin/role/catepriv',$m->id) }}" class="btn btn-sm btn-info">栏目权限</a>
+				@endif -->
 				@if(App::make('com')->ifCan('role-edit'))
-				<a href="{{ url('/admin/role/edit',$m->id) }}">修改</a>
+				<a href="{{ url('/admin/role/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
 				@endif
 				@if(App::make('com')->ifCan('role-del') && $m->id != 1)
-				 | <a href="{{ url('/admin/role/del',$m->id) }}" class="confirm">删除</a>
+				<a href="{{ url('/admin/role/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
 				@endif
 			</td>
 		</tr>

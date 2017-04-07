@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'admin/attr/uploadimg',
-        'admin/wxattr/uploadimg',
+        'addcart',
+        'removecart',
     ];
 }

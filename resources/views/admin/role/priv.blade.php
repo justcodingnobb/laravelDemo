@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="priv-tree">
-	<form action="" class="pure-form pure-form-stacked" method="post">
+	<form action="" class="" method="post">
 	{{ csrf_field() }}
 	{!! $treePriv !!}
-	<button type="submit" name="dosubmit" class="pure-button pure-button-primary pure-u-1-12 mt15">提交</button>
+
+	<button type="submit" name="dosubmit" class="btn btn-info mt10 clearfix">提交</button>
 	</form>
 </div>
 
@@ -16,12 +17,12 @@
 			if($(this).is(":checked"))
 			{
 				$(this).prop('checked',true);
-				$(this).parent('li').children('ul').find('.check-mr').prop('checked',true);
+				$(this).parent('.checkbox-inline').parent('li').children('ul').find('.check-mr').prop('checked',true);
 			}
 			else
 			{
 				$(this).prop("checked",false);
-				$(this).parent('li').children('ul').find('.check-mr').prop("checked",false);
+				$(this).parent('.checkbox-inline').parent('li').children('ul').find('.check-mr').prop("checked",false);
 			}
 		});
 		var urlArr = [{!! $rids !!}];

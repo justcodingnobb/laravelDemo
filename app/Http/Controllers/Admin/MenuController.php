@@ -38,10 +38,10 @@ class MenuController extends Controller
                  $html .= "<tr>
                     <td>".$v['listorder']."</td>
                     <td>".$v['id']."</td>
-                    <td><span class='level-".$level."'></span>".$v['name']."<a href='/admin/menu/add/".$v['id']."' class='fa fa-plus-square add_submenu'></a></td>
+                    <td><span class='level-".$level."'></span>".$v['name']."<a href='/admin/menu/add/".$v['id']."' class='glyphicon glyphicon-plus add_submenu'></a></td>
                     <td>".$v['url']."</td>
                     <td>".$disStr."</td>
-                    <td><a href='/admin/menu/edit/".$v['id']."'>修改</a> | <a href='/admin/menu/del/".$v['id']."' class='confirm'>删除</a></td>
+                    <td><a href='/admin/menu/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/admin/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
                     </tr>";
             }
             else
@@ -52,7 +52,7 @@ class MenuController extends Controller
                     <td><span class='level-".$level."'></span>".$v['name']."</td>
                     <td>".$v['url']."</td>
                     <td>".$disStr."</td>
-                    <td><a href='/admin/menu/edit/".$v['id']."'>修改</a> | <a href='/admin/menu/del/".$v['id']."' class='confirm'>删除</a></td>
+                    <td><a href='/admin/menu/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/admin/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
                     </tr>";
             }
             if ($v['parentid'] != '')

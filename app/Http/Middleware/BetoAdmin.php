@@ -32,7 +32,8 @@ class BetoAdmin
                 $url = $request->getRequestUri();
                 Log::create(['admin_id'=>$user->id,'url'=>$url,'user'=>$user->name,'created_at'=>date('Y-m-d H:i:s')]);
             }
-            return $next($request);
+            $respond = $next($request);
+            return $respond;
         }
         else
         {

@@ -33,12 +33,12 @@ class Kernel extends HttpKernel
         ],
 
         'apis' => [
-            'throttle:6000,1',
-            'bindings',
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         ],
 
         'api' => [
-            'throttle:6000,1',
+            'throttle:60,1',
             'bindings',
         ],
     ];
@@ -59,6 +59,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'rbac' => \App\Http\Middleware\BetoAdmin::class,
+        'backurl'=> \App\Http\Middleware\Backurl::class,
+        'member'=> \App\Http\Middleware\Member::class,
         // JWT.auth
         'jwt'     => \App\Http\Middleware\Jwt::class,
         'jwt.auth' =>  \Tymon\JWTAuth\Middleware\GetUserFromToken::class,

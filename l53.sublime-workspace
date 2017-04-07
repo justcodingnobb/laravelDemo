@@ -733,13 +733,28 @@
 	},
 	"expanded_folders":
 	[
-		"/F/wwwroot/l53",
-		"/F/wwwroot/l53/app/Http",
-		"/F/wwwroot/l53/app/Http/Controllers",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin"
+		"/D/www/laravel53",
+		"/D/www/laravel53/app",
+		"/D/www/laravel53/app/Http",
+		"/D/www/laravel53/app/Http/Controllers",
+		"/D/www/laravel53/public",
+		"/D/www/laravel53/public/statics",
+		"/D/www/laravel53/public/statics/admin",
+		"/D/www/laravel53/public/statics/admin/css"
 	],
 	"file_history":
 	[
+		"/D/www/laravel53/public/statics/admin/css/reset.scss",
+		"/D/www/laravel53/app/Http/Controllers/Admin/RoleController.php",
+		"/D/www/laravel53/resources/views/admin/role/priv.blade.php",
+		"/D/www/laravel53/sql/20170224-wx.sql",
+		"/D/www/laravel53/resources/views/admin/index.blade.php",
+		"/D/www/laravel53/resources/views/admin/login.blade.php",
+		"/D/www/laravel53/resources/views/admin/right.blade.php",
+		"/D/www/laravel53/routes/web.php",
+		"/D/www/laravel53/app/Http/Kernel.php",
+		"/D/www/laravel53/app/Http/Middleware/RedirectIfAuthenticated.php",
+		"/C/Windows/System32/drivers/etc/HOSTS",
 		"/F/scss/fmeye2/pc/index.html",
 		"/F/scss/fmeye2/pc/css/reset.scss",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/9DF3C209_edit.tmp/index.html",
@@ -856,28 +871,18 @@
 		"/F/wwwroot/roadtime/routes/api.php",
 		"/C/Users/Li/Documents/WeChat Files/lzg_1989/Attachment/LLOrder.h",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/B77E7BAF_edit.tmp/llpay.log",
-		"/F/wwwroot/roadtime/config/alipay_app.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/Llpay/lib/LLpayNotify.php",
-		"/C/Users/Li/Downloads/异步通知demo/php notifydemo/llpay/key/llpay_public_key.pem",
-		"/F/wwwroot/roadtime/app/Http/Controllers/Llpay/lib/llpay_rsa.function.php",
-		"/C/Users/Li/Downloads/异步通知demo/php notifydemo/llpay/llpay.config.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/Llpay/lib/llpay_core.function.php",
-		"/C/Users/Li/Downloads/异步通知demo/php notifydemo/llpay/return_url.php",
-		"/C/Users/Li/Downloads/异步通知demo/php notifydemo/llpay/notify_url.php",
-		"/F/wwwroot/roadtime/app/Jobs/SendCodeEmail.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/v1/AuthController.php",
-		"/F/wwwroot/timeline/sql/default-20161215-nouser-nowx.sql",
-		"/F/wwwroot/roadtime/app/Http/Controllers/AlipayController.php"
+		"/F/wwwroot/roadtime/config/alipay_app.php"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
 		"height": 90.0,
 		"where_history":
 		[
+			"D:\\www\\laravel53\\resources\\views\\admin",
 			"F:\\wwwroot\\l53\\config",
 			"F:\\wwwroot\\l53\\app\\Http\\Controllers",
 			"F:\\wwwroot\\l53\\public\\statics\\common\\kindeditor",
@@ -951,6 +956,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"LaravelShop",
+			"backurl",
 			"5",
 			"Session::get",
 			"session()->",
@@ -1076,9 +1083,7 @@
 			"error",
 			"postUploadimg",
 			"{{ $sites['url'] }}{{ $sites['static']}}",
-			"admin/update",
-			"ios_log",
-			"bold"
+			"admin/update"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1086,6 +1091,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"LaravelCMF",
 			"beanji-test",
 			"\\",
 			"",
@@ -1228,6 +1234,10 @@
 		"selected_items":
 		[
 			[
+				"reset",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
 				"wxmsg/add",
 				"resources\\views\\admin\\wxmsg\\add.blade.php"
 			],
@@ -1249,10 +1259,6 @@
 			],
 			[
 				"reset.scss",
-				"public\\statics\\admin\\css\\reset.scss"
-			],
-			[
-				"reset",
 				"public\\statics\\admin\\css\\reset.scss"
 			],
 			[

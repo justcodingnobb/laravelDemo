@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ $sites['url'] }}{{ $sites['static']}}admin/css/reset.css">
     <link rel="stylesheet" href="{{ $sites['url'] }}{{ $sites['static']}}common/kindeditor/themes/default/default.css">
     <script src="{{ $sites['url'] }}{{ $sites['static']}}common/js/jquery.min.js"></script>
+    <script src="{{ $sites['url'] }}{{ $sites['static']}}common/js/bootstrap.min.js"></script>
     <!-- 上传用的 js -->
     <script src="{{ $sites['url'] }}{{ $sites['static']}}common/kindeditor/kindeditor-all.js"></script>
     <script src="{{ $sites['url'] }}{{ $sites['static']}}common/kindeditor/lang/zh-CN.js"></script>
@@ -30,24 +31,24 @@
 <body>
     <div class="right_con">
         @if(session('message'))
-        <div class="alert">
+        <div class="alert_top">
             {{ session('message') }}
         </div>
         @endif
         <!-- 右侧标题 -->
         <div class="clearfix">
-            <h2 class="main_title f-l">{{ $title }}</h2>
+            <h2 class="main_title btn btn-primary f-l">{{ $title }}</h2>
             <div class="btn-group f-l">
                 @yield('rmenu')
             </div>
         </div>
-        <div class="right-main">
+        <div class="right-main mt10">
             @yield('content')
         </div>
     </div>
     <script type="text/javascript">
         $(function(){
-            $('div.alert').delay(1500).slideUp(300);
+            $('div.alert_top').delay(1500).slideUp(300);
         })
     </script>
 </body>

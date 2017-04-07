@@ -18,15 +18,16 @@
 
     <link rel="stylesheet" href="{{ $sites['url'] }}{{ $sites['static']}}admin/css/reset.css">
     <script src="{{ $sites['url'] }}{{ $sites['static']}}common/js/jquery.min.js"></script>
+    <script src="{{ $sites['url'] }}{{ $sites['static']}}common/js/bootstrap.min.js"></script>
     <script src="{{ $sites['url'] }}{{ $sites['static']}}admin/js/com.js"></script>
 </head>
 
 <body class="box">
     <div class="mainbox">
         <header class="top clearfix overh">
-            <h1 class="logo">LaravelCMF</h1>
+            <h1 class="logo overh">LaravelCMF</h1>
             <nav class="menu clearfix overh">
-                <ul id="mainmenu">
+                <ul id="mainmenu" class="clearfix">
                 @foreach($mainmenu as $mm)
                     <li><a href="javascript:;" data-menuid="{{ $mm['id'] }}"@if($mm['id'] == 1) class="active"@endif>{{ $mm['name'] }}</a></li>
                 @endforeach

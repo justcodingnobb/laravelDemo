@@ -2,23 +2,25 @@
 
 @if(App::make('com')->ifCan('admin-add'))
 @section('rmenu')
-	<a href="{{ url('/admin/admin/add') }}" class="btn-green f-l">[ 添加用户 ]</a>
+	<a href="{{ url('/admin/admin/add') }}" class="btn btn-info">添加用户</a>
 @endsection
 @endif
 
 @section('content')
 
 <!-- 选出栏目 -->
-<div class="select-cat clearfix">
-	<form action="" class="pure-form f-l" method="get">
-		<input type="text" name="q" placeholder="请输入用户名或姓名..">
-		<button class="pure-button pure-button-secondary">搜索</button>
+<div class="">
+	<form action="" class="form-inline" method="get">
+		<div class="form-group">
+		<input type="text" name="q" class="form-control" placeholder="请输入用户名或姓名..">
+		<button class="btn btn-sm btn-info">搜索</button>
+		</div>
 	</form>
 </div>
 
-<table class="pure-table">
+<table class="table table-striped table-hover mt10">
 	<thead>
-		<tr>
+		<tr class="success">
 			<th width="50">ID</th>
 			<th>用户名</th>
 			<th>部门</th>
@@ -57,13 +59,13 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('admin-edit'))
-				<a href="{{ url('/admin/admin/edit',$m->id) }}">修改资料</a>
+				<a href="{{ url('/admin/admin/edit',$m->id) }}" class="btn btn-sm btn-info">修改资料</a>
 				@endif
 				@if(App::make('com')->ifCan('admin-pwd'))
-				 | <a href="{{ url('/admin/admin/pwd',$m->id) }}">修改密码</a>
+				<a href="{{ url('/admin/admin/pwd',$m->id) }}" class="btn btn-sm btn-info">修改密码</a>
 				@endif
 				@if($m->id != 1 && App::make('com')->ifCan('admin-del'))
-				 | <a href="{{ url('/admin/admin/del',$m->id) }}" class="confirm">删除</a>
+				<a href="{{ url('/admin/admin/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
 				@endif
 			</td>
 		</tr>

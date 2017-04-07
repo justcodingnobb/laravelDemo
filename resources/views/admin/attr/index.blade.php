@@ -3,22 +3,22 @@
 
 @section('content')
 
-<div class="select-cat clearfix">
-	<form action="" class="pure-form f-l" method="get">
-		开始时间：<input type="text" name="starttime" id="laydate">
-		结束时间：<input type="text" name="endtime" id="laydate2">
-		<button class="pure-button pure-button-secondary">查找</button>
+<div class="clearfix">
+	<form action="" class="form-inline pull-left" method="get">
+		开始时间：<input type="text" name="starttime" class="form-control" id="laydate">
+		结束时间：<input type="text" name="endtime" class="form-control" id="laydate2">
+		<button class="btn btn-sm btn-info">查找</button>
 	</form>
 
-	<form action="" class="pure-form f-r" method="get">
-		<input type="text" name="q" placeholder="请输入名称..">
-		<button class="pure-button pure-button-secondary">搜索</button>
+	<form action="" class="form-inline pull-right" method="get">
+		<input type="text" name="q" class="form-control" placeholder="请输入名称..">
+		<button class="btn btn-sm btn-info">搜索</button>
 	</form>
 </div>
 
-<table class="pure-table">
+<table class="table table-striped table-hover mt10">
 	<thead>
-		<tr>
+		<tr class="success">
 			<th width="50">ID</th>
 			<th width="150">文件名</th>
 			<th>url</th>
@@ -33,7 +33,7 @@
 			<td><a href="{{ $a->url }}" target="_blank">{{ $a->filename }}</a></td>
 			<td>{{ $a->url }}</td>
 			<td>{{ $a->created_at }}</td>
-			<td><a href="{{ url('admin/attr/delfile',$a->id) }}" class="confirm">删除</a></td>
+			<td><a href="{{ url('admin/attr/delfile',$a->id) }}" class="confirm btn btn-sm btn-danger">删除</a></td>
 		</tr>
 	@endforeach
 	</tbody>

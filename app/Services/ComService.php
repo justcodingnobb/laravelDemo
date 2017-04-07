@@ -9,6 +9,16 @@ use Storage;
 class ComService
 {
 
+    // 生成订单号
+    // 基于当前时间的微秒+8位随机字符串，uniqid() 函数基于以微秒计的当前时间，生成一个唯一的 ID。
+    public function orderid()
+    {
+        // 系统生成订单号
+        $str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        $orderid = uniqid().$this->random(8,$str);;
+        return $orderid;
+    }
+
     /**
     * 产生随机字符串
     *
@@ -34,7 +44,7 @@ class ComService
 	// 转成树形菜单数组
     public function toTree($data,$pid)
     {
-        $tree = [];
+        $tree = '';
         if ($data->count() > 0) {
             foreach($data as $v)
             {
@@ -61,9 +71,9 @@ class ComService
             if($level > 1)
             {
                 for ($i=2; $i < $level; $i++) { 
-                    $str .= '|&nbsp;&nbsp;&nbsp;&nbsp;';
+                    $str .= '| ';
                 }
-                $str .= '&nbsp;&nbsp;&nbsp;&nbsp;|—';
+                $str .= ' |—';
             }
             // level < 4 是为了不添加更多的层级关系，其它地方不用判断，只是后台菜单不用那么多级
             if ($pid == $v['id'])
@@ -231,7 +241,7 @@ class ComService
             $thumbHeight = isset($res->thumbHeight) ? $res->thumbHeight : 160;
             $srcWidth = getimagesize($res->file('imgFile'))[0];
             $srcHeight = getimagesize($res->file('imgFile'))[1];
-            switch(strtolower($ext)) {
+            switch($ext) {
                 case 'gif' :
                     // 新图像
                     $dstThumbPic = imagecreatetruecolor($thumbWidth, $thumbHeight);
@@ -273,14 +283,6 @@ class ComService
                     $isTrue = imagejpeg($dstThumbPic, $outPath, 100);
                     break;
                 default :
-                    // 新图像
-                    $dstThumbPic = imagecreatetruecolor($thumbWidth, $thumbHeight);
-                    // 原始图像
-                    $source_img = imagecreatefromjpeg($res->file('imgFile'));
-                    // 复制原始图像到新图像大小上
-                    imagecopyresampled($dstThumbPic, $source_img, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $srcWidth, $srcHeight);
-                    // 保存新图像
-                    $isTrue = imagejpeg($dstThumbPic, $outPath, 100);
                     break;
             }
             $localurl = '/thumb/'.date('Ymd').'/'.$filename.'.jpg';

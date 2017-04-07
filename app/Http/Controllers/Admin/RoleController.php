@@ -148,11 +148,11 @@ class RoleController extends Controller
                 $level = count(explode(',',$v['arrparentid']));
                 if ($v['parentid'] == '')
                 {
-                    $html .= "<li><input type='checkbox' name='ids[]' class='check-mr' value='".$v['id']."'>".$v['name']."</li>";
+                    $html .= "<li><label class='checkbox-inline'><input type='checkbox' name='ids[]' class='check-mr' value='".$v['id']."'>".$v['name']."</label></li>";
                 }
                 else
                 {
-                    $html .= "<li><input type='checkbox' name='ids[]' class='check-mr' value='".$v['id']."'>".$v['name'];
+                    $html .= "<li><label class='checkbox-inline'><input type='checkbox' name='ids[]' class='check-mr' value='".$v['id']."'>".$v['name']."</label>";
                     $html .= $this->treePriv($v['parentid']);
                     $html .= "</li>";
                 }

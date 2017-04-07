@@ -49,7 +49,7 @@ Route::group(['prefix'=>'admin','middleware' => ['web']],function(){
     Route::post('login', 'Admin\PublicController@postLogin');
     Route::get('logout', 'Admin\PublicController@getLogout');
 });
-Route::group(['prefix'=>'admin','middleware' => ['web','auth:admin','rbac']],function(){
+Route::group(['prefix'=>'admin','middleware' => ['web','auth:admin','rbac','backurl']],function(){
     // Index
     Route::get('index/index', 'Admin\IndexController@getIndex');
     Route::get('index/main', 'Admin\IndexController@getMain');

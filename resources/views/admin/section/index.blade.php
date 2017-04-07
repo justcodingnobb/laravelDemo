@@ -2,14 +2,14 @@
 
 @if(App::make('com')->ifCan('section-add'))
 @section('rmenu')
-	<a href="{{ url('/admin/section/add') }}" class="btn-green f-l">[ 添加部门 ]</a>
+	<a href="{{ url('/admin/section/add') }}" class="btn btn-info">添加部门</a>
 @endsection
 @endif
 
 @section('content')
-<table class="pure-table">
+<table class="table table-striped table-hover">
 	<thead>
-		<tr>
+		<tr class="success">
 			<th width="50">ID</th>
 			<th>部门名称</th>
 			<th>状态</th>
@@ -30,10 +30,10 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('section-edit'))
-				<a href="{{ url('/admin/section/edit',$m->id) }}">修改</a>
+				<a href="{{ url('/admin/section/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
 				@endif
 				@if(App::make('com')->ifCan('section-del'))
-				 | <a href="{{ url('/admin/section/del',$m->id) }}" class="confirm">删除</a>
+				<a href="{{ url('/admin/section/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
 				@endif
 			</td>
 		</tr>
