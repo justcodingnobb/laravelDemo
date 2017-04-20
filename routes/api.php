@@ -13,6 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+// 会员功能
+Route::group(['prefix'=>'user'],function(){
+    // 注册
+    Route::post('register','Api\UserController@postRegister');
+    // 登陆
+    Route::post('login','Api\UserController@postLogin');
+});
+
+Route::group(['prefix'=>'user','middleware' => ['jwt']],function(){
+    // 注销
+    Route::post('logout','Api\UserController@postLogout');
+});

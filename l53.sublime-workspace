@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"is_",
+				"is_null\t(UserController.php)"
+			],
+			[
 				"getLo",
 				"getLogout\t(UserController.php)"
 			],
@@ -510,10 +514,6 @@
 			[
 				"main",
 				"mainmenu"
-			],
-			[
-				"ma",
-				"mainmenu"
 			]
 		]
 	},
@@ -544,9 +544,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "re",
+		"last_filter": "dele",
 		"selected_items":
 		[
+			[
+				"dele",
+				"File: Delete"
+			],
 			[
 				"re",
 				"File: Rename"
@@ -554,10 +558,6 @@
 			[
 				"mov",
 				"File: Move"
-			],
-			[
-				"dele",
-				"File: Delete"
 			],
 			[
 				"move",
@@ -704,7 +704,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 400.0
+		"width": 856.0
 	},
 	"console":
 	{
@@ -735,24 +735,40 @@
 	[
 		"/D/www/laravel53",
 		"/D/www/laravel53/app",
-		"/D/www/laravel53/resources",
-		"/D/www/laravel53/resources/views",
-		"/D/www/laravel53/routes"
+		"/D/www/laravel53/app/Http",
+		"/D/www/laravel53/app/Http/Controllers",
+		"/D/www/laravel53/resources/views"
 	],
 	"file_history":
 	[
+		"/D/www/laravel53/app/Http/Controllers/Api/UserController.php",
+		"/D/www/laravel53/app/Http/Middleware/Jwt.php",
+		"/D/www/roadtime/app/Http/Middleware/Jwt.php",
+		"/D/www/laravel53/routes/api.php",
+		"/D/www/laravel53/app/Http/Kernel.php",
+		"/D/www/laravel53/config/jwt.php",
+		"/D/www/roadtime/app/Http/Controllers/v1/UserController.php",
+		"/D/www/CIS/app/Http/Controllers/UserController.php",
+		"/D/www/roadtime/app/Http/Controllers/v1/ArticleController.php",
+		"/D/www/CIS/app/Http/Controllers/V2/SysController.php",
+		"/D/www/CIS/app/Http/Controllers/V2/HomeController.php",
+		"/D/www/CIS/app/Http/Controllers/V2/ArtsController.php",
+		"/D/www/laravel53/app/Http/Controllers/Api/BaseUserController.php",
+		"/D/www/laravel53/app/Http/Controllers/Api/BaseController.php",
+		"/D/www/CIS/app/Http/Controllers/BaseController.php",
+		"/D/www/laravel-shop/app/Http/Controllers/HomeController.php",
+		"/D/www/laravel-shop/app/Http/Controllers/BaseController.php",
+		"/C/Users/Administrator/Desktop/aa.sql",
 		"/D/www/laravel53/sql/20170420-user-干净的.sql",
 		"/D/www/laravel53/resources/views/user/login.blade.php",
 		"/D/www/laravel53/routes/web.php",
 		"/D/www/laravel53/app/Http/Controllers/UserController.php",
 		"/D/www/laravel53/app/Http/Requests/UserRequest.php",
 		"/D/www/laravel53/resources/views/user/usercenter.blade.php",
-		"/D/www/laravel53/app/Http/Kernel.php",
 		"/D/www/laravel53/app/Http/Controllers/Admin/UserController.php",
 		"/D/www/laravel53/app/Http/Middleware/Member.php",
 		"/D/www/laravel53/resources/views/user/register.blade.php",
 		"/D/www/laravel53/resources/views/default/home.blade.php",
-		"/C/Users/Administrator/Desktop/aa.sql",
 		"/D/www/laravel-shop/routes/web.php",
 		"/D/www/laravel53/app/Http/Controllers/Admin/GroupController.php",
 		"/D/www/laravel-shop/app/Http/Requests/UserRequest.php",
@@ -852,23 +868,7 @@
 		"/F/wwwroot/MzsjCms/mzsj.sql",
 		"/C/Windows/System32/drivers/etc/hosts",
 		"/E/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/F/wwwroot/MzsjCms/App/Common/Conf/uc_config.php",
-		"/F/wwwroot/MzsjCms/App/Common/Conf/config.php",
-		"/F/wwwroot/MzsjCms/sql.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/Api/CacheApi.class.php",
-		"/C/Users/Li/AppData/Local/Temp/HZ$D.017.4820/HZ$D.017.4821/MzsjCms-master/mzsj.sql",
-		"/C/Users/Li/AppData/Local/Temp/HZ$D.756.1916/HZ$D.756.1917/mzsj.sql",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmsgController.php",
-		"/F/wwwroot/l53/app/Models/Wxconfig.php",
-		"/F/wwwroot/l53/app/Models/Wxlinkage.php",
-		"/F/wwwroot/l53/app/Models/Wxmenu.php",
-		"/F/wwwroot/l53/app/Models/Wxmsg.php",
-		"/F/wwwroot/l53/app/Models/Type.php",
-		"/F/wwwroot/l53/wx.sql",
-		"/F/wwwroot/laravel/laravel.sql",
-		"/F/wwwroot/l53/app/Exceptions/Handler.php",
-		"/F/wwwroot/l53/resources/views/admin/art/add.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/right.blade.php"
+		"/F/wwwroot/MzsjCms/App/Common/Conf/uc_config.php"
 	],
 	"find":
 	{
@@ -953,6 +953,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$this->response",
+			"Carbon::now",
+			"Carbon",
+			"res",
+			"data",
 			"登陆",
 			"<div class=\"mt10\">",
 			" class=\"pure-input-1-4\"",
@@ -1075,12 +1080,7 @@
 			"android_",
 			"ios_log",
 			"android_log",
-			"content",
-			"HtmlToMarkdown",
-			"markdownToHTML",
-			"Tomarkdown",
-			"HTMLTomarkdown",
-			"ios"
+			"content"
 		],
 		"highlight": true,
 		"in_selection": false,
