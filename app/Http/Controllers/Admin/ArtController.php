@@ -83,62 +83,11 @@ class ArtController extends Controller
     public function postAdd(ArtRequest $res)
     {
         $data = $res->input('data');
-        if ($data['status'] == '') {
-            return back()->with('message','你没有权限操作！');
-        }
-        // 处理附件数据
-        // $attrsT = $res->input('attrs.title');
-        // $attrsU = $res->input('attrs.url');
-        // $data['attrs'] = [];
-        // foreach ($attrsT as $k => $v) {
-        //     $data['attrs'][] = ['title'=>$v,'url'=>$attrsU[$k]];
-        // }
-        // $data['attrs'] = json_encode($data['attrs']);
-        $data['inputtime'] = strtotime($data['inputtime']).'.'.explode('.',microtime(time()))[1];
         // 开启事务
         DB::beginTransaction();
         try {
+            $data['url'] = pinyin_permalink(trim($data['title']),'-');
             $art = $this->art->create($data);
-            // 组合权限数据
-            if ($res->input('ids') != null) {
-                $groupdata = [];
-                foreach ($res->input('ids') as $v) {
-                    $groupdata[] = ['group_id'=>$v,'art_id'=>$art->id];
-                }
-                GroupArt::insert($groupdata);
-            }
-            // 处理tags数据，添加tags数据库，及对应关系表，先找出有的，再把没有的添加进去
-            $tags = collect(explode('|', $res->input('data.tags')));
-            $getTag = Tag::whereIn('name',$tags)->get();
-            $tmpTag = [];  // 取出对应内容
-            foreach ($getTag as $v) {
-                $tmpTag[] = $v['name'];
-            }
-            $tagDiff = $tags->diff($tmpTag);  // 需要新添加的标签
-            // 判断不是空，把新插入进去
-            if (!$tagDiff->isEmpty()) {
-                // 组成数组
-                $tmpTag2 = [];
-                foreach ($tagDiff as $v) {
-                    if ($v != '') {
-                        $tmpTag2[] = ['name'=>$v,'date'=>date("Y-m-d H:i:s",time())];
-                    }
-                }
-                if (count($tmpTag2) > 0) {
-                    Tag::insert($tmpTag2);
-                }
-                $allTag = Tag::whereIn('name',$tags)->get(); // 再查出所有的ID，建立对应关系
-            }
-            else
-            {
-                $allTag = $getTag;
-            }
-            $allTag = Tag::whereIn('name',$tags)->get(); // 再查出所有的ID，建立对应关系
-            $tagArt = [];
-            foreach ($allTag as $v) {
-                $tagArt[] = ['tag_id'=>$v['id'],'art_id'=>$art->id];
-            }
-            TagArt::insert($tagArt);  // 插入对应关系
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
@@ -171,6 +120,7 @@ class ArtController extends Controller
         // 开启事务
         DB::beginTransaction();
         try {
+            $data['url'] = pinyin_permalink(trim($data['title']),'-');
             $art = $this->art->where('id',$id)->update($data);
             // 没出错，提交事务
             DB::commit();

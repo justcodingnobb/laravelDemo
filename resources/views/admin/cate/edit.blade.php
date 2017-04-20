@@ -36,12 +36,29 @@
 					<span class="btn btn-info" id="image3">选择图片</span>
 				</div>
 				@if($info->thumb != '')
-				<img src="{{ $info->thumb }}" class="thumb-src" width="200" height="160" alt="">
+				<img src="{{ $info->thumb }}" class="thumb-src" alt="">
 				@if ($errors->has('data.thumb'))
 					<span class="help-block">{{ $errors->first('data.thumb') }}</span>
 					@endif
 			    @else
 				<img src="" class="thumb-src hidden" width="200" height="160" alt="">@endif</div>
+
+			<div class="form-group">
+			    <label for="title">SEO标题：<span class="color-red">*</span>最多255字符</label>
+			    <input type="text" name="data[title]" class="form-control" value="{{ $info->title }}">
+			    @if ($errors->has('data.title'))
+			    <span class="help-block">{{ $errors->first('data.title') }}</span>
+			    @endif
+			</div>
+
+			<div class="form-group">
+			    <label for="keyword">关键字：最多255字符</label>
+			    <input type="text" name="data[keyword]" class="form-control" value="{{ $info->keyword }}">
+			    @if ($errors->has('data.keyword'))
+			    <span class="help-block">{{ $errors->first('data.keyword') }}</span>
+			    @endif
+			</div>
+
 			<div class="form-group">
 				<label for="describe">描述：</label>
 				<textarea name="data[describe]" class="form-control" rows="5">{{ $info->describe }}</textarea>
@@ -49,6 +66,29 @@
 				<span class="help-block">{{ $errors->first('data.describe') }}</span>
 				@endif
 			</div>
+		</div>
+
+		<div class="form-group col-xs-12">
+		    <label for="content">
+		        内容：
+		        <span class="color-red">*</span>
+		    </label>
+		    <!-- 加载编辑器的容器 -->
+		    <textarea name="data[content]" class="form-control" id="editor_id">{{ $info->content }}</textarea>
+		    @if ($errors->has('data.content'))
+		    <span class="help-block">{{ $errors->first('data.content') }}</span>
+		    @endif
+		</div>
+		
+		<div class="col-xs-4">
+			<div class="form-group">
+			    <label for="theme">模板：默认list</label>
+			    <input type="text" name="data[theme]" class="form-control" value="{{ $info->theme }}">
+			    @if ($errors->has('data.theme'))
+			    <span class="help-block">{{ $errors->first('data.theme') }}</span>
+			    @endif
+			</div>
+
 			<div class="form-group">
 				<label for="listorder">
 					排序：
@@ -66,23 +106,15 @@
 				<label class="radio-inline"><input type="radio" name="data[type]" class="input-radio" value="0">
 					栏目</label>
 				<label class="radio-inline"><input type="radio" name="data[type]" checked="checked" class="input-radio" value="1">
-					外链</label>
+					单页</label>
 				@else
 				<label class="radio-inline"><input type="radio" name="data[type]" checked="checked" class="input-radio" value="0">
 					栏目</label>
 				<label class="radio-inline"><input type="radio" name="data[type]" class="input-radio" value="1">
-					外链</label>
+					单页</label>
 				@endif
 			</div>
 
-			<div class="form-group">
-				<label for="url">Url：标准网址如：http://www.aaa.com/</label>
-				<input type="text" name="data[url]" class="form-control" value="{{ $info->
-				url }}">
-			@if ($errors->has('data.url'))
-				<span class="help-block">{{ $errors->first('data.url') }}</span>
-				@endif
-			</div>
 
 			<div class="btn-group mt10">
 				<button type="reset" name="reset" class="btn btn-warning">重填</button>
@@ -95,11 +127,18 @@
 <script>
 	// 上传时要填上sessionId与csrf表单令牌，否则无法通过验证
 	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor_id',{
+            minHeight:350,
+            uploadJson : "{{ url('admin/attr/uploadimg') }}",
+            extraFileUploadParams: {
+                session_id : "{{ session('user')->id }}",
+            }
+        });
 		window.editor3 = K.editor({
 			uploadJson : "{{ url('admin/attr/uploadimg') }}",
             extraFileUploadParams: {
 				session_id : "{{ session('user')->id }}",
-				thumb : 1,
+				// thumb : 1,
             }
 		});
 		// 上传图片

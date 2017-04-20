@@ -193,8 +193,9 @@ return [
         // 调试
         Barryvdh\Debugbar\ServiceProvider::class,
 
-        // jwt
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        // 转拼音
+        Overtrue\LaravelPinyin\ServiceProvider::class,
+
 
     ],
 
@@ -245,9 +246,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-        // jwt
-        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+
+        // 转拼音
+        'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
+
     ],
 
 ];

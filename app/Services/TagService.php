@@ -1,53 +1,27 @@
 <?php
 namespace App\Services;
-
-use App\Models\GoodCate;
+use App\Models\Article;
+use App\Models\Cate;
 
 class TagService
 {
 
     /*
-    * 文章列表调用功能
+    * 取栏目
      */
-    public function lists($catid,$num=10,$order = 'id')
+    public function cate($pid = 0)
     {
-        try {
-            $list = Article::whereIn('catid',explode(',', $catid))->select('id','catid','title','thumb','describe','created_at')->orderBy($order,'desc')->limit($num)->get();
-        } catch (\Exception $e) {
-            $list = '';
-        }
-        return $list;
-    }
-     /*
-    * 文章列表调用功能
-     */
-    public function pages($catid,$num=10,$order = 'id')
-    {
-        try {
-            $list = Article::whereIn('catid',explode(',', $catid))->select('id','catid','title','thumb','describe','created_at')->orderBy($order,'desc')->paginate($num);
-        } catch (\Exception $e) {
-            $list = '';
-        }
-        return $list;
-    }
-    // 栏目列表
-    public function shopcate($parentid = 0,$num = 20,$order = 'sort')
-    {
-        try {
-            $cate = GoodCate::where('parentid',$parentid)->where('status',1)->select('id','parentid','name')->limit($num)->orderBy($order,'asc')->get();
-        } catch (\Exception $e) {
-            $cate = '';
-        }
+        $cate = Cate::where('parentid',$pid)->orderBy('listorder','asc')->get();
         return $cate;
     }
-    // 活动列表
-    public function special($num = 20,$order = 'sort')
+
+    /*
+    * 取文章，不带分页
+     */
+    public function arts($cid = 0,$num = 5)
     {
-        try {
-            $special = Special::where('status',1)->limit($num)->orderBy($order,'asc')->get();
-        } catch (\Exception $e) {
-            $special = '';
-        }
-        return $special;
+        $cid = explode(',', $cid);
+        $art = Article::whereIn('catid',$cid)->limit($num)->orderBy('id','desc')->get();
+        return $art;
     }
 }

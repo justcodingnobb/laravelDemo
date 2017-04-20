@@ -9,9 +9,7 @@
         "laravel/framework": "5.3.*",
         "nwidart/db-exporter": "*",
         "barryvdh/laravel-debugbar": "*",
-        "tymon/jwt-auth":"*",
-        "predis/predis": "*",
-        "intervention/image": "*"
+        "overtrue/laravel-pinyin": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

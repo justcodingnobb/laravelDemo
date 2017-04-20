@@ -25,8 +25,10 @@ class CateRequest extends Request
     {
         return [
             'data.name' => 'required|unique:categorys,name,'.$this->segment('4'),
+            'data.title'  => 'required|max:255',
+            'data.keyword'  => 'max:255',
+            'data.describe'  => 'max:255',
             'data.listorder'  => 'required|integer',
-            'data.url' => 'sometimes|url',
         ];
     }
     
@@ -34,7 +36,9 @@ class CateRequest extends Request
     {
         return [
             'data.name' => '名称',
-            'data.url' => 'URL',
+            'data.title' => '标题',
+            'data.describe' => '描述',
+            'data.keyword' => '关键字',
             'data.listorder' => '排序',
         ];
     }

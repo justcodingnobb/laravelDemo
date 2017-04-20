@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\ComService;
+use App\Services\TagService;
 use Illuminate\Support\ServiceProvider;
 
 class ComServiceProvider extends ServiceProvider
@@ -31,8 +32,13 @@ class ComServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        
         $this->app->singleton('com',function($app){
-            return new ComService($app['SomethingElse']);
+            return new ComService();
+        });
+
+        $this->app->singleton('tag',function($app){
+            return new TagService();
         });
     }
 

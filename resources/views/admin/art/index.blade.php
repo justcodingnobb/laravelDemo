@@ -34,7 +34,7 @@
 		<button class="btn btn-sm btn-info">搜索</button>
 	</form>
 </div>
-<form action="" class="form-inline" method="get">
+<form action="{{ url('/admin/art/alldel') }}" class="form-inline form_status" method="get">
 	{{ csrf_field() }}
 	<table class="table table-striped table-hover mt10">
 		<thead>
@@ -92,11 +92,11 @@
 		<label class="btn btn-primary">
 			<input type="checkbox" autocomplete="off" class="checkall">全选</label>
 		@if(App::make('com')->ifCan('art-listorder'))
-		<button type="submit" name="dosubmit" class="btn btn-warning" data-status="0">排序</button>
+		<button type="submit" name="dosubmit" class="btn btn-warning btn_listrorder" data-status="0">排序</button>
 		@endif
 
-	@if(App::make('com')->ifCan('art-alldel'))
-		<span class="btn btn-danger">批量删除</span>
+		@if(App::make('com')->ifCan('art-alldel'))
+		<span class="btn btn-danger btn_del">批量删除</span>
 		@endif
 	</div>
 </form>

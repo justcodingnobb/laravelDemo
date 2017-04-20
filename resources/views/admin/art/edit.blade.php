@@ -44,7 +44,7 @@
 				@endif
 			</div>
 			<div class="form-group">
-				<label for="thumb">缩略图：图片类型jpg/jpeg/gif/png，大小不超过2M</label>
+				<label for="thumb">缩略图：图片类型jpg/jpeg/gif/png，大小不超过2M，尺寸：230*125 PX</label>
 				<div class="clearfix row">
 					<div class="col-xs-6">
 					<input type="text" readonly="readonly" name="data[thumb]" id="url3" value="{{ $info->
@@ -54,7 +54,7 @@
 				</div>
 				@if($info->thumb != '')
 				<img src="{{ $info->
-				thumb }}" class="pure-image thumb-src" width="200" height="160" alt="">
+				thumb }}" class="pure-image thumb-src" alt="">
 			@if ($errors->has('data.thumb'))
 				<span class="help-block">{{ $errors->first('data.thumb') }}</span>
 				@endif
@@ -111,18 +111,6 @@
 		@endif
 		</div>
 		<div class="form-group">
-		<label for="url">
-			来源URL：
-			<!-- <span class="color-red">*</span>
-		必填， -->来源网址，加http://
-		</label>
-		<input type="text" name="data[url]" value="{{ $info->
-		url }}" class="form-control">
-			@if ($errors->has('data.url'))
-		<span class="help-block">{{ $errors->first('data.url') }}</span>
-		@endif
-		</div>
-		<div class="form-group">
 		<label for="listorder">
 		排序：
 		<span class="color-red">*</span>
@@ -159,7 +147,7 @@
 			uploadJson : "{{ url('admin/attr/uploadimg') }}",
             extraFileUploadParams: {
 				session_id : "{{ session('user')->id }}",
-				thumb : 1,
+				// thumb : 1,
             }
 		});
 		// 上传图片

@@ -17,37 +17,12 @@ class TypeController extends Controller
      * 分类列表
      * @return [type] [description]
      */
-    public function getIndex()
+    public function getIndex($pid = 0)
     {
     	$title = '分类管理';
         // 超级管理员可查看所有部门下分类
-        $all = Type::orderBy('listorder','asc')->get();
-        $tree = App::make('com')->toTree($all,'0');
-    	$treeHtml = $this->toTreeHtml($tree);
-    	return view('admin.type.index',compact('title','treeHtml'));
-    }
-    // 树形菜单 html
-    private function toTreeHtml($tree)
-    {
-        $html = '';
-        if (is_array($tree)) {
-            foreach ($tree as $v) {
-                // 用level判断层级，最好不要超过四层，样式中只写了四级
-                $cj = count(explode(',', $v['arrparentid']));
-                $level = $cj > 4 ? 4 : $cj;
-                $html .= "<tr>
-                    <td>".$v['listorder']."</td>
-                    <td>".$v['id']."</td>
-                    <td><span class='level-".$level."'></span>".$v['name']."<a href='/admin/type/add/".$v['id']."' class='glyphicon glyphicon-plus add_submenu'></a></td>
-                    <td><a href='/admin/type/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/admin/type/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
-                    </tr>";
-                if ($v['parentid'] != '')
-                {
-                    $html .= $this->toTreeHtml($v['parentid']);
-                }
-            }
-        }
-        return $html;
+        $list = Type::where('parentid',$pid)->orderBy('listorder','asc')->get();
+    	return view('admin.type.index',compact('title','list','pid'));
     }
     /**
      * 添加分类
@@ -70,7 +45,7 @@ class TypeController extends Controller
             App::make('com')->updateCache(new Type,'typeCache');
             // 没出错，提交事务
             DB::commit();
-            return redirect('/admin/type/index')->with('message', '添加成功！');
+            return redirect('/admin/type/index/'.$pid)->with('message', '添加成功！');
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();
@@ -102,7 +77,7 @@ class TypeController extends Controller
             App::make('com')->updateCache(new Type,'typeCache');
             // 没出错，提交事务
             DB::commit();
-            return redirect('/admin/type/index')->with('message', '修改成功！');
+            return redirect('/admin/type/index/'.$data['parentid'])->with('message', '修改成功！');
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();

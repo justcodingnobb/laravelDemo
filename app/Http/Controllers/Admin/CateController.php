@@ -41,7 +41,7 @@ class CateController extends Controller
                 // 用level判断层级，最好不要超过四层，样式中只写了四级
                 $cj = count(explode(',', $v['arrparentid']));
                 $level = $cj > 4 ? 4 : $cj;
-                $typename = $v['type'] ? "<span class='color-green'>外链</span>" : "<span class='color-blue'>栏目</span>";
+                $typename = $v['type'] ? "<span class='color-green'>单页</span>" : "<span class='color-blue'>栏目</span>";
                 $html .= "<tr>
                     <td>".$v['listorder']."</td>
                     <td>".$v['id']."</td>
@@ -80,6 +80,7 @@ class CateController extends Controller
         DB::beginTransaction();
         try {
             $data = $res->input('data');
+            $data['url'] = pinyin_permalink(trim($data['name']),'-');
             $resId = $this->cate->create($data);
             // 后台用户组权限
             App::make('com')->updateCache($this->cate,'cateCache');
@@ -114,6 +115,7 @@ class CateController extends Controller
         DB::beginTransaction();
         try {
             $data = $res->input('data');
+            $data['url'] = pinyin_permalink(trim($data['name']),'-');
             $this->cate->where('id',$id)->update($data);
             // 更新缓存
             App::make('com')->updateCache($this->cate,'cateCache');

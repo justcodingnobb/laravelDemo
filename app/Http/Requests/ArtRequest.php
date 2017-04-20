@@ -24,11 +24,10 @@ class ArtRequest extends Request
     public function rules()
     {
         return [
-            'data.title' => 'required|max:255',
+            'data.title' => 'required|max:255|unique:articles,title,'.$this->segment('4'),
             'data.catid' => 'required|integer|not_in:0',
             'data.content' => 'required',
             'data.listorder'  => 'required|integer',
-            'data.url' => 'url',
         ];
     }
     public function attributes()
@@ -37,7 +36,6 @@ class ArtRequest extends Request
             'data.catid' => '栏目ID',
             'data.title' => '标题',
             'data.content' => '内容',
-            'data.url' => 'URL',
             'data.listorder' => '排序',
         ];
     }

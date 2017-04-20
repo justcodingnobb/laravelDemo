@@ -45,14 +45,14 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="thumb">缩略图：图片类型jpg/jpeg/gif/png，大小不超过2M</label>
+                <label for="thumb">缩略图：图片类型jpg/jpeg/gif/png，大小不超过2M，尺寸：230*125 PX</label>
                 <div class="clearfix row">
                     <div class="col-xs-6">
                         <input type="text" readonly="readonly" name="data[thumb]" id="url3" value="{{ old('data.thumb') }}" class="form-control">
                     </div>
                     <div class="btn btn-info col-xs-2" id="image3">选择图片</div>
                 </div>
-                <img src="" class="pure-image thumb-src hidden" width="200" height="160" alt="">
+                <img src="" class="pure-image thumb-src hidden" alt="">
                 @if ($errors->has('data.thumb'))
                 <span class="help-block">{{ $errors->first('data.thumb') }}</span>
                 @endif
@@ -83,18 +83,6 @@
                 <input type="text" name="data[source]" value="{{ old('data.source') }}" class="form-control">
                 @if ($errors->has('data.source'))
                 <span class="help-block">{{ $errors->first('data.source') }}</span>
-                @endif
-            </div>
-            <div class="form-group">
-
-                <label for="url">
-                    来源URL：
-                        <!-- <span class="color-red">*</span>
-                    必填， -->来源网址，加http://
-                </label>
-                <input type="text" name="data[url]" value="{{ old('data.url') }}" class="form-control">
-                @if ($errors->has('data.url'))
-                <span class="help-block">{{ $errors->first('data.url') }}</span>
                 @endif
             </div>
             <div class="form-group">
@@ -134,7 +122,7 @@
             uploadJson : "{{ url('admin/attr/uploadimg') }}",
             extraFileUploadParams: {
                 session_id : "{{ session('user')->id }}",
-                thumb : 1,
+                // thumb : 1,
             }
         });
         // 上传图片
