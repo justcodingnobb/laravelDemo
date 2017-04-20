@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"getLo",
+				"getLogout\t(UserController.php)"
+			],
+			[
+				"form",
+				"form-control \tBootstrap 3 Class"
+			],
+			[
+				"form-",
+				"form-inline \tBootstrap 3 Class"
+			],
+			[
 				"he",
 				"height\tAttr"
 			],
@@ -502,18 +514,6 @@
 			[
 				"ma",
 				"mainmenu"
-			],
-			[
-				"ins",
-				"insertArr"
-			],
-			[
-				"chec",
-				"check"
-			],
-			[
-				"imp",
-				"implode"
 			]
 		]
 	},
@@ -735,23 +735,38 @@
 	[
 		"/D/www/laravel53",
 		"/D/www/laravel53/app",
-		"/D/www/laravel53/app/Http",
-		"/D/www/laravel53/app/Http/Controllers",
-		"/D/www/laravel53/public",
-		"/D/www/laravel53/public/statics",
-		"/D/www/laravel53/public/statics/home",
 		"/D/www/laravel53/resources",
-		"/D/www/laravel53/resources/views"
+		"/D/www/laravel53/resources/views",
+		"/D/www/laravel53/routes"
 	],
 	"file_history":
 	[
+		"/D/www/laravel53/sql/20170420-user-干净的.sql",
+		"/D/www/laravel53/resources/views/user/login.blade.php",
+		"/D/www/laravel53/routes/web.php",
+		"/D/www/laravel53/app/Http/Controllers/UserController.php",
+		"/D/www/laravel53/app/Http/Requests/UserRequest.php",
+		"/D/www/laravel53/resources/views/user/usercenter.blade.php",
+		"/D/www/laravel53/app/Http/Kernel.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/UserController.php",
+		"/D/www/laravel53/app/Http/Middleware/Member.php",
+		"/D/www/laravel53/resources/views/user/register.blade.php",
+		"/D/www/laravel53/resources/views/default/home.blade.php",
+		"/C/Users/Administrator/Desktop/aa.sql",
+		"/D/www/laravel-shop/routes/web.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/GroupController.php",
+		"/D/www/laravel-shop/app/Http/Requests/UserRequest.php",
+		"/D/www/laravel53/app/Models/Group.php",
+		"/D/www/laravel53/app/Models/User.php",
+		"/D/www/laravel-shop/database/migrations/2017_03_09_103732_create_group_cates_table.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103612_create_users_table.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103714_create_groups_table.php",
 		"/D/www/laravel53/.env",
 		"/D/www/laravel53/sql/20170420-default-干净的.sql",
 		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.015.3048/HZ$D.015.3049/xi-yi/composer.json",
 		"/D/www/laravel53/composer.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AA5BAC92_edit.tmp/composer.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AA5BAC92_edit.tmp/.env",
-		"/D/www/laravel53/resources/views/default/home.blade.php",
 		"/D/www/laravel53/app/Http/Controllers/Admin/ArtController.php",
 		"/D/www/laravel53/public/statics/admin/css/reset.scss",
 		"/D/www/laravel53/app/Http/Controllers/Admin/RoleController.php",
@@ -760,8 +775,6 @@
 		"/D/www/laravel53/resources/views/admin/index.blade.php",
 		"/D/www/laravel53/resources/views/admin/login.blade.php",
 		"/D/www/laravel53/resources/views/admin/right.blade.php",
-		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/app/Http/Kernel.php",
 		"/D/www/laravel53/app/Http/Middleware/RedirectIfAuthenticated.php",
 		"/C/Windows/System32/drivers/etc/HOSTS",
 		"/F/scss/fmeye2/pc/index.html",
@@ -855,24 +868,7 @@
 		"/F/wwwroot/laravel/laravel.sql",
 		"/F/wwwroot/l53/app/Exceptions/Handler.php",
 		"/F/wwwroot/l53/resources/views/admin/art/add.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/right.blade.php",
-		"/F/wwwroot/l53/public/statics/common/kindeditor/plugins/multiimage/multiimage.js",
-		"/F/wwwroot/l53/public/statics/common/kindeditor/kindeditor-all.js",
-		"/F/wwwroot/l53/resources/views/admin/cate/edit.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/art/edit.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/cate/add.blade.php",
-		"/F/复明/网站/map.html",
-		"/F/wwwroot/l53/public/statics/common/kindeditor/lang/zh-CN.js",
-		"/F/wwwroot/blog/resources/views/admin/art/edit.blade.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/AttrController.php",
-		"/F/wwwroot/blog/resources/views/admin/art/add.blade.php",
-		"/F/wwwroot/blog/resources/views/admin/right.blade.php",
-		"/F/wwwroot/l53/.env",
-		"/F/wwwroot/blog/resources/views/admin/cate/add.blade.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/v1/AbilityController.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/AttrController.php",
-		"/F/wwwroot/roadtime/app/Http/Controllers/PayController.php",
-		"/F/wwwroot/fmeye/composer.json"
+		"/F/wwwroot/l53/resources/views/admin/right.blade.php"
 	],
 	"find":
 	{
@@ -957,6 +953,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"登陆",
+			"<div class=\"mt10\">",
+			" class=\"pure-input-1-4\"",
+			"Login",
 			"overtrue",
 			"LaravelShop",
 			"backurl",
@@ -1080,11 +1080,7 @@
 			"markdownToHTML",
 			"Tomarkdown",
 			"HTMLTomarkdown",
-			"ios",
-			"imgFile",
-			"error",
-			"postUploadimg",
-			"{{ $sites['url'] }}{{ $sites['static']}}"
+			"ios"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1234,6 +1230,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"default/home",
+				"resources\\views\\default\\home.blade.php"
+			],
+			[
+				"user/reg",
+				"resources\\views\\user\\register.blade.php"
+			],
 			[
 				"reset",
 				"public\\statics\\admin\\css\\reset.scss"
@@ -1737,14 +1741,6 @@
 			[
 				"admin/in",
 				"resources\\views\\admin\\index.blade.php"
-			],
-			[
-				"special/edi",
-				"resources\\views\\admin\\special\\edit.blade.php"
-			],
-			[
-				"type/edit",
-				"resources\\views\\admin\\type\\edit.blade.php"
 			]
 		],
 		"width": 0.0

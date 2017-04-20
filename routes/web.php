@@ -12,7 +12,7 @@
 */
 
 // 
-Route::group(['middleware' => ['web']],function(){
+Route::group([],function(){
     Route::get('/','HomeController@index');
     // 栏目
     Route::get('cate/{url}','HomeController@getCate');
@@ -20,17 +20,34 @@ Route::group(['middleware' => ['web']],function(){
     Route::get('post/{url}','HomeController@getPost');
 });
 
+// 会员功能
+Route::group(['prefix'=>'user','middleware' => ['backurl']],function(){
+    // 注册
+    Route::get('register','UserController@getRegister');
+    Route::post('register','UserController@postRegister');
+    // 登陆
+    Route::get('login','UserController@getLogin');
+    Route::post('login','UserController@postLogin');
+});
+
+// 会员功能
+Route::group(['prefix'=>'user','middleware' => ['backurl','member']],function(){
+    // 注册
+    Route::get('center','UserController@getCenter');
+    // 退出登陆
+    Route::get('logout','UserController@getLogout');
+});
 
 
 // 后台路由
-Route::group(['prefix'=>'admin','middleware' => ['web']],function(){
+Route::group(['prefix'=>'admin'],function(){
     // 后台管理不用其它，只用登陆，退出
     // Route::auth();
     Route::get('login', 'Admin\PublicController@getLogin');
     Route::post('login', 'Admin\PublicController@postLogin');
     Route::get('logout', 'Admin\PublicController@getLogout');
 });
-Route::group(['prefix'=>'admin','middleware' => ['web','auth:admin','rbac','backurl']],function(){
+Route::group(['prefix'=>'admin','middleware' => ['auth:admin','rbac','backurl']],function(){
     // Index
     Route::get('index/index', 'Admin\IndexController@getIndex');
     Route::get('index/main', 'Admin\IndexController@getMain');
@@ -109,4 +126,16 @@ Route::group(['prefix'=>'admin','middleware' => ['web','auth:admin','rbac','back
     Route::get('type/edit/{id?}', 'Admin\TypeController@getEdit');
     Route::post('type/edit/{id?}', 'Admin\TypeController@postEdit');
     Route::get('type/del/{id?}', 'Admin\TypeController@getDel');
+    // 会员组
+    Route::get('group/index', 'Admin\GroupController@getIndex');
+    Route::get('group/add', 'Admin\GroupController@getAdd');
+    Route::post('group/add', 'Admin\GroupController@postAdd');
+    Route::get('group/edit/{id}', 'Admin\GroupController@getEdit');
+    Route::post('group/edit/{id}', 'Admin\GroupController@postEdit');
+    Route::get('group/del/{id}', 'Admin\GroupController@getDel');
+    // 会员
+    Route::get('user/index', 'Admin\UserController@getIndex');
+    Route::get('user/edit/{id}', 'Admin\UserController@getEdit');
+    Route::post('user/edit/{id}', 'Admin\UserController@postEdit');
+    Route::get('user/status/{id}/{status}', 'Admin\UserController@getStatus');
 });

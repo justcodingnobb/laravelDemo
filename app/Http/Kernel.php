@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
 
         'rbac' => \App\Http\Middleware\BetoAdmin::class,
         'backurl'=> \App\Http\Middleware\Backurl::class,
+        'member'=> \App\Http\Middleware\Member::class,
     ];
 }
