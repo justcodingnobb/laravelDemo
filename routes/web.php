@@ -11,6 +11,10 @@
 |
 */
 
+
+Route::get('/vue','VueController@index');
+
+
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"comp",
+				"component"
+			],
+			[
+				"fu",
+				"function\t(web.php)"
+			],
+			[
 				"is_",
 				"is_null\t(UserController.php)"
 			],
@@ -506,14 +514,6 @@
 			[
 				"dis",
 				"disStr"
-			],
-			[
-				"AUth",
-				"Auth"
-			],
-			[
-				"main",
-				"mainmenu"
 			]
 		]
 	},
@@ -543,10 +543,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "dele",
+		"height": 127.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"dele",
 				"File: Delete"
@@ -606,10 +610,6 @@
 			[
 				"Package Control: r",
 				"Package Control: Remove Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"git dif",
@@ -704,7 +704,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 856.0
+		"width": 488.0
 	},
 	"console":
 	{
@@ -733,14 +733,30 @@
 	},
 	"expanded_folders":
 	[
-		"/D/www/laravel53",
-		"/D/www/laravel53/app",
-		"/D/www/laravel53/app/Http",
-		"/D/www/laravel53/app/Http/Controllers",
-		"/D/www/laravel53/resources/views"
+		"/F/wwwroot/l53",
+		"/F/wwwroot/l53/app",
+		"/F/wwwroot/l53/app/Http",
+		"/F/wwwroot/l53/app/Http/Controllers",
+		"/F/wwwroot/l53/resources",
+		"/F/wwwroot/l53/resources/assets",
+		"/F/wwwroot/l53/resources/assets/js",
+		"/F/wwwroot/l53/resources/assets/js/components",
+		"/F/wwwroot/l53/resources/views",
+		"/F/wwwroot/l53/resources/views/default",
+		"/F/wwwroot/l53/routes"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/l53/resources/views/vue.blade.php",
+		"/F/wwwroot/l53/resources/assets/js/components/One.vue",
+		"/F/wwwroot/l53/gulpfile.js",
+		"/F/wwwroot/l53/resources/assets/js/components/Example.vue",
+		"/F/wwwroot/l53/resources/assets/js/app.js",
+		"/F/wwwroot/l53/routes/web.php",
+		"/F/wwwroot/l53/app/Http/Controllers/VueController.php",
+		"/F/wwwroot/l53/package.json",
+		"/F/wwwroot/l53/.gitattributes",
+		"/F/wwwroot/l53/.env",
 		"/D/www/laravel53/app/Http/Controllers/Api/UserController.php",
 		"/D/www/laravel53/app/Http/Middleware/Jwt.php",
 		"/D/www/roadtime/app/Http/Middleware/Jwt.php",
@@ -798,7 +814,6 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/9DF3C209_edit.tmp/index.html",
 		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmenuController.php",
 		"/F/wwwroot/l53/resources/views/admin/wxmenu/index.blade.php",
-		"/F/wwwroot/l53/routes/web.php",
 		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxAuthController.php",
 		"/F/wwwroot/MzsjCms/App/Index/Controller/OauthController.class.php",
 		"/F/wwwroot/l53/app/Http/Controllers/HomeController.php",
@@ -859,16 +874,7 @@
 		"/F/wwwroot/l53/sql/default-wx.sql",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/CA4E588C_edit.tmp/config.php",
 		"/F/wwwroot/MzsjCms/App/Common/Api/WxApi.class.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxController.class.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApiController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxmsg/add.blade.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/AdminController.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxlinkageController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxlinkage/add.blade.php",
-		"/F/wwwroot/MzsjCms/mzsj.sql",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/E/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/F/wwwroot/MzsjCms/App/Common/Conf/uc_config.php"
+		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxController.class.php"
 	],
 	"find":
 	{
