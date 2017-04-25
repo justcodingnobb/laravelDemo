@@ -1,0 +1,138 @@
+/*作者(Author): 李潇喃    Website: www.muzisheji.com   QQ: 854378082*/
+ 
+@mixin start{
+    *, *:before, *:after {box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, article, aside, audio, canvas, details, figcaption, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video {border:0;background:transparent;margin:0;padding:0;}
+    article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote {display:block;}
+    table, tbody, tfoot, thead, tr, th,td {background:transparent;margin:0;padding:0;}
+    nav ,ul {list-style:none;}
+    ol {list-style:decimal;}
+    blockquote:before, blockquote:after, q:before, q:after {content:none;}
+    table {border-collapse:collapse;border-spacing:0;}
+    hr {display:block;height:0px;border:0;border-top:1px solid #ccc;overflow:hidden; line-height:0px;}
+    input ,select ,a img {vertical-align:middle;}
+    .clearfix:after {content: ""; clear: both; height: 0px; overflow: hidden; display:block; visibility: hidden;}
+    .clearfix {*zoom:1;}
+    .overh {overflow: hidden;}
+}
+@include start;
+$color_1:#FF6501;
+#nav_top {
+    min-height:75px;
+    .navbar-toggle {margin-top:20px;}
+    a {font-size: 16px;}
+    .active a {color:$color_1; background: none;font-size: 16px;}
+    #nav_top_ul {
+        margin-top:20px;
+        a {line-height: 1;}
+    }
+}
+.banner {padding:0;margin-top: 75px;}
+.fwfw_div {
+    background-color: #FFF;
+    color:#fbfdfb;
+    padding-top: 20px;
+    min-height:360px;
+    position: relative;
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        height: 2.8em;
+        line-height: 1.4;
+    }
+    p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        height: 6.4em;
+        overflow: hidden;
+    }
+    .list_fw {
+        li {background: url('../images/jt_1.png') left 12px no-repeat; background-size: 12px auto; text-indent: 17px; line-height: 2; white-space: nowrap;height: 2em; overflow:hidden;}
+    }
+    .more { width:45px; height:45px; border:#FDFDFD solid 1px;display: block; position: absolute; right:20px; bottom:20px; text-align: center; vertical-align: middle; line-height: 38px; cursor: pointer;}
+    &:nth-of-type(1) {
+        background-color: #FF6501;
+    }
+    &:nth-of-type(2) {
+        color:#333333;
+        .list_fw {
+            li {background: url('../images/jt_2.png') left 12px no-repeat; background-size: 12px auto; text-indent: 17px; line-height: 2; white-space: nowrap;height: 2em; overflow:hidden;}
+        }
+        .more {border:#000000 solid 1px;}
+    }
+    &:nth-of-type(3) {
+        background-color: #43668E;
+    }
+    &:nth-of-type(4) {
+        background-color: #585858;
+    }
+    &:nth-of-type(5) {
+        background-color: #F2AD0A;
+    }
+    &:nth-of-type(6) {
+        background-color: #4C2E84;
+    }
+}
+// 精彩案例
+.jcal {
+    margin-top:70px;
+    h2 {margin-bottom: 20px;}
+    h4 {margin-bottom: 30px;}
+    .jcal_list {
+        border-bottom:#DFE3E7 solid 1px;
+        border-right:#DFE3E7 solid 1px;
+        div {
+            border:#DFE3E7 solid 1px;
+            border-right:0;
+            border-bottom:0;
+            padding:15px;
+            text-align: center;
+            overflow: hidden;
+            .jcal_a_b {overflow: hidden; width:100%; display: block; margin-top:10px;}
+            .img-thumbnail {border:0;}
+        }
+    }
+    .more_al {display: block; width:200px; text-align: center; padding:10px; border:$color_1 solid 2px; font-size: 16px; color:$color_1; margin:50px auto;}
+}
+// 最新动态
+.news {
+    background: url('../images/bg_news.png') left top repeat;
+    padding:60px 0 80px;
+    .news_con {
+        margin:40px 30px 0;
+        background-color: #FFF;
+        padding:20px 10px 40px;
+        li {border-right:#EBECED solid 1px; margin-top:30px;}
+        .news_a_t {display: block;}
+        .news_time {border-bottom:$color_1 solid 1px; display: inline-block; color:#888E93;margin-bottom: 15px;}
+        .img-thumbnail {border:0;margin-bottom: 10px;}
+        .news_a_b {color:#39424B; font-size: 14px; line-height: 1.4; height: 4.2em; overflow: hidden;display: block;}
+    }
+}
+.banner_b {
+    padding:0; margin-top:50px;position: relative;
+    h3 {width:100%;font-size: 26px; color: #fbfdfb; font-variant: normal; position: absolute;margin-top:5%;}
+    p {margin-top:17%;;width:100%; color: #fbfdfb; font-variant: normal; position: absolute;}
+    img {max-width:100%; height:auto;}
+}
+@media (min-width:500px) {
+    .banner_b {
+        h3 {margin-top:13%;width:100%;font-size: 26px; color: #fbfdfb; font-variant: normal; position: absolute;}
+        p {margin-top:17%;;width:100%; color: #fbfdfb; font-variant: normal; position: absolute;}
+    }
+}
+.cheng {
+    background: url('../images/f.jpg') center top repeat-x; margin-top:50px;
+    padding-top:45px;padding-bottom:45px;color:#fbfbfb;
+    .cheng_font {line-height: 1;}
+    .nums {font-size:80px; line-height: 1;}
+}
+.foot {
+    background-color: #39424B;color:#B0B3B7; padding:30px 20px;line-height: 2;
+    hr {height: 1;background-color: #B0B3B7;}
+    .ewm {display: block; margin:20px 0;}
+    .h4_foot {color: #E5E6E7; font-size: 18px; margin-top:20px; margin-bottom: 10px;}
+    a {color:#B0B3B7;}
+    .links li {float: left; margin-right: 30px;}
+}
+.mt30 {margin-top: 30px;}
