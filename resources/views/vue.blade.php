@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    
-    <example></example>
 
-    <one></one>
+	<div id="app">
+    	<one></one>
+    </div>
     
     <script src="/js/app.js"></script>
 </body>

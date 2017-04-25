@@ -1,6 +1,6 @@
 const elixir = require('laravel-elixir');
 
-require('laravel-elixir-vue');
+require('laravel-elixir-vue-2');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,7 +18,7 @@ elixir(mix => {
        .webpack('app.js');
 
     mix.browserSync({
-        files: ['app/**/*', 'public/**/*', 'resources/**/**/*'],
+        files: ['app/**/*', 'public/**/*', 'resources/**/*'],
         port: 5000,
         proxy: 'http://www.l53.com/'
     });

@@ -4,12 +4,60 @@
 		"selected_items":
 		[
 			[
-				"comp",
-				"component"
+				"th",
+				"thisVal"
 			],
 			[
-				"fu",
-				"function\t(web.php)"
+				"form",
+				"format"
+			],
+			[
+				"attr",
+				"attr_p"
+			],
+			[
+				"tmp",
+				"tmp_child"
+			],
+			[
+				"is",
+				"is_null"
+			],
+			[
+				"forma",
+				"formats"
+			],
+			[
+				"goods_va",
+				"goods_value_ids"
+			],
+			[
+				"attr_id",
+				"attr_ids"
+			],
+			[
+				"array_re",
+				"array_reverse"
+			],
+			[
+				"firs",
+				"first_format"
+			],
+			[
+				"attr_",
+				"attr_p"
+			],
+			[
+				"attr_d",
+				"attr_ids"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"this",
+				"this\t$(this)"
 			],
 			[
 				"is_",
@@ -18,10 +66,6 @@
 			[
 				"getLo",
 				"getLogout\t(UserController.php)"
-			],
-			[
-				"form",
-				"form-control \tBootstrap 3 Class"
 			],
 			[
 				"form-",
@@ -41,10 +85,6 @@
 			],
 			[
 				"json_",
-				"json_decode"
-			],
-			[
-				"json",
 				"json_decode"
 			],
 			[
@@ -122,10 +162,6 @@
 			[
 				"fil",
 				"file\t(ComService.php)"
-			],
-			[
-				"th",
-				"throw\tThrow Exception"
 			],
 			[
 				"exc",
@@ -262,10 +298,6 @@
 			[
 				"start",
 				"starttime"
-			],
-			[
-				"is",
-				"ish5=1"
 			],
 			[
 				"ish5",
@@ -448,10 +480,6 @@
 				"ios_size"
 			],
 			[
-				"tmp",
-				"tmpTag2"
-			],
-			[
 				"group",
 				"groupdata"
 			],
@@ -486,34 +514,6 @@
 			[
 				"chi",
 				"childs"
-			],
-			[
-				"exp",
-				"explode"
-			],
-			[
-				"list",
-				"listorder"
-			],
-			[
-				"mcio",
-				"microtime"
-			],
-			[
-				"sess",
-				"sessionId"
-			],
-			[
-				"te",
-				"textarea\tTag"
-			],
-			[
-				"arr",
-				"arrparentid"
-			],
-			[
-				"dis",
-				"disStr"
 			]
 		]
 	},
@@ -543,17 +543,17 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 127.0,
-		"last_filter": "install",
+		"height": 392.0,
+		"last_filter": "dele",
 		"selected_items":
 		[
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"dele",
 				"File: Delete"
+			],
+			[
+				"rena",
+				"File: Rename"
 			],
 			[
 				"re",
@@ -612,6 +612,10 @@
 				"Package Control: Remove Package"
 			],
 			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
 				"git dif",
 				"Git: Diff All Files"
 			],
@@ -638,10 +642,6 @@
 			[
 				"d",
 				"File: Delete"
-			],
-			[
-				"rena",
-				"File: Rename"
 			],
 			[
 				"de",
@@ -704,7 +704,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 488.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -733,35 +733,108 @@
 	},
 	"expanded_folders":
 	[
-		"/F/wwwroot/l53",
-		"/F/wwwroot/l53/app",
-		"/F/wwwroot/l53/app/Http",
-		"/F/wwwroot/l53/app/Http/Controllers",
-		"/F/wwwroot/l53/resources",
-		"/F/wwwroot/l53/resources/assets",
-		"/F/wwwroot/l53/resources/assets/js",
-		"/F/wwwroot/l53/resources/assets/js/components",
-		"/F/wwwroot/l53/resources/views",
-		"/F/wwwroot/l53/resources/views/default",
-		"/F/wwwroot/l53/routes"
+		"/D/www/laravel53",
+		"/D/www/laravel53/app",
+		"/D/www/laravel53/app/Http",
+		"/D/www/laravel53/app/Http/Controllers",
+		"/D/www/laravel53/app/Models",
+		"/D/www/laravel53/resources",
+		"/D/www/laravel53/resources/views",
+		"/D/www/laravel53/routes"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/l53/resources/views/vue.blade.php",
-		"/F/wwwroot/l53/resources/assets/js/components/One.vue",
-		"/F/wwwroot/l53/gulpfile.js",
-		"/F/wwwroot/l53/resources/assets/js/components/Example.vue",
-		"/F/wwwroot/l53/resources/assets/js/app.js",
-		"/F/wwwroot/l53/routes/web.php",
-		"/F/wwwroot/l53/app/Http/Controllers/VueController.php",
-		"/F/wwwroot/l53/package.json",
-		"/F/wwwroot/l53/.gitattributes",
-		"/F/wwwroot/l53/.env",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/8F11B417_edit.tmp/Meihuas.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1735F9CB_edit.tmp/Meihuas.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/6667A0A0_edit.tmp/Kernel.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/654DA3F4_edit.tmp/.env",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/82554A1D_edit.tmp/laravel-2017-04-21.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/ED09F343_edit.tmp/Event.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/116E4E71_edit.tmp/footer.html",
+		"/D/www/laravel53/package.json",
+		"/D/www/laravel/package.json",
+		"/D/www/laravel53/gulpfile.js",
+		"/D/www/laravel53/npm-debug.log",
+		"/C/Program Files/Git/ReleaseNotes.html",
+		"/D/www/laravel53/app/Http/Controllers/ShopController.php",
+		"/D/www/laravel53/resources/views/shop/goodcate.blade.php",
+		"/D/www/laravel53/sftp-config.json",
+		"/D/www/ecshop/themes/default/category.dwt",
+		"/C/Windows/System32/drivers/etc/HOSTS",
+		"/C/wamp/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
+		"/C/Users/Administrator/Desktop/good_old.blade.php",
+		"/D/www/laravel53/routes/web.php",
+		"/D/www/laravel53/resources/views/shop/good.blade.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/GoodController.php",
+		"/D/www/laravel53/resources/views/admin/good/addformat.blade.php",
+		"/D/www/laravel53/resources/views/shop/good_old.blade.php",
+		"/D/www/laravel53/resources/views/admin/good/editformat.blade.php",
+		"/D/www/laravel53/app/Http/Middleware/VerifyCsrfToken.php",
+		"/D/www/laravel53/app/Services/TagService.php",
+		"/D/www/laravel53/resources/views/shop/index.blade.php",
+		"/D/www/laravel-shop/resources/views/default/pc/layout.blade.php",
+		"/D/www/laravel-shop/resources/views/default/pc/index.blade.php",
+		"/D/www/laravel53/app/Http/Middleware/Homeurl.php",
+		"/D/www/laravel53/app/Http/Kernel.php",
+		"/D/www/laravel53/app/Http/Controllers/UserController.php",
+		"/D/www/laravel53/resources/views/layout.blade.php",
+		"/D/www/laravel53/resources/views/admin/index.blade.php",
+		"/D/www/laravel-shop/app/Http/Controllers/HomeController.php",
+		"/D/www/laravel53/resources/views/shop/index.php",
+		"/D/www/laravel53/resources/views/default/home.blade.php",
+		"/D/www/laravel53/resources/views/user/login.blade.php",
+		"/D/www/laravel53/resources/views/user/register.blade.php",
+		"/D/www/laravel53/resources/views/user/usercenter.blade.php",
+		"/D/www/laravel53/resources/views/default/list.blade.php",
+		"/D/www/laravel53/composer.json",
+		"/D/www/laravel53/readme.md",
+		"/D/www/laravel53/app/Http/Controllers/PayController.php",
+		"/D/www/laravel-shop/composer.json",
+		"/D/www/laravel53/config/alipay.php",
+		"/D/www/laravel-shop/config/emchat.php",
+		"/D/www/laravel-shop/app/Http/Controllers/PayController.php",
+		"/D/www/laravel-shop/app/Http/Controllers/BaseController.php",
+		"/F/yan/市场情报/20170413/梅花网升级文件/meihua.sql",
+		"/F/yan/市场情报/20170413/梅花网升级文件/menu.sql",
+		"/D/www/laravel53/resources/views/admin/good/index.blade.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/IndexController.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/GoodCateController.php",
+		"/D/www/laravel-shop/app/Http/Controllers/Admin/IndexController.php",
+		"/C/Users/Administrator/Desktop/sss.sql",
+		"/D/www/laravel53/database/migrations/2017_03_09_103903_create_pays_table.php",
+		"/D/www/laravel-shop/database/migrations/2017_03_28_084934_add_thumb_to_pay.php",
+		"/D/www/laravel53/sql/pay.sql",
+		"/D/www/laravel-shop/routes/web.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/PayController.php",
+		"/D/www/laravel53/app/Http/Controllers/Admin/GoodAttrController.php",
+		"/D/www/laravel53/app/Http/Requests/FormatRequest.php",
+		"/D/www/laravel-shop/app/Http/Kernel.php",
+		"/D/www/laravel-shop/app/Http/ViewComposer/Cart.php",
+		"/D/www/laravel53/app/Models/GoodFormat.php",
+		"/D/www/laravel53/app/Models/GoodCate.php",
+		"/D/www/laravel53/app/Models/Good.php",
+		"/D/www/laravel53/app/Models/GoodAttr.php",
+		"/D/www/laravel53/app/Models/CateAttr.php",
+		"/D/www/laravel53/app/Models/Pay.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103732_create_good_cates_table.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103746_create_good_attrs_table.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103802_create_good_cate_attr_table.php",
+		"/C/Users/Administrator/Desktop/menu.sql",
+		"/D/www/laravel53/database/migrations/2017_03_09_103829_create_goods_table.php",
+		"/D/www/laravel53/database/migrations/2017_03_09_103844_create_good_formats_table.php",
+		"/D/www/aocomm/public/statics/home/js/com.js",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/E23E0651_edit.tmp/com.js",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/2E40958C_edit.tmp/VerifyCsrfToken.php",
+		"/D/www/laravel-shop/database/migrations/2017_03_15_154132_add_price_good.php",
+		"/D/www/laravel-shop/database/migrations/2017_03_13_090832_add_title_to_goodformat.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/62E82AC0_edit.tmp/config.json",
+		"/C/Users/Administrator/Desktop/meihua.sql",
+		"/D/www/CIS/vendor/laravel/framework/src/Illuminate/Console/Scheduling/Event.php",
+		"/F/yan/市场情报/20170413/梅花网升级文件/app/Http/routes.php",
 		"/D/www/laravel53/app/Http/Controllers/Api/UserController.php",
 		"/D/www/laravel53/app/Http/Middleware/Jwt.php",
 		"/D/www/roadtime/app/Http/Middleware/Jwt.php",
 		"/D/www/laravel53/routes/api.php",
-		"/D/www/laravel53/app/Http/Kernel.php",
 		"/D/www/laravel53/config/jwt.php",
 		"/D/www/roadtime/app/Http/Controllers/v1/UserController.php",
 		"/D/www/CIS/app/Http/Controllers/UserController.php",
@@ -772,20 +845,11 @@
 		"/D/www/laravel53/app/Http/Controllers/Api/BaseUserController.php",
 		"/D/www/laravel53/app/Http/Controllers/Api/BaseController.php",
 		"/D/www/CIS/app/Http/Controllers/BaseController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/HomeController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/BaseController.php",
 		"/C/Users/Administrator/Desktop/aa.sql",
 		"/D/www/laravel53/sql/20170420-user-干净的.sql",
-		"/D/www/laravel53/resources/views/user/login.blade.php",
-		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/app/Http/Controllers/UserController.php",
 		"/D/www/laravel53/app/Http/Requests/UserRequest.php",
-		"/D/www/laravel53/resources/views/user/usercenter.blade.php",
 		"/D/www/laravel53/app/Http/Controllers/Admin/UserController.php",
 		"/D/www/laravel53/app/Http/Middleware/Member.php",
-		"/D/www/laravel53/resources/views/user/register.blade.php",
-		"/D/www/laravel53/resources/views/default/home.blade.php",
-		"/D/www/laravel-shop/routes/web.php",
 		"/D/www/laravel53/app/Http/Controllers/Admin/GroupController.php",
 		"/D/www/laravel-shop/app/Http/Requests/UserRequest.php",
 		"/D/www/laravel53/app/Models/Group.php",
@@ -796,7 +860,6 @@
 		"/D/www/laravel53/.env",
 		"/D/www/laravel53/sql/20170420-default-干净的.sql",
 		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.015.3048/HZ$D.015.3049/xi-yi/composer.json",
-		"/D/www/laravel53/composer.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AA5BAC92_edit.tmp/composer.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AA5BAC92_edit.tmp/.env",
 		"/D/www/laravel53/app/Http/Controllers/Admin/ArtController.php",
@@ -804,77 +867,11 @@
 		"/D/www/laravel53/app/Http/Controllers/Admin/RoleController.php",
 		"/D/www/laravel53/resources/views/admin/role/priv.blade.php",
 		"/D/www/laravel53/sql/20170224-wx.sql",
-		"/D/www/laravel53/resources/views/admin/index.blade.php",
 		"/D/www/laravel53/resources/views/admin/login.blade.php",
 		"/D/www/laravel53/resources/views/admin/right.blade.php",
 		"/D/www/laravel53/app/Http/Middleware/RedirectIfAuthenticated.php",
-		"/C/Windows/System32/drivers/etc/HOSTS",
 		"/F/scss/fmeye2/pc/index.html",
-		"/F/scss/fmeye2/pc/css/reset.scss",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/9DF3C209_edit.tmp/index.html",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxmenuController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxmenu/index.blade.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxAuthController.php",
-		"/F/wwwroot/MzsjCms/App/Index/Controller/OauthController.class.php",
-		"/F/wwwroot/l53/app/Http/Controllers/HomeController.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/26F16920_edit.tmp/session.php",
-		"/F/wwwroot/l53/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
-		"/F/wwwroot/l53/app/Models/Admin.php",
-		"/F/wwwroot/MzsjCms/App/Index/View/default/Oauth/index.html",
-		"/F/wwwroot/MzsjCms/App/Index/Controller/CheckPrivController.class.php",
-		"/F/wwwroot/l53/vendor/symfony/http-foundation/Session/Session.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/PublicController.php",
-		"/F/wwwroot/l53/app/Http/Controllers/UserController.php",
-		"/F/wwwroot/l53/app/Http/Kernel.php",
-		"/F/wwwroot/MzsjCms/App/Index/Controller/WxController.class.php",
-		"/F/wwwroot/laravel/app/Http/Controllers/WxAuthController.php",
-		"/F/wwwroot/laravel/app/Http/routes.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxApi.php",
-		"/F/wwwroot/l53/sftp-config.json",
-		"/F/wwwroot/l53/app/Http/Controllers/Wx/WxController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxattr/index.blade.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxuserController.php",
-		"/F/wwwroot/l53/resources/views/admin/wxuser/remark.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/wxuser/index.blade.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxuser/remark.html",
-		"/F/wwwroot/l53/app/Models/Wxgroup.php",
-		"/F/wwwroot/l53/app/Models/Wxuser.php",
-		"/F/wwwroot/l53/resources/views/admin/wxgroup/index.blade.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxgroupController.class.php",
-		"/F/wwwroot/l53/resources/views/admin/wxgroup/edit.blade.php",
-		"/F/wwwroot/l53/resources/views/admin/wxgroup/add.blade.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxgroup/addgroup.html",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxgroupController.class.php",
-		"/F/wwwroot/l53/app/Http/Controllers/Admin/WxattrController.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxattrController.class.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addart.html",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/index.html",
-		"/F/wwwroot/l53/resources/views/admin/wxattr/nums.blade.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/attrnums.html",
-		"/F/wwwroot/l53/resources/views/admin/wxattr/add.blade.php",
-		"/F/wwwroot/l53/app/Services/ComService.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/262CC54C_edit.tmp/20170301092241785.png",
-		"/F/wwwroot/l53/config/view.php",
-		"/F/wwwroot/l53/app/Http/Requests/WxattrRequest.php",
-		"/F/wwwroot/l53/app/Http/Middleware/VerifyCsrfToken.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/View/Wxattr/addattr.html",
-		"/F/wwwroot/l53/database/migrations/2017_03_01_085528_create_wxattr_table.php",
-		"/F/wwwroot/l53/app/Models/Wxattr.php",
-		"/C/Users/Li/Downloads/天火大道 www.mianhuatang.cc(all).txt",
-		"/F/yan/xi-yi.txt",
-		"/E/BaiduYunDownload/xi-yi.txt",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/user.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/388DEC9E_edit.tmp/msg.log",
-		"/F/wwwroot/laravel/app/Http/Controllers/WxController.php",
-		"/F/wwwroot/l53/routes/api.php",
-		"/F/wwwroot/l53/sql/20170224-wx.sql",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/C8517A85_edit.tmp/.env",
-		"/F/wwwroot/l53/sql/default-wx.sql",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/CA4E588C_edit.tmp/config.php",
-		"/F/wwwroot/MzsjCms/App/Common/Api/WxApi.class.php",
-		"/F/wwwroot/MzsjCms/App/Mzsj/Controller/WxController.class.php"
+		"/F/scss/fmeye2/pc/css/reset.scss"
 	],
 	"find":
 	{
@@ -959,6 +956,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"dd",
+			"['id']",
+			"subcate",
+			"backurl",
+			"config('shop.pc').",
+			"自身新闻-社媒监测-论坛",
+			"goodcateCache",
+			"getCache",
 			"$this->response",
 			"Carbon::now",
 			"Carbon",
@@ -1078,15 +1083,7 @@
 			"AlipayUserUserinfoShareRequest",
 			"CURLOPT_POSTFIELDS",
 			"curl",
-			"CURLOPT_HTTPHEADER",
-			"curl_setopt",
-			"curl",
-			"App::make('com')->postCurl",
-			"authstatus",
-			"android_",
-			"ios_log",
-			"android_log",
-			"content"
+			"CURLOPT_HTTPHEADER"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1236,6 +1233,22 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"good/addfor",
+				"resources\\views\\admin\\good\\addformat.blade.php"
+			],
+			[
+				"addform",
+				"resources\\views\\admin\\good\\addformat.blade.php"
+			],
+			[
+				"good/editfo",
+				"resources\\views\\admin\\good\\editformat.blade.php"
+			],
+			[
+				"good/fo",
+				"resources\\views\\admin\\good\\addformat.blade.php"
+			],
 			[
 				"default/home",
 				"resources\\views\\default\\home.blade.php"
@@ -1731,22 +1744,6 @@
 			[
 				"error",
 				"resources\\views\\article\\error.blade.php"
-			],
-			[
-				"article/s",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"art/",
-				"resources\\views\\admin\\art\\edit.blade.php"
-			],
-			[
-				"article/con",
-				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"admin/in",
-				"resources\\views\\admin\\index.blade.php"
 			]
 		],
 		"width": 0.0
