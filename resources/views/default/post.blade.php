@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('default.layout')
 
 @section('title')
     <title>{{ $info->title }}</title>
@@ -8,19 +8,24 @@
 
 
 @section('content')
-    <!-- banner -->
-    <div class="banner container-fluid">
-        <img src="{{ $sites['url'] }}{{ $sites['static']}}home/images/b_n.jpg" alt="" class="img-responsive">
-    </div>
 
-    <!-- 精彩案例 -->
-    <section class="container-fluid mt30">
-        <h2 class="text-center">{{ $info->title }}</h2>
-        <h4 class="text-center">{{ $info->describe }}</h4>
-        <div class="page_content mt30">
-            {!! $info->content !!}
-        </div>
-    </section>
+<section class="container mt20">
+    <div class="row">
+        <!-- 左边 -->
+        @include('default.aside')
+        <!-- 右边 -->
+        <article class="col-xs-12 col-md-9">
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                {{ App::make('tag')->catpos($info->catid) }}
+            </ol>
+            <h3 class="h3_cate"><span class="h3_cate_span">{{ $info->title }}</span></h3>
+            <div class="page_content mt30">
+                {!! $info->content !!}
+            </div>
+        </article>
+    </div>
+</section>
 
 
 @endsection

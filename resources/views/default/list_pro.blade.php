@@ -19,15 +19,11 @@
                 {{ App::make('tag')->catpos($info->id) }}
             </ol>
             <h3 class="h3_cate"><span class="h3_cate_span">{{ $info->name }}</span></h3>
-            <ul class="list_news">
+            <ul class="row list_pro">
                 @foreach($list as $a)
-                <li class="media">
-                    @if($a->thumb != '') <a class="media-left"><img src="{{ $a->thumb }}" width="100" alt=""></a>@endif
-                    <div class="media-body">
-                        <h4><a href="{{ url('/post',['url'=>$a->url]) }}" class="text-nowrap list_news_title">{{ $a->title }}</a></h4>
-                        @if($a->describe != '')<p>{{ substr($a->describe,'0','135') }}..</p>@endif
-                        <span class="list_news_time_n">{{ $a->updated_at->format('Y-m-d') }}</span>
-                    </div>
+                <li class="col-xs-6 col-md-3 overh">
+                    <a href="{{ url('/post',['url'=>$a->url]) }}"><img src="{{ $a->thumb }}" class="img-responsive" alt="{{ $a->title }}"></a>
+                    <a href="{{ url('/post',['url'=>$a->url]) }}" class="text-nowrap text-center list_pro_title center-block">{{ $a->title }}</a>
                 </li>
                 @endforeach
             </ul>

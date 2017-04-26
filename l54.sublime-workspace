@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"hidd",
+				"hidden-sm \tBootstrap 3 Class"
+			],
+			[
+				"bdr",
+				"bdrz\tborder-radius"
+			],
+			[
+				"as",
+				"aside_name"
+			],
+			[
+				"po",
+				"pos:r\tposition:relative"
+			],
+			[
+				"con",
+				"container"
+			],
+			[
+				"center",
+				"center-block \tBootstrap 3 Class"
+			],
+			[
+				"ur",
+				"url\t(layout.blade.php)"
+			],
+			[
+				"tex",
+				"text-center \tBootstrap 3 Class"
+			],
+			[
+				"br",
+				"bdrz\tborder-radius"
+			],
+			[
 				"_",
 				"_blank"
 			],
@@ -360,10 +396,6 @@
 				"color"
 			],
 			[
-				"po",
-				"pos:f\tposition:fixed"
-			],
-			[
 				"di",
 				"display"
 			],
@@ -482,38 +514,6 @@
 			[
 				"ios_",
 				"ios_size"
-			],
-			[
-				"group",
-				"groupdata"
-			],
-			[
-				"attrU",
-				"attrsU"
-			],
-			[
-				"ph",
-				"placeholder\tAttr"
-			],
-			[
-				"Group",
-				"GroupUser"
-			],
-			[
-				"va",
-				"value"
-			],
-			[
-				"for",
-				"foreach\tforeach …"
-			],
-			[
-				"section",
-				"section_id"
-			],
-			[
-				"upda",
-				"updateCache"
 			]
 		]
 	},
@@ -543,10 +543,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "close",
+		"height": 380.0,
+		"last_filter": "move",
 		"selected_items":
 		[
+			[
+				"move",
+				"File: Move"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"File: Rename"
+			],
 			[
 				"close",
 				"File: Close All"
@@ -564,15 +576,7 @@
 				"File: Rename"
 			],
 			[
-				"re",
-				"File: Rename"
-			],
-			[
 				"mov",
-				"File: Move"
-			],
-			[
-				"move",
 				"File: Move"
 			],
 			[
@@ -733,15 +737,41 @@
 	},
 	"expanded_folders":
 	[
-		"/F/wwwroot/l54",
-		"/F/wwwroot/l54/app",
-		"/F/wwwroot/l54/app/Http",
-		"/F/wwwroot/l54/app/Http/Controllers",
-		"/F/wwwroot/l54/resources",
-		"/F/wwwroot/l54/resources/views"
+		"/D/www/l54",
+		"/D/www/l54/app",
+		"/D/www/l54/app/Http",
+		"/D/www/l54/app/Services",
+		"/D/www/l54/public"
 	],
 	"file_history":
 	[
+		"/D/www/l54/resources/views/default/layout.blade.php",
+		"/D/www/l54/public/statics/home/css/home.scss",
+		"/D/www/l54/app/Http/Controllers/HomeController.php",
+		"/D/www/l54/resources/views/default/post.blade.php",
+		"/D/www/l54/resources/views/default/list.blade.php",
+		"/D/www/l54/resources/views/default/list_pro.blade.php",
+		"/D/www/l54/resources/views/default/aside.blade.php",
+		"/D/www/l54/resources/views/default/page.blade.php",
+		"/D/www/l54/resources/views/default/home.blade.php",
+		"/D/www/l54/app/Services/TagService.php",
+		"/D/www/aocomm/app/Services/TagService.php",
+		"/D/www/l54/routes/web.php",
+		"/D/www/l54/resources/views/admin/art/edit.blade.php",
+		"/D/www/l54/resources/views/admin/art/add.blade.php",
+		"/D/www/l54/resources/views/admin/cate/add.blade.php",
+		"/D/www/l54/resources/views/admin/cate/edit.blade.php",
+		"/D/www/l54/webpack.mix.js",
+		"/D/www/l54/public/statics/home/js/com.js",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/724169C2_edit.tmp/index.html",
+		"/D/www/l54/resources/views/default/list_al.blade.php",
+		"/D/www/l54/resources/views/default/list_td.blade.php",
+		"/D/www/l54/app/Http/Controllers/Admin/ConfigController.php",
+		"/D/www/l54/app/Http/Controllers/Admin/IndexController.php",
+		"/D/www/l54/app/Http/Controllers/VueController.php",
+		"/D/www/l54/app/Http/Controllers/Admin/PublicController.php",
+		"/D/www/l54/.env",
+		"/D/www/l54/.gitignore",
 		"/F/wwwroot/l54/readme.md",
 		"/F/wwwroot/l53/readme.md",
 		"/F/wwwroot/l54/app/Http/Controllers/Admin/AdminController.php",
@@ -842,34 +872,7 @@
 		"/D/www/laravel53/app/Http/Middleware/Homeurl.php",
 		"/D/www/laravel53/app/Http/Kernel.php",
 		"/D/www/laravel53/app/Http/Controllers/UserController.php",
-		"/D/www/laravel53/resources/views/layout.blade.php",
-		"/D/www/laravel53/resources/views/admin/index.blade.php",
-		"/D/www/laravel-shop/app/Http/Controllers/HomeController.php",
-		"/D/www/laravel53/resources/views/shop/index.php",
-		"/D/www/laravel53/resources/views/default/home.blade.php",
-		"/D/www/laravel53/resources/views/user/login.blade.php",
-		"/D/www/laravel53/resources/views/user/register.blade.php",
-		"/D/www/laravel53/resources/views/user/usercenter.blade.php",
-		"/D/www/laravel53/resources/views/default/list.blade.php",
-		"/D/www/laravel53/composer.json",
-		"/D/www/laravel53/readme.md",
-		"/D/www/laravel53/app/Http/Controllers/PayController.php",
-		"/D/www/laravel-shop/composer.json",
-		"/D/www/laravel53/config/alipay.php",
-		"/D/www/laravel-shop/config/emchat.php",
-		"/D/www/laravel-shop/app/Http/Controllers/PayController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/BaseController.php",
-		"/F/yan/市场情报/20170413/梅花网升级文件/meihua.sql",
-		"/F/yan/市场情报/20170413/梅花网升级文件/menu.sql",
-		"/D/www/laravel53/resources/views/admin/good/index.blade.php",
-		"/D/www/laravel53/app/Http/Controllers/Admin/IndexController.php",
-		"/D/www/laravel53/app/Http/Controllers/Admin/GoodCateController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/Admin/IndexController.php",
-		"/C/Users/Administrator/Desktop/sss.sql",
-		"/D/www/laravel53/database/migrations/2017_03_09_103903_create_pays_table.php",
-		"/D/www/laravel-shop/database/migrations/2017_03_28_084934_add_thumb_to_pay.php",
-		"/D/www/laravel53/sql/pay.sql",
-		"/D/www/laravel-shop/routes/web.php"
+		"/D/www/laravel53/resources/views/layout.blade.php"
 	],
 	"find":
 	{
@@ -956,6 +959,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"['",
+			"->where('site_id',session('site')->id)",
+			"goodcate",
+			"3,6",
+			"admin/",
+			"HOST",
+			"\t\t\n",
+			"18932813211",
+			"{{ $sites['url'] }}{{ $sites['static']}}",
+			"->",
+			"Auth",
+			"title",
+			"static",
 			"admin/",
 			"allRole",
 			"RoleUser",
@@ -1070,20 +1086,7 @@
 			"local_date",
 			"userreq_ip",
 			"risk_item",
-			"money_order",
-			"dt_orde",
-			"busi_partner",
-			"ll_notify_url",
-			"gateway",
-			"MediaId",
-			"MsgType",
-			"createRequest",
-			"purchase",
-			"sendData",
-			"notify_url",
-			"HomeController",
-			"get",
-			"$"
+			"money_order"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1091,6 +1094,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"xycms/",
+			"{{ $sites['static']}}",
 			"xycms/",
 			"/xycms/",
 			"{{ $sites['static']}}",
@@ -1229,7 +1234,7 @@
 	{
 		"height": 62.0
 	},
-	"save_all_on_build": true,
+	"save_all_on_build": false,
 	"select_file":
 	{
 		"height": 0.0,

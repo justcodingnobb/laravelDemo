@@ -138,13 +138,13 @@
 	KindEditor.ready(function(K) {
 		window.editor = K.create('#editor_id',{
 			minHeight:350,
-			uploadJson : "{{ url('admin/attr/uploadimg') }}",
+			uploadJson : "{{ url('xycms/attr/uploadimg') }}",
             extraFileUploadParams: {
 				session_id : "{{ session('user')->id }}",
             }
 		});
 		window.editor3 = K.editor({
-			uploadJson : "{{ url('admin/attr/uploadimg') }}",
+			uploadJson : "{{ url('xycms/attr/uploadimg') }}",
             extraFileUploadParams: {
 				session_id : "{{ session('user')->id }}",
 				// thumb : 1,

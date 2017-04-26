@@ -8,7 +8,7 @@ use App\Models\Admin;
 use App\Models\Config;
 use App\Models\Menu;
 use App\Models\Priv;
-use Auth;
+use Cache;
 
 class IndexController extends Controller
 {
@@ -116,7 +116,7 @@ class IndexController extends Controller
     public function getCache()
     {
         $config = Config::select('sitename','title','keyword','describe','theme','person','phone','email','address','content')->findOrFail(1)->toArray();
-        cache('config',$config);
+        Cache::forever('config',$config);
         echo "<p class='color-green'>更新系统缓存成功...</p>";
         App::make('com')->updateCache(new App\Models\Cate,'cateCache');
         echo "<p class='color-green'>更新栏目缓存成功...</p>";

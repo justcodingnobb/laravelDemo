@@ -17,6 +17,8 @@ Route::get('/vue','VueController@index');
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');
+    Route::get('/cate/{url}','HomeController@getCate');
+    Route::get('/post/{url}','HomeController@getPost');
 });
 
 

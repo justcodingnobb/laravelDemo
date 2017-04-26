@@ -9,6 +9,6 @@ class VueController extends Controller
 {
     public function index()
     {
-    	return view('vue');
+    	return view('vue.vue');
     }
 }
