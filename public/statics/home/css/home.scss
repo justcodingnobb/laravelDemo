@@ -1,0 +1,108 @@
+/*作者(Author): 李潇喃    Website: www.muzisheji.com   QQ: 854378082*/
+ 
+@mixin start{
+    *, *:before, *:after {box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, article, aside, audio, canvas, details, figcaption, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video {border:0;background:transparent;margin:0;padding:0;}
+    article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote {display:block;}
+    table, tbody, tfoot, thead, tr, th,td {background:transparent;margin:0;padding:0;}
+    nav ,ul {list-style:none;}
+    ol {list-style:decimal;}
+    blockquote:before, blockquote:after, q:before, q:after {content:none;}
+    table {border-collapse:collapse;border-spacing:0;}
+    hr {display:block;height:0px;border:0;border-top:1px solid #ccc;overflow:hidden; line-height:0px;}
+    input ,select ,a img {vertical-align:middle;}
+    .clearfix:after {content: ""; clear: both; height: 0px; overflow: hidden; display:block; visibility: hidden;}
+    .clearfix {*zoom:1;}
+    .overh {overflow: hidden;}
+}
+@include start;
+$color_1:#FF6501;
+$color_2:#0088CC;
+body {line-height: 1.8;}
+a {color:#333;}
+.mt20 {margin-top: 20px;}
+.head {
+    margin:25px auto 15px;
+    .dh {font-size: 20px; color:$color_2; padding-top: 15px;}
+    .logo-font {padding:2px 10px; font-size: 30px; font-weight: normal; line-height: 50px; color:$color_2;}
+}
+#nav_top {
+    width: 100%;
+    margin-top: 10px;
+    line-height: 40px;
+    background: $color_2;
+    .navbar {margin-bottom: 0px;}
+    .navbar-default {background: none; border:none;}
+    a {font-size: 16px;color:#FFF;}
+    a:hover {color:$color_2;}
+    .active a {color:$color_2; background:#FFF;font-size: 16px;}
+    .navbar-collapse {border-top:none;}
+}
+.nav>li>a:focus, .nav>li>a:hover {background-color: #FFF;color:$color_2;}
+.navbar-toggle {border-color:$color_2;}
+.navbar-toggle .icon-bar {background-color: $color_2;}
+.navbar-default .navbar-toggle ,.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {background: none;}
+.banner {
+    margin:0;
+    background-color: #efefef;
+    background: url('../images/banner.jpg') center center no-repeat;
+    background-size:cover;
+    .b_img {
+        height:100px;
+    }
+}
+.cate_list img ,.list_pro img {border-radius: 3px;}
+.cate_list_a ,.list_pro_title {margin-top: 5px;}
+.foot {
+    background-color: #F3F3F3;
+    padding: 20px 0;
+    margin-top: 20px;
+    color:#666666;
+    line-height: 2;
+    font-size: 12px;
+}
+.h3_cate {
+    font-size: 16px;
+    color:$color_2;
+    border-bottom:#DDDDDD solid 1px;
+    position: relative;
+    line-height: 2.4;
+    margin-bottom: 15px;
+    .h3_cate_span {
+        display: inline-block;
+        position: relative;
+        top:1px;
+        border-bottom:$color_2 solid 1px;
+    }
+}
+.more {font-size: 12px; position: absolute; right:5px;bottom:-2px; color:#666;}
+.list_news {
+    line-height: 2;
+    li {border-bottom:#efefef dashed 1px; margin-bottom: 3px; padding-bottom: 3px;position: relative;overflow: hidden;
+        p {line-height: 1.8; font-size: 12px; color:#666; margin-top: 5px;}
+    }
+    h4 {font-size: 14px;}
+    .list_news_time {background-color: #FFF; color:#999; padding-left: 14px; position: absolute; right:0; top:0px; display: block;z-index: 100;}
+    .list_news_time_n {font-size: 12px; color:#999; line-height: 1.4;}
+}
+.list_pro li {margin-bottom: 10px;
+    .list_pro_title {overflow: hidden}
+}
+.list_aside {
+    background: $color_2;
+    color:#FFF;
+    margin-top: -60px;
+    padding: 10px 0 30px;
+    border-radius: 3px;
+    a {color:#FFF;display: block;}
+    a:hover {text-decoration: none}
+    h2 {font-size: 20px;line-height: 2.6;}
+    li {
+        border-bottom:#0484C4 solid 1px;
+        line-height: 2.4;
+        text-indent: 10%;
+    }
+    li.active a ,li:hover a {
+        background-color: #0077CC;
+    }
+}
