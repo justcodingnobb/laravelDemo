@@ -292,13 +292,13 @@ class ComService
         else
         {
             // 移动到新的位置，先创建目录及更新文件名为时间点
-            $dir = public_path('upload/attrs/'.date('Ymd').'/');
+            $dir = public_path('upload/'.date('Ymd').'/');
             if(!is_dir($dir)){
                 Storage::makeDirectory(date('Ymd'));
             }
             $outPath = $dir.$filename.'.jpg';
             $isTrue = $res->file('imgFile')->move($dir, $filename.'.'.$ext);
-            $localurl = '/attrs/'.date('Ymd').'/'.$filename.'.'.$ext;
+            $localurl = '/'.date('Ymd').'/'.$filename.'.'.$ext;
         }
         $url = '/upload'.$localurl;
         // 附件信息记入数据库

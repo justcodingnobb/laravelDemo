@@ -38,7 +38,7 @@
         <nav class="container">
             <div class="collapse navbar-collapse" id="nav_top_ul">
               <ul class="nav navbar-nav">
-                <li @if($info->pid == 0) class="active"@endif><a href="/">首页 <span class="sr-only">(current)</span></a></li>
+                <li @if($info->pid == 0) class="active"@endif><a href="/">首页</a></li>
                 @foreach(App::make('tag')->cate() as $c)
                 <li @if($info->pid == $c->id) class="active"@endif><a href="{{ url('cate',['url'=>$c->url]) }}">{{ $c->name }}</a></li>
                 @endforeach

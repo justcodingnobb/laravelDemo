@@ -740,12 +740,17 @@
 		"/D/www/l54",
 		"/D/www/l54/app",
 		"/D/www/l54/app/Http",
+		"/D/www/l54/app/Http/Controllers",
 		"/D/www/l54/app/Services",
-		"/D/www/l54/public"
+		"/D/www/l54/resources"
 	],
 	"file_history":
 	[
+		"/D/www/l54/sql/CMS-init.sql",
+		"/D/www/l54/resources/views/errors/404.blade.php",
+		"/D/www/l54/app/Services/ComService.php",
 		"/D/www/l54/resources/views/default/layout.blade.php",
+		"/D/www/xi-yi/sftp-config.json",
 		"/D/www/l54/public/statics/home/css/home.scss",
 		"/D/www/l54/app/Http/Controllers/HomeController.php",
 		"/D/www/l54/resources/views/default/post.blade.php",
@@ -868,11 +873,7 @@
 		"/D/www/laravel53/app/Services/TagService.php",
 		"/D/www/laravel53/resources/views/shop/index.blade.php",
 		"/D/www/laravel-shop/resources/views/default/pc/layout.blade.php",
-		"/D/www/laravel-shop/resources/views/default/pc/index.blade.php",
-		"/D/www/laravel53/app/Http/Middleware/Homeurl.php",
-		"/D/www/laravel53/app/Http/Kernel.php",
-		"/D/www/laravel53/app/Http/Controllers/UserController.php",
-		"/D/www/laravel53/resources/views/layout.blade.php"
+		"/D/www/laravel-shop/resources/views/default/pc/index.blade.php"
 	],
 	"find":
 	{
