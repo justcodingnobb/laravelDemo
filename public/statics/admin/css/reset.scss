@@ -1,0 +1,441 @@
+/* 
+    定义变量
+*/
+@mixin start{
+    /*作者(Author): 李潇喃    Website: www.muzisheji.com   QQ: 854378082*/
+    *, *:before, *:after {box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, article, aside, audio, canvas, details, figcaption, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video {border:0;background:transparent;margin:0;padding:0;}
+    article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote {display:block;}
+    table, tbody, tfoot, thead, tr, th,td {background:transparent;margin:0;padding:0;}
+    nav ,ul {list-style:none;}
+    ol {list-style:decimal;}
+    blockquote:before, blockquote:after, q:before, q:after {content:none;}
+    table {border-collapse:collapse;border-spacing:0;}
+    hr {display:block;height:0px;border:0;border-top:1px solid #ccc;overflow:hidden; line-height:0px;}
+    input ,select ,a img {vertical-align:middle;}
+}
+@import "../../common/css/bootstrap.min.css";
+@include start;
+html {
+    height: 100%; 
+}
+body {
+    background-color: #fff;
+    height: 100%;
+    padding: 1em;
+}
+a:hover {text-decoration: none;}
+ul {list-style:none;}
+.pd10 {padding:10px;}
+.m-a {
+    margin:0 auto;
+    display: block;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mt15 {
+    margin-top: 15px;
+}
+.mt10 {
+    margin-top: 10px;
+}
+.login_box {
+    margin-top:100px;
+    padding:25px 20px 30px 20px;
+    float: none;
+    border-radius: 15px;
+    background: #FFF;
+    box-shadow: #ccc 0 0 5px;
+    h1 {
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+}
+/* 主体框架 */
+body.box {overflow: hidden; padding: 0;}
+.mainbox { height: auto; min-height: 100%; position: relative;}
+/*top*/
+.top {height: 50px; line-height: 50px; background-color: #1E384C; color: #FFF; position: relative; top: 0; left: 0; width: 100%; z-index: 9999;}
+.logo {font-weight: normal; padding-left: 15px; float: left; width: 200px; font-size: 26px; line-height: 50px;margin:0;}
+.top a {color: #9da4aa;}
+.menu ,#mainmenu { float: left; margin:0; padding:0;}
+#mainmenu li {float: left; width: 80px; font-size: 1.2em; font-weight:normal; text-align: center;}
+#mainmenu li a {display: block; cursor: pointer;}
+#mainmenu li a:hover {background: #27455B; color:#FFF;}
+#mainmenu li a.active {background: #27455B; color:#FFF;}
+.userinfo {float: right; margin-right: 10px; font-size: 1rem; color:#eee;}
+.userinfo a {color: #ccc;}
+.userinfo a:hover {color: #FFF;}
+/*end top start left*/
+.leftbg {width: 200px; background-color: #495B6C; border-right:#415160 solid 1px; position: absolute; top: 0px; bottom: 0em; z-index: -1;}
+.left {width: 200px; float: left; padding-top: 10px; position: fixed; color: #fff; overflow: hidden;}
+.left a {color: #fff; padding-left: 0;}
+.left_h3 {font-size: 1em; line-height: 3; cursor: pointer; font-weight: normal; margin:0;padding:0; padding-left: 15px;}
+.left span {margin-right: 8px; margin-top: 12px; float: left; width:12px;}
+.left_list {font-size:12px; margin: 5px 0; text-indent: 1.5em; padding:0;}
+.left_list li {line-height: 3; padding-left: 15px;border-bottom:#415160 solid 1px; border-top:#506274 solid 1px;}
+.left_list li:hover {background: #415160; box-shadow: 0 0 3px rgba(0,0,0,.15) inset;}
+.left_list li.active {background: #415160; color: #FFF; box-shadow: 0 0 5px rgba(0,0,0,.2) inset;}
+.sub_menu_a {float: left; display: block; width:150px; color: #FFF;}
+.left_list a.active { text-decoration: none; color: #FFF;}
+/*end left start main*/
+.right {margin-left: 200px; padding-bottom:2.5em;}
+.right_con {padding:5px;}
+.main_title {font-weight: normal; margin:0; font-weight: 400; margin-right: 10px;}
+.copyright {height: 2em; border-top: #ddd solid 1px; position: fixed; bottom: 1px; left: 200px; right: 0px; font-size: 0.8em; line-height: 2em; text-indent: 1em; margin:0; padding-left:10px;}
+/*end main*/
+form label {margin-bottom: 5px;}
+.help-block {
+    font-weight: normal;
+    display: block;
+    color: red;
+}
+.color-green {
+    color:green;
+}
+.color-red {
+    color: red;
+}
+.color-blue {
+    color: blue;
+}
+.color-6 {
+    color:#666;
+    a {
+        color:#666;
+    }
+}
+.color-success {
+    color: rgb(28, 184, 65); /* this is a green */
+}
+.color-error {
+    color: rgb(202, 60, 60); /* this is a maroon */
+}
+.color-warning {
+    color: rgb(223, 117, 20); /* this is an orange */
+}
+.color-secondary {
+    color: rgb(66, 184, 221); /* this is a light blue */
+}
+.color-primary {
+    color:#0078E7;
+}
+.add_submenu {
+    margin-left: 10px;
+}
+.level-1 {
+    font-size: 0;
+}
+.level-2 {
+    padding-left: 1em;
+}
+.level-2:after {
+    content:"├";
+    display:inline-block;
+    margin-right: 5px;
+}
+.level-3 {
+    padding-left: 1em;
+}
+.level-3:after {
+    content:"│ ├";
+    display:inline-block;
+    margin-right: 5px;
+}
+.level-4 {
+    padding-left: 1em;
+}
+.level-4:after {
+    content:"│ │ ├";
+    display:inline-block;
+    margin-right: 5px;
+}
+thead {font-weight: bold;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    line-height: 2;
+}
+.check-mr {margin-right: 5px;}
+.priv-tree {
+    .checkbox-inline input {margin-top: 8px;}
+    li {
+        line-height: 2.4;
+    }
+    ul.priv-level-1 {
+        background-color: #fff;
+        font-size: 16px;
+        li {
+            padding:0 1em;
+            background-color: #f0f0f0;
+        }
+    }
+    ul.priv-level-2 {
+        background-color: #fff;
+        font-size: 14px;
+        li {
+            padding-left: 1em;
+            background-color: #F7F7F7;
+        }
+    }
+    ul.priv-level-3 {
+        margin:5px 0;
+        background-color: #fff;
+        li {
+            padding-left: 1em;
+            background-color: #fff;
+            border-bottom:#E0E0E0 solid 1px;
+        }
+    }
+    ul.priv-level-4 {
+        background-color: #fff;
+        margin-bottom: 5px;
+        li {
+            padding-left: 1em;
+            float: left;
+            border:none;
+        }
+    }
+}
+.pure-file {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.pages {
+    a {
+        display: block;
+    }
+    height: 2em;
+    line-height: 2em;
+    float: right;
+    span{
+        padding:0 0.8em;
+        background: #eee;
+        margin-left: 2px;
+    }
+    .pagination {
+        float: right;
+        margin:0;
+        span {
+            padding:0 0.8em;
+            background: none;
+            margin-left: 0;
+            display: block;
+        }
+        li {
+            background: #eee;
+            margin-left: 2px;
+            float: left;
+            cursor: pointer;
+            a {
+                display: block;
+                padding:0 0.8em;
+            }
+            &.active,&:hover {
+                color:#FFF;
+                background-color: #4BBD00;
+                a,span {
+                    color:#FFF;
+                    background-color: #4BBD00;
+                    border:#4BBD00 solid 1px;
+                    display: block;
+                    padding:0 0.8em;
+                }
+            }
+        }
+    }
+    .page-submit {
+        width:3em;
+        margin-left: 4px;
+        height: 2em;
+        border:#CCCCCC solid 1px;
+        border-radius: 3px;
+    }
+}
+.alert_top {
+    background-color: #DFF0D8;
+    border-radius: 5px;
+    height: 3em;
+    line-height: 3em;
+    text-indent: 1em;
+    color:#3C763D;
+    margin-bottom: 15px;
+    position: fixed;
+    top:0px;
+    width:100%;
+    margin:0;
+    padding:0;
+    z-index: 1000;
+}
+.list_group_user {
+    margin-bottom: 15px;
+    li {
+        float: left;
+        margin-right: 10px;
+        width:150px;
+    }
+}
+.ke-upload-area .ke-upload-file {
+    height: 0.5em;
+}
+.add_attr {
+    margin-top: 5px;
+}
+.special_div {
+    margin-top:1em;
+}
+.input-listorder {
+    width:50px !important;
+}
+/* 上传图片用的 */
+.webuploader-container {
+    position: relative;
+}
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick ,#ctlBtn {
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    background: #00b7ee;
+    padding: 5px 15px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.webuploader-pick-hover {
+    background: #00a2d4;
+}
+#ctlBtn {
+    background-color: #E6E6E6;
+    color: #333;
+}
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events:none;
+}
+.wu-example {
+    position: relative;
+    padding: 10px 15px 10px;
+    margin: 5px 0;
+    background-color: #fafafa;
+    border-color: #e5e5e5;
+    border-style: solid;
+    border-width: 1px;
+}
+.uploader-list {
+    width: 100%;
+    overflow: hidden;
+}
+.file-item {
+    float: left;
+    position: relative;
+    margin: 0 20px 10px 0;
+    padding: 4px;
+}
+.file-item .error {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    background: red;
+    color: white;
+    text-align: center;
+    height: 20px;
+    font-size: 14px;
+    line-height: 23px;
+}
+.file-item .info {
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    right: 4px;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
+    font-size: 12px;
+    z-index: 10;
+}
+.upload-state-done:after {
+    content:"\f00c";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 32px;
+    position: absolute;
+    bottom: 0;
+    right: 4px;
+    color: #4cae4c;
+    z-index: 99;
+}
+.file-item .progress {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    height: 3px;
+    left: 4px;
+    height: 4px;
+    overflow: hidden;
+    z-index: 15;
+    margin:0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+.file-item .progress span {
+    display: block;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    background: #d14 url(../images/progress.png) repeat-x;
+    -webit-transition: width 200ms linear;
+    -moz-transition: width 200ms linear;
+    -o-transition: width 200ms linear;
+    -ms-transition: width 200ms linear;
+    transition: width 200ms linear;
+    -webkit-animation: progressmove 2s linear infinite;
+    -moz-animation: progressmove 2s linear infinite;
+    -o-animation: progressmove 2s linear infinite;
+    -ms-animation: progressmove 2s linear infinite;
+    animation: progressmove 2s linear infinite;
+    -webkit-transform: translateZ(0);
+}
+@-webkit-keyframes progressmove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 17px 0;
+    }
+}
+@-moz-keyframes progressmove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 17px 0;
+    }
+}
+@keyframes progressmove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 17px 0;
+    }
+}
+// 上传图片完
