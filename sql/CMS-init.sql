@@ -257,3 +257,14 @@ CREATE TABLE `li_types` (
 /*Data for the table `li_types` */
 
 insert  into `li_types`(`id`,`parentid`,`arrparentid`,`child`,`arrchildid`,`name`,`listorder`,`created_at`,`updated_at`) values (1,0,'0',0,'1','一个',0,'2017-04-26 00:43:07','2017-04-26 00:43:07');
+
+/*Table structure for table `li_migrations` */
+
+DROP TABLE IF EXISTS `li_migrations`;
+
+CREATE TABLE `li_migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

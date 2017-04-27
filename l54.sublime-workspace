@@ -737,19 +737,25 @@
 	},
 	"expanded_folders":
 	[
-		"/D/www/l54",
-		"/D/www/l54/app",
-		"/D/www/l54/app/Http",
-		"/D/www/l54/app/Http/Controllers",
-		"/D/www/l54/app/Services",
-		"/D/www/l54/resources"
+		"/D/www/l54"
 	],
 	"file_history":
 	[
+		"/D/www/l54/app/Http/Kernel.php",
+		"/D/www/l54/routes/api.php",
+		"/D/www/xyshop/sftp-config.json",
+		"/D/www/l54/.gitignore",
+		"/D/www/l54/resources/views/default/layout.blade.php",
+		"/D/www/l54/sftp-config.json",
+		"/D/www/l54/.env.example",
+		"/D/www/l54/.env",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/C6DF4D1B_edit.tmp/.env",
+		"/D/www/l54/public/.htaccess",
+		"/D/www/xi-yi/public/.htaccess",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/947282F7_edit.tmp/.htaccess",
 		"/D/www/l54/sql/CMS-init.sql",
 		"/D/www/l54/resources/views/errors/404.blade.php",
 		"/D/www/l54/app/Services/ComService.php",
-		"/D/www/l54/resources/views/default/layout.blade.php",
 		"/D/www/xi-yi/sftp-config.json",
 		"/D/www/l54/public/statics/home/css/home.scss",
 		"/D/www/l54/app/Http/Controllers/HomeController.php",
@@ -775,8 +781,6 @@
 		"/D/www/l54/app/Http/Controllers/Admin/IndexController.php",
 		"/D/www/l54/app/Http/Controllers/VueController.php",
 		"/D/www/l54/app/Http/Controllers/Admin/PublicController.php",
-		"/D/www/l54/.env",
-		"/D/www/l54/.gitignore",
 		"/F/wwwroot/l54/readme.md",
 		"/F/wwwroot/l53/readme.md",
 		"/F/wwwroot/l54/app/Http/Controllers/Admin/AdminController.php",
@@ -864,16 +868,7 @@
 		"/C/wamp/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
 		"/C/Users/Administrator/Desktop/good_old.blade.php",
 		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/resources/views/shop/good.blade.php",
-		"/D/www/laravel53/app/Http/Controllers/Admin/GoodController.php",
-		"/D/www/laravel53/resources/views/admin/good/addformat.blade.php",
-		"/D/www/laravel53/resources/views/shop/good_old.blade.php",
-		"/D/www/laravel53/resources/views/admin/good/editformat.blade.php",
-		"/D/www/laravel53/app/Http/Middleware/VerifyCsrfToken.php",
-		"/D/www/laravel53/app/Services/TagService.php",
-		"/D/www/laravel53/resources/views/shop/index.blade.php",
-		"/D/www/laravel-shop/resources/views/default/pc/layout.blade.php",
-		"/D/www/laravel-shop/resources/views/default/pc/index.blade.php"
+		"/D/www/laravel53/resources/views/shop/good.blade.php"
 	],
 	"find":
 	{

@@ -59,9 +59,5 @@ class Kernel extends HttpKernel
 
         'rbac' => \App\Http\Middleware\BetoAdmin::class,
         'backurl'=> \App\Http\Middleware\Backurl::class,
-        // 网站用户认证
-        'member'=> \App\Http\Middleware\Member::class,
-        // APP用户认证
-        'jwt'=> \App\Http\Middleware\Jwt::class,
     ];
 }

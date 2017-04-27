@@ -12,7 +12,8 @@
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    # 请求不存在的目录或文件的情况下重写到入口文件
+    RewriteRule ^ /index.php [L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
