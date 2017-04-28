@@ -37,7 +37,8 @@ class UserRequest extends FormRequest
         return [
             'data.username' => '用户名',
             'data.password' => '密码',
-            'data.password_confirmation' => '密码',
+            'data.passwords' => '密码',
+            'data.passwords_confirmation' => '重复密码',
             'data.email' => '邮箱',
         ];
     }

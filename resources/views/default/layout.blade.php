@@ -15,27 +15,30 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-    @if(session('message'))
-    <h2 class="text-center text-danger">{{ session('message') }}</h2>
-    @endif
+
   
     <div class="top_font hidden-xs hidden-sm">
         <div class="container clearfix">
             <p class="pull-left">欢迎访问，希夷商城系统！</p>
             <p class="pull-right">客服电话：<span class="color_2">{{ cache('config')['phone'] }}</span></p>
-        </div>    
+        </div>
     </div>
 
     <header class="head clearfix container">
         <div class="row">
             <h1 class="col-xs-4 col-sm-4 col-md-6"><a class="logo-font" href="/"><span class="color_1">希夷</span><span class="color_2 hidden-xs">SHOP</span></a></h1>
-            <div class="dh text-right col-xs-4 col-sm-4 col-md-6">
-
+            <div class="text-right col-xs-4 col-sm-4 col-md-6 user_info">
+                @if(!session()->has('member'))
+                <a href="{{ url('user/login') }}">登陆</a> | <a href="{{ url('user/register') }}">注册</a>，
+                @else
+                欢迎 <a href="{{ url('user/center') }}" class="color_2">{{ session('member')->username }} </a> 回来，<a href="{{ url('shop/order') }}">我的订单</a>，
+                @endif
+                <a href="{{ url('shop/cart') }}">购物车(<span class="color_2 cart_nums">0</span>)</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-6">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_top_ul" aria-expanded="false">
@@ -62,16 +65,7 @@
     </div>
 
     <!-- banner -->
-    <div class="banner jumbotron">
-        <div class="b_img">
-            <div class="container text-right">
-                <h1 class="jumb_h1">NEW FASHION 2017</h1>
-                <h2 class="jumb_h2">DONEC VITAE EST PLACERAT</h2>
-                <h3 class="jumb_h3">DONEC VITAE EST PLACERAT</h3>
-                <a href="#" class="btn btn-danger jumb_btn">SHOW MORE</a>
-            </div>
-        </div>
-    </div>
+    @yield('banner')
 
     <!-- 主内容 -->
     @yield('content')
@@ -87,8 +81,22 @@
         <p>{{ cache('config')['address'] }}</p>
         <p>CopyRight @ 2017-2020 xi-yi.ren Design,All Rights Reserved 备案号：冀ICP备15021375号</p>
     </footer>
+    
+    <!-- 提示信息 -->
+    @if(session('message'))
+    <div class="alert alert-info alert_shop" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <p>{{ session('message') }}</p>
+    </div>
+    @endif
+    <!-- 公用js文件 -->
+    <script>
+       var host = "{{ config('app.url') }}/";
+    </script>
+    <script src="{{ $sites['static']}}home/js/com.js"></script>
 
-   
     <script id="__bs_script__">
         document.write("<script async src='http://www.xyshop.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.xyshop.com", location.hostname));
     </script>

@@ -1,17 +1,17 @@
+@extends('default.layout')
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>L53CMF-会员登陆</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"></head>
-<body>
-	<div class="container">
-		@if(session('message'))
-		<h2 class="text-center text-danger">{{ session('message') }}</h2>
-		@endif
+@section('title')
+    <title>会员登陆-希夷SHOP</title>
+@endsection
+
+@section('banner')
+    @include('default.banner')
+@endsection
+
+@section('content')
+	<div class="container mt20">
 		<form action="" method="post">
-			<h3 class="text-center">会员登陆</h3>
+			<h3 class="h3_cate"><span class="h3_cate_span">会员登陆</span></h3>
 			{{ csrf_field() }}
 			<input type="hidden" name="ref" value="{{ $ref }}">
 
@@ -37,9 +37,5 @@
 				<button type="reset" name="reset" class="btn btn-default">重填</button>
 			</div>
 		</form>
-
 	</div>
-
-</body>
-</html>
-
+@endsection

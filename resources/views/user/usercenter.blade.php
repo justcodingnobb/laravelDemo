@@ -1,14 +1,15 @@
+@extends('default.layout')
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>L53CMF-会员中心</title>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"></head>
-<body>
+@section('title')
+    <title>会员中心-希夷SHOP</title>
+@endsection
 
-	<div class="container">
-		<h3 class="text-center">会员中心</h3>
+@section('banner')
+    @include('default.banner')
+@endsection
+
+@section('content')
+	<div class="container mt20">
 		<table class="table table-striped">
 			<tbody>
 		        <tr>
@@ -38,6 +39,4 @@
 	        </tbody>
 		</table>
 	</div>
-
-</body>
-</html>
+@endsection

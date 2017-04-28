@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App;
+use App\Models\Cart;
 use App\Models\CateAttr;
 use App\Models\Good;
 use App\Models\GoodAttr;
 use App\Models\GoodCate;
 use App\Models\GoodFormat;
+use App\Models\Order;
+use App\Models\OrderGood;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class ShopController extends BaseController
@@ -158,75 +164,81 @@ class ShopController extends BaseController
     // 购物车
     public function cart()
     {
-        $goodcateid = 0;
-        $pcatid = 100;
-        $seo = ['title'=>'购物车','keyword'=>config('shop.keyword'),'description'=>config('shop.description')];
         // 找出购物车
-        $goods = Cart::where('session_id',session()->getId())->where('status',1)->orWhere(function($q){
+        $goods = Cart::where(function($q){
                 if (!is_null(session('member'))) {
-                    $q->where('user_id',session('member')->id)->where('status',1);
+                    $q->where('user_id',session('member')->id);
+                }
+                else
+                {
+                    $q->where('session_id',session()->getId());
                 }
             })->orderBy('updated_at','desc')->get();
+        $goodlists = [];
+        $total_prices = 0;
+        // 缓存属性们
+        $attrs = GoodAttr::get();
         // 如果有购物车
-        if ($goods->count() > 0) {
-            $ids = [];
-            foreach ($goods as $v) {
-                $ids[] = $v->good_id;
+        $goods = $goods->toArray();
+        // 循环查商品，方便带出属性来
+        foreach ($goods as $k => $v) {
+            $goodlists[$k] = Good::where('id',$v['good_id'])->where('status',1)->first();
+            $goodlists[$k]['num'] = $v['nums'];
+            $goodlists[$k]['price'] = $v['price'];
+            $tmp_total_price = number_format($v['nums'] * $v['price'],2,'.','');
+            $goodlists[$k]['total_prices'] = $tmp_total_price;
+            $total_prices += $tmp_total_price;
+            // 如果属性值不为0，查属性值
+            if ($v['format_id']) {
+                $tmp_format = GoodFormat::where('id',$v['format_id'])->value('attr_ids');
+                $tmp_format = str_replace('-','.',trim($tmp_format,'-'));
+                $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                $goodlists[$k]['format'] = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
             }
-            $goods = $goods->keyBy('good_id')->toArray();
-            $goodlists = Good::whereIn('id',$ids)->get();
-            foreach ($goodlists as $k => $v) {
-                $goodlists[$k]['num'] = $goods[$v->id]['nums'];
-                $goodlists[$k]['total_prices'] = $goods[$v->id]['nums'] * $v->price;
+            else
+            {
+                $goodlists[$k]['format'] = ['fid'=>0,'format'=>'','format_name'=>''];
             }
-        }
-        else
-        {
-            $goodlists = [];
         }
         // 找出所有商品来
-        return view('shop.cart',compact('seo','goodcateid','pcatid','goods','goodlists'));
+        $info = (object) ['pid'=>0];
+        $total_prices = number_format($total_prices,2,'.','');
+        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices'));
     }
     // 提交订单
-    public function order(Request $req)
+    public function getAddorder(Request $req)
     {
-        $goodcateid = 0;
-        $pcatid = 100;
-        $seo = ['title'=>'订单','keyword'=>config('shop.keyword'),'description'=>config('shop.description')];
-        // 找出所有产品ID
-        $ids = $req->id;
-        $num = $req->num;
-        $price = $req->price;
-        if(count($ids) <= 0)
-        {
-            return back()->with('message','清先选择商品');
+        // 找出所有 购物车
+        $ids = Cart::where('user_id',session('member')->id)->orderBy('updated_at','desc')->get();
+        if ($ids->count() == 0) {
+            return back()->with('message','购物车里是空的，请先购物！');
         }
         // 所有产品总价
-        $prices = 0;
-        foreach ($price as $k => $v) {
-            $prices += ($num[$k] * $v);
-        }
+        $prices = Cart::where('user_id',session('member')->id)->sum('total_prices');
         $uid = session('member')->id;
         // 创建订单
         $order_id = App::make('com')->orderid();
-        $order = ['order_id'=>$order_id,'user_id'=>$uid,'address_id'=>1,'total_prices'=>$prices,'create_ip'=>$req->ip()];
+        $order = ['order_id'=>$order_id,'user_id'=>$uid,'total_prices'=>$prices,'create_ip'=>$req->ip()];
         // 事务
         DB::beginTransaction();
         try {
             $oid = Order::create($order);
             // 组合order_goods数组
-            $id_num = [];
+            $order_goods = [];
+            $clear_ids = [];
             foreach ($ids as $k => $v) {
-                // 'user_id'=>session('member')->id,
-                $id_num[$v] = ['user_id'=>$uid,'order_id'=>$oid->id,'good_id'=>$v,'format_id'=>1,'nums'=>$num[$k],'price'=>$price[$k],'total_prices'=>$num[$k] * $price[$k]];
+                $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$oid->id,'good_id'=>$v->good_id,'format_id'=>$v->format_id,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
+                $clear_ids[] = $v->id;
             }
             // 插入
-            OrderGood::insert($id_num);
+            OrderGood::insert($order_goods);
             // 没出错，提交事务
             DB::commit();
             // 清空购物车里的这几个产品
-            Cart::whereIn('good_id',$ids)->where('user_id',$uid)->update(['status'=>0]);
-            return redirect('/')->with('message','添加成功！');
+            Cart::whereIn('id',$clear_ids)->delete();
+            $info = (object)['pid'=>0];
+            $oid = $oid->id;
+            return view($this->theme.'.addorder',compact('info','oid'));
         } catch (\Exception $e) {
             // 出错回滚
             DB::rollBack();
@@ -234,33 +246,95 @@ class ShopController extends BaseController
         }
         // return view('shop.cart',compact('seo','goodcateid','pcatid','goods','goodlists'));
     }
+    // 订单列表
+    public function order(Request $req)
+    {
+        $info = (object) ['pid'=>0];
+        // 找出订单
+        $orders = Order::with(['good'=>function($q){
+                    $q->with('good');
+                }])->where('user_id',session('member')->id)->orderBy('id','desc')->paginate(2);
+        // 缓存属性们
+        $attrs = GoodAttr::get();
+        // 如果有购物车
+        $goodlists = [];
+        // 循环查商品，方便带出属性来
+        foreach ($orders as $k => $v) {
+            // 如果属性值不为0，查属性值
+            foreach ($v->good as $key => $value) {
+                if ($value->format_id) {
+                    $tmp_format = GoodFormat::where('id',$value['format_id'])->value('attr_ids');
+                    $tmp_format = str_replace('-','.',trim($tmp_format,'-'));
+                    $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                    $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
+                }
+                else
+                {
+                    $good_format = ['fid'=>0,'format'=>'','format_name'=>''];
+                }
+                $value->format = $good_format;
+            }
+        }
+        return view($this->theme.'.order',compact('info','orders'));
+
+    }
     // 添加购物车
-    public function postAddcart(Request $req)
+    public function getAddcart(Request $req)
+    {
+        // 先清除一天以上的无用购物车
+        Cart::where('user_id',0)->where('updated_at','<',Carbon::now()->subday())->delete();
+        // 清除完成
+        $sid = session()->getId();
+        $id = $req->gid;
+        $formatid = $req->fid;
+        $num = $req->num;
+        $price = $req->gp;
+        // 如果用户已经登陆，查以前的购物车
+        if (session()->has('member')) {
+            // 当前用户此次登陆添加的
+            $tmp = Cart::where('session_id',$sid)->where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+            // 如果没有，看以前有没有添加过这类商品
+            if(is_null($tmp))
+            {
+                $tmp = Cart::where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+            }
+        }
+        else
+        {
+            $tmp = Cart::where('session_id',$sid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+        }
+        // 查看有没有在购物车里，有累计数量
+        if (!is_null($tmp)) {
+            $nums = $num + $tmp->nums;
+        }
+        else
+        {
+            $nums = $num;
+        }
+        $userid = !is_null(session('member')) ? session('member')->id : 0;
+        $total_prices = $price * $nums;
+        $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'format_id'=>$formatid,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
+        // 查看有没有在购物车里，有累计数量
+        if (!is_null($tmp)) {
+            Cart::where('id',$tmp->id)->update($a);
+        }
+        else
+        {
+            Cart::create($a);
+        }
+        // 找出所有商品来
+        $info = (object) ['pid'=>0];
+        return view($this->theme.'.addcart',compact('info'));
+    }
+    // 修改数量
+    public function postChangecart(Request $req)
     {
         try {
-            $id = $req->id;
+            $id = $req->gid;
+            $fid = $req->fid;
             $num = $req->num;
             $price = $req->price;
-            $tmp = Cart::where('status',1)->where('session_id',session()->getId())->where('good_id',$id)->first();
-            // 查看有没有在购物车里，有累计数量
-            if (!is_null($tmp)) {
-                $nums = $num + $tmp->nums;
-            }
-            else
-            {
-                $nums = $num;
-            }
-            $userid = !is_null(session('member')) ? session('member')->id : 0;
-            $total_prices = $price * $nums;
-            $a = ['session_id'=>session()->getId(),'user_id'=>$userid,'good_id'=>$id,'format_id'=>1,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
-            // 查看有没有在购物车里，有累计数量
-            if (!is_null($tmp)) {
-                Cart::where('status',1)->where('session_id',session()->getId())->where('good_id',$id)->update($a);
-            }
-            else
-            {
-                Cart::create($a);
-            }
+            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->update(['nums'=>$num,'total_prices'=>$num * $price]);
             echo 1;
         } catch (\Exception $e) {
             echo 0;
@@ -271,7 +345,8 @@ class ShopController extends BaseController
     {
         try {
             $id = $req->id;
-            Cart::where('session_id',session()->getId())->where('good_id',$id)->update(['status'=>0]);
+            $fid = $req->fid;
+            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->delete();
             echo 1;
         } catch (\Exception $e) {
             echo 0;
@@ -281,11 +356,11 @@ class ShopController extends BaseController
     public function cartnums()
     {
         if (is_null(session('member'))) {
-            $tmp = Cart::where('session_id',session()->getId())->where('status',1)->count();
+            $tmp = Cart::where('session_id',session()->getId())->sum('nums');
         }
         else
         {
-            $tmp = Cart::where('user_id',session('member')->id)->where('status',1)->count();
+            $tmp = Cart::where('user_id',session('member')->id)->sum('nums');
         }
         echo $tmp;
     }

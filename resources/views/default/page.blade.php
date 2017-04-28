@@ -6,6 +6,9 @@
     <meta name="description" content="{{ $info->describe }}">
 @endsection
 
+@section('banner')
+    @include('default.banner')
+@endsection
 
 @section('content')
 

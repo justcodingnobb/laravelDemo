@@ -47,7 +47,38 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     Route::get('cate/{id}/{format?}','ShopController@goodcate');
     // 商品
     Route::get('good/{id}/{format?}','ShopController@good');
+    // 购物车
+    Route::get('cart','ShopController@cart');
+    // 订单列表
+    Route::get('order','ShopController@order');
+    // 添加购物车
+    Route::get('addcart','ShopController@getAddcart');
+    // 修改购物车数量
+    Route::post('changecart','ShopController@postChangecart');
+    // 移除购物车
+    Route::post('removecart','ShopController@postRemovecart');
+    // 取购物车数量
+    Route::get('cartnums','ShopController@cartnums');
 });
+// 商城功能-登陆后的
+Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+    // 提交订单
+    Route::get('addorder','ShopController@getAddorder');
+    // 支付
+    Route::get('order/pay/{oid}','PayController@list');
+    Route::post('order/pay/{oid}','PayController@pay');
+});
+
+// 支付回调
+Route::group(['middleware' => ['web']],function(){
+    // 支付宝应用网关,异步回调
+    Route::post('alipay/gateway','Pay\AlipayController@gateway');
+    // 支付宝应用网关,同步回调
+    Route::post('alipay/return','Pay\AlipayController@gateway');
+    // 微信回调
+    Route::post('weixin/return','Pay\WxpayController@gateway');
+});
+
 
 
 

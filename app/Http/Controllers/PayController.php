@@ -14,12 +14,10 @@ class PayController extends BaseController
     // 取订单可以使用的支付方式
     public function list($oid)
     {
-    	$seo = ['title'=>'选择支付方式','keyword'=>config('shop.keyword'),'description'=>config('shop.description')];
-    	$goodcateid = 0;
-        $pcatid = '100';
+    	$info = (object) ['pid'=>0];
     	$order = Order::findOrFail($oid);
     	$paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
-    	return view(config('shop.pc').'paylist',compact('seo','goodcateid','pcatid','order','paylist'));
+    	return view($this->theme.'.paylist',compact('info','order','paylist'));
     }
     // 真正的支付
     public function pay(Request $req,$oid)

@@ -1,26 +1,35 @@
-@extends('default.pc.layout')
+@extends('default.layout')
 
-<!-- 内容 -->
+@section('title')
+    <title>选择支付方式-希夷SHOP</title>
+@endsection
+
+
+
 @section('content')
-<div class="wrap_home">
-	<h3>订单情况</h3>
-	<p>总价：￥ {{ $order->total_prices }}</p>
-	<p>配送地址：{{ $order->address_id }}</p>
-	<form action="{{ url('order/pay',['oid'=>$order->id]) }}" method="post" class="pure-form">
-	<h3>选择支付方式</h3>
+<section class="container mt20">
+    <h3 class="h3_cate"><span class="h3_cate_span">订单情况</span></h3>
+    <p>单号：<span class="text-info">{{ $order->order_id }}</span></p>
+    <p>总价：<span class="text-success">￥ {{ $order->total_prices }}</span></p>
+
+
+	<form action="{{ url('shop/order/pay',['oid'=>$order->id]) }}" method="post" class="pure-form">
+	<h3 class="h3_cate"><span class="h3_cate_span">选择支付方式</span></h3>
 	{{ csrf_field() }}
-	<ul class="list_good clearfix">
+	<div class="row mt20">
 		@foreach($paylist as $l)
-		<li class="pd10 pr">
-			<input type="radio" name="pay" value="{{ $l->id }}">
-			<img src="{{ $l->thumb }}" alt="">
-		</li>
+		<div class="col-xs-12 col-sm-6 col-md-2">
+			<label>
+				<input type="radio" name="pay" value="{{ $l->id }}">
+				<img src="{{ $l->thumb }}" alt="">
+  			</label>
+		</div>
 		@endforeach
-	</ul>
-	<div class="mt10 clearfix">
-		<button type="reset" name="reset" class="pure-button pure-u-1-12 f-r">重填</button>
-		<button type="submit" name="dosubmit" class="sub_1 pure-button pure-button-secondary pure-u-1-12 mr10 f-r">提交</button> 
+	</div>
+	<div class="mt20 clearfix">
+		<button type="submit" class="btn btn-success">提交</button> 
+		<button type="reset" name="reset" class="btn btn-default">重填</button>
 	</div>
 	</form>
-</div>
+</section>
 @endsection

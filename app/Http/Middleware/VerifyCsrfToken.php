@@ -12,6 +12,11 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
+    	// 购物车里的
+    	'shop/cartnums',
+        'shop/changecart',
+    	'shop/removecart',
+    	// 后台文件上传
         'xyshop/attr/uploadimg',
     ];
 }

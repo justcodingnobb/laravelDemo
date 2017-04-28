@@ -25,7 +25,8 @@
 			<div class="col-xs-12 col-sm-9">
 				<h1 class="good_show_title"><a href="{{ url('shop/good',['id'=>$info->id]) }}">{{ $info->title }}</a></h1>
 				<!-- <h4>{{ $info->pronums }}</h4> -->
-				
+				<form action="{{ url('shop/addcart') }}">
+					{{ csrf_field() }}
 				@if ($formats->count() > 0)
 				<!-- 属性 -->
 				<div class="row">
@@ -40,9 +41,12 @@
 					<div class="col-xs-12 col-sm-3">价格：<span class="price">{{ $good_format->price }}</span>￥</div>
 					<div class="col-xs-12 col-sm-3">库存：<span class="store">{{ $good_format->store }}</span></div>
 				</div>
-				<input type="hidden" value="{{ $good_format->id }}" name="format_id">
+				<input type="hidden" value="{{ $good_format->price }}" name="gp">
+				<input type="hidden" value="{{ $good_format->id }}" name="fid">
 				@else
 				<!-- 价格、库存，购物车 -->
+				<input type="hidden" value="{{ $info->price }}" name="gp">
+				<input type="hidden" value="0" name="fid">
 				<div class="row mt10">
 					<div class="col-xs-12 col-sm-3">价格：<span class="price">{{ $info->price }}</span>￥</div>
 					<div class="col-xs-12 col-sm-3">库存：<span class="store">10000</span></div>
@@ -51,34 +55,14 @@
 				
 				<!-- 加购物车 -->
 				<div class="row mt10">
-					<div class="col-xs-6 col-sm-2"><input type="number" value="1" class="form-control" class="nums"></div>
-					<div class="col-xs-6 col-sm-2"><span class="add_cart btn btn-sm btn-success">加入购物车</span></div>
+						<input type="hidden" value="{{ $info->id }}" name="gid">
+						<div class="col-xs-6 col-sm-2"><input type="number" value="1" class="form-control" name="num"></div>
+						<div class="col-xs-6 col-sm-2"><button class="addcart btn btn-sm btn-success">加入购物车</button></div>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-
-	
-	
-	
-	<script>
-		$(function(){
-			$('.btn_attr').click(function(){
-				var that = $(this);
-				// 换属性class
-				that.addClass('btn-primary').siblings('.btn_attr').removeClass('btn-primary');
-				// 循环属性
-				var format = '';
-				$('.btn_attr_p').each(function(e){
-					format += $(this).children('.btn-primary').attr('data-val') + '-';
-				});
-				format = format.substring(0,format.length -1);
-				// 请求新的地址
-				var url = "{{ url('shop/good',['id'=>$info->id]) }}" + '/' + format;
-				that.attr('href',url).click();
-			});
-		})
-	</script>
 
 	<div class="good_show_con mt20">
 		<h3 class="h3_cate"><span class="h3_cate_span">内容</span></h3>

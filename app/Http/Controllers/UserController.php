@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
 	// 登陆
 	public function getLogin()
@@ -27,7 +27,9 @@ class UserController extends Controller
 			}
 		}
         $ref = url()->previous();
-        return view('user.login',compact('ref'));
+        $info = (object) [];
+        $info->pid = 0;
+        return view('user.login',compact('ref','info'));
 	}
 	// 登陆
     public function postLogin(UserRequest $res)
@@ -49,6 +51,8 @@ class UserController extends Controller
 		    }
             User::where('id',$user->id)->update(['last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
+            // 更新购物车
+            $this->updateCart($user->id);
 	    	return redirect($res->ref);
 	    }
     }
@@ -67,7 +71,9 @@ class UserController extends Controller
 			}
 		}
         $ref = url()->previous();
-        return view('user.register',compact('ref'));
+        $info = (object) [];
+        $info->pid = 0;
+        return view('user.register',compact('ref','info'));
 	}
 	// 注册
     public function postRegister(UserRequest $res)
@@ -87,6 +93,8 @@ class UserController extends Controller
     	try {
 	    	$user = User::create(['username'=>$username,'password'=>$pwd,'email'=>$email,'last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
+            // 更新购物车
+            $this->updateCart($user->id);
 	    	return redirect($res->ref);
     	} catch (\Exception $e) {
     		return back()->with('message','注册失败，请稍候再试！');
@@ -96,6 +104,8 @@ class UserController extends Controller
     public function getLogout(Request $res)
     {
     	session()->pull('member');
+        // 重新生成session_id
+        session()->regenerate();
     	return back()->with('message','您已退出登陆！');
     }
     // 会员中心
@@ -103,6 +113,7 @@ class UserController extends Controller
     {
     	// 取个人信息
     	$info = User::findOrFail(session('member')->id);
+        $info->pid = 0;
     	return view('user.usercenter',compact('info'));
     }
 }
