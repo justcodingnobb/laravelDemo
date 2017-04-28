@@ -199,6 +199,9 @@ return [
         // 转拼音
         Overtrue\LaravelPinyin\ServiceProvider::class,
 
+        // 生成二维码
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
     ],
 
     /*
@@ -253,6 +256,8 @@ return [
 
         // 转拼音
         'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
+        // 生成二维码
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];

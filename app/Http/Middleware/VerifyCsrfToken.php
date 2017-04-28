@@ -16,6 +16,10 @@ class VerifyCsrfToken extends BaseVerifier
     	'shop/cartnums',
         'shop/changecart',
     	'shop/removecart',
+        // 支付
+        'alipay/gateway',
+        'alipay/return',
+        'weixin/return',
     	// 后台文件上传
         'xyshop/attr/uploadimg',
     ];

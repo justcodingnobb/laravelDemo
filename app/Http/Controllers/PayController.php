@@ -8,6 +8,8 @@ use App\Models\Pay;
 use DB;
 use Illuminate\Http\Request;
 use Omnipay\Omnipay;
+use QrCode;
+use Storage;
 
 class PayController extends BaseController
 {
@@ -74,6 +76,59 @@ class PayController extends BaseController
     private function weixin($oid,$pay,$ip)
     {
     	$set = json_decode($pay->setting);
+    	$gateway = Omnipay::create('WechatPay_Native');
+		$gateway->setAppId($set->appid);
+		$gateway->setMchId($set->mchid);
+		$gateway->setApiKey($set->appkey);
+		$gateway->setNotifyUrl(config('app.url').'/weixin/gateway');
+
+		$order = [
+		    'body'              => 'The test order',
+		    'out_trade_no'      => date('YmdHis').mt_rand(1000, 9999),
+		    'total_fee'         => 1, //=0.01
+		    'spbill_create_ip'  => $ip,
+		    'fee_type'          => 'CNY',
+		    'openid'			=> 'o55kNw1TVsDdzTj5CPZGF6cVDhu8',
+		];
+		/**
+		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
+		 * @var Omnipay\WechatPay\Message\CreateOrderResponse $response
+		 */
+		$request  = $gateway->purchase($order);
+		$response = $request->send();
+		
+		//available methods
+		// 如果下单成功，调起支付动作
+		if($response->isSuccessful())
+		{
+			$codeurl = $response->getCodeUrl();
+			// 移动到新的位置，先创建目录及更新文件名为时间点
+			// 生成文件名
+        	$filename = date('Ymdhis').rand(100, 999);
+            $dir = public_path('upload/qrcode/'.date('Ymd').'/');
+            if(!is_dir($dir)){
+                Storage::makeDirectory('qrcode/'.date('Ymd'));
+            }
+            $path = $dir.$filename.'.png';
+            $src = '/upload/qrcode/'.date('Ymd').'/'.$filename.'.png';
+			$ewm = QrCode::format('png')->size(200)->generate($codeurl,$path);
+			echo "<h3>扫码支付</h3><img src='".$src."'/>";
+		}
+		else
+		{
+			return back()->with('message','支付失败，请稍后再试');
+		}
+
+		// $response->getData(); //For debug
+		// $response->getAppOrderData(); //For WechatPay_App
+		// $response->getJsOrderData(); //For WechatPay_Js
+		// $response->getCodeUrl(); //For Native Trade Type
+    }
+
+    // 微信支付js
+    private function weixin_js($oid,$pay,$ip)
+    {
+    	$set = json_decode($pay->setting);
     	$gateway = Omnipay::create('WechatPay_Js');
 		$gateway->setAppId($set->appid);
 		$gateway->setMchId($set->mchid);
@@ -138,7 +193,9 @@ class PayController extends BaseController
 						}
 					</script>
 				</head>
-				<body></body>
+				<body>
+				".$set->appid."
+				</body>
 			</html>";
 			echo $str;
 		}
