@@ -20,6 +20,9 @@ class VerifyCsrfToken extends BaseVerifier
         'alipay/gateway',
         'alipay/return',
         'weixin/return',
+        // 微信
+        'wx/*',
+        'oauth/*',
     	// 后台文件上传
         'xyshop/attr/uploadimg',
     ];

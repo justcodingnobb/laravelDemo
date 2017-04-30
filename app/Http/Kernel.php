@@ -64,5 +64,7 @@ class Kernel extends HttpKernel
         'member'=> \App\Http\Middleware\Member::class,
         // APP用户认证
         'jwt'=> \App\Http\Middleware\Jwt::class,
+        // 微信授权
+        'wechat.oauth' => \Overtrue\LaravelWechat\Middleware\OAuthAuthenticate::class,
     ];
 }

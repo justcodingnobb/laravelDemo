@@ -31,6 +31,7 @@ class PayController extends BaseController
     	// 根据支付方式调用不同的SDK
     	$pmod = $pay->code;
     	$ip = $req->ip();
+    	return ['msg'=>'支付账号未绑定，暂时不可用'];
     	$this->$pmod($oid,$pay,$ip);
     }
 

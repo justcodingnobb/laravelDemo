@@ -34,9 +34,9 @@
             <h1 class="col-xs-4 col-sm-4 col-md-6"><a class="logo-font" href="/"><span class="color_1">希夷</span><span class="color_2 hidden-xs">SHOP</span></a></h1>
             <div class="text-right col-xs-4 col-sm-4 col-md-6 user_info">
                 @if(!session()->has('member'))
-                <a href="{{ url('user/login') }}">登陆</a> | <a href="{{ url('user/register') }}">注册</a>，
+                <a href="{{ url('user/login') }}">登陆</a>，<a href="{{ url('oauth/wxlogin') }}">扫码登陆</a>，<a href="{{ url('oauth/wx') }}">微信号登陆</a> | <a href="{{ url('user/register') }}">注册</a>，
                 @else
-                欢迎 <a href="{{ url('user/center') }}" class="color_2">{{ session('member')->username }} </a> 回来，<a href="{{ url('shop/order') }}">我的订单</a>，
+                欢迎 <a href="{{ url('user/center') }}" class="color_2">@if(session('member')->nickname != ''){{ session('member')->nickname }}@else {{ session('member')->username }}@endif </a> 回来，<a href="{{ url('shop/order') }}">我的订单</a>，
                 @endif
                 <a href="{{ url('shop/cart') }}">购物车(<span class="color_2 cart_nums">0</span>)</a>
             </div>

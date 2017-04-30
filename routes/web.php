@@ -40,6 +40,18 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
     Route::get('logout','UserController@getLogout');
 });
 
+// 社会化登录认证
+Route::group(['prefix' => 'oauth'],function(){
+    // 微信登录扫码地址
+    Route::get('wxlogin', 'Auth\WxController@login');
+    // 轮询地址
+    Route::get('wxislogin', 'Auth\WxController@islogin');
+    // 真正的微信登录地址
+    Route::get('wx', 'Auth\WxController@wx');
+    // 微信回调地址
+    Route::get('wx/callback', 'Auth\WxController@callback');
+});
+
 
 // 商城功能
 Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
@@ -70,7 +82,7 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
 });
 
 // 支付回调
-Route::group(['middleware' => ['web']],function(){
+Route::group([],function(){
     // 支付宝应用网关,异步回调
     Route::post('alipay/gateway','Pay\AlipayController@gateway');
     // 支付宝应用网关,同步回调
@@ -79,6 +91,11 @@ Route::group(['middleware' => ['web']],function(){
     Route::post('weixin/return','Pay\WxpayController@gateway');
 });
 
+// 微信功能
+Route::group(['prefix'=>'wx'],function(){
+    // 接口,注意：一定是 Route::any, 因为微信服务端认证的时候是 GET, 接收用户消息时是 POST ！
+    Route::any('index','Wx\WxController@index');
+});
 
 
 
@@ -89,6 +106,7 @@ Route::group(['prefix'=>'xyshop'],function(){
     Route::get('login', 'Admin\PublicController@getLogin');
     Route::post('login', 'Admin\PublicController@postLogin');
 });
+
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');
