@@ -21,6 +21,12 @@ Route::group([],function(){
     Route::get('/post/{url}','HomeController@getPost');
 });
 
+// 微信功能
+Route::group(['prefix' => 'wx'],function(){
+    // 微信登录扫码地址
+    Route::any('index', 'Wx\WxController@index');
+});
+
 
 // 会员功能
 Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){

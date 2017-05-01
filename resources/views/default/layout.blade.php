@@ -59,6 +59,7 @@
                 @foreach(App::make('tag')->goodcate(0) as $m)
                 <li @if($info->pid == $m->id) class="active"@endif><a href="{{ url('/shop/cate',$m->id) }}">{{ $m->name }}</a></li>
                 @endforeach
+                <li class="active"><a href="https://github.com/freedomlizhigang/laravelDemo/tree/xyshop" target="_blank">Github</a></li>
               </ul>
             </div>
         </nav>

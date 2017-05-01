@@ -205,6 +205,9 @@ return [
         // 社会化登陆
         Overtrue\LaravelSocialite\ServiceProvider::class,
 
+        // 微信
+        Overtrue\LaravelWechat\ServiceProvider::class,
+
     ],
 
     /*
@@ -265,6 +268,9 @@ return [
 
         // 社会化登陆
         'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
+
+        // 微信
+        'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
     ],
 
 ];

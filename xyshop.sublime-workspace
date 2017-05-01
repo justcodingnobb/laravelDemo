@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"tra",
+				"target\tAttr"
+			],
+			[
 				"Auth",
 				"AuthTmp"
 			],
@@ -510,10 +514,6 @@
 			[
 				"has",
 				"hasClass\t.hasClass()"
-			],
-			[
-				"input",
-				"inputtime\t(Article.php)"
 			]
 		]
 	},
@@ -738,31 +738,42 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/xyshop",
-		"/F/wwwroot/xyshop/resources/views/wx"
+		"/F/wwwroot/xyshop/app",
+		"/F/wwwroot/xyshop/app/Http",
+		"/F/wwwroot/xyshop/app/Http/Controllers",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Wx"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/xyshop/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php",
+		"/F/wwwroot/xyshop/routes/web.php",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Wx/WxController.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/4C1C10BF_edit.tmp/wechat.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/4C1C10BF_edit.tmp/easywechat.log",
+		"/F/wwwroot/xyshop/config/wechat.php",
+		"/F/wwwroot/xyshop/.env",
+		"/F/wwwroot/xyshop/config/app.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/89069B49_edit.tmp/layout.blade.php",
+		"/F/wwwroot/xyshop/resources/views/default/layout.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/32C3DAA0_edit.tmp/layout.blade.php",
+		"/C/Users/Li/Downloads/laravelDemo-1.0.0/readme.md",
+		"/F/wwwroot/xyshop/.gitignore",
 		"/F/wwwroot/xyshop/composer.json",
 		"/F/wwwroot/xyshop/readme.md",
 		"/F/wwwroot/xyshop/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Auth/WxController.php",
 		"/F/wwwroot/xyshop/resources/views/wx/login.blade.php",
-		"/F/wwwroot/xyshop/routes/web.php",
-		"/F/wwwroot/xyshop/resources/views/default/layout.blade.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_04_30_073810_create_auths.php",
 		"/F/wwwroot/xyshop/app/Models/AuthTmp.php",
-		"/F/wwwroot/xyshop/config/app.php",
 		"/F/wwwroot/xyshop/resources/views/default/pay.blade.php",
 		"/F/wwwroot/xyshop/config/socialite.php",
 		"/F/wwwroot/xyshop/config/services.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Wx/WxController.php",
 		"/F/wwwroot/xyshop/app/Services/TagService.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/xyshop/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/xyshop/vendor/overtrue/wechat/src/Foundation/ServiceProviders/OpenPlatformServiceProvider.php",
 		"/F/wwwroot/xyshop/vendor/overtrue/wechat/src/Foundation/ServiceProviders/OAuthServiceProvider.php",
-		"/F/wwwroot/xyshop/config/wechat.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/3D6EC0C5_edit.tmp/composer.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/5D3511D5_edit.tmp/wechat.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/5D3511D5_edit.tmp/watch.php",
@@ -771,7 +782,6 @@
 		"/F/wwwroot/xyshop/app/Http/Kernel.php",
 		"/F/wwwroot/xyshop/vendor/overtrue/wechat/src/Foundation/Config.php",
 		"/F/wwwroot/xyshop/sftp-config.json",
-		"/F/wwwroot/xyshop/.env",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/3D12289D_edit.tmp/.env",
 		"/D/www/xyshop/app/Http/Controllers/PayController.php",
 		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.647.3015/HZ$D.647.3016/app/Console/Commands/Meihuas.php",
@@ -862,14 +872,7 @@
 		"/D/www/xyshop/resources/views/admin/goodcate/index.blade.php",
 		"/D/www/xyshop/resources/views/admin/good/format.blade.php",
 		"/D/www/xyshop/resources/views/admin/pay/index.blade.php",
-		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/routes/api.php",
-		"/D/www/laravel53/config/compile.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/AdminController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/ArtController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/CateController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/DatabaseController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/GroupController.php"
+		"/D/www/laravel53/routes/web.php"
 	],
 	"find":
 	{
@@ -880,6 +883,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\xyshop\\vendor\\overtrue\\laravel-wechat\\src",
 			"F:\\wwwroot\\xyshop\\app\\Http",
 			"D:\\www\\xyshop\\resources\\views\\admin\\goodcate",
 			"D:\\www\\xyshop\\resources\\views\\admin\\goodattr",
@@ -963,6 +967,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"config(",
 			"$req->sid",
 			"wxlogin",
 			"Overtrue\\LaravelSocialite\\ServiceProvider",
@@ -1089,8 +1094,7 @@
 			"this->",
 			"wxapi",
 			"I('type')",
-			"thumb-src",
-			"mediaid"
+			"thumb-src"
 		],
 		"highlight": true,
 		"in_selection": false,
