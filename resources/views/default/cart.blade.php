@@ -29,7 +29,7 @@
 								</div>
 							</div>
 						</td>
-						<td><input type="number" name="num[]" value="{{ $l->num }}" data-gid="{{ $l->id }}" data-fid="{{ $l->format['fid'] }}" data-price="{{ $l->price }}" class="form-control input-nums change_cart"></td>
+						<td><input type="number" min="0" name="num[]" value="{{ $l->num }}" data-gid="{{ $l->id }}" data-fid="{{ $l->format['fid'] }}" data-price="{{ $l->price }}" class="form-control input-nums change_cart"></td>
 						<td><span class="good_prices color_1">￥{{ $l->price }}</span></td>
 						<td><span class="color_2">￥<span class="one_total_price total_price_{{ $l->id }}_{{ $l->format['fid'] }}">{{ $l->total_prices }}</span></span></td>
 						<td><span class="remove_cart btn btn-sm btn-danger" data-gid="{{ $l->id }}" data-fid="{{ $l->format['fid'] }}">删除</span></td>

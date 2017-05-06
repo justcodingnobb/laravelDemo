@@ -98,7 +98,6 @@
 {!! $list->appends(['cate_id' =>$cate_id,'q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 <!-- 选中当前栏目 -->
-<script src="{{ $sites['url'] }}{{ $sites['static']}}common/laydate/laydate.js"></script>
 <script>
 	$(function(){
 		$('.btn_listrorder').click(function(){
@@ -129,19 +128,13 @@
 	})
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD 00:00:00', // 分隔符可以任意定义，该例子表示只显示年月
-        festival: true,
-        istoday: false,
-        start: laydate.now('0, "YYYY-MM-DD 00:00:00"'),
-        istime: false,
+        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        istime: true,
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD 23:59:59', // 分隔符可以任意定义，该例子表示只显示年月
-        festival: true,
-        istoday: false,
-        start: laydate.now('0, "YYYY-MM-DD 23:59:59"'),
-        istime: false,
+        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        istime: true,
     });
 </script>
 @endsection

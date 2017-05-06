@@ -24,7 +24,7 @@
     <!-- 上传用的 js -->
     <script src="{{ $sites['static']}}common/kindeditor/kindeditor-all.js"></script>
     <script src="{{ $sites['static']}}common/kindeditor/lang/zh-CN.js"></script>
-    <script src="{{ $sites['static']}}common/laydate/laydate.dev.js"></script>
+    <script src="{{ $sites['static']}}common/laydate/laydate.js"></script>
     <script src="{{ $sites['static']}}admin/js/com.js"></script>
 </head>
 

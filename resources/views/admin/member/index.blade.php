@@ -14,10 +14,11 @@
 	<thead>
 		<tr class="success">
 			<th width="50">ID</th>
-			<th>会员名</th>
-			<th>昵称</th>
-			<th>邮箱</th>
-			<th>电话</th>
+			<th width="100">会员名</th>
+			<th width="140">OpenID</th>
+			<th width="120">昵称</th>
+			<th width="220">邮箱</th>
+			<th width="220">电话</th>
 			<th>最后登陆时间</th>
 			<th>最后登陆IP</th>
 			<th>修改状态</th>
@@ -29,6 +30,7 @@
 		<tr>
 			<td>{{ $m->id }}</td>
 			<td>{{ $m->username }}</td>
+			<td>{{ $m->openid }}</td>
 			<td>{{ $m->nickname }}</td>
 			<td>{{ $m->email }}</td>
 			<td>{{ $m->phone }}</td>

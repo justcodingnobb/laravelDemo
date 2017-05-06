@@ -253,7 +253,7 @@ class ShopController extends BaseController
         // 找出订单
         $orders = Order::with(['good'=>function($q){
                     $q->with('good');
-                }])->where('user_id',session('member')->id)->orderBy('id','desc')->paginate(2);
+                }])->where('user_id',session('member')->id)->orderBy('id','desc')->paginate(10);
         // 缓存属性们
         $attrs = GoodAttr::get();
         // 如果有购物车
@@ -288,6 +288,9 @@ class ShopController extends BaseController
         $id = $req->gid;
         $formatid = $req->fid;
         $num = $req->num;
+        if ($num < 1) {
+            return back()->with('message','请选择购买数量！');
+        }
         $price = $req->gp;
         // 如果用户已经登陆，查以前的购物车
         if (session()->has('member')) {
@@ -332,10 +335,10 @@ class ShopController extends BaseController
         try {
             $id = $req->gid;
             $fid = $req->fid;
-            $num = $req->num;
+            $num = $req->num < 1 ? 1 : $req->num;
             $price = $req->price;
             Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->update(['nums'=>$num,'total_prices'=>$num * $price]);
-            echo 1;
+            echo $num;
         } catch (\Exception $e) {
             echo 0;
         }

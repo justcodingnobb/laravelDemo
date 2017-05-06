@@ -13,10 +13,11 @@ $(function(){
     	var new_prices = parseFloat(price) * parseInt(num);
     	// 更新购物车
 		$.post(host+'shop/changecart',{gid:gid,num:num,price:price,fid:fid},function(d){
-			if (d == 1) {
+			if (d != 0) {
 				cartnum();
 		    	// 更新end
 		    	$('.total_price_' + gid + '_' + fid).html(new_prices.toFixed(2));
+		    	that.val(d);
 		    	total_prices();
 			}
 			else

@@ -114,6 +114,11 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 订单管理
+    Route::get('order/index', 'Admin\OrderController@index');
+    Route::get('order/del/{id}', 'Admin\OrderController@getDel');
+    Route::get('order/ship/{id}', 'Admin\OrderController@getShip');
+    Route::post('order/ship/{id}', 'Admin\OrderController@postShip');
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');
     Route::get('pay/edit/{id}', 'Admin\PayController@getEdit');

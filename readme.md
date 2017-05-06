@@ -19,3 +19,9 @@ rbac 中间件控制打开页面是否有权限，同时判断是否登陆，App
 下单及支付过程完整，支付使用包(omnipay-alipay/omnipay-wechatpay)来完成，目前只支持支付宝与微信，微信做了扫码支付功能
 
 微信扫码登录功能完成，oauth的认证使用的是laravel-socialite包，PC与微信同步使用的是数据库存根auth_id的办法，pc端ajax轮询
+
+<!-- 待改bug -->
+
+购物车可以为负
+
+后台订单管理
