@@ -51,7 +51,18 @@
 		<tr>
 			<td><input type="checkbox" name="sids[]" class="check_s" value="{{ $a->id }}"></td>
 			<td>{{ $a->id }}</td>
-			<td>{{ $a->title }}</td>
+			<td>
+				@if($a->isnew == 1)
+				<span class="text-danger">[新品]</span>
+				@endif
+				@if($a->isxs == 1)
+				<span class="text-primary">[限时]</span>
+				@endif
+				@if($a->isxl == 1)
+				<span class="text-success">[限量]</span>
+				@endif
+				{{ $a->title }}
+			</td>
 			<td>{{ cache('goodcateCache')[$a->cate_id]['name'] }}</td>
 			<td>
 				@if($a->status == 1)
@@ -80,6 +91,10 @@
 <div class="pull-left" data-toggle="buttons">
 	<label class="btn btn-primary">
 			<input type="checkbox" autocomplete="off" class="checkall">全选</label>
+	
+	@if(App::make('com')->ifCan('huodong-good'))
+	<span class="btn btn-success btn_huodong" data-toggle="modal" data-target="#myModal">添加到活动</span>
+	@endif
 
 	@if(App::make('com')->ifCan('good-alldel'))
 	<span class="btn btn-danger">批量删除</span>
@@ -97,12 +112,50 @@
 </div>
 {!! $list->appends(['cate_id' =>$cate_id,'q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">弹出</h4>
+      </div>
+      <div class="modal-body">
+      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="400" scrolling="auto" allowtransparency="true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
 		$('.btn_listrorder').click(function(){
 			$('.form_status').attr({'action':"{{ url('admin/art/listorder') }}",'method':'post'}).submit();
 		});
+
+		$('.btn_huodong').click(function(){
+			// 取到商品ID
+			var gids = '';
+			$('.check_s').each(function(s){
+				if($(this).is(":checked"))
+				{
+					gids += $(this).val() + '|';
+				}
+			});
+			if (gids == '') {
+				alert('请先选择商品！');
+				return false;
+			}
+			var url = "{{ url('xyshop/huodong/good') }}" + '/' + gids;
+			$('#hd_good').attr("src",url);
+			return;
+		});
+
 		$('.btn_del').click(function(){
 			if (!confirm("确实要删除吗?")){
 				return false;

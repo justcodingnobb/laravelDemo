@@ -1,7 +1,7 @@
 @extends('admin.right')
 
 @section('content')
-<form action="" class="pure-form pure-form-stacked" method="post">
+<form action="" class="" method="post">
 	{{ csrf_field() }}
     
     <div class="row">
@@ -106,13 +106,80 @@
     <div class="form-group">
         <label for="price">价格：数字</label>
         <div class="row">
-            <div class="col-xs-2">
-                <input type="text" name="data[price]" value="{{ old('data.price') }}" class="form-control">
+            <div class="col-xs-1">
+                <input type="text" name="data[price]" value="0" class="form-control">
             </div>
         </div>
         @if ($errors->has('data.price'))
             <span class="help-block">
                 {{ $errors->first('data.price') }}
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="store">库存：数字</label>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="text" name="data[store]" value="0" class="form-control">
+            </div>
+        </div>
+        @if ($errors->has('data.store'))
+            <span class="help-block">
+                {{ $errors->first('data.store') }}
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="isnew">新品：</label>
+        <label class="radio-inline"><input type="radio" name="data[isnew]" class="input-radio" value="1">
+            启用</label>
+        <label class="radio-inline"><input type="radio" name="data[isnew]" checked="checked" class="input-radio" value="0">禁用</label>
+    </div>
+
+    <div class="form-group">
+        <label for="isxs">是否限时抢购：</label>
+        <label class="radio-inline"><input type="radio" name="data[isxs]" class="input-radio" value="1">
+            启用</label>
+        <label class="radio-inline"><input type="radio" name="data[isxs]" checked="checked" class="input-radio" value="0">禁用</label>
+    </div>
+
+    <div class="form-group">
+        <label for="starttime">开始时间：</label>
+        <div class="row">
+            <div class="col-xs-3">
+                <input type="text" name="data[starttime]" class="form-control" value="" id="laydate">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="endtime">结束时间：</label>
+        <div class="row">
+            <div class="col-xs-3">
+                <input type="text" name="data[endtime]" class="form-control" value="" id="laydate2">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="isxl">是否限量抢购：</label>
+        <label class="radio-inline"><input type="radio" name="data[isxl]" class="input-radio" value="1">
+            启用</label>
+        <label class="radio-inline"><input type="radio" name="data[isxl]" checked="checked" class="input-radio" value="0">禁用</label>
+    </div>
+    
+    <div class="form-group">
+        <label for="xlnums">限制数量：数字，0为不限制</label>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="text" name="data[xlnums]" value="0" class="form-control">
+            </div>
+        </div>
+        @if ($errors->has('data.xlnums'))
+            <span class="help-block">
+                {{ $errors->first('data.xlnums') }}
             </span>
         @endif
     </div>
@@ -170,6 +237,16 @@
                 });
             });
         });
+    });
+    laydate({
+        elem: '#laydate',
+        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        istime: true,
+    });
+    laydate({
+        elem: '#laydate2',
+        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        istime: true,
     });
 </script>
 

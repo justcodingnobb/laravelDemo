@@ -114,6 +114,17 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 活动管理
+    Route::get('huodong/index', 'Good\HuodongController@getIndex');
+    Route::get('huodong/add', 'Good\HuodongController@getAdd');
+    Route::post('huodong/add', 'Good\HuodongController@postAdd');
+    Route::get('huodong/edit/{id}', 'Good\HuodongController@getEdit');
+    Route::post('huodong/edit/{id}', 'Good\HuodongController@postEdit');
+    Route::get('huodong/del/{id}', 'Good\HuodongController@getDel');
+    Route::get('huodong/good/{gids?}', 'Good\HuodongController@getGood');
+    Route::post('huodong/good/{gids?}', 'Good\HuodongController@postGood');
+    Route::get('huodong/goodlist/{id}', 'Good\HuodongController@getGoodlist');
+    Route::get('huodong/rmgood/{id}/{gid}', 'Good\HuodongController@getRmgood');
     // 订单管理
     Route::get('order/index', 'Admin\OrderController@index');
     Route::get('order/del/{id}', 'Admin\OrderController@getDel');

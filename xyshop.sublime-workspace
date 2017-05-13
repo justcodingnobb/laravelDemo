@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"con",
+				"container-fluid \tBootstrap 3 Class"
+			],
+			[
+				"sta",
+				"status\t(HuodongController.php)"
+			],
+			[
+				"stat",
+				"starttime\t(HuodongController.php)"
+			],
+			[
 				"快递",
 				"快递名称：\t(ship.blade.php)"
 			],
@@ -142,10 +158,6 @@
 			[
 				"as",
 				"aside_name"
-			],
-			[
-				"con",
-				"container"
 			],
 			[
 				"center",
@@ -392,10 +404,6 @@
 				"getLogin"
 			],
 			[
-				"stat",
-				"status"
-			],
-			[
 				"devic",
 				"devicetoken"
 			],
@@ -506,14 +514,6 @@
 			[
 				"input",
 				"inputtime\t(Article.php)"
-			],
-			[
-				"micr",
-				"microtime"
-			],
-			[
-				"Special",
-				"SpecialArt"
 			]
 		]
 	},
@@ -544,9 +544,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "mov",
+		"last_filter": "del",
 		"selected_items":
 		[
+			[
+				"del",
+				"File: Delete"
+			],
 			[
 				"mov",
 				"File: Move"
@@ -652,10 +656,6 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"del",
-				"File: Delete"
-			],
-			[
 				"d",
 				"File: Delete"
 			],
@@ -740,10 +740,40 @@
 		"/F/wwwroot/xyshop",
 		"/F/wwwroot/xyshop/app",
 		"/F/wwwroot/xyshop/app/Http",
-		"/F/wwwroot/xyshop/app/Http/Controllers"
+		"/F/wwwroot/xyshop/app/Http/Controllers",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Admin",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Good",
+		"/F/wwwroot/xyshop/app/Http/Requests/Good",
+		"/F/wwwroot/xyshop/resources",
+		"/F/wwwroot/xyshop/resources/views",
+		"/F/wwwroot/xyshop/resources/views/admin",
+		"/F/wwwroot/xyshop/resources/views/admin/good",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong",
+		"/F/wwwroot/xyshop/routes"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/xyshop/readme.md",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Good/HuodongController.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/goodlist.blade.php",
+		"/F/wwwroot/xyshop/routes/web.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/index.blade.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104805_create_hd_good.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/good.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/index.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/right.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/alert.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/add.blade.php",
+		"/F/wwwroot/CIS/resources/views/admin/art/index.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/add.blade.php",
+		"/F/wwwroot/xyshop/app/Http/Requests/Good/HuodongRequest.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/74AE9B96_edit.tmp/index.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/DAECEF84_edit.tmp/001.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/35676FB0_edit.tmp/jssdk.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_131049_add_isnew_good.php",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/xyshop/app/Models/Youhuiquan.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104919_create_youhuiquan.php",
 		"/F/wwwroot/xyshop/app/Models/Collect.php",
@@ -761,7 +791,6 @@
 		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104850_create_collect.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104744_create_huodong.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104942_create_yhq_user.php",
-		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104805_create_hd_good.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104705_add_xs_xl_to_good.php",
 		"/F/wwwroot/xyshop/app/Services/ComService.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/PublicController.php",
@@ -851,27 +880,7 @@
 		"/D/www/xyshop/app/Http/Controllers/Admin/PayController.php",
 		"/D/www/xyshop/app/Http/Controllers/Admin/GoodAttrController.php",
 		"/D/www/xyshop/resources/views/admin/goodattr/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/edit.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/add.blade.php",
-		"/D/www/xyshop/app/Services/ComService.php",
-		"/D/www/xycmf/config/filesystems.php",
-		"/D/www/l54/config/filesystems.php",
-		"/D/www/xyshop/config/filesystems.php",
-		"/D/www/laravel-shop/config/filesystems.php",
-		"/D/www/xyshop/resources/views/shop/index.blade.php",
-		"/D/www/xyshop/resources/views/layout.blade.php",
-		"/D/www/laravel53/app/Services/TagService.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/GoodCateController.php",
-		"/D/www/xyshop/resources/views/admin/goodcate/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/format.blade.php",
-		"/D/www/xyshop/resources/views/admin/pay/index.blade.php",
-		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/routes/api.php",
-		"/D/www/laravel53/config/compile.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/AdminController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/ArtController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/CateController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/DatabaseController.php"
+		"/D/www/xyshop/resources/views/admin/good/edit.blade.php"
 	],
 	"find":
 	{
@@ -964,6 +973,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"edit",
+			"Edit",
+			"DB",
+			"btn_huodong",
+			"/{id}",
+			"Edit",
+			"添加",
+			"old('data.",
+			"isxl",
+			"good",
+			"Edit",
+			"edit/{id}",
+			"Admin\\",
+			"order/",
+			"isxs",
+			"isxl",
+			"store",
+			"isxs",
+			"status",
+			"price",
 			"限时",
 			"art",
 			"laydate",
@@ -1071,27 +1100,7 @@
 			"session()->",
 			" type=\"text\"",
 			"wxgroup",
-			"name",
-			"tagid_list",
-			"wxgroup",
-			"add",
-			"wxmsg",
-			"getlist",
-			"getuserinfo",
-			"WxgroupController",
-			"wxgroup/",
-			"WxmsgController",
-			"wxmsg/",
-			"add",
-			"con",
-			"CURLOPT_SAFE_UPLOAD",
-			"path",
-			"$req->type",
-			"this->",
-			"wxapi",
-			"I('type')",
-			"thumb-src",
-			"mediaid"
+			"name"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1251,6 +1260,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"huodong/g",
+				"resources\\views\\admin\\huodong\\good.blade.php"
+			],
+			[
+				"good/ed",
+				"resources\\views\\admin\\good\\edit.blade.php"
+			],
 			[
 				"order/index",
 				"resources\\views\\admin\\order\\index.blade.php"
@@ -1754,14 +1771,6 @@
 			[
 				"rest.css",
 				"public\\statics\\admin\\css\\reset.css"
-			],
-			[
-				"reset.scs",
-				"public\\statics\\reset.scss"
-			],
-			[
-				"right",
-				"resources\\views\\admin\\right.blade.php"
 			]
 		],
 		"width": 0.0
