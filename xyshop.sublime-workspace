@@ -737,14 +737,36 @@
 	},
 	"expanded_folders":
 	[
-		"/D/www/xyshop",
-		"/D/www/xyshop/app",
-		"/D/www/xyshop/app/Http",
-		"/D/www/xyshop/resources",
-		"/D/www/xyshop/resources/views/admin/member"
+		"/F/wwwroot/xyshop",
+		"/F/wwwroot/xyshop/app",
+		"/F/wwwroot/xyshop/app/Http",
+		"/F/wwwroot/xyshop/app/Http/Controllers"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/xyshop/app/Models/Youhuiquan.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104919_create_youhuiquan.php",
+		"/F/wwwroot/xyshop/app/Models/Collect.php",
+		"/F/wwwroot/xyshop/app/Models/YhqUser.php",
+		"/F/wwwroot/xyshop/app/Models/TuanUser.php",
+		"/F/wwwroot/xyshop/app/Models/Tuan.php",
+		"/F/wwwroot/xyshop/app/Models/Manzeng.php",
+		"/F/wwwroot/xyshop/app/Models/Huodong.php",
+		"/F/wwwroot/xyshop/app/Models/HdGood.php",
+		"/F/wwwroot/xyshop/app/Models/Address.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_105052_create_manzeng.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_105003_create_tuan.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_105028_create_tuan_user.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104826_create_address.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104850_create_collect.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104744_create_huodong.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104942_create_yhq_user.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104805_create_hd_good.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_13_104705_add_xs_xl_to_good.php",
+		"/F/wwwroot/xyshop/app/Services/ComService.php",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/PublicController.php",
+		"/E/迅雷下载/www.hsjixianfeng.com/index.php",
+		"/F/wwwroot/laravelDemo/.env",
 		"/D/www/xyshop/resources/views/admin/member/index.blade.php",
 		"/D/www/xyshop/resources/views/admin/order/index.blade.php",
 		"/D/www/xyshop/app/Http/Controllers/Admin/OrderController.php",
@@ -849,30 +871,7 @@
 		"/D/www/xyshop/app/Http/Controllers/Admin/AdminController.php",
 		"/D/www/xyshop/app/Http/Controllers/Admin/ArtController.php",
 		"/D/www/xyshop/app/Http/Controllers/Admin/CateController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/DatabaseController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/GroupController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/MenuController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/PublicController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/RoleController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/SectionController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/TypeController.php",
-		"/D/www/xyshop/app/Http/Middleware/BetoAdmin.php",
-		"/D/www/xyshop/app/Http/Middleware/RedirectIfAuthenticated.php",
-		"/D/www/xyshop/.env",
-		"/D/www/xyshop/resources/views/errors/404.blade.php",
-		"/D/www/xyshop/resources/views/admin/art/add.blade.php",
-		"/D/www/xyshop/resources/views/admin/art/edit.blade.php",
-		"/D/www/xyshop/resources/views/admin/cate/add.blade.php",
-		"/D/www/xyshop/resources/views/admin/cate/edit.blade.php",
-		"/D/www/xyshop/resources/views/admin/cate/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/database/export.blade.php",
-		"/D/www/xyshop/resources/views/admin/database/import.blade.php",
-		"/D/www/xyshop/resources/views/admin/group/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/left.blade.php",
-		"/D/www/xyshop/resources/views/admin/log/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/login.blade.php",
-		"/D/www/xyshop/resources/views/admin/menu/index.blade.php"
+		"/D/www/xyshop/app/Http/Controllers/Admin/DatabaseController.php"
 	],
 	"find":
 	{
@@ -965,6 +964,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"限时",
 			"art",
 			"laydate",
 			"shipname",
@@ -1091,8 +1091,7 @@
 			"wxapi",
 			"I('type')",
 			"thumb-src",
-			"mediaid",
-			"all"
+			"mediaid"
 		],
 		"highlight": true,
 		"in_selection": false,
