@@ -32,12 +32,13 @@
 		<button class="btn btn-info">搜索</button>
 	</form>
 </div>
-<form action="" class="form-inline" method="get">
+<form action="" class="form-inline form_submit" method="get">
 {{ csrf_field() }}
 <table class="table table-striped table-hover mt10">
 	<thead>
 		<tr class="success">
 			<th width="30"><input type="checkbox" class="checkall"></th>
+			<th>排序</th>
 			<th width="50">ID</th>
 			<th>标题</th>
 			<th width="100">分类</th>
@@ -50,6 +51,7 @@
 	@foreach($list as $a)
 		<tr>
 			<td><input type="checkbox" name="sids[]" class="check_s" value="{{ $a->id }}"></td>
+			<td><input type="text" min="0" name="sort[{{$a->id}}]" value="{{ $a->sort }}" class="form-control input-listorder"></td>
 			<td>{{ $a->id }}</td>
 			<td>
 				@if($a->isnew == 1)
@@ -96,14 +98,18 @@
 <!-- 添加进专题功能 -->
 <div class="pull-left" data-toggle="buttons">
 	<label class="btn btn-primary">
-			<input type="checkbox" autocomplete="off" class="checkall">全选</label>
+	<input type="checkbox" autocomplete="off" class="checkall">全选</label>
 	
+	@if(App::make('com')->ifCan('good-sort'))
+	<span class="btn btn-warning btn_sort">排序</span>
+	@endif
+
 	@if(App::make('com')->ifCan('huodong-good'))
 	<span class="btn btn-success btn_huodong" data-toggle="modal" data-target="#myModal">添加到活动</span>
 	@endif
 
 	@if(App::make('com')->ifCan('good-alldel'))
-	<span class="btn btn-danger">批量删除</span>
+	<span class="btn btn-danger btn_del">批量删除</span>
 	@endif
 </div>
 </form>
@@ -140,8 +146,8 @@
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
-		$('.btn_listrorder').click(function(){
-			$('.form_status').attr({'action':"{{ url('admin/art/listorder') }}",'method':'post'}).submit();
+		$('.btn_sort').click(function(){
+			$('.form_submit').attr({'action':"{{ url('/xyshop/good/sort') }}",'method':'post'}).submit();
 		});
 		// 活动
 		$('.btn_huodong').click(function(){
@@ -180,7 +186,7 @@
 			if (!confirm("确实要删除吗?")){
 				return false;
 			}else{
-				$('.form_status').attr({'action':"{{ url('admin/art/alldel') }}",'method':'post'}).submit();
+				$('.form_submit').attr({'action':"{{ url('/xyshop/good/alldel') }}",'method':'post'}).submit();
 			}
 		});
 		$(".checkall").bind('change',function(){

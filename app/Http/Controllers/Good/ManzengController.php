@@ -68,4 +68,37 @@ class ManzengController extends Controller
     	Manzeng::where('id',$id)->update(['del'=>0]);
     	return back()->with('message','删除成功！');
     }
+
+    // 排序
+    public function postSort(Request $req)
+    {
+        $ids = $req->input('sids');
+        $sort = $req->input('sort');
+        if (is_array($ids))
+        {
+            foreach ($ids as $v) {
+                Manzeng::where('id',$v)->update(['sort'=>(int) $sort[$v]]);
+            }
+            return back()->with('message', '排序成功！');
+        }
+        else
+        {
+            return back()->with('message', '请先选择商品！');
+        }
+    }
+    // 批量删除
+    public function postAlldel(Request $req)
+    {
+        $ids = $req->input('sids');
+        // 是数组更新数据，不是返回
+        if(is_array($ids))
+        {
+            Manzeng::whereIn('id',$ids)->update(['del'=>0]);
+            return back()->with('message', '批量删除完成！');
+        }
+        else
+        {
+            return back()->with('message','请选择商品！');
+        }
+    }
 }

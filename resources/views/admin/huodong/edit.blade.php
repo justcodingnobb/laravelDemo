@@ -55,6 +55,20 @@
     </div>
 
     <div class="form-group">
+        <label for="sort">排序：</label>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
+            </div>
+        </div>
+        @if ($errors->has('data.sort'))
+            <span class="help-block">
+                {{ $errors->first('data.sort') }}
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
         <label for="status">状态：</label>
         <label class="radio-inline"><input type="radio" name="data[status]"@if($info->status == '1') checked="checked" @endif class="input-radio" value="1">
             进行中</label>

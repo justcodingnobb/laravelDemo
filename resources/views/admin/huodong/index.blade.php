@@ -27,9 +27,13 @@
 		<button class="btn btn-info">搜索</button>
 	</form>
 </div>
+<form action="" class="form-inline form_submit" method="get">
+{{ csrf_field() }}
 <table class="table table-striped table-hover mt10">
 	<thead>
 		<tr class="success">
+			<th width="30"><input type="checkbox" class="checkall"></th>
+			<th width="80">排序</th>
 			<th width="50">ID</th>
 			<th>标题</th>
 			<th width="80">状态</th>
@@ -42,6 +46,8 @@
 	<tbody>
 	@foreach($list as $a)
 		<tr>
+			<td><input type="checkbox" name="sids[]" class="check_s" value="{{ $a->id }}"></td>
+			<td><input type="text" min="0" name="sort[{{$a->id}}]" value="{{ $a->sort }}" class="form-control input-listorder"></td>
 			<td>{{ $a->id }}</td>
 			<td>
 				{{ $a->title }}
@@ -71,12 +77,51 @@
 	@endforeach
 	</tbody>
 </table>
+</form>
 <!-- 分页，appends是给分页添加参数 -->
-<div class="pages clearfix">
+<div class="pull-left" data-toggle="buttons">
+	<label class="btn btn-primary">
+	<input type="checkbox" autocomplete="off" class="checkall">全选</label>
+	
+	@if(App::make('com')->ifCan('huodong-sort'))
+	<span class="btn btn-warning btn_sort">排序</span>
+	@endif
+
+	@if(App::make('com')->ifCan('huodong-alldel'))
+	<span class="btn btn-danger btn_del">批量删除</span>
+	@endif
+</div>
+<div class="pages clearfix pull-right">
 {!! $list->appends(['q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 <!-- 选中当前栏目 -->
 <script>
+	$(function(){
+		$('.btn_sort').click(function(){
+			$('.form_submit').attr({'action':"{{ url('/xyshop/huodong/sort') }}",'method':'post'}).submit();
+		});
+		$('.btn_del').click(function(){
+			if (!confirm("确实要删除吗?")){
+				return false;
+			}else{
+				$('.form_submit').attr({'action':"{{ url('/xyshop/huodong/alldel') }}",'method':'post'}).submit();
+			}
+		});
+		$(".checkall").bind('change',function(){
+			if($(this).is(":checked"))
+			{
+				$(".check_s").each(function(s){
+					$(".check_s").eq(s).prop("checked",true);
+				});
+			}
+			else
+			{
+				$(".check_s").each(function(s){
+					$(".check_s").eq(s).prop("checked",false);
+				});
+			}
+		});
+	});
 	laydate({
         elem: '#laydate',
         format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月

@@ -198,7 +198,7 @@ class ArtController extends Controller
         if (is_array($ids))
         {
             foreach ($ids as $v) {
-                Article::where('id',$v)->update(['listorder'=>$listorder[$v]]);
+                Article::where('id',$v)->update(['listorder'=>(int) $listorder[$v]]);
             }
             return back()->with('message', '排序成功！');
         }

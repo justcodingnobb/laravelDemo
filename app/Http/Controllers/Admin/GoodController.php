@@ -195,4 +195,47 @@ class GoodController extends Controller
         GoodFormat::where('id',$id)->update(['status'=>0]);
         return back()->with('message','删除成功！');
     }
+
+    // 排序
+    public function postSort(Request $req)
+    {
+        $ids = $req->input('sids');
+        $sort = $req->input('sort');
+        if (is_array($ids))
+        {
+            foreach ($ids as $v) {
+                Good::where('id',$v)->update(['sort'=>(int) $sort[$v]]);
+            }
+            return back()->with('message', '排序成功！');
+        }
+        else
+        {
+            return back()->with('message', '请先选择商品！');
+        }
+    }
+    // 批量删除
+    public function postAlldel(Request $req)
+    {
+        $ids = $req->input('sids');
+        // 是数组更新数据，不是返回
+        if(is_array($ids))
+        {
+            // 开启事务
+            DB::beginTransaction();
+            try {
+                Good::whereIn('id',$ids)->update(['status'=>0]);
+                // 没出错，提交事务
+                DB::commit();
+                return back()->with('message', '批量删除完成！');
+            } catch (Exception $e) {
+                // 出错回滚
+                DB::rollBack();
+                return back()->with('message','删除失败，请稍后再试！');
+            }
+        }
+        else
+        {
+            return back()->with('message','请选择商品！');
+        }
+    }
 }

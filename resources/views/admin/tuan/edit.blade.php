@@ -70,6 +70,15 @@
                 <input type="text" name="data[endtime]" class="form-control" value="{{ $info->endtime }}" id="laydate2">
             </div>
             
+            <div class="form-group">
+                <label for="sort">排序：</label>
+                <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
+                @if ($errors->has('data.sort'))
+                    <span class="help-block">
+                        {{ $errors->first('data.sort') }}
+                    </span>
+                @endif
+            </div>
 
             <div class="form-group">
                 <label for="status">状态：</label>

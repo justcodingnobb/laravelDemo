@@ -43,7 +43,8 @@ class GoodCateController extends Controller
                 $level = $cj > 4 ? 4 : $cj;
                 if ($level >= 2) {
 	                $html .= "<tr>
-	                    <td>".$v['sort']."</td>
+                        <td><input type='checkbox' name='sids[]' class='check_s' value='".$v['id']."'></td>
+                        <td><input type='text' min='0' name='sort[".$v['id']."]' value='".$v['sort']."' class='form-control input-listorder'></td>
 	                    <td>".$v['id']."</td>
 	                    <td><span class='level-".$level."'></span>".$v['name']." <a href='/xyshop/goodcate/attr/".$v['id']."' class='btn btn-sm btn-info'>属性</a></td>
 	                    <td><a href='/xyshop/goodcate/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/xyshop/goodcate/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
@@ -52,7 +53,8 @@ class GoodCateController extends Controller
                 else
                 {
 	                $html .= "<tr>
-	                    <td>".$v['sort']."</td>
+	                    <td><input type='checkbox' name='sids[]' class='check_s' value='".$v['id']."'></td>
+                        <td><input type='text' min='0' name='sort[".$v['id']."]' value='".$v['sort']."' class='form-control input-listorder'></td>
 	                    <td>".$v['id']."</td>
 	                    <td><span class='level-".$level."'></span>".$v['name']."<a href='/xyshop/goodcate/add/".$v['id']."' class='glyphicon glyphicon-plus add_submenu'></a></td>
 	                    <td><a href='/xyshop/goodcate/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/xyshop/goodcate/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
@@ -176,6 +178,24 @@ class GoodCateController extends Controller
             // 出错回滚
             DB::rollBack();
             return back()->with('message','删除失败，请稍后再试！');
+        }
+    }
+
+    // 排序
+    public function postSort(Request $req)
+    {
+        $ids = $req->input('sids');
+        $sort = $req->input('sort');
+        if (is_array($ids))
+        {
+            foreach ($ids as $v) {
+                GoodCate::where('id',$v)->update(['sort'=>(int) $sort[$v]]);
+            }
+            return back()->with('message', '排序成功！');
+        }
+        else
+        {
+            return back()->with('message', '请先选择商品！');
         }
     }
 }

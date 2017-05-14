@@ -121,6 +121,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('tuan/edit/{id}', 'Good\TuanController@getEdit');
     Route::post('tuan/edit/{id}', 'Good\TuanController@postEdit');
     Route::get('tuan/del/{id}', 'Good\TuanController@getDel');
+    Route::post('tuan/sort', 'Good\TuanController@postSort');
+    Route::post('tuan/alldel', 'Good\TuanController@postAlldel');
     // 满赠管理
     Route::get('manzeng/index', 'Good\ManzengController@getIndex');
     Route::get('manzeng/add/{id}', 'Good\ManzengController@getAdd');
@@ -128,6 +130,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('manzeng/edit/{id}', 'Good\ManzengController@getEdit');
     Route::post('manzeng/edit/{id}', 'Good\ManzengController@postEdit');
     Route::get('manzeng/del/{id}', 'Good\ManzengController@getDel');
+    Route::post('manzeng/sort', 'Good\ManzengController@postSort');
+    Route::post('manzeng/alldel', 'Good\ManzengController@postAlldel');
     // 优惠券管理
     Route::get('youhuiquan/index', 'Good\YouhuiquanController@getIndex');
     Route::get('youhuiquan/add', 'Good\YouhuiquanController@getAdd');
@@ -135,6 +139,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('youhuiquan/edit/{id}', 'Good\YouhuiquanController@getEdit');
     Route::post('youhuiquan/edit/{id}', 'Good\YouhuiquanController@postEdit');
     Route::get('youhuiquan/del/{id}', 'Good\YouhuiquanController@getDel');
+    Route::post('youhuiquan/sort', 'Good\YouhuiquanController@postSort');
+    Route::post('youhuiquan/alldel', 'Good\YouhuiquanController@postAlldel');
     // 活动管理
     Route::get('huodong/index', 'Good\HuodongController@getIndex');
     Route::get('huodong/add', 'Good\HuodongController@getAdd');
@@ -146,6 +152,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::post('huodong/good/{gids?}', 'Good\HuodongController@postGood');
     Route::get('huodong/goodlist/{id}', 'Good\HuodongController@getGoodlist');
     Route::get('huodong/rmgood/{id}/{gid}', 'Good\HuodongController@getRmgood');
+    Route::post('huodong/sort', 'Good\HuodongController@postSort');
+    Route::post('huodong/alldel', 'Good\HuodongController@postAlldel');
     // 订单管理
     Route::get('order/index', 'Admin\OrderController@index');
     Route::get('order/del/{id}', 'Admin\OrderController@getDel');
@@ -165,6 +173,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('goodcate/del/{id?}', 'Admin\GoodCateController@getDel');
     Route::get('goodcate/attr/{id?}', 'Admin\GoodCateController@getAttr');
     Route::post('goodcate/attr/{id?}', 'Admin\GoodCateController@postAttr');
+    Route::post('goodcate/sort', 'Admin\GoodCateController@postSort');
     // 商品属性
     Route::get('goodattr/index/{pid?}', 'Admin\GoodAttrController@getIndex');
     Route::get('goodattr/add/{id}', 'Admin\GoodAttrController@getAdd');
@@ -185,6 +194,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('good/editformat/{id}', 'Admin\GoodController@getEditformat');
     Route::post('good/editformat/{id}', 'Admin\GoodController@postEditformat');
     Route::get('good/delformat/{id}', 'Admin\GoodController@getDelformat');
+    Route::post('good/sort', 'Admin\GoodController@postSort');
+    Route::post('good/alldel', 'Admin\GoodController@postAlldel');
     // 退出登陆
     Route::get('logout', 'Admin\PublicController@getLogout');
     // Index
