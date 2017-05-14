@@ -43,7 +43,7 @@
 			<th width="100">分类</th>
 			<th width="80">状态</th>
 			<th width="180">修改时间</th>
-			<th width="200">操作</th>
+			<th width="280">操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -73,6 +73,12 @@
 			</td>
 			<td>{{ $a->updated_at }}</td>
 			<td>
+				@if(App::make('com')->ifCan('manzeng-add'))
+				<div data-url="{{ url('/xyshop/manzeng/add',['id'=>$a->id]) }}" class="btn btn-sm btn-success btn_manzeng" data-toggle="modal" data-target="#myModal">满赠</div>
+				@endif
+				@if(App::make('com')->ifCan('tuan-add'))
+				<div data-url="{{ url('/xyshop/tuan/add',['id'=>$a->id]) }}" class="btn btn-sm btn-primary btn_tuan" data-toggle="modal" data-target="#myModal">团购</div>
+				@endif
 				@if(App::make('com')->ifCan('good-format'))
 				<a href="{{ url('/xyshop/good/format',['id'=>$a->id]) }}" class="btn btn-sm btn-warning">属性</a>
 				@endif
@@ -119,10 +125,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">弹出</h4>
+        <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
-      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="400" scrolling="auto" allowtransparency="true"></iframe>
+      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="600" scrolling="auto" allowtransparency="true"></iframe>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -137,7 +143,7 @@
 		$('.btn_listrorder').click(function(){
 			$('.form_status').attr({'action':"{{ url('admin/art/listorder') }}",'method':'post'}).submit();
 		});
-
+		// 活动
 		$('.btn_huodong').click(function(){
 			// 取到商品ID
 			var gids = '';
@@ -153,9 +159,23 @@
 			}
 			var url = "{{ url('xyshop/huodong/good') }}" + '/' + gids;
 			$('#hd_good').attr("src",url);
+			$('#myModalLabel').text('活动');
 			return;
 		});
-
+		// 满赠
+		$('.btn_manzeng').click(function(){
+			var url = $(this).attr('data-url');
+			$('#hd_good').attr("src",url);
+			$('#myModalLabel').text('添加满赠');
+			return;
+		});
+		// 团购
+		$('.btn_tuan').click(function(){
+			var url = $(this).attr('data-url');
+			$('#hd_good').attr("src",url);
+			$('#myModalLabel').text('添加团购');
+			return;
+		});
 		$('.btn_del').click(function(){
 			if (!confirm("确实要删除吗?")){
 				return false;

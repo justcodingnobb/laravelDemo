@@ -29,4 +29,10 @@ class User extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 关联商品评价
+    public function good_comment()
+    {
+        return $this->hasMany('\App\Models\GoodComment','user_id','id');
+    }
 }

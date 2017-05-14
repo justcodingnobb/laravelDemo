@@ -1,12 +1,5 @@
 @extends('admin.right')
 
-@section('rmenu')
-@if(App::make('com')->ifCan('huodong-add'))
-	<a href="{{ url('/xyshop/huodong/add') }}" class="btn btn-info">添加活动</a>
-@endif
-
-@endsection
-
 
 @section('content')
 <!-- 选出栏目 -->
@@ -32,6 +25,8 @@
 		<tr class="success">
 			<th width="50">ID</th>
 			<th>标题</th>
+			<th width="80">多少钱</th>
+			<th width="80">库存</th>
 			<th width="80">状态</th>
 			<th width="160">开始时间</th>
 			<th width="160">结束时间</th>
@@ -46,6 +41,8 @@
 			<td>
 				{{ $a->title }}
 			</td>
+			<td><span class="text-success">{{ $a->price }}￥</span></td>
+			<td><span class="text-primary">{{ $a->store }}</span></td>
 			<td>
 				@if($a->status == 1)
 				<span class="color-green">进行中</span>
@@ -57,14 +54,11 @@
 			<td>{{ $a->endtime }}</td>
 			<td>{{ $a->updated_at }}</td>
 			<td>
-				@if(App::make('com')->ifCan('huodong-goodlist'))
-				<a href="{{ url('/xyshop/huodong/goodlist',$a->id) }}" class="btn btn-sm btn-success">商品</a>
+				@if(App::make('com')->ifCan('manzeng-edit'))
+				<a href="{{ url('/xyshop/manzeng/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a>
 				@endif
-				@if(App::make('com')->ifCan('huodong-edit'))
-				<a href="{{ url('/xyshop/huodong/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a>
-				@endif
-				@if(App::make('com')->ifCan('huodong-del'))
-				<a href="{{ url('/xyshop/huodong/del',$a->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
+				@if(App::make('com')->ifCan('manzeng-del'))
+				<a href="{{ url('/xyshop/manzeng/del',$a->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
 				@endif
 			</td>
 		</tr>

@@ -122,6 +122,8 @@ class IndexController extends Controller
         echo "<p class='color-green'>更新栏目缓存成功...</p>";
         App::make('com')->updateCache(new App\Models\Menu,'menuCache');
         echo "<p class='color-green'>更新后台菜单缓存成功...</p>";
+        App::make('com')->updateCache(new App\Models\GoodCate,'goodcateCache');
+        echo "<p class='color-green'>更新商品分类缓存成功...</p>";
         echo "<p class='color-red'>更新缓存完成...</p>";
     }
 }

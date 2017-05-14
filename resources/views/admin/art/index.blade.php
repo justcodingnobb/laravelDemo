@@ -78,8 +78,8 @@
 				<td>
 					@if(App::make('com')->ifCan('art-edit'))
 					<a href="{{ url('/xyshop/art/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a> 
-				@endif
-				@if(App::make('com')->ifCan('art-del'))
+					@endif
+					@if(App::make('com')->ifCan('art-del'))
 					<a href="{{ url('/xyshop/art/del',$a->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
 					@endif
 				</td>

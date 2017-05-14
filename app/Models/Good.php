@@ -45,4 +45,16 @@ class Good extends Model
     {
         return $this->hasMany('\App\Models\OrderGood','good_id','id');
     }
+
+    // 满赠
+    public function manzeng()
+    {
+        return $this->hasMany('\App\Models\Manzeng','good_id','id');
+    }
+
+    // 团购
+    public function tuan()
+    {
+        return $this->hasMany('\App\Models\Tuan','good_id','id');
+    }
 }

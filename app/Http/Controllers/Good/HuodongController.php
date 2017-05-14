@@ -28,13 +28,9 @@ class HuodongController extends Controller
                 if ($key != '') {
                     $q->where('title','like','%'.$key.'%');
                 }
-            })->where(function($q) use($starttime){
-                if ($starttime != '') {
-                    $q->where('created_at','>',$starttime);
-                }
-            })->where(function($q) use($endtime){
-                if ($endtime != '') {
-                    $q->where('created_at','<',$endtime);
+            })->where(function($q) use($starttime,$endtime){
+                if ($starttime != '' && $endtime != '') {
+                    $q->where('starttime','>=',$starttime)->where('starttime','<=',$endtime);
                 }
             })->where(function($q) use($status){
                 if ($status != '') {

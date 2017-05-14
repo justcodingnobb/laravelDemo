@@ -29,4 +29,10 @@ class Tuan extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 商品
+    public function good()
+    {
+        return $this->belongsTo('\App\Models\good','good_id','id');
+    }
 }

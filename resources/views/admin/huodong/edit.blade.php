@@ -26,7 +26,7 @@
                     </div>
                     <div class="btn btn-info" id="image3">选择图片</div>
                 </div>
-                <img src="" class="pure-image thumb-src hidden"" alt="">
+                <img src="{{ $info->thumb }}" class="thumb-src"" alt="">
                 @if ($errors->has('data.thumb'))
                     <span class="help-block">
                         {{ $errors->first('data.thumb') }}
@@ -56,9 +56,9 @@
 
     <div class="form-group">
         <label for="status">状态：</label>
-        <label class="radio-inline"><input type="radio" name="data[status]"@if($info->status == 1) checked="checked"@endif class="input-radio" value="1">
+        <label class="radio-inline"><input type="radio" name="data[status]"@if($info->status == '1') checked="checked" @endif class="input-radio" value="1">
             进行中</label>
-        <label class="radio-inline"><input type="radio" name="data[status]"@if($info->statue == 0) checked="checked"@endif class="input-radio" value="0">关闭</label>
+        <label class="radio-inline"><input type="radio" name="data[status]"@if($info->statue == '0') checked="checked" @endif class="input-radio" value="0">关闭</label>
     </div>
     
 

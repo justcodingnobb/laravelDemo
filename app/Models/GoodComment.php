@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Manzeng extends Model
+class GoodComment extends Model
 {
-    // 满赠
+    // 商品评价表
     /**
      * 关联到模型的数据表
      *
      * @var string
      */
-    protected $table = 'manzeng';
+    protected $table = 'good_comment';
 
     // 不可以批量赋值的字段，为空则表示都可以
     protected $guarded = [];
@@ -30,9 +30,9 @@ class Manzeng extends Model
      */
     public $timestamps = true;
 
-    // 商品
-    public function good()
+    // 关联用户
+    public function user()
     {
-        return $this->belongsTo('\App\Models\good','good_id','id');
+        return $this->belongsTo('\App\Models\User','user_id','id');
     }
 }

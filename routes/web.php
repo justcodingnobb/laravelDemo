@@ -114,6 +114,27 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 团购管理
+    Route::get('tuan/index', 'Good\TuanController@getIndex');
+    Route::get('tuan/add/{id}', 'Good\TuanController@getAdd');
+    Route::post('tuan/add/{id}', 'Good\TuanController@postAdd');
+    Route::get('tuan/edit/{id}', 'Good\TuanController@getEdit');
+    Route::post('tuan/edit/{id}', 'Good\TuanController@postEdit');
+    Route::get('tuan/del/{id}', 'Good\TuanController@getDel');
+    // 满赠管理
+    Route::get('manzeng/index', 'Good\ManzengController@getIndex');
+    Route::get('manzeng/add/{id}', 'Good\ManzengController@getAdd');
+    Route::post('manzeng/add/{id}', 'Good\ManzengController@postAdd');
+    Route::get('manzeng/edit/{id}', 'Good\ManzengController@getEdit');
+    Route::post('manzeng/edit/{id}', 'Good\ManzengController@postEdit');
+    Route::get('manzeng/del/{id}', 'Good\ManzengController@getDel');
+    // 优惠券管理
+    Route::get('youhuiquan/index', 'Good\YouhuiquanController@getIndex');
+    Route::get('youhuiquan/add', 'Good\YouhuiquanController@getAdd');
+    Route::post('youhuiquan/add', 'Good\YouhuiquanController@postAdd');
+    Route::get('youhuiquan/edit/{id}', 'Good\YouhuiquanController@getEdit');
+    Route::post('youhuiquan/edit/{id}', 'Good\YouhuiquanController@postEdit');
+    Route::get('youhuiquan/del/{id}', 'Good\YouhuiquanController@getDel');
     // 活动管理
     Route::get('huodong/index', 'Good\HuodongController@getIndex');
     Route::get('huodong/add', 'Good\HuodongController@getAdd');

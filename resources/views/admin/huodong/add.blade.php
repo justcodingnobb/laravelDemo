@@ -24,7 +24,7 @@
                     </div>
                     <div class="btn btn-info" id="image3">选择图片</div>
                 </div>
-                <img src="" class="pure-image thumb-src hidden"" alt="">
+                <img src="" class="thumb-src hidden"" alt="">
                 @if ($errors->has('data.thumb'))
                     <span class="help-block">
                         {{ $errors->first('data.thumb') }}

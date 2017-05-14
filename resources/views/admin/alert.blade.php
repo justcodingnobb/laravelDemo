@@ -19,6 +19,7 @@
     <!-- 上传用的 css -->
     <link rel="stylesheet" href="{{ $sites['static']}}admin/css/reset.css">
     <script src="{{ $sites['static']}}common/js/jquery.min.js"></script>
+    <script src="{{ $sites['static']}}common/laydate/laydate.js"></script>
 </head>
 
 <body style="padding: 0">
