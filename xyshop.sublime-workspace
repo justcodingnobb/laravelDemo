@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"bg",
+				"bg-info \tBootstrap 3 Class"
+			],
+			[
+				"pa",
+				"paginate"
+			],
+			[
+				"text",
+				"text-center \tBootstrap 3 Class"
+			],
+			[
+				"ovh",
+				"ovx:h\toverflow-x:hidden"
+			],
+			[
+				"db",
+				"d:b\tdisplay:block"
+			],
+			[
+				"pac",
+				"placeholder\tAttr"
+			],
+			[
+				"fon",
+				"form-inline \tBootstrap 3 Class"
+			],
+			[
+				"con",
+				"container-fluid \tBootstrap 3 Class"
+			],
+			[
+				"form",
+				"form-control \tBootstrap 3 Class"
+			],
+			[
+				"new",
+				"new_goods"
+			],
+			[
 				"for",
 				"form-control \tBootstrap 3 Class"
 			],
@@ -30,14 +70,6 @@
 			[
 				"tr",
 				"true"
-			],
-			[
-				"form",
-				"fromUser"
-			],
-			[
-				"pa",
-				"paylist"
 			],
 			[
 				"w",
@@ -158,10 +190,6 @@
 			[
 				"as",
 				"aside_name"
-			],
-			[
-				"con",
-				"container"
 			],
 			[
 				"center",
@@ -336,10 +364,6 @@
 				"created_at"
 			],
 			[
-				"new",
-				"newuser\t(Emchat.php)"
-			],
-			[
 				"App",
 				"AppComment\t(AppComment.php)"
 			],
@@ -420,10 +444,6 @@
 				"getElementById(id)\tElement"
 			],
 			[
-				"fon",
-				"font-size"
-			],
-			[
 				"com",
 				"compact"
 			],
@@ -494,26 +514,6 @@
 			[
 				"wind",
 				"window_img"
-			],
-			[
-				"gr",
-				"group"
-			],
-			[
-				"col",
-				"color"
-			],
-			[
-				"di",
-				"display"
-			],
-			[
-				"alert",
-				"alert_2"
-			],
-			[
-				"has",
-				"hasClass\t.hasClass()"
 			]
 		]
 	},
@@ -738,23 +738,62 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/xyshop",
-		"/F/wwwroot/xyshop/app",
-		"/F/wwwroot/xyshop/app/Http",
-		"/F/wwwroot/xyshop/resources"
+		"/F/wwwroot/xyshop/public/statics/common/css",
+		"/F/wwwroot/xyshop/resources/views/admin",
+		"/F/wwwroot/xyshop/resources/views/admin/art"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/xyshop/resources/views/admin/art/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/art/add.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/cate/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/cate/add.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/goodcate/add.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/ad/add.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/ad/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/add.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/huodong/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/index.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/goodcate/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/edit.blade.php",
+		"/F/wwwroot/xyshop/resources/views/admin/good/add.blade.php",
+		"/F/wwwroot/xyshop/public/statics/admin/css/reset.scss",
+		"/F/wwwroot/xyshop/public/statics/home/css/home.scss",
+		"/F/wwwroot/xyshop/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/xyshop/resources/views/default/home.blade.php",
+		"/F/wwwroot/xyshop/routes/web.php",
+		"/F/wwwroot/xyshop/resources/views/default/goodlist.blade.php",
+		"/F/wwwroot/xyshop/resources/views/default/goodcate.blade.php",
+		"/F/wwwroot/xyshop/app/Services/TagService.php",
+		"/F/wwwroot/xyshop/resources/views/default/layout.blade.php",
+		"/F/wwwroot/xyshop/sftp-config.json",
+		"/F/wwwroot/xyshop/app/Http/Controllers/HomeController.php",
+		"/F/wwwroot/xyshop/app/Http/Controllers/Good/AdController.php",
+		"/F/wwwroot/xyshop/resources/views/admin/ad/index.blade.php",
+		"/F/wwwroot/xyshop/app/Http/Requests/Good/AdRequest.php",
+		"/F/wwwroot/xyshop/app/Models/Ad.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_16_061441_create_ad.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/E9931EFE_edit.tmp/good.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/E9931EFE_edit.tmp/good_m.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/E9931EFE_edit.tmp/layout.blade.php",
+		"/C/Users/Li/Downloads/overtrue-share.js-6c72f02/dist/css/share.min.css",
+		"/C/Users/Li/Downloads/overtrue-share.js-6c72f02/demo/test-jquery.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/66D84AAC_edit.tmp/good.blade.php",
+		"/F/wwwroot/xyshop/.gitignore",
+		"/F/wwwroot/xyshop/app/Ecs/Good.php",
+		"/F/wwwroot/xyshop/app/Ecs/Category.php",
+		"/F/wwwroot/xyshop/database/migrations/2017_05_16_003114_add_some_to_user.php",
+		"/F/wwwroot/xyshop/config/database.php",
+		"/F/wwwroot/xyshop/app/Ecs/User.php",
+		"/C/Users/Li/AppData/Local/Temp/16f7f8fa-6234-417e-b526-5641fa325195/var/www/test/jssdk11_net.html",
 		"/F/wwwroot/xyshop/resources/views/admin/goodcate/index.blade.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/GoodCateController.php",
-		"/F/wwwroot/xyshop/routes/web.php",
 		"/F/wwwroot/xyshop/resources/views/admin/huodong/index.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/A8C644A3_edit.tmp/index.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/A8C644A3.tmp/index.php",
 		"/F/wwwroot/xyshop/resources/views/admin/manzeng/index.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/tuan/index.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/index.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/huodong/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/huodong/add.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/tuan/add.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/manzeng/add.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/manzeng/edit.blade.php",
@@ -765,16 +804,12 @@
 		"/F/wwwroot/xyshop/app/Http/Controllers/Good/ManzengController.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Good/TuanController.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Good/YouhuiquanController.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_063940_add_sort_to_huodong.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_063952_add_sort_to_tuan.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_064004_add_sort_to_manzeng.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_064027_add_sort_to_youhuiquan.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/ArtController.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/add.blade.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/xyshop/app/Models/GoodComment.php",
 		"/F/wwwroot/xyshop/app/Models/User.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_021311_create_good_comment.php",
@@ -787,7 +822,6 @@
 		"/F/wwwroot/xyshop/app/Models/Manzeng.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_011212_add_store_to_manzeng.php",
 		"/F/wwwroot/xyshop/resources/views/admin/alert.blade.php",
-		"/F/wwwroot/xyshop/sftp-config.json",
 		"/F/wwwroot/xyshop/resources/views/admin/art/index.blade.php",
 		"/F/wwwroot/xyshop/app/Http/Requests/Good/YouhuiquanRequest.php",
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_010049_add_nums_to_youhuiquan.php",
@@ -810,10 +844,8 @@
 		"/F/wwwroot/xyshop/config/wechat.php",
 		"/F/wwwroot/xyshop/config/app.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/89069B49_edit.tmp/layout.blade.php",
-		"/F/wwwroot/xyshop/resources/views/default/layout.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/32C3DAA0_edit.tmp/layout.blade.php",
 		"/C/Users/Li/Downloads/laravelDemo-1.0.0/readme.md",
-		"/F/wwwroot/xyshop/.gitignore",
 		"/F/wwwroot/xyshop/composer.json",
 		"/F/wwwroot/xyshop/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Auth/WxController.php",
@@ -823,7 +855,6 @@
 		"/F/wwwroot/xyshop/resources/views/default/pay.blade.php",
 		"/F/wwwroot/xyshop/config/socialite.php",
 		"/F/wwwroot/xyshop/config/services.php",
-		"/F/wwwroot/xyshop/app/Services/TagService.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/xyshop/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/xyshop/vendor/overtrue/wechat/src/Foundation/ServiceProviders/OpenPlatformServiceProvider.php",
@@ -840,38 +871,7 @@
 		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.647.3015/HZ$D.647.3016/app/Console/Commands/Meihuas.php",
 		"/F/yan/市场情报/20170413/梅花网升级文件/meihua.sql",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/9DD844A6_edit.tmp/Meihuas.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/99E02EF1_edit.tmp/Kernel.php",
-		"/D/www/xyshop/readme.md",
-		"/D/www/xyshop/config/app.php",
-		"/D/www/xyshop/app/Http/Middleware/VerifyCsrfToken.php",
-		"/D/www/xyshop/sql/shop-init-20170428.sql",
-		"/D/www/xyshop/resources/views/default/paylist.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/WxpayController.php",
-		"/D/www/laravel-shop/routes/web.php",
-		"/D/www/xyshop/config/alipay.php",
-		"/D/www/xyshop/routes/web.php",
-		"/D/www/xyshop/app/Http/Controllers/WxpayController.php",
-		"/D/www/xyshop/app/Http/Controllers/AlipayController.php",
-		"/D/www/xyshop/composer.json",
-		"/D/www/laravel-shop/composer.json",
-		"/D/www/xyshop/resources/views/default/addorder.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
-		"/D/www/xyshop/resources/views/default/order.blade.php",
-		"/D/www/xyshop/resources/views/default/cart.blade.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/8A439249_edit.tmp/Kernel.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/1C3C5C0D_edit.tmp/Meihuas.php",
-		"/D/www/laravel-shop/app/Services/ComService.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/C983D953_edit.tmp/Kernel.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/14F4AD10_edit.tmp/Meihuas.php",
-		"/D/www/xyshop/database/migrations/2017_03_09_104005_create_orders_table.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/691DB819_edit.tmp/Meihuas.php",
-		"/D/www/xyshop/routes/console.php",
-		"/D/www/xyshop/app/Http/Controllers/BaseController.php",
-		"/D/www/xyshop/app/Http/Controllers/UserController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/UserController.php",
-		"/D/www/laravel-shop/app/Http/Controllers/BaseController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/F5EC7E08_edit.tmp/Kernel.php"
+		"/G/soft/FlashFXP4/Cache/~flashfxp/99E02EF1_edit.tmp/Kernel.php"
 	],
 	"find":
 	{
@@ -966,6 +966,42 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<div value=\"选择图片\" id=\"image3\"></div>",
+			"5bc0de",
+			"btn-succ",
+			"sort",
+			"desc",
+			"sort",
+			"carousel-2",
+			"carousel-example-generic",
+			"carousel",
+			"$c->url",
+			"goodcate",
+			"input",
+			"goodcate",
+			"checked",
+			"old('data.",
+			"title",
+			"havnums",
+			"huodong",
+			"tuan",
+			"Tuan",
+			"tuan",
+			"商品",
+			"Tuan",
+			"starttime",
+			"endtime",
+			"starttime",
+			"团购",
+			"TuanRequest",
+			"tuan.",
+			"Tuan::",
+			"TuanController",
+			"tuan/",
+			"55acee",
+			"pull-left",
+			"pinterest",
+			"sex",
 			"goodcate/sort",
 			"button",
 			"span",
@@ -1057,43 +1093,7 @@
 			"info",
 			"h4",
 			"Cate",
-			"mt20",
-			".mt10",
-			"format",
-			"admin/",
-			"admin",
-			"->",
-			"filter",
-			"$filter",
-			"p",
-			"list_good",
-			"admin/",
-			"l54",
-			"color:$color_2;",
-			"#FFF",
-			"/admin",
-			"xycmf",
-			")(",
-			"禁用会员",
-			"li_shop",
-			"['",
-			"->where('site_id',session('site')->id)",
-			"goodcate",
-			"3,6",
-			"admin/",
-			"HOST",
-			"\t\t\n",
-			"18932813211",
-			"{{ $sites['url'] }}{{ $sites['static']}}",
-			"->",
-			"Auth",
-			"title",
-			"static",
-			"admin/",
-			"allRole",
-			"RoleUser",
-			"RedirectIfAuthenticated",
-			"/admin/"
+			"mt20"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1101,6 +1101,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"ad.",
+			"Ad::",
 			"xyshop/",
 			"xyshop",
 			"xyshop/",
@@ -1244,7 +1246,7 @@
 	"project": "xyshop.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 64.0
 	},
 	"save_all_on_build": false,
 	"select_file":

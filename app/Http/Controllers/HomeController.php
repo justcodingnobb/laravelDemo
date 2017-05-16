@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Ecs\Category;
+use App\Ecs\Good as G;
+use App\Ecs\User as U;
 use App\Models\Article;
 use App\Models\Cate;
 use App\Models\Good;
+use App\Models\GoodCate;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
 {
-
-    
     /**
      * Show the application dashboard.
      *
@@ -20,7 +23,9 @@ class HomeController extends BaseController
     {
         $info = (object) ['title'=>cache('config')['title'],'keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
         $info->pid = 0;
-        return view($this->theme.'.home',compact('info'));
+        // 找出 新品来
+        $news = Good::where('isnew',1)->limit(12)->orderBy('sort','asc')->orderBy('id','desc')->get();
+        return view($this->theme.'.home',compact('info','news'));
     }
     // 栏目
     public function getCate($url = '')

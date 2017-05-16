@@ -75,6 +75,9 @@
 			</td>
 			<td>{{ $a->updated_at }}</td>
 			<td>
+				@if(App::make('com')->ifCan('good-edit'))
+				<a href="{{ url('/xyshop/good/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a>
+				@endif
 				@if(App::make('com')->ifCan('manzeng-add'))
 				<div data-url="{{ url('/xyshop/manzeng/add',['id'=>$a->id]) }}" class="btn btn-sm btn-success btn_manzeng" data-toggle="modal" data-target="#myModal">满赠</div>
 				@endif
@@ -83,9 +86,6 @@
 				@endif
 				@if(App::make('com')->ifCan('good-format'))
 				<a href="{{ url('/xyshop/good/format',['id'=>$a->id]) }}" class="btn btn-sm btn-warning">属性</a>
-				@endif
-				@if(App::make('com')->ifCan('good-edit'))
-				<a href="{{ url('/xyshop/good/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a>
 				@endif
 				@if(App::make('com')->ifCan('good-del'))
 				<a href="{{ url('/xyshop/good/del',$a->id) }}" class="confirm btn btn-sm btn-danger">下架</a>

@@ -21,91 +21,33 @@ class ShopController extends BaseController
      * 分类页面
      * 添加筛选功能 
      */
-    public function goodcate($id = 0,$format = '')
-    {
-        $info = GoodCate::findOrFail($id);
-        $info->pid = $info->parentid == 0 ? $info->id : $info->parentid;
-        // 找出所有子分类来
-        $subcate = GoodCate::where('parentid',$id)->where('status',1)->orderBy('sort','asc')->get();
-        // 找商品的属性
-        $attrs = CateAttr::where('cate_id',$id)->pluck('attr_id');
-        // 对应的属性及值，循环取下一级
-        $attr_p = GoodAttr::whereIn('id',$attrs)->where('status',1)->orderBy('id','asc')->get();
-        foreach ($attr_p as $k => $v) {
-        	$attr_p[$k]['child'] = GoodAttr::where('parentid',$v->id)->where('status',1)->orderBy('id','asc')->get();
+    public function goodcate(Request $req,$id = 0)
+    {   
+        // 如果没有标明分类，取第一个
+        if ($id == 0) {
+            $info = GoodCate::where('parentid',0)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->first();
         }
-
-        // 生成筛选用的url及参数
-        // 这里是取现在url里的参数值，是个关键点
-        $filter_attr = $format == '' ? '' : explode('.', trim($format));
-        // 建立返回的空数组
-        $all_attr_list = array();
-        // 开始外部大属性循环
-        foreach ($attr_p as $k => $v) {
-            $temp_name = $v['name'];
-            //获取该属性名（主属性）
-            $all_attr_list[$k]['filter_attr_name'] = $temp_name;
-
-            //如果后台指定该分类下，用于搜索的属性的组数，是跟地址栏中filter_attr=0.0.0.0 中0的个数是一样的，而且顺序都是一样的即：第一个0，表示第一组属性中，它选择了哪一个子属性，以此类推
-            //获取当前url中已选择属性的值，并保留在数组中。!这里要作循环，是因为避免属性为0或者空时，导致出错，因为直接把$filter_attr 赋值给 $temp_arrt_url_arr会出错。
-            $temp_arrt_url_arr = array();
-            $attr_p_num = $attr_p->count();
-            for ($i = 0; $i < $attr_p_num; $i++) {
-                $temp_arrt_url_arr[$i] = !empty($filter_attr[$i]) ? $filter_attr[$i] : 0;
-            }
-            $temp_attr = $temp_arrt_url_arr;
-            //“全部”的信息生成
-            $temp_arrt_url_arr[$k] = 0;
-            $temp_arrt_url = implode('.', $temp_arrt_url_arr);
-            $all_attr_list[$k]['attr_list'][0]['attr_value'] = '全部';
-            // 这里生成url的过程也是关键点，代码里只展示了属性数据里的，并没有添加其它固定的筛选项
-            $all_attr_list[$k]['attr_list'][0]['url'] = url('/shop/cate', array('id'=>$id,'format'=>$temp_arrt_url));
-            $all_attr_list[$k]['attr_list'][0]['selected'] = empty($filter_attr[$k]) ? 1 : 0;
-
-            // 取所有的子属性
-            $attr_list = $v['child'];
-            // 子属性的生成
-            foreach ($attr_list as $ks => $vv) {
-                $temp_k = $ks + 1;
-                //为url中代表当前筛选属性的位置变量赋值,并生成以‘.’分隔的筛选属性字符串
-                $temp_arrt_url_arr[$k] = $vv['id'];
-                $temp_arrt_url = implode('.', $temp_arrt_url_arr);
-
-                $all_attr_list[$k]['attr_list'][$temp_k]['attr_value'] = $vv['value'];
-                $all_attr_list[$k]['attr_list'][$temp_k]['url'] = url('/shop/cate', array('id'=>$id,'format'=>$temp_arrt_url));
-
-                //处理已被选择的子属性
-                if (!empty($filter_attr[$k]) && $filter_attr[$k] == $vv['id']) {
-                    $all_attr_list[$k]['attr_list'][$temp_k]['selected'] = 1;
-                }
-                else {
-                    $all_attr_list[$k]['attr_list'][$temp_k]['selected'] = 0;
-                }
-            }
+        else
+        {
+            $info = GoodCate::findOrFail($id);
         }
-        // 找出属性来，循环找，如果是0，则忽略
-        $attr_vals = '-';
-        $ids = [];
-        if (isset($temp_attr)) {
-            foreach ($temp_attr as $k => $t) {
-                if($t != 0)
-                {
-                    $attr_vals .= $t.'.';
-                }
-            }
-            $attr_vals = str_replace('.', '-', $attr_vals);
-            // 如果有筛选值，先找出ID来
-            if (trim($attr_vals,'-') != '') {
-                $ids = GoodFormat::where('attr_ids','like',"%$attr_vals%")->where('status',1)->pluck('good_id');
-            }
+        // 如果是一级分类，打开分类列表，如果是二级分类打开产品列表
+        if ($info->parentid == 0) {
+            // 找出所有的一级分类来
+            $allcate = GoodCate::where('parentid',0)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
+            // 找当前分类的所有子分类
+            $childid = explode(',',$info->arrchildid);
+            unset($childid[0]);
+            $subcate = GoodCate::whereIn('id',$childid)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
+            return view($this->theme.'.goodcate',compact('info','allcate','subcate'));
         }
-        // 找出所有商品来，同时筛选
-        $list = Good::where('status',1)->where(function($q) use($ids,$attr_vals){
-            if (trim($attr_vals,'-') != '') {
-                $q->whereIn('id',$ids);
-            }
-        })->whereIn('cate_id',explode(',',$info->arrchildid))->paginate(15);
-        return view($this->theme.'.goodcate',compact('list','subcate','info','all_attr_list','format'));
+        else
+        {
+            $sort = isset($req->sort) ? $req->sort : 'sort';
+            $sc = isset($req->sc) ? $req->sc : 'asc';
+            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->paginate(21);
+            return view($this->theme.'.goodlist',compact('info','list'));
+        }
     }
     /*
      * 当传了属性时，按属性值计算，没传时按第一个计算

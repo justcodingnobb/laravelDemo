@@ -18,17 +18,13 @@
 @include start;
 $color_1:#343434;
 $color_2:#F55C59;
-body {line-height: 1.8;}
+html {overflow-x: hidden;}
+body {line-height: 1.8; overflow-x: hidden}
 a {color:#333;}
 .color_1 {color:$color_1;}
 .color_2 {color:$color_2;}
 .mt20 {margin-top: 20px;}
 .top_font {background-color: #F3F3F3; border-bottom:#D7D7D7 solid 1px; line-height: 2.4;color:#6E7373; font-size: 12px;}
-.head {
-    margin:25px auto 15px;
-    .dh {font-size: 20px; color:$color_2; padding-top: 15px;}
-    .logo-font {padding:2px 10px; font-size: 30px; font-weight: normal; line-height: 50px; color:$color_2;}
-}
 #nav_top {
     width: 100%;
     margin-top: 10px;
@@ -65,10 +61,10 @@ a {color:#333;}
 .foot {
     background-color: #F3F3F3;
     padding: 20px 0;
-    margin-top: 20px;
     color:#666666;
     line-height: 2;
     font-size: 12px;
+    padding-bottom: 60px;
 }
 .h3_cate {
     font-size: 16px;
@@ -137,3 +133,39 @@ a {color:#333;}
     width:60%;
 }
 .cart_h4 {font-size: 16px; line-height:1.6;}
+// 新的
+.carousel-control.left ,.carousel-control.right {background: none;}
+.menu_main {
+    padding:10px 0;
+    background: #FFFFFF;
+    li {float: left; width:25%; text-align: center;}
+}
+.db {display: block;}
+.goodcate {
+    font-size: 12px;
+    text-align: center;
+}
+// 分类
+.allcate 
+{
+    padding-bottom: 10000px;
+    margin-bottom: -10000px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-color: #F1F1F1;
+    li {
+        padding-left: 7px;
+        border-left:#7E8C8D solid 3px;
+        border-bottom:#fff solid 1px;
+        font-size: 12px;
+        line-height:3;
+        &.active {
+            border-left:#37C3A9 solid 3px;
+            background-color: #FFF;
+        }
+    }
+}
+.subcate {
+    min-height:600px;
+    margin-top: 20px;
+}

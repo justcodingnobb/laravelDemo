@@ -62,9 +62,9 @@ Route::group(['prefix' => 'oauth'],function(){
 // 商城功能
 Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     // 分类
-    Route::get('cate/{id}/{format?}','ShopController@goodcate');
+    Route::get('goodcate/{id?}','ShopController@goodcate');
     // 商品
-    Route::get('good/{id}/{format?}','ShopController@good');
+    Route::get('good/{id?}','ShopController@good');
     // 购物车
     Route::get('cart','ShopController@cart');
     // 订单列表
@@ -114,6 +114,15 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 广告管理
+    Route::get('ad/index', 'Good\AdController@getIndex');
+    Route::get('ad/add', 'Good\AdController@getAdd');
+    Route::post('ad/add', 'Good\AdController@postAdd');
+    Route::get('ad/edit/{id}', 'Good\AdController@getEdit');
+    Route::post('ad/edit/{id}', 'Good\AdController@postEdit');
+    Route::get('ad/del/{id}', 'Good\AdController@getDel');
+    Route::post('ad/sort', 'Good\AdController@postSort');
+    Route::post('ad/alldel', 'Good\AdController@postAlldel');
     // 团购管理
     Route::get('tuan/index', 'Good\TuanController@getIndex');
     Route::get('tuan/add/{id}', 'Good\TuanController@getAdd');

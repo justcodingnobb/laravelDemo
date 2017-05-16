@@ -19,11 +19,11 @@
             </div>
             <div class="form-group">
                 <label for="thumb">缩略图：图片类型jpg/jpeg/gif/png，大小不超过2M</label>
-                <div class="clearfix row">
+                <div class="clearfix row thumb_btn">
                     <div class="col-xs-6">
                     <input type="text" readonly="readonly" name="data[thumb]" id="url3" value="{{ old('data.thumb') }}" class="form-control">
                     </div>
-                    <span class="btn btn-info" id="image3">选择图片</span>
+                    <div value="选择图片" id="image3"></div>
                 </div>
                 <img src="" class="thumb-src hidden" alt="">
                 @if ($errors->has('data.thumb'))
@@ -113,27 +113,28 @@
                 session_id : "{{ session('user')->id }}",
             }
         });
-        window.editor3 = K.editor({
-            uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
+        var uploadbutton = K.uploadbutton({
+            button : K('#image3')[0],
+            fieldName : 'imgFile',
+            url : "{{ url('xyshop/attr/uploadimg') }}",
             extraFileUploadParams: {
                 session_id : "{{ session('user')->id }}",
-                // thumb : 1,
+            },
+            afterUpload : function(data) {
+                if (data.error === 0) {
+                    var url = K.formatUrl(data.url, 'absolute');
+                    K('#url3').val(url);
+                    $('.thumb-src').attr('src',url).removeClass('hidden');
+                } else {
+                    alert(data.message);
+                }
+            },
+            afterError : function(str) {
+                alert('自定义错误信息: ' + str);
             }
         });
-        // 上传图片
-        K('#image3').click(function() {
-            editor3.loadPlugin('image', function() {
-                editor3.plugin.imageDialog({
-                    showRemote : false,
-                    fieldName : 'imgFile',
-                    imageUrl : K('#url3').val(),
-                    clickFn : function(url, title, width, height, border, align) {
-                        K('#url3').val(url);
-                        $('.thumb-src').attr('src',url).removeClass('hidden');
-                        editor3.hideDialog();
-                    }
-                });
-            });
+        uploadbutton.fileBox.change(function(e) {
+            uploadbutton.submit();
         });
     });
 </script>

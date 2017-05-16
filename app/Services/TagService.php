@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Models\Ad;
 use App\Models\Article;
 use App\Models\Cate;
 use App\Models\Good;
@@ -7,6 +8,13 @@ use App\Models\GoodCate;
 
 class TagService
 {
+    // 广告
+    public function ad($pos_id = 0,$num = 10)
+    {
+        $ad = Ad::where('pos_id',$pos_id)->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
+        return $ad;
+    }
+
     // 面包屑导航
     public function goodcatpos($cid)
     {
@@ -41,7 +49,7 @@ class TagService
     // 取商品分类列表
     public function goodcate($pid = 0,$num = 10)
     {
-        $goodcate = GoodCate::where('parentid',$pid)->select('id','name','sort')->limit($num)->orderBy('sort','asc')->get();
+        $goodcate = GoodCate::where('parentid',$pid)->select('id','name','sort','thumb')->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
         return $goodcate;
     }
     
