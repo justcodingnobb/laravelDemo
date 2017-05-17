@@ -24,7 +24,7 @@ class AdRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'required|max:255|unique:huodong,title,'.$this->segment('4'),
+            'data.title' => 'required|max:255|unique:ads,title,'.$this->segment('4'),
             'data.pos_id' => 'required',
             'data.thumb' => 'required|max:255',
             'data.url' => 'required|max:255|url',

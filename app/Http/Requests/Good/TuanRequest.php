@@ -24,7 +24,7 @@ class TuanRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'required|max:255|unique:huodong,title,'.$this->segment('4'),
+            'data.title' => 'required|max:255|unique:tuan,title,'.$this->segment('4'),
             'data.good_id' => 'sometimes|required|integer',
             'data.prices' => 'required|numeric',
             'data.nums' => 'required|integer',

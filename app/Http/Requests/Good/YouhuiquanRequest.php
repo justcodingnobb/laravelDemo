@@ -24,7 +24,7 @@ class YouhuiquanRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'required|max:255|unique:huodong,title,'.$this->segment('4'),
+            'data.title' => 'required|max:255|unique:youhuiquan,title,'.$this->segment('4'),
             'data.price' => 'required|numeric',
             'data.lessprice' => 'required|numeric',
             'data.nums' => 'required|integer',

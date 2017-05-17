@@ -24,7 +24,7 @@ class ManzengRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'required|max:255|unique:huodong,title,'.$this->segment('4'),
+            'data.title' => 'required|max:255|unique:manzeng,title,'.$this->segment('4'),
             'data.good_id' => 'sometimes|required|integer',
             'data.price' => 'required|numeric',
             'data.starttime' => 'required|date',
