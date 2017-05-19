@@ -21,12 +21,12 @@ class TagService
         try {
             $cate = GoodCate::where('id',$cid)->first();
             if ($cate->parentid == 0) {
-                echo "<li class='active'><a href='/shop/cate/".$cate->id."'>".$cate->name."</a></li>";
+                echo "<li class='active'><a href='/shop/goodcate/".$cate->id."'>".$cate->name."</a></li>";
             }
             else
             {
                 $parentcate = GoodCate::where('id',$cate->parentid)->first();
-                echo "<li><a href='/shop/cate/".$parentcate->id."'>".$parentcate->name."</a></li><li class='active'><a href='/shop/cate/".$cate->id."'>".$cate->name."</a></li>";
+                echo "<li><a href='/shop/goodcate/".$parentcate->id."'>".$parentcate->name."</a></li><li class='active'><a href='/shop/goodcate/".$cate->id."'>".$cate->name."</a></li>";
             }
         } catch (\Exception $e) {
             echo '';

@@ -1652,16 +1652,16 @@
         },
         {
             "name": "overtrue/socialite",
-            "version": "1.0.24",
+            "version": "1.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/socialite.git",
-                "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36"
+                "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/overtrue/socialite/2040343fd871e6d745a1d2ffb9b353097efffa36.zip",
-                "reference": "2040343fd871e6d745a1d2ffb9b353097efffa36",
+                "url": "https://files.phpcomposer.com/files/overtrue/socialite/234b3051e7864bc94744c7cfa2a9fb1999a9ca2c.zip",
+                "reference": "234b3051e7864bc94744c7cfa2a9fb1999a9ca2c",
                 "shasum": ""
             },
             "require": {
@@ -1698,7 +1698,7 @@
                 "wechat",
                 "weibo"
             ],
-            "time": "2017-04-08T11:39:52+00:00"
+            "time": "2017-05-16T15:34:16+00:00"
         },
         {
             "name": "overtrue/wechat",
@@ -1951,16 +1951,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.4",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "17cf432bb80d9198df239b80d00a29155bd74d82"
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/bobthecow/psysh/17cf432bb80d9198df239b80d00a29155bd74d82.zip",
-                "reference": "17cf432bb80d9198df239b80d00a29155bd74d82",
+                "url": "https://files.phpcomposer.com/files/bobthecow/psysh/38a9d21406597a0440690eafbcb0222f528c8ac6.zip",
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6",
                 "shasum": ""
             },
             "require": {
@@ -2020,7 +2020,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-05-12T15:41:55+00:00"
+            "time": "2017-05-17T06:49:19+00:00"
         },
         {
             "name": "ramsey/uuid",

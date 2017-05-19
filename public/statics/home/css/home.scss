@@ -19,7 +19,7 @@
 $color_1:#343434;
 $color_2:#F55C59;
 html {overflow-x: hidden;}
-body {line-height: 1.8; overflow-x: hidden}
+body {line-height: 1.8; overflow-x: hidden; max-width:750px; margin:0 auto;}
 a {color:#333;}
 .color_1 {color:$color_1;}
 .color_2 {color:$color_2;}

@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.username' => 'sometimes|required|min:6|max:30',
+            'data.username' => 'sometimes|required|min:2|max:30',
             'data.password' => 'sometimes|required|min:6|max:30',
             'data.passwords' => 'sometimes|required|min:6|max:30|confirmed',
             'data.passwords_confirmation' => 'sometimes|required',

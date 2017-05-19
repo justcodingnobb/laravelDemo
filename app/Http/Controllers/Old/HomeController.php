@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Old;
 
 use App\Ecs\Category;
 use App\Ecs\Good as G;
 use App\Ecs\User as U;
+use App\Http\Controllers\BaseController;
 use App\Models\Article;
 use App\Models\Cate;
 use App\Models\Good;

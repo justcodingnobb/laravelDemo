@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Old;
 
 use App;
+use App\Http\Controllers\BaseController;
 use App\Models\Cart;
 use App\Models\CateAttr;
 use App\Models\Good;

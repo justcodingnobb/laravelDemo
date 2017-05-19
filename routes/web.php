@@ -62,13 +62,13 @@ Route::group(['prefix' => 'oauth'],function(){
 // 商城功能
 Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     // 分类
-    Route::get('goodcate/{id?}','ShopController@goodcate');
+    Route::get('goodcate/{id?}','ShopController@getGoodcate');
     // 商品
-    Route::get('good/{id?}','ShopController@good');
+    Route::get('good/{id}','ShopController@getGood');
     // 购物车
-    Route::get('cart','ShopController@cart');
+    Route::get('cart','ShopController@getCart');
     // 订单列表
-    Route::get('order','ShopController@order');
+    Route::get('order','ShopController@getOrder');
     // 添加购物车
     Route::get('addcart','ShopController@getAddcart');
     // 修改购物车数量
@@ -76,7 +76,7 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     // 移除购物车
     Route::post('removecart','ShopController@postRemovecart');
     // 取购物车数量
-    Route::get('cartnums','ShopController@cartnums');
+    Route::get('cartnums','ShopController@getCartnums');
 });
 // 商城功能-登陆后的
 Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){

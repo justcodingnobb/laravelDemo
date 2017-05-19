@@ -740,10 +740,36 @@
 		"/D/www/xyshop",
 		"/D/www/xyshop/app",
 		"/D/www/xyshop/app/Http",
-		"/D/www/xyshop/app/Http/Controllers"
+		"/D/www/xyshop/app/Http/Controllers",
+		"/D/www/xyshop/resources",
+		"/D/www/xyshop/resources/views"
 	],
 	"file_history":
 	[
+		"/D/www/xyshop/.gitignore",
+		"/D/www/xyshop/public/statics/home/css/home.scss",
+		"/D/www/xyshop/app/Http/Controllers/UserController.php",
+		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
+		"/D/www/xyshop/app/Http/Controllers/HomeController.php",
+		"/D/www/xyshop/routes/web.php",
+		"/D/www/xyshop/resources/views/default/addorder.blade.php",
+		"/D/www/xyshop/resources/views/default/cart.blade.php",
+		"/D/www/xyshop/resources/views/default/good.blade.php",
+		"/D/www/xyshop/app/Http/Controllers/Old/ShopController.php",
+		"/D/www/xyshop/app/Http/Controllers/Old/HomeController.php",
+		"/D/www/xyshop/app/Http/Controllers/Old/UserController.php",
+		"/D/www/xyshop/resources/views/default/goodcate.blade.php",
+		"/D/www/xyshop/sftp-config.json",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/D/www/xyshop/app/Services/TagService.php",
+		"/D/www/xyshop/public/.htaccess",
+		"/D/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
+		"/D/www/xyshop/public/statics/home/js/com.js",
+		"/D/www/xyshop/.env",
+		"/D/www/xyshop/readme.md",
+		"/D/www/dmb/readme.md",
+		"/D/www/xyshop/resources/views/admin/alert.blade.php",
+		"/D/www/xyshop/app/Http/Requests/UserRequest.php",
 		"/D/www/xyshop/app/Http/Requests/Good/TuanRequest.php",
 		"/D/www/xyshop/app/Http/Requests/Good/YouhuiquanRequest.php",
 		"/D/www/xyshop/app/Http/Requests/Good/ManzengRequest.php",
@@ -802,7 +828,6 @@
 		"/F/wwwroot/xyshop/database/migrations/2017_05_14_010049_add_nums_to_youhuiquan.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/IndexController.php",
 		"/E/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/xyshop/.env",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/BC86096A_edit.tmp/Index.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/E532FF4C_edit.tmp/Basic.php",
@@ -848,30 +873,7 @@
 		"/D/www/xyshop/app/Http/Controllers/PayController.php",
 		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.647.3015/HZ$D.647.3016/app/Console/Commands/Meihuas.php",
 		"/F/yan/市场情报/20170413/梅花网升级文件/meihua.sql",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/9DD844A6_edit.tmp/Meihuas.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/99E02EF1_edit.tmp/Kernel.php",
-		"/D/www/xyshop/readme.md",
-		"/D/www/xyshop/config/app.php",
-		"/D/www/xyshop/app/Http/Middleware/VerifyCsrfToken.php",
-		"/D/www/xyshop/sql/shop-init-20170428.sql",
-		"/D/www/xyshop/resources/views/default/paylist.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/WxpayController.php",
-		"/D/www/laravel-shop/routes/web.php",
-		"/D/www/xyshop/config/alipay.php",
-		"/D/www/xyshop/routes/web.php",
-		"/D/www/xyshop/app/Http/Controllers/WxpayController.php",
-		"/D/www/xyshop/app/Http/Controllers/AlipayController.php",
-		"/D/www/xyshop/composer.json",
-		"/D/www/laravel-shop/composer.json",
-		"/D/www/xyshop/resources/views/default/addorder.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
-		"/D/www/xyshop/resources/views/default/order.blade.php",
-		"/D/www/xyshop/resources/views/default/cart.blade.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/8A439249_edit.tmp/Kernel.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/1C3C5C0D_edit.tmp/Meihuas.php",
-		"/D/www/laravel-shop/app/Services/ComService.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/C983D953_edit.tmp/Kernel.php"
+		"/G/soft/FlashFXP4/Cache/~flashfxp/9DD844A6_edit.tmp/Meihuas.php"
 	],
 	"find":
 	{
@@ -966,6 +968,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"->where('format_id',$formatid)",
+			"gp",
+			"App\\Http\\Controllers",
+			"ShopController",
+			"App\\Http\\Controllers",
+			"getGood",
+			"allcate",
+			"goodcate/",
+			"goodcate",
+			"pid",
+			"addcart",
+			"btn_tuan",
 			"goodcate/sort",
 			"button",
 			"span",
@@ -1081,19 +1095,7 @@
 			"goodcate",
 			"3,6",
 			"admin/",
-			"HOST",
-			"\t\t\n",
-			"18932813211",
-			"{{ $sites['url'] }}{{ $sites['static']}}",
-			"->",
-			"Auth",
-			"title",
-			"static",
-			"admin/",
-			"allRole",
-			"RoleUser",
-			"RedirectIfAuthenticated",
-			"/admin/"
+			"HOST"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1253,6 +1255,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"alert.bl",
+				"resources\\views\\admin\\alert.blade.php"
+			],
 			[
 				"good/inde",
 				"resources\\views\\admin\\good\\index.blade.php"
@@ -1760,10 +1766,6 @@
 			[
 				"adminreq",
 				"app\\Http\\Requests\\AdminRequest.php"
-			],
-			[
-				"/illuminate/database/connection",
-				"vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php"
 			]
 		],
 		"width": 0.0

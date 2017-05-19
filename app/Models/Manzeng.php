@@ -33,6 +33,6 @@ class Manzeng extends Model
     // 商品
     public function good()
     {
-        return $this->belongsTo('\App\Models\good','good_id','id');
+        return $this->belongsTo('\App\Models\Good','good_id','id');
     }
 }
