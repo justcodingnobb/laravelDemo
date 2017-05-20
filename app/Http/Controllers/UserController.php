@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\User\AddressRequest;
+use App\Models\Address;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -52,7 +54,7 @@ class UserController extends BaseController
             User::where('id',$user->id)->update(['last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
             // 更新购物车
-            $this->updateCart($user->id);
+            // $this->updateCart($user->id);
 	    	return redirect($res->ref);
 	    }
     }
@@ -94,7 +96,7 @@ class UserController extends BaseController
 	    	$user = User::create(['username'=>$username,'password'=>$pwd,'email'=>$email,'last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
             // 更新购物车
-            $this->updateCart($user->id);
+            // $this->updateCart($user->id);
 	    	return redirect($res->ref);
     	} catch (\Exception $e) {
     		return back()->with('message','注册失败，请稍候再试！');
@@ -115,5 +117,42 @@ class UserController extends BaseController
     	$info = User::findOrFail(session('member')->id);
         $info->pid = 0;
     	return view('user.usercenter',compact('info'));
+    }
+
+    // 收货地址
+    public function getAddress()
+    {
+        $list = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        return view('user.address',compact('list'));
+    }
+    // 添加地址
+    public function getAddressAdd()
+    {
+        return view('user.address_add');
+    }
+    public function postAddressAdd(AddressRequest $req)
+    {
+        $data = $req->input('data');
+        $data['user_id'] = session('member')->id;
+        Address::create($data);
+        return redirect('user/address')->with('message','添加成功');
+    }
+    // 修改地址
+    public function getAddressEdit($id = '')
+    {
+        $info = Address::findOrFail($id);
+        return view('user.address_edit',compact('info'));
+    }
+    public function postAddressEdit(AddressRequest $req,$id = '')
+    {
+        $data = $req->input('data');
+        Address::where('id',$id)->update($data);
+        return redirect('user/address')->with('message','修改成功');
+    }
+    // 修改地址
+    public function getAddressDel($id = '')
+    {
+        Address::where('id',$id)->update(['del'=>0]);
+        return back()->with('message','删除成功');
     }
 }

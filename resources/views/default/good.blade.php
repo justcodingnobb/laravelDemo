@@ -14,7 +14,7 @@
 <!-- 内容 -->
 @section('content')
 
-<section class="container mt20">
+<section class="container-fluid mt20">
 	<ol class="breadcrumb">
         <li><a href="/">首页</a></li>
         {{ App::make('tag')->goodcatpos($info->cate_id) }}

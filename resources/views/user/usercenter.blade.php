@@ -9,6 +9,12 @@
 @endsection
 
 @section('content')
+	<div class="container-fluid mt20">
+		<a href="{{ url('user/order') }}" class="btn btn-sm btn-primary">我的订单</a>
+		<a href="{{ url('user/yhq') }}" class="btn btn-sm btn-success">优惠券</a>
+		<a href="{{ url('user/address') }}" class="btn btn-sm btn-info">收货地址</a>
+	</div>
+
 	<div class="container mt20">
 		<table class="table table-striped">
 			<tbody>

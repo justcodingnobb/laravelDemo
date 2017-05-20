@@ -17,7 +17,7 @@ class Homeurl
     {
         $respond = $next($request);
         // 记录上次请求的url path，返回时用
-        session()->flash('homeurl',$request->path());
+        session()->flash('homeurl',url()->previous());
         return $respond;
     }
 }

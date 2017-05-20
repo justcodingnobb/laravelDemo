@@ -29,4 +29,10 @@ class Youhuiquan extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 关联商品评价
+    public function yhquser()
+    {
+        return $this->hasOne('\App\Models\YhqUser','yhq_id','id');
+    }
 }

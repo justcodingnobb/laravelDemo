@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Http\Controllers\BaseController;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Good;
 use App\Models\GoodCate;
 use App\Models\Order;
 use App\Models\OrderGood;
+use App\Models\YhqUser;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -96,7 +98,11 @@ class ShopController extends BaseController
         // 找出所有商品来
         $info = (object) ['pid'=>0];
         $total_prices = number_format($total_prices,2,'.','');
-        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices'));
+        // 查此用户的所有可用优惠券
+        $yhq = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('endtime','>',date('Y-m-d H:i:s'))->where('status',1)->where('del',1)->get();
+        // 送货地址
+        $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices','yhq','address'));
     }
     // 提交订单
     public function getAddorder(Request $req)
@@ -107,11 +113,15 @@ class ShopController extends BaseController
             return back()->with('message','购物车里是空的，请先购物！');
         }
         // 所有产品总价
-        $prices = Cart::where('user_id',session('member')->id)->sum('total_prices');
+        $old_prices = Cart::where('user_id',session('member')->id)->sum('total_prices');
         $uid = session('member')->id;
         // 创建订单
         $order_id = App::make('com')->orderid();
-        $order = ['order_id'=>$order_id,'user_id'=>$uid,'total_prices'=>$prices,'create_ip'=>$req->ip()];
+        // 查出优惠券优惠多少
+        $yh = YhqUser::where('id',$req->yid)->first();
+        $yh_price = $yh->yhq->lessprice;
+        $prices = $old_prices - $yh_price;
+        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$req->yid,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid];
         // 事务
         DB::beginTransaction();
         try {

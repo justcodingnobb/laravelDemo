@@ -7,7 +7,7 @@
 
 
 @section('content')
-<div class="container mt20">
+<div class="container-fluid mt20">
 	<h3 class="h3_cate"><span class="h3_cate_span">订单中心</span></h3>
 	<div class="table-responsive">
 		<table class="table table-bordered table-striped">

@@ -131,6 +131,20 @@
     </div>
 
     <div class="form-group">
+        <label for="weight">单件重量：数字</label>
+        <div class="row">
+            <div class="col-xs-1">
+                <input type="text" name="data[weight]" value="{{ $info->weight }}" class="form-control">
+            </div>
+        </div>
+        @if ($errors->has('data.weight'))
+            <span class="help-block">
+                {{ $errors->first('data.weight') }}
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
         <label for="sort">排序：</label>
         <div class="row">
             <div class="col-xs-1">

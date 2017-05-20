@@ -7,7 +7,7 @@
 
 
 @section('content')
-<section class="container mt20">
+<section class="container-fluid mt20">
     <h3 class="h3_cate"><span class="h3_cate_span">订单情况</span></h3>
     <p>单号：<span class="text-info">{{ $order->order_id }}</span></p>
     <p>总价：<span class="text-success">￥ {{ $order->total_prices }}</span></p>

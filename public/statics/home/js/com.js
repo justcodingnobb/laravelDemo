@@ -2,7 +2,7 @@ $(function(){
 	// 初始化弹出框
 	$('.alert_shop').delay(1500).slideUp(300);
 	// 取购物车数量
-	cartnum();
+	// cartnum();
 	// 修改数量时更新产品总价及所有总价
 	$('.change_cart').change(function(event) {
 		var that = $(this);
@@ -14,7 +14,7 @@ $(function(){
     	// 更新购物车
 		$.post(host+'shop/changecart',{gid:gid,num:num,price:price,fid:fid},function(d){
 			if (d != 0) {
-				cartnum();
+				// cartnum();
 		    	// 更新end
 		    	$('.total_price_' + gid + '_' + fid).html(new_prices.toFixed(2));
 		    	that.val(d);
@@ -35,7 +35,7 @@ $(function(){
 			if (d == 1) {
     			that.parent('td').parent('tr').remove();
     			// 重新取购物车数量，计算总价
-				cartnum();
+				// cartnum();
     			total_prices();
 			}
 			else

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-	<div class="container mt20">
+	<div class="container-fluid mt20">
 		<h3 class="h3_cate"><span class="h3_cate_span">扫码支付</span></h3>
 		<img src="{{ $src }}" alt="">
 	</div>

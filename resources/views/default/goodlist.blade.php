@@ -25,7 +25,7 @@
 		</form>
 	</section>
 
-<section class="container overh">
+<section class="container-fluid overh">
 	
 	<div class="row sort_list bg-info text-center">
 		<div class="col-xs-3"><a href="{{ url()->current() }}?sort=sort&sc=asc">综合</a></div>

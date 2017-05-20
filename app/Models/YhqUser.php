@@ -29,4 +29,10 @@ class YhqUser extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 关联商品评价
+    public function yhq()
+    {
+        return $this->belongsTo('\App\Models\Youhuiquan','yhq_id','id');
+    }
 }

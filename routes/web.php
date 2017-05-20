@@ -40,7 +40,22 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
 
 // 会员功能
 Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
-    // 注册
+    // 订单列表
+    Route::get('order','ShopController@getOrder');
+    // 优惠券列表
+    Route::get('yhq','YhqController@getList');
+    // 删除优惠券
+    Route::get('yhq/del/{id}','YhqController@getDel');
+    // 优惠券比价
+    Route::get('yhq/price/{id}','YhqController@getPrice');
+    // 地址管理
+    Route::get('address','UserController@getAddress');
+    Route::get('address/add','UserController@getAddressAdd');
+    Route::post('address/add','UserController@postAddressAdd');
+    Route::get('address/edit/{id}','UserController@getAddressEdit');
+    Route::post('address/edit/{id}','UserController@postAddressEdit');
+    Route::get('address/del/{id}','UserController@getAddressDel');
+    // 会员中心
     Route::get('center','UserController@getCenter');
     // 退出登陆
     Route::get('logout','UserController@getLogout');
@@ -61,25 +76,27 @@ Route::group(['prefix' => 'oauth'],function(){
 
 // 商城功能
 Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
+    // 优惠券
+    Route::get('yhq/index','YhqController@getIndex');
     // 分类
     Route::get('goodcate/{id?}','ShopController@getGoodcate');
     // 商品
     Route::get('good/{id}','ShopController@getGood');
+    // 取购物车数量
+    Route::get('cartnums','ShopController@getCartnums');
+});
+// 商城功能-登陆后的
+Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
     // 购物车
     Route::get('cart','ShopController@getCart');
-    // 订单列表
-    Route::get('order','ShopController@getOrder');
     // 添加购物车
     Route::get('addcart','ShopController@getAddcart');
     // 修改购物车数量
     Route::post('changecart','ShopController@postChangecart');
     // 移除购物车
     Route::post('removecart','ShopController@postRemovecart');
-    // 取购物车数量
-    Route::get('cartnums','ShopController@getCartnums');
-});
-// 商城功能-登陆后的
-Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+    // 领优惠券
+    Route::get('yhq/get/{id}','YhqController@getGet');
     // 提交订单
     Route::get('addorder','ShopController@getAddorder');
     // 支付

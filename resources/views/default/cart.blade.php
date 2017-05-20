@@ -7,7 +7,23 @@
 
 
 @section('content')
-	<div class="container mt20">
+	<div class="container-fluid mt20">
+
+			<!-- 送货地址 -->
+			<h3 class="h3_cate"><span class="h3_cate_span">送货地址</span></h3>
+			<ul class="mt10">
+				@foreach($address as $y)
+				<li class="radio">
+				  <label>
+				    <input type="radio" name="addid" value="{{ $y->id }}"@if($y->default) checked @endif class="addressid">
+				    <h4>{{ $y->people }}：{{ $y->phone }}</h4>
+				    <h5>{{ $y->address }}</h5>
+				  </label>
+				</li>
+				@endforeach
+			</ul>
+
+
 			<h3 class="h3_cate"><span class="h3_cate_span">购物车</span></h3>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
@@ -38,13 +54,58 @@
 				</table>
 			</div>
 			<h4 class="total_prices text-right color_2">￥{{ $total_prices }}</h4>
+
+			<!-- 优惠券 -->
+			<h3 class="h3_cate"><span class="h3_cate_span">优惠券</span></h3>
+			<ul class="mt10">
+				@foreach($yhq as $y)
+				<li class="radio">
+				  <label>
+				    <input type="radio" name='yhqid' value="{{ $y->id }}" class="yhqid">
+				    {{ $y->yhq->title }}
+				  </label>
+				</li>
+				@endforeach
+			</ul>
+
+
 			<div class="mt20 clearfix pull-right">
 				<form action="{{ url('shop/addorder') }}">
 					{{ csrf_field() }}
+					<input type="hidden" name="yid" class="yid" value="">
+					<input type="hidden" name="aid" class="aid" value="">
 					<input type="hidden" name="tt" value="{{ microtime(true) }}">
 					<button type="submit" class="btn btn-primary">提交</button> 
 					<button type="reset" name="reset" class="btn btn-default">重填</button>
 				</form>
 			</div>
 	</div>
+
+	<script>
+		$(function(){
+			$('.aid').val($('.addressid:checked').val());
+
+			$('.addressid').change(function() {
+				var aid = $(this).val();
+				$('.aid').val(aid);
+			});
+
+			$('.yhqid').click(function() {
+				var that = $(this);
+				var yid = that.val();
+				// 查一下是否比总价多，不多，不可用
+				$.get('/user/yhq/price/' + yid,function(d){
+					if (d == 1) {
+						$('.yid').val(yid);
+					}
+					else
+					{
+						alert('总价格低于优惠券需要！');
+						that.attr('checked',false);
+						return false;
+					}
+				});
+			});
+		})
+	</script>
 @endsection

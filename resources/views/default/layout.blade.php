@@ -21,7 +21,13 @@
 
 <body>
 
-
+    <header class="head container-fluid mt10">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="{{ url('shop/yhq/index') }}">优惠券</a></li>
+            <li><a href="{{ url('shop/yhq/index') }}">优惠券</a></li>
+        </ul>
+    </header>
+    <hr class="mt10">
     <!-- 主内容 -->
     @yield('content')
 

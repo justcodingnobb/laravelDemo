@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <section class="container mt20">
+    <section class="container-fluid mt20">
         <div class="row">
             <!-- 左边 -->
             @include('default.aside')

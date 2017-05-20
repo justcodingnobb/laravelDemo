@@ -9,7 +9,7 @@
 
 @section('content')
 
-<section class="container overh">
+<section class="container-fluid overh">
 	
 	<div class="row">
 		
