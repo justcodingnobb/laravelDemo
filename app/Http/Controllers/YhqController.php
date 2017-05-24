@@ -23,7 +23,7 @@ class YhqController extends BaseController
     {
     	$info = (object) ['title'=>'领取优惠券成功','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
     	// 先查是不是已经领过
-    	if (!is_null(YhqUser::where('user_id',session('member')->id)->where('yhq_id',$id)->where('del',1)->first())) {
+    	if (!is_null(YhqUser::where('user_id',session('member')->id)->where('yhq_id',$id)->first())) {
     		return back()->with('message','领取过，请不要重复领取！');
     	}
     	// 查出优惠券到期时间

@@ -41,7 +41,7 @@
 		            @if($o->orderstatus == 0)
 	            	<span class="color-red">已关闭</span>
 	            	@elseif($o->orderstatus == 1)
-	            	<span class="color-green">正常</span>
+	            	<span class="color-green">正常</span> <a href="{{ url('shop/order/over',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">取消</a>
 	            	@else
 	            	<span class="color-blue">已完成</span>
 	            	@endif

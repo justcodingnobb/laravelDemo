@@ -19,6 +19,7 @@
 			<th width="120">昵称</th>
 			<th width="220">邮箱</th>
 			<th width="220">电话</th>
+			<th>余额</th>
 			<th>最后登陆时间</th>
 			<th>最后登陆IP</th>
 			<th>修改状态</th>
@@ -34,6 +35,7 @@
 			<td>{{ $m->nickname }}</td>
 			<td>{{ $m->email }}</td>
 			<td>{{ $m->phone }}</td>
+			<td>{{ $m->user_money }} ￥</td>
 			<td>{{ $m->last_time }}</td>
 			<td>{{ $m->last_ip }}</td>
 			<td>
@@ -44,6 +46,9 @@
 				@endif
 			</td>
 			<td>
+				@if(App::make('com')->ifCan('user-chong'))
+				<div data-url="{{ url('/xyshop/user/chong',$m->id) }}" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-success btn_chong">充值</div>
+				@endif
 				@if(App::make('com')->ifCan('user-edit'))
 				<a href="{{ url('/xyshop/user/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
 				@endif
@@ -56,4 +61,33 @@
 <div class="pages clearfix">
 {!! $list->links() !!}
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">充值</h4>
+      </div>
+      <div class="modal-body">
+      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="600" scrolling="auto" allowtransparency="true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+	$(function(){
+		// 满赠
+		$('.btn_chong').click(function(){
+			var url = $(this).attr('data-url');
+			$('#hd_good').attr("src",url);
+			return;
+		});
+	})
+</script>
 @endsection

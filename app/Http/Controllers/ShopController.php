@@ -8,6 +8,7 @@ use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Good;
 use App\Models\GoodCate;
+use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
 use App\Models\YhqUser;
@@ -102,7 +103,11 @@ class ShopController extends BaseController
         $yhq = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('endtime','>',date('Y-m-d H:i:s'))->where('status',1)->where('del',1)->get();
         // 送货地址
         $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
-        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices','yhq','address'));
+        // 满赠列表
+        $mz = Manzeng::with(['good'=>function($q){
+                $q->select('id','title');
+            }])->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('price','asc')->get();
+        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices','yhq','address','mz'));
     }
     // 提交订单
     public function getAddorder(Request $req)
@@ -158,7 +163,19 @@ class ShopController extends BaseController
                     $q->with('good');
                 }])->where('user_id',session('member')->id)->orderBy('id','desc')->paginate(10);
         return view($this->theme.'.order',compact('info','orders'));
-
+    }
+    // 取消订单
+    public function getOverOrder($id = '')
+    {
+        // 如果已经支付，退款到余额里
+        DB::transaction(function() use ($id){
+            $order = Order::findOrFail($id);
+            if ($order->paystatus) {
+                Order::where('id',$id)->increment('user_money',$order->total_prices);
+            }
+            Order::where('id',$id)->update(['status'=>0]);
+        });
+        return back()->with('message','订单已取消');
     }
     // 添加购物车
     public function getAddcart(Request $req)

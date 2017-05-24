@@ -741,14 +741,14 @@
 		"/D/www/xyshop/app",
 		"/D/www/xyshop/app/Http",
 		"/D/www/xyshop/app/Http/Controllers",
-		"/D/www/xyshop/public/statics",
-		"/D/www/xyshop/public/statics/home",
-		"/D/www/xyshop/public/statics/home/css",
 		"/D/www/xyshop/resources"
 	],
 	"file_history":
 	[
 		"/D/www/xyshop/readme.md",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/goopay.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/recharge.log",
+		"/D/www/dmb/sql/20170523.md",
 		"/D/www/xyshop/routes/web.php",
 		"/D/www/xyshop/resources/views/admin/good/add.blade.php",
 		"/D/www/xyshop/resources/views/admin/good/edit.blade.php",
@@ -872,10 +872,7 @@
 		"/F/wwwroot/xyshop/app/Http/Controllers/Wx/WxController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/4C1C10BF_edit.tmp/wechat.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/4C1C10BF_edit.tmp/easywechat.log",
-		"/F/wwwroot/xyshop/config/wechat.php",
-		"/F/wwwroot/xyshop/config/app.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/89069B49_edit.tmp/layout.blade.php",
-		"/F/wwwroot/xyshop/resources/views/default/layout.blade.php"
+		"/F/wwwroot/xyshop/config/wechat.php"
 	],
 	"find":
 	{
@@ -971,6 +968,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"59229f9dd3a03iwXLBLd2",
+			"59229f60bcc55X7rLVotm",
+			"5922aa50005aaoICaAzQx1k1l",
 			"store",
 			"old_prices",
 			"container ",
@@ -1095,10 +1095,7 @@
 			"admin/",
 			"admin",
 			"->",
-			"filter",
-			"$filter",
-			"p",
-			"list_good"
+			"filter"
 		],
 		"highlight": true,
 		"in_selection": false,

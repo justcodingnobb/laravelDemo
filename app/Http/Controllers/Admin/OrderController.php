@@ -42,8 +42,8 @@ class OrderController extends Controller
         // 缓存属性们
         $attrs = GoodAttr::get();
         // 如果有购物车
+       /* // 循环查商品，方便带出属性来
         $goodlists = [];
-        // 循环查商品，方便带出属性来
         foreach ($orders as $k => $v) {
             // 如果属性值不为0，查属性值
             foreach ($v->good as $key => $value) {
@@ -59,7 +59,7 @@ class OrderController extends Controller
                 }
                 $value->format = $good_format;
             }
-        }
+        }*/
         return view('admin.order.index',compact('title','orders','q','status','starttime','endtime'));
     }
     // 关闭

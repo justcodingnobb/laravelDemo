@@ -52,4 +52,16 @@ class UserController extends Controller
             return back()->with('message', '两次密码不相同，请重新输入');
         }
     }
+    // 会员充值
+    public function getChong($id = '')
+    {
+        $title = '会员充值';
+        return view('admin.member.chong',compact('title'));
+    }
+    public function postChong(Request $req,$id = '')
+    {
+        $money = $req->input('data.user_money');
+        User::where('id',$id)->increment('user_money',$money);
+        return back()->with('message', '会员充值成功！');
+    }
 }

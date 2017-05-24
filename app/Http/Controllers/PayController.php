@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\Order;
 use App\Models\Pay;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Omnipay\Omnipay;
@@ -28,11 +29,38 @@ class PayController extends BaseController
     		return back()->with('message','请选择支付方式');
     	}
     	$pay = Pay::findOrFail($req->pay);
+    	// 是否支付过
+    	$paystatus = Order::where('id',$oid)->value('paystatus');
+    	if ($paystatus) {
+    		return back()->with('message','支付过了！');
+    	}
     	// 根据支付方式调用不同的SDK
     	$pmod = $pay->code;
     	$ip = $req->ip();
-    	return ['msg'=>'支付账号未绑定，暂时不可用'];
-    	$this->$pmod($oid,$pay,$ip);
+    	$res = $this->$pmod($oid,$pay,$ip);
+    	if ($res) {
+    		return redirect('user/order')->with('message','支付成功！');
+    	}
+    	else
+    	{
+    		return back()->with('message','支付失败，稍后再试！');
+    	}
+    }
+
+    // 余额支付
+    private function yue($oid,$pay,$ip = '')
+    {
+    	// 查可用余额是否够用
+    	$order = Order::findOrFail($oid);
+    	$user_money = User::where('id',$order->user_id)->value('user_money');
+    	if ($user_money < $order->total_prices) {
+    		return back()->with('message','余额不足，请选择其它支付方式！');
+    	}
+    	DB::transaction(function() use($oid,$order){
+    		Order::where('id',$oid)->update(['paystatus'=>1]);
+    		User::where('id',$order->user_id)->decrement('user_money',$order->total_prices);
+    	});
+    	return true;
     }
 
     // 支付宝支付

@@ -54,6 +54,18 @@
 				</table>
 			</div>
 			<h4 class="total_prices text-right color_2">￥{{ $total_prices }}</h4>
+			
+
+			<!-- 满赠 -->
+			<h3 class="h3_cate"><span class="h3_cate_span">满赠</span></h3>
+			<ul class="mt10">
+				@foreach($mz as $y)
+				<li class="radio">
+					<h5>{{ $y->title }}</h5>
+				    <p class="small">{{ $y->good->title }}</p>
+				</li>
+				@endforeach
+			</ul>
 
 			<!-- 优惠券 -->
 			<h3 class="h3_cate"><span class="h3_cate_span">优惠券</span></h3>

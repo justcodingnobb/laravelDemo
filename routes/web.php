@@ -40,6 +40,8 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
 
 // 会员功能
 Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
+    // 取消订单
+    Route::get('order/over/{id}','ShopController@getOverOrder');
     // 订单列表
     Route::get('order','ShopController@getOrder');
     // 优惠券列表
@@ -128,6 +130,8 @@ Route::group(['prefix'=>'xyshop'],function(){
     // Route::auth();
     Route::get('login', 'Admin\PublicController@getLogin');
     Route::post('login', 'Admin\PublicController@postLogin');
+    // 退出登陆
+    Route::get('logout', 'Admin\PublicController@getLogout');
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
@@ -222,8 +226,6 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('good/delformat/{id}', 'Admin\GoodController@getDelformat');
     Route::post('good/sort', 'Admin\GoodController@postSort');
     Route::post('good/alldel', 'Admin\GoodController@postAlldel');
-    // 退出登陆
-    Route::get('logout', 'Admin\PublicController@getLogout');
     // Index
     Route::get('index/index', 'Admin\IndexController@getIndex');
     Route::get('index/main', 'Admin\IndexController@getMain');
@@ -317,5 +319,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('user/edit/{id}', 'Admin\UserController@getEdit');
     Route::post('user/edit/{id}', 'Admin\UserController@postEdit');
     Route::get('user/status/{id}/{status}', 'Admin\UserController@getStatus');
+    Route::get('user/chong/{id}', 'Admin\UserController@getChong');
+    Route::post('user/chong/{id}', 'Admin\UserController@postChong');
 
 });

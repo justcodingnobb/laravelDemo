@@ -44,6 +44,14 @@ $(function(){
 			}
 		});
 	});
+	// 确认功能
+	$(".confirm").click(function(){
+		if (!confirm("确实要进行此操作吗?")){
+			return false;
+		}else{
+			return true;
+		}
+	});
 })
 // 更新总价
 function total_prices()
