@@ -6,11 +6,15 @@ use App;
 use App\Http\Controllers\BaseController;
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\CateAttr;
 use App\Models\Good;
+use App\Models\GoodAttr;
 use App\Models\GoodCate;
+use App\Models\GoodFormat;
 use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
+use App\Models\User;
 use App\Models\YhqUser;
 use Carbon\Carbon;
 use DB;
@@ -53,11 +57,58 @@ class ShopController extends BaseController
     /*
      * 当传了属性时，按属性值计算，没传时按第一个计算
      */
-    public function getGood($id = '')
+    public function getGood($id = '',$format='')
     {
-        $info = Good::with(['goodcate'])->findOrFail($id);
+
+        $info = Good::with(['goodcate','format'])->findOrFail($id);
         $info->pid = $info->goodcate->parentid == 0 ? $info->catid : $info->goodcate->parentid;
-        return view($this->theme.'.good',compact('info'));
+        // 有属性信息的时候，优先查属性信息
+        $formats = GoodFormat::where('good_id',$id)->where('status',1)->orderBy('id','asc')->get();
+        // 找出属性来，循环找，如果是0，则忽略
+        $format = $format == '' ? '' : explode('.', trim($format));
+        $attr_vals = '-';
+        // 没有这个参数时
+        if($format != '')
+        {
+            $temp_arrt_url_arr = array();
+            // 对应的属性及值，循环取下一级
+            // 找商品的属性
+            $attrs = CateAttr::where('cate_id',$info->cate_id)->pluck('attr_id');
+            $attr_p = GoodAttr::whereIn('id',$attrs)->where('status',1)->orderBy('id','asc')->get()->count();
+            for ($i = 0; $i < $attr_p; $i++) {
+                $temp_arrt_url_arr[$i] = !empty($format[$i]) ? $format[$i] : 0;
+            }
+            foreach ($temp_arrt_url_arr as $k => $t) {
+                if($t != 0)
+                {
+                    $attr_vals .= $t.'.';
+                }
+            }
+            $attr_vals = str_replace('.', '-', $attr_vals);
+        }
+        if(trim($attr_vals,'-') != '')
+        {
+            $good_format = GoodFormat::where('attr_ids','like',"%$attr_vals%")->where('good_id',$id)->where('status',1)->orderBy('id','asc')->first();
+        }
+        else
+        {
+            if (is_null($formats)) {
+                $good_format = null;
+            }
+            else
+            {
+                $good_format = $formats->first();
+            }
+        }
+        // 循环生成属性的URL
+        $tmp_formats = GoodAttr::where('status',1)->get();
+        foreach ($formats as $k => $f) {
+            $formats[$k]['format'] = $tmp_ids = str_replace('-','.',trim($f->attr_ids,'-'));
+            // 找出来对应的属性值以显示
+            $tmp_value = $tmp_formats->whereIn('id',explode('.',$tmp_ids))->pluck('value')->toArray();
+            $formats[$k]['value'] = implode('-',$tmp_value);
+        }
+        return view($this->theme.'.good',compact('info','formats','good_format'));
     }
     // 购物车
     public function getCart()
@@ -74,8 +125,11 @@ class ShopController extends BaseController
             })->orderBy('updated_at','desc')->get();
         $goodlists = [];
         $total_prices = 0;
+        // 缓存属性们
+        $attrs = GoodAttr::get();
         // 如果有购物车
         $goods = $goods->toArray();
+        $formats = GoodFormat::where('status',1)->get();
         // 循环查商品，方便带出属性来
         foreach ($goods as $k => $v) {
             $goodlists[$k] = Good::where('id',$v['good_id'])->where('status',1)->first();
@@ -86,9 +140,16 @@ class ShopController extends BaseController
             $total_prices += $tmp_total_price;
             // 如果属性值不为0，查属性值
             if ($v['format_id']) {
-                $tmp_format = GoodFormat::where('id',$v['format_id'])->value('attr_ids');
-                $tmp_format = str_replace('-','.',trim($tmp_format,'-'));
-                $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                $tmp_format = $formats->where('id',$value['format_id'])->first();
+                if (is_null($tmp_format)) {
+                    $tmp_format = '';
+                    $tmp_format_name = '';
+                }
+                else
+                {
+                    $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
+                    $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                }
                 $goodlists[$k]['format'] = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
             }
             else
@@ -123,10 +184,15 @@ class ShopController extends BaseController
         // 创建订单
         $order_id = App::make('com')->orderid();
         // 查出优惠券优惠多少
-        $yh = YhqUser::where('id',$req->yid)->first();
-        $yh_price = $yh->yhq->lessprice;
-        $prices = $old_prices - $yh_price;
-        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$req->yid,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid];
+        $yh_price = 0;
+        $prices = $old_prices;
+        $yhq_id = isset($req->yid) ? $req->yid : 0;
+        if ($yhq_id) {
+            $yh = YhqUser::where('id',$req->yid)->first();
+            $yh_price = $yh->yhq->lessprice;
+            $prices = $old_prices - $yh_price;
+        }
+        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid];
         // 事务
         DB::beginTransaction();
         try {
@@ -162,6 +228,36 @@ class ShopController extends BaseController
         $orders = Order::with(['good'=>function($q){
                     $q->with('good');
                 }])->where('user_id',session('member')->id)->orderBy('id','desc')->paginate(10);
+        $attrs = GoodAttr::get();
+        $formats = GoodFormat::where('status',1)->get();
+        // 缓存属性们
+        $attrs = GoodAttr::get();
+        // 如果有购物车
+        $goodlists = [];
+        // 循环查商品，方便带出属性来
+        foreach ($orders as $k => $v) {
+            // 如果属性值不为0，查属性值
+            foreach ($v->good as $key => $value) {
+                if ($value->format_id) {
+                    $tmp_format = $formats->where('id',$value['format_id'])->first();
+                    if (is_null($tmp_format)) {
+                        $tmp_format = '';
+                        $tmp_format_name = '';
+                    }
+                    else
+                    {
+                        $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
+                        $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                    }
+                    $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
+                }
+                else
+                {
+                    $good_format = ['fid'=>0,'format'=>'','format_name'=>''];
+                }
+                $value->format = $good_format;
+            }
+        }
         return view($this->theme.'.order',compact('info','orders'));
     }
     // 取消订单
@@ -171,11 +267,17 @@ class ShopController extends BaseController
         DB::transaction(function() use ($id){
             $order = Order::findOrFail($id);
             if ($order->paystatus) {
-                Order::where('id',$id)->increment('user_money',$order->total_prices);
+                User::where('id',$order->user_id)->increment('user_money',$order->total_prices);
             }
-            Order::where('id',$id)->update(['status'=>0]);
+            Order::where('id',$id)->update(['orderstatus'=>0]);
         });
         return back()->with('message','订单已取消');
+    }
+    // 退货申请
+    public function getTui($id = '')
+    {
+        Order::where('id',$id)->update(['orderstatus'=>3]);
+        return back()->with('message','退货申请已提交');
     }
     // 添加购物车
     public function getAddcart(Request $req)
@@ -185,24 +287,22 @@ class ShopController extends BaseController
         // 清除完成
         $sid = session()->getId();
         $id = $req->gid;
+        $formatid = $req->fid;
         $num = $req->num;
-        if ($num < 1) {
-            return back()->with('message','请选择购买数量！');
-        }
         $price = $req->gp;
         // 如果用户已经登陆，查以前的购物车
         if (session()->has('member')) {
             // 当前用户此次登陆添加的
-            $tmp = Cart::where('session_id',$sid)->where('user_id',session('member')->id)->where('good_id',$id)->orderBy('id','desc')->first();
+            $tmp = Cart::where('session_id',$sid)->where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
             // 如果没有，看以前有没有添加过这类商品
             if(is_null($tmp))
             {
-                $tmp = Cart::where('user_id',session('member')->id)->where('good_id',$id)->orderBy('id','desc')->first();
+                $tmp = Cart::where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
             }
         }
         else
         {
-            $tmp = Cart::where('session_id',$sid)->where('good_id',$id)->orderBy('id','desc')->first();
+            $tmp = Cart::where('session_id',$sid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
         }
         // 查看有没有在购物车里，有累计数量
         if (!is_null($tmp)) {
@@ -214,7 +314,7 @@ class ShopController extends BaseController
         }
         $userid = !is_null(session('member')) ? session('member')->id : 0;
         $total_prices = $price * $nums;
-        $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'format_id'=>0,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
+        $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'format_id'=>$formatid,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
         // 查看有没有在购物车里，有累计数量
         if (!is_null($tmp)) {
             Cart::where('id',$tmp->id)->update($a);
@@ -233,8 +333,9 @@ class ShopController extends BaseController
         try {
             $id = $req->gid;
             $num = $req->num < 1 ? 1 : $req->num;
+            $fid = $req->fid;
             $price = $req->price;
-            Cart::where('session_id',session()->getId())->where('good_id',$id)->update(['nums'=>$num,'total_prices'=>$num * $price]);
+            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->update(['nums'=>$num,'total_prices'=>$num * $price]);
             echo $num;
         } catch (\Exception $e) {
             echo 0;
@@ -245,7 +346,8 @@ class ShopController extends BaseController
     {
         try {
             $id = $req->id;
-            Cart::where('session_id',session()->getId())->where('good_id',$id)->delete();
+            $fid = $req->fid;
+            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->delete();
             echo 1;
         } catch (\Exception $e) {
             echo 0;

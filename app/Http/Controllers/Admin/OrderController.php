@@ -8,6 +8,8 @@ use App\Models\GoodAttr;
 use App\Models\GoodFormat;
 use App\Models\Order;
 use App\Models\Ship;
+use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -38,19 +40,27 @@ class OrderController extends Controller
 	                if ($status != '') {
 	                    $q->where('orderstatus',$status);
 	                }
-	            })->orderBy('id','desc')->paginate(10);
+	            })->where('status',1)->orderBy('id','desc')->paginate(10);
         // 缓存属性们
         $attrs = GoodAttr::get();
+        $formats = GoodFormat::where('status',1)->get();
         // 如果有购物车
-       /* // 循环查商品，方便带出属性来
+        // 循环查商品，方便带出属性来
         $goodlists = [];
         foreach ($orders as $k => $v) {
             // 如果属性值不为0，查属性值
             foreach ($v->good as $key => $value) {
                 if ($value->format_id) {
-                    $tmp_format = GoodFormat::where('id',$value['format_id'])->value('attr_ids');
-                    $tmp_format = str_replace('-','.',trim($tmp_format,'-'));
-                    $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                    $tmp_format = $formats->where('id',$value['format_id'])->first();
+                    if (is_null($tmp_format)) {
+                        $tmp_format = '';
+                        $tmp_format_name = '';
+                    }
+                    else
+                    {
+                        $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
+                        $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                    }
                     $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
                 }
                 else
@@ -59,7 +69,7 @@ class OrderController extends Controller
                 }
                 $value->format = $good_format;
             }
-        }*/
+        }
         return view('admin.order.index',compact('title','orders','q','status','starttime','endtime'));
     }
     // 关闭
@@ -83,4 +93,17 @@ class OrderController extends Controller
     	Order::where('id',$id)->update(['shipstatus'=>1]);
     	return redirect($req->ref)->with('message','发货成功！');
     }
+    // 退货
+    public function getTui($id = '')
+    {
+        // 更新为关闭，退款到余额里
+        DB::transaction(function() use ($id){
+            $order = Order::findOrFail($id);
+            if ($order->paystatus) {
+                User::where('id',$order->user_id)->increment('user_money',$order->total_prices);
+            }
+            Order::where('id',$id)->update(['orderstatus'=>0]);
+        });
+        return back()->with('message','发货成功！');
+    } 
 }

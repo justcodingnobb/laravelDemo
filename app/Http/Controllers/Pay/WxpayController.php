@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests;
+use App\Models\Order;
 use App\Models\Pay;
 use Illuminate\Http\Request;
 use Omnipay\Omnipay;
@@ -27,8 +28,10 @@ class WxpayController extends BaseController
             // 写入到日日志里方便查看
             Storage::prepend('wxpay.log',json_encode($response->getRequestData()));
             $resData = $response->getRequestData();
-            // 更改订单状态为已经支付
-            // $this->orderPay($resData['out_trade_no']);
+            // 库存计算
+            $oid = $resData['out_trade_no'];
+            $order = Order::findOrFail($oid);
+            $this->updateStore($order);
             $msg = ['msg'=>'OK','code'=>'SUCCESS'];
         }else{
             //pay fail

@@ -11,6 +11,7 @@
 			<option value="0">关闭</option>
 			<option value="1">正常</option>
 			<option value="2">完成</option>
+			<option value="3">申请退货</option>
 		</select>
 		开始时间：
 		<input name="starttime" class="form-control" id="laydate">
@@ -27,22 +28,38 @@
 
 <table class="table table-bordered table-striped mt15">
 	<tr>
+		<th>订单状态</th>
 		<th>操作</th>
 		<th>订单号</th>
 		<th>总价</th>
 		<th>支付状态</th>
 		<th>发货状态</th>
-		<th>订单状态</th>
 		<th>下单时间</th>
 	</tr>
 	@foreach($orders as $o)
     <tr>
     	<td>
+            @if($o->orderstatus == 0)
+        	<span class="color-red">已关闭</span>
+        	@elseif($o->orderstatus == 1)
+        	<span class="color-blue">正常</span>
+        	@elseif($o->orderstatus == 3)
+        	<span class="text-danger">申请退货</span>
+	        	@if(App::make('com')->ifCan('order-ship'))
+		    	<a href="{{ url('/xyshop/order/tui',['id'=>$o->id]) }}" class="btn btn-sm btn-warning confirm">同意</a>
+				@endif
+    		@else
+        	<span class="color-green">已完成</span>
+        	@endif
+        </td>
+    	<td>
+    	@if($o->orderstatus != 0)
 		@if(App::make('com')->ifCan('order-del'))
-    	<a href="{{ url('/xyshop/order/del',['id'=>$o->id]) }}" class="btn btn-sm btn-danger">关闭</a> 
+    	<a href="{{ url('/xyshop/order/del',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">关闭</a> 
 		@endif
 		@if(App::make('com')->ifCan('order-ship'))
-    	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success">发货</a>
+    	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success confirm">发货</a>
+		@endif
 		@endif
     	</td>
         <td>{{ $o->order_id }}</td>
@@ -59,15 +76,6 @@
         	<span class="color-blue">未发货</span>
         	@else
         	<span class="color-green">已发货</span>
-        	@endif
-        </td>
-        <td>
-            @if($o->orderstatus == 0)
-        	<span class="color-red">已关闭</span>
-        	@elseif($o->orderstatus == 1)
-        	<span class="color-blue">正常</span>
-        	@else
-        	<span class="color-green">已完成</span>
         	@endif
         </td>
         <td>{{ $o->created_at }}</td>

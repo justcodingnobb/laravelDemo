@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pay;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests;
+use App\Models\Order;
 use App\Models\Pay;
 use Illuminate\Http\Request;
 use Omnipay\Omnipay;
@@ -39,6 +40,10 @@ class AlipayController extends BaseController
                 /**
                  * Payment is successful
                  */
+                // 库存计算
+                $oid = $resData['out_trade_no'];
+                $order = Order::findOrFail($oid);
+                $this->updateStore($order);
                 Storage::prepend('alipay.log',json_encode($resData));
                 die('success'); //The notify response should be 'success' only
             }else{

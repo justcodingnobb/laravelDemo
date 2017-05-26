@@ -41,9 +41,12 @@
 		            @if($o->orderstatus == 0)
 	            	<span class="color-red">已关闭</span>
 	            	@elseif($o->orderstatus == 1)
-	            	<span class="color-green">正常</span> <a href="{{ url('shop/order/over',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">取消</a>
-	            	@else
+	            	<span class="color-green">正常</span>@if($o->shipstatus == 0) <a href="{{ url('shop/order/over',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">取消</a>@endif
+	            	@elseif($o->orderstatus == 2)
 	            	<span class="color-blue">已完成</span>
+	            	<a href="{{ url('shop/order/tui',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">申请退货</a>
+	            	@else
+	            	<span class="text-warning">已退货</span>
 	            	@endif
 	            </td>
 	            <td>{{ $o->created_at }}</td>

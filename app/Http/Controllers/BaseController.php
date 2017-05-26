@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Good;
+use App\Models\GoodFormat;
+use App\Models\Order;
+use App\Models\OrderGood;
+use App\Models\User;
 use Illuminate\Http\Request;
+use DB;
 
 class BaseController extends Controller
 {
@@ -41,6 +47,34 @@ class BaseController extends Controller
                     Cart::where('session_id',$sid)->where('good_id',$gid)->update($v);
                 }
             }
+        }
+    }
+    // 更新库存
+    public function updateStore($order = '')
+    {
+        try {
+            DB::transaction(function() use($order){
+                Order::where('id',$order->id)->update(['paystatus'=>1]);
+                User::where('id',$order->user_id)->decrement('user_money',$order->total_prices);
+                User::where('id',$order->user_id)->increment('points',$order->total_prices);
+                // 减库存，先找出来所有的商品ID与商品属性ID
+                $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','format_id','nums')->get();
+                // 循环，判断是直接减商品库存，还是减带属性的库存
+                foreach ($goods as $k => $v) {
+                    if ($v->format_id == 0) {
+                        Good::where('id',$v->good_id)->decrement('store',$v->nums);
+                    }
+                    else
+                    {
+                        GoodFormat::where('id',$v->format_id)->decrement('store',$v->nums); 
+                    }
+                    // 加销量
+                    Good::where('id',$v->good_id)->increment('sales',$v->nums);
+                }
+            });
+            return true;
+        } catch (\Exception $e) {
+            return false;
         }
     }
 }

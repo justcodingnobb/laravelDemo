@@ -40,6 +40,8 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
 
 // 会员功能
 Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
+    // 退货
+    Route::get('order/tui/{id}','ShopController@getTui');
     // 取消订单
     Route::get('order/over/{id}','ShopController@getOverOrder');
     // 订单列表
@@ -83,7 +85,7 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     // 分类
     Route::get('goodcate/{id?}','ShopController@getGoodcate');
     // 商品
-    Route::get('good/{id}','ShopController@getGood');
+    Route::get('good/{id}/{format?}','ShopController@getGood');
     // 取购物车数量
     Route::get('cartnums','ShopController@getCartnums');
 });
@@ -189,6 +191,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('order/del/{id}', 'Admin\OrderController@getDel');
     Route::get('order/ship/{id}', 'Admin\OrderController@getShip');
     Route::post('order/ship/{id}', 'Admin\OrderController@postShip');
+    Route::get('order/tui/{id}', 'Admin\OrderController@getTui');
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');
     Route::get('pay/edit/{id}', 'Admin\PayController@getEdit');

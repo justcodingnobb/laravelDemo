@@ -11,7 +11,7 @@
                     <strong class="f-l">{{ $l['name'] }} ({{$l['unit']}})：</strong>
                     <div class="f-l">
                         @foreach($l['sub'] as $a)
-                        <label class="radio-inline"><input type="radio" name="attr[{{ $l['name'] }}]" value="{{ $a->value }}">{{ $a->value }}</label>
+                        <label class="radio-inline"><input type="radio" name="attr[{{ $l['name'] }}]" value="{{ $a->id }}">{{ $a->value }}</label>
                         @endforeach
                     </div>
                 </div>
