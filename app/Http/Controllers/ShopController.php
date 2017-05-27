@@ -16,6 +16,7 @@ use App\Models\Order;
 use App\Models\OrderGood;
 use App\Models\User;
 use App\Models\YhqUser;
+use App\Models\Zitidian;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
@@ -168,7 +169,9 @@ class ShopController extends BaseController
         $mz = Manzeng::with(['good'=>function($q){
                 $q->select('id','title');
             }])->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('price','asc')->get();
-        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices','yhq','address','mz'));
+        // 自提点
+        $ziti = Zitidian::where('status',1)->where('del',1)->orderBy('sort','asc')->get();
+        return view($this->theme.'.cart',compact('goods','goodlists','info','total_prices','yhq','address','mz','ziti'));
     }
     // 提交订单
     public function getAddorder(Request $req)
@@ -192,7 +195,8 @@ class ShopController extends BaseController
             $yh_price = $yh->yhq->lessprice;
             $prices = $old_prices - $yh_price;
         }
-        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid];
+        $area = Address::where('id',$req->aid)->value('area');
+        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
         // 事务
         DB::beginTransaction();
         try {

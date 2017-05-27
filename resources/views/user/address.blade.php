@@ -26,7 +26,7 @@
 			@if($l->default)
 			<span class="bg-primary">默认</span>
 			@endif
-			{{ $l->address }}</h4>
+			{{ $l->area }} - {{ $l->address }}</h4>
 			<p>{{ $l->people }}：{{ $l->phone }}</p>
 			<a href="{{ url('user/address/edit',['id'=>$l->id]) }}" class="btn btn-sm btn-info">修改</a>
 			<a href="{{ url('user/address/del',['id'=>$l->id]) }}" class="btn btn-sm btn-danger">删除</a>

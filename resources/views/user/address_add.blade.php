@@ -38,7 +38,20 @@
 	                    </span>
 	                @endif
 	            </div>
-
+				
+				<div class="form-group">
+	                <label for="area">区域：<span class="color-red">*</span></label>
+	                <select name="data[area]" id="" class="form-control">
+	                    @foreach($area as $a)
+	                    <option value="{{ $a->name }}">{{ $a->name }}</option>
+	                    @endforeach
+	                </select>
+	                @if ($errors->has('data.area'))
+	                    <span class="help-block">
+	                        {{ $errors->first('data.area') }}
+	                    </span>
+	                @endif
+	            </div>
 
 	            <div class="form-group">
 	                <label for="address">地址：<span class="color-red">*</span>不超过255字符</label>

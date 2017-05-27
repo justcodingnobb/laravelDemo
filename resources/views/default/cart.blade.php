@@ -22,7 +22,20 @@
 				</li>
 				@endforeach
 			</ul>
-
+			
+			<!-- 自提点 -->
+			<h3 class="h3_cate"><span class="h3_cate_span">自提点</span></h3>
+			<ul class="mt10">
+				@foreach($ziti as $y)
+				<li class="radio">
+				  <label>
+				    <input type="radio" name="ziti" value="{{ $y->id }}" class="zitiid">
+				    <h5>{{ $y->address }}</h5>
+				    <h4>{{ $y->phone }}</h4>
+				  </label>
+				</li>
+				@endforeach
+			</ul>
 
 			<h3 class="h3_cate"><span class="h3_cate_span">购物车</span></h3>
 			<div class="table-responsive">
@@ -84,8 +97,9 @@
 			<div class="mt20 clearfix pull-right">
 				<form action="{{ url('shop/addorder') }}">
 					{{ csrf_field() }}
-					<input type="hidden" name="yid" class="yid" value="">
-					<input type="hidden" name="aid" class="aid" value="">
+					<input type="hidden" name="yid" class="yid" value="0">
+					<input type="hidden" name="aid" class="aid" value="0">
+					<input type="hidden" name="ziti" class="ziti" value="0">
 					<input type="hidden" name="tt" value="{{ microtime(true) }}">
 					<button type="submit" class="btn btn-primary">提交</button> 
 					<button type="reset" name="reset" class="btn btn-default">重填</button>
@@ -100,6 +114,12 @@
 			$('.addressid').change(function() {
 				var aid = $(this).val();
 				$('.aid').val(aid);
+			});
+
+			$('.zitiid').change(function() {
+				var aid = $(this).val();
+				$('.ziti').val(aid);
+				$('.aid').val(0);
 			});
 
 			$('.yhqid').click(function() {

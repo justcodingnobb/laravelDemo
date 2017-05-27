@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\User\AddressRequest;
 use App\Models\Address;
+use App\Models\Type;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -128,7 +129,8 @@ class UserController extends BaseController
     // 添加地址
     public function getAddressAdd()
     {
-        return view('user.address_add');
+        $area = Type::where('parentid',4)->get();
+        return view('user.address_add',compact('area'));
     }
     public function postAddressAdd(AddressRequest $req)
     {
@@ -141,7 +143,8 @@ class UserController extends BaseController
     public function getAddressEdit($id = '')
     {
         $info = Address::findOrFail($id);
-        return view('user.address_edit',compact('info'));
+        $area = Type::where('parentid',4)->get();
+        return view('user.address_edit',compact('info','area'));
     }
     public function postAddressEdit(AddressRequest $req,$id = '')
     {

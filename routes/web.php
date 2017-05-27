@@ -137,6 +137,15 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 自提点管理
+    Route::get('ziti/index', 'Good\ZitiController@getIndex');
+    Route::get('ziti/add', 'Good\ZitiController@getAdd');
+    Route::post('ziti/add', 'Good\ZitiController@postAdd');
+    Route::get('ziti/edit/{id}', 'Good\ZitiController@getEdit');
+    Route::post('ziti/edit/{id}', 'Good\ZitiController@postEdit');
+    Route::get('ziti/del/{id}', 'Good\ZitiController@getDel');
+    Route::post('ziti/sort', 'Good\ZitiController@postSort');
+    Route::post('ziti/alldel', 'Good\ZitiController@postAlldel');
     // 广告管理
     Route::get('ad/index', 'Good\AdController@getIndex');
     Route::get('ad/add', 'Good\AdController@getAdd');

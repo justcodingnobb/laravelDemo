@@ -544,9 +544,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "re",
+		"last_filter": "move",
 		"selected_items":
 		[
+			[
+				"move",
+				"File: Move"
+			],
 			[
 				"re",
 				"File: Rename"
@@ -562,10 +566,6 @@
 			[
 				"save",
 				"File: Save All"
-			],
-			[
-				"move",
-				"File: Move"
 			],
 			[
 				"remov",
@@ -708,7 +708,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 512.0
+		"width": 856.0
 	},
 	"console":
 	{
@@ -743,16 +743,35 @@
 		"/D/www/xyshop/app/Http/Controllers",
 		"/D/www/xyshop/resources",
 		"/D/www/xyshop/resources/views",
+		"/D/www/xyshop/resources/views/admin/ziti",
+		"/D/www/xyshop/resources/views/user",
 		"/D/www/xyshop/routes"
 	],
 	"file_history":
 	[
 		"/D/www/xyshop/readme.md",
-		"/D/www/xyshop/resources/views/default/order.blade.php",
 		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
+		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
+		"/D/www/xyshop/resources/views/user/address_add.blade.php",
+		"/D/www/xyshop/resources/views/user/address.blade.php",
+		"/D/www/xyshop/app/Http/Controllers/UserController.php",
+		"/D/www/xyshop/resources/views/admin/ziti/edit.blade.php",
+		"/D/www/xyshop/resources/views/admin/ziti/add.blade.php",
+		"/D/www/xyshop/app/Http/Controllers/Good/ZitiController.php",
+		"/D/www/xyshop/resources/views/admin/ziti/index.blade.php",
+		"/D/www/xyshop/database/migrations/2017_05_27_033904_add_area_to_zitidian.php",
+		"/D/www/xyshop/database/migrations/2017_05_27_033919_add_area_to_orders.php",
+		"/D/www/xyshop/database/migrations/2017_05_27_033943_add_area_to_address.php",
+		"/D/www/xyshop/resources/views/default/cart.blade.php",
+		"/D/www/xyshop/app/Http/Requests/Good/ZitiRequest.php",
+		"/D/www/xyshop/routes/web.php",
+		"/D/www/xyshop/app/Http/Controllers/Good/AdController.php",
+		"/D/www/xyshop/database/migrations/2017_05_27_005333_create_zitidian.php",
+		"/D/www/xyshop/database/migrations/2017_05_27_005507_add_ziti_to_orders.php",
+		"/D/www/xyshop/app/Models/Zitidian.php",
+		"/D/www/xyshop/resources/views/default/order.blade.php",
 		"/D/www/xyshop/app/Http/Controllers/Admin/OrderController.php",
 		"/D/www/laravelDemo-1.0.0/app/Http/Controllers/ShopController.php",
-		"/D/www/xyshop/resources/views/default/cart.blade.php",
 		"/D/www/laravelDemo-1.0.0/resources/views/default/cart.blade.php",
 		"/D/www/xyshop/resources/views/admin/good/addformat.blade.php",
 		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/editformat.blade.php",
@@ -765,9 +784,7 @@
 		"/D/www/laravelDemo-1.0.0/app/Http/Controllers/Admin/GoodController.php",
 		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/format.blade.php",
 		"/D/www/xyshop/app/Http/Controllers/Old/ShopController.php",
-		"/D/www/xyshop/routes/web.php",
 		"/D/www/xyshop/resources/views/admin/order/index.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/UserController.php",
 		"/D/www/xyshop/app/Http/Controllers/PayController.php",
 		"/D/www/xyshop/app/Http/Controllers/BaseController.php",
 		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php",
@@ -813,9 +830,6 @@
 		"/D/www/xyshop/resources/views/default/page.blade.php",
 		"/D/www/xyshop/resources/views/default/post.blade.php",
 		"/D/www/xyshop/resources/views/default/yhq.blade.php",
-		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
-		"/D/www/xyshop/resources/views/user/address_add.blade.php",
-		"/D/www/xyshop/resources/views/user/address.blade.php",
 		"/D/www/xyshop/app/Http/Requests/User/AddressRequest.php",
 		"/D/www/xyshop/app/Http/Middleware/Backurl.php",
 		"/D/www/xyshop/resources/views/user/usercenter.blade.php",
@@ -862,19 +876,7 @@
 		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/edit.blade.php",
 		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/add.blade.php",
 		"/F/wwwroot/xyshop/app/Http/Controllers/Good/HuodongController.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Good/ManzengController.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Good/TuanController.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Good/YouhuiquanController.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/index.blade.php",
-		"/F/wwwroot/xyshop/database/migrations/2017_05_14_063940_add_sort_to_huodong.php",
-		"/F/wwwroot/xyshop/database/migrations/2017_05_14_063952_add_sort_to_tuan.php",
-		"/F/wwwroot/xyshop/database/migrations/2017_05_14_064004_add_sort_to_manzeng.php",
-		"/F/wwwroot/xyshop/database/migrations/2017_05_14_064027_add_sort_to_youhuiquan.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/GoodController.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/ArtController.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/good/add.blade.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/HomeController.php"
+		"/F/wwwroot/xyshop/app/Http/Controllers/Good/ManzengController.php"
 	],
 	"find":
 	{
@@ -970,6 +972,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"address",
+			"aid",
+			"addressid",
+			"addid",
+			";\n",
+			"old('data.",
+			"url",
+			"URL",
+			"url",
+			"title",
+			"AdC",
+			"ad/",
+			"ad-",
+			"ad/",
+			"ad-",
+			"ad",
+			"广告",
 			"where('id',$value['format_id'])",
 			"$formats->where('id',$value['format_id'])",
 			"yhq_id",
@@ -1080,24 +1099,7 @@
 			"ewm",
 			"AuthController@redirectToProvider",
 			"pay",
-			"$ids",
-			"$l",
-			" width=\"15%\"",
-			"id_num",
-			"->",
-			"->format",
-			"$k",
-			"where('status',1)->",
-			"total_price_",
-			"num",
-			"40",
-			"h4",
-			"strong",
-			"h5",
-			"span",
-			"->where('status',1)",
-			"session()->getId()",
-			" class=\"addcart_formatid\""
+			"$ids"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1258,6 +1260,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"address.bl",
+				"resources\\views\\user\\address.blade.php"
+			],
+			[
+				"default/cart",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"ziti/index",
+				"resources\\views\\admin\\ziti\\index.blade.php"
+			],
 			[
 				"order.bl",
 				"resources\\views\\default\\order.blade.php"
@@ -1757,18 +1771,6 @@
 			[
 				"show1",
 				"resources\\views\\article\\show1.blade.php"
-			],
-			[
-				"artcon",
-				"app\\Http\\Controllers\\ArtController.php"
-			],
-			[
-				"specil/ed",
-				"resources\\views\\admin\\special\\edit.blade.php"
-			],
-			[
-				"art/ind",
-				"resources\\views\\admin\\art\\index.blade.php"
 			]
 		],
 		"width": 0.0
