@@ -17,6 +17,33 @@ use Storage;
 
 class PayController extends BaseController
 {
+	// 银联
+	public function unionpay()
+	{
+		$gateway    = Omnipay::create('UnionPay_Express');
+		$config = ['merId'=>'802130053110595','certPath'=>storage_path('pay/unionpay/700000000000001_acp.pfx'),'certPassword'=>'000000','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+		$gateway->setMerId($config['merId']);
+		$gateway->setCertPath($config['certPath']); // .pfx file
+		$gateway->setCertPassword($config['certPassword']);
+		$gateway->setReturnUrl($config['returnUrl']);
+		$gateway->setNotifyUrl($config['notifyUrl']);
+
+		$order = [
+		    'orderId'   => date('YmdHis'), //Your order ID
+		    'txnTime'   => date('YmdHis'), //Should be format 'YmdHis'
+		    'orderDesc' => 'My order title', //Order Title
+		    'txnAmt'    => '0.01', //Order Total Fee
+		];
+
+		$response = $gateway->purchase($order)->send();
+		echo $response->getRedirectHtml(); //For PC/Wap
+		// return $res;
+		// $response->getTradeNo(); //For APP
+	}
+	public function unionNotify(Request $req)
+	{
+		Storage::prepend('unionpay.log',json_encode($req->all()).date());
+	}
     // 取订单可以使用的支付方式
     public function list($oid)
     {
@@ -123,7 +150,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
     }
 
     // 微信支付
-    private function weixin($oid,$pay,$ip)
+    private function weixin_js($oid,$pay,$ip)
     {
     	$set = json_decode($pay->setting);
     	$gateway = Omnipay::create('WechatPay_Native');
@@ -138,7 +165,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		    'total_fee'         => 1, //=0.01
 		    'spbill_create_ip'  => $ip,
 		    'fee_type'          => 'CNY',
-		    'openid'			=> 'o55kNw1TVsDdzTj5CPZGF6cVDhu8',
+		    'openid'			=> 'osNUI0ats_6cQ6prrTKonB0AlrMs',
 		];
 		/**
 		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
@@ -146,6 +173,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		 */
 		$request  = $gateway->purchase($order);
 		$response = $request->send();
+
 		
 		//available methods
 		// 如果下单成功，调起支付动作
@@ -166,7 +194,8 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		}
 		else
 		{
-			return back()->with('message','支付失败，请稍后再试');
+			return 0;
+			// return back()->with('message','支付失败，请稍后再试');
 		}
 
 		// $response->getData(); //For debug
@@ -176,7 +205,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
     }
 
     // 微信支付js
-    private function weixin_js($oid,$pay,$ip)
+    private function weixin($oid,$pay,$ip)
     {
     	$set = json_decode($pay->setting);
     	$gateway = Omnipay::create('WechatPay_Js');
@@ -191,7 +220,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		    'total_fee'         => 1, //=0.01
 		    'spbill_create_ip'  => $ip,
 		    'fee_type'          => 'CNY',
-		    'openid'			=> 'o55kNw1TVsDdzTj5CPZGF6cVDhu8',
+		    'openid'			=> 'osNUI0ats_6cQ6prrTKonB0AlrMs',
 		];
 		/**
 		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
@@ -205,6 +234,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		if($response->isSuccessful())
 		{
 			$d = $response->getJsOrderData();
+
 			$str = "
 			<html>
 				<head>
@@ -212,7 +242,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 						function onBridgeReady(){
 						    WeixinJSBridge.invoke('getBrandWCPayRequest',{
 						           	'appId':'".$set->appid."',
-						           	'timeStamp':".$d['timeStamp'].",
+						           	'timeStamp':'".$d['timeStamp']."',
 						           	'nonceStr':'".$d['nonceStr']."',
 						           	'package':'".$d['package']."',     
 						           	'signType': '".$d['signType']."',
@@ -251,7 +281,8 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		}
 		else
 		{
-			return back()->with('message','支付失败，请稍后再试');
+			return 0;
+			// return back()->with('message','支付失败，请稍后再试');
 		}
 
 		// $response->getData(); //For debug

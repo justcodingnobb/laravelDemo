@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac48faf3b35173d1e3e03803903b428f",
+    "content-hash": "1fca97ebe2c13e8ac946d60ebabb9c61",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -997,6 +997,57 @@
                 "purchase"
             ],
             "time": "2017-05-10T08:19:53+00:00"
+        },
+        {
+            "name": "lokielse/omnipay-unionpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lokielse/omnipay-unionpay.git",
+                "reference": "f4bc9135581141a456a5449188e69e7149b333f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/lokielse/omnipay-unionpay/f4bc9135581141a456a5449188e69e7149b333f1.zip",
+                "reference": "f4bc9135581141a456a5449188e69e7149b333f1",
+                "shasum": ""
+            },
+            "require": {
+                "omnipay/common": "~2.0"
+            },
+            "require-dev": {
+                "omnipay/tests": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Omnipay\\UnionPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Loki Else",
+                    "email": "lokielse@gmail.com"
+                }
+            ],
+            "description": "UnionPay gateway for Omnipay payment processing library",
+            "homepage": "https://github.com/lokielse/omnipay-unionpay",
+            "keywords": [
+                "gateway",
+                "merchant",
+                "omnipay",
+                "pay",
+                "payment",
+                "purchase",
+                "union",
+                "unionpay",
+                "银联"
+            ],
+            "time": "2016-03-03 13:22:46"
         },
         {
             "name": "lokielse/omnipay-wechatpay",
@@ -4574,7 +4625,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lokielse/omnipay-unionpay": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

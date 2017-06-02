@@ -105,7 +105,7 @@
 	@endif
 
 	@if(App::make('com')->ifCan('huodong-good'))
-	<span class="btn btn-success btn_huodong" data-toggle="modal" data-target="#myModal">添加到活动</span>
+	<span class="btn btn-success btn_huodong" data-toggle="modal" data-target="#myModal_hd">添加到活动</span>
 	@endif
 
 	@if(App::make('com')->ifCan('good-alldel'))
@@ -125,8 +125,8 @@
 {!! $list->appends(['cate_id' =>$cate_id,'q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<div class="modal fade" id="myModal_hd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -134,7 +134,7 @@
         <h4 class="modal-title" id="myModalLabel"></h4>
       </div>
       <div class="modal-body">
-      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="600" scrolling="auto" allowtransparency="true"></iframe>
+      	<iframe src="" id="hd_good2" frameborder="0" width="100%" height="600" scrolling="auto" allowtransparency="true"></iframe>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -143,9 +143,56 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel_1"></h4>
+      </div>
+      <div class="modal-body" id="hd_good">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button class="btn btn-primary" id="dosubmit">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
+
+		$("#dosubmit").on('click',function(){
+			var postData = $('#form-tuan').serializeArray();
+			var url = $("#form-tuan").attr('action');
+			$.ajax({
+                url: url,
+                type: "POST",
+                data: postData,
+                success: function(d) {
+	                if (!d) {
+	                	alert(d)
+	                }
+	                else
+	                {
+	                	$('#myModal').modal('hide');
+	                	$('.alert_top').html('添加成功！').slideDown(100).delay(1500).slideUp(300);
+	                }
+                },
+                error: function(data){
+                	// 提示信息转为json对象，并弹出提示
+				    var errors = $.parseJSON(data.responseText);
+				    $.each(errors, function(index, value) {
+				    	alert(value);
+				    	return false;
+				    });
+				}
+            });
+		});
 		$('.btn_sort').click(function(){
 			$('.form_submit').attr({'action':"{{ url('/xyshop/good/sort') }}",'method':'post'}).submit();
 		});
@@ -164,22 +211,45 @@
 				return false;
 			}
 			var url = "{{ url('xyshop/huodong/good') }}" + '/' + gids;
-			$('#hd_good').attr("src",url);
+			$('#hd_good2').attr("src","{{ url('xyshop/huodong/good') }}" + '/' + gids);
 			$('#myModalLabel').text('活动');
 			return;
 		});
 		// 满赠
 		$('.btn_manzeng').click(function(){
 			var url = $(this).attr('data-url');
-			$('#hd_good').attr("src",url);
-			$('#myModalLabel').text('添加满赠');
+			$('#hd_good').load(url,function(){
+				laydate({
+			        elem: '#laydate_t_1',
+			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        istime: true,
+			    });
+			    laydate({
+			        elem: '#laydate_t_2',
+			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        istime: true,
+			    });
+			});
+			$('#myModalLabel_1').text('添加满赠');
 			return;
 		});
 		// 团购
 		$('.btn_tuan').click(function(){
 			var url = $(this).attr('data-url');
-			$('#hd_good').attr("src",url);
-			$('#myModalLabel').text('添加团购');
+			$('#hd_good').load(url,function(){
+				laydate({
+			        elem: '#laydate_t_1',
+			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        istime: true,
+			    });
+			    laydate({
+			        elem: '#laydate_t_2',
+			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        istime: true,
+			    });
+			});
+			
+			$('#myModalLabel_1').text('添加团购');
 			return;
 		});
 		$('.btn_del').click(function(){

@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"cont",
+				"contents\t.contents()"
+			],
+			[
+				"sub",
+				"submit\t.submit()"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"return",
+				"returnUrl"
+			],
+			[
 				"for",
 				"format"
 			],
@@ -352,10 +368,6 @@
 				"devicetoken"
 			],
 			[
-				"res",
-				"result"
-			],
-			[
 				"code",
 				"codetime"
 			],
@@ -502,18 +514,6 @@
 			[
 				"chil",
 				"childspecial"
-			],
-			[
-				"ish",
-				"ish5"
-			],
-			[
-				"base",
-				"base64_encode"
-			],
-			[
-				"back",
-				"background"
 			]
 		]
 	},
@@ -737,18 +737,54 @@
 	},
 	"expanded_folders":
 	[
-		"/D/www/xyshop",
-		"/D/www/xyshop/app",
-		"/D/www/xyshop/app/Http",
-		"/D/www/xyshop/app/Http/Controllers",
-		"/D/www/xyshop/resources",
-		"/D/www/xyshop/resources/views",
-		"/D/www/xyshop/resources/views/admin/ziti",
-		"/D/www/xyshop/resources/views/user",
-		"/D/www/xyshop/routes"
+		"/F/wwwroot/jxf",
+		"/F/wwwroot/jxf/app",
+		"/F/wwwroot/jxf/app/Http",
+		"/F/wwwroot/jxf/resources",
+		"/F/wwwroot/jxf/resources/views",
+		"/F/wwwroot/jxf/resources/views/admin",
+		"/F/wwwroot/jxf/resources/views/admin/good"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/.env",
+		"/F/wwwroot/jxf/resources/views/admin/goodcate/index.blade.php",
+		"/F/wwwroot/dmb/config/app.php",
+		"/F/wwwroot/laravelDemo/config/app.php",
+		"/F/wwwroot/jxf/config/app.php",
+		"/F/wwwroot/dzys/config/app.php",
+		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/manzeng/add.blade.php",
+		"/F/scss/bootstrap/modal-form.html",
+		"/F/wwwroot/jxf/app/Http/Middleware/VerifyCsrfToken.php",
+		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/说明.txt",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
+		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/add_old.blade.php",
+		"/F/希夷/懂秘帮/需求/20170602.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/62CE2F3F_edit.tmp/.env",
+		"/F/wwwroot/jxf/resources/views/admin/user/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Requests/AdminRequest.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArticleController.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArtsController.php",
+		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1CBA4D58_edit.tmp/Kernel.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/4263E4DB_edit.tmp/Meihuas.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController11.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1B09E198_edit.tmp/Kernel.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/sftp-config.json",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/0BDE70D5_edit.tmp/Meihuas.php",
+		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/F/wwwroot/jxf/public/.htaccess",
+		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/D/www/xyshop/readme.md",
 		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
 		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
@@ -838,45 +874,7 @@
 		"/D/www/xyshop/app/Http/Middleware/Homeurl.php",
 		"/D/www/xyshop/resources/views/default/layout.blade.php",
 		"/D/www/xyshop/.gitignore",
-		"/D/www/xyshop/app/Http/Controllers/HomeController.php",
-		"/D/www/xyshop/app/Http/Controllers/Old/HomeController.php",
-		"/D/www/xyshop/app/Http/Controllers/Old/UserController.php",
-		"/D/www/xyshop/sftp-config.json",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/D/www/xyshop/app/Services/TagService.php",
-		"/D/www/xyshop/public/.htaccess",
-		"/D/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/D/www/dmb/readme.md",
-		"/D/www/xyshop/resources/views/admin/alert.blade.php",
-		"/D/www/xyshop/app/Http/Requests/UserRequest.php",
-		"/D/www/xyshop/app/Http/Requests/Good/TuanRequest.php",
-		"/D/www/xyshop/app/Http/Requests/Good/YouhuiquanRequest.php",
-		"/D/www/xyshop/app/Http/Requests/Good/ManzengRequest.php",
-		"/D/www/xyshop/app/Http/Requests/Good/AdRequest.php",
-		"/D/www/xyshop/app/Models/Tuan.php",
-		"/D/www/xyshop/app/Models/Good.php",
-		"/D/www/xyshop/app/Models/Manzeng.php",
-		"/D/www/xyshop/app/Http/Controllers/Good/ManzengController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/2297BA3B_edit.tmp/.env",
-		"/F/wwwroot/xyshop/resources/views/admin/goodcate/index.blade.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Admin/GoodCateController.php",
-		"/F/wwwroot/xyshop/routes/web.php",
-		"/F/wwwroot/xyshop/resources/views/admin/huodong/index.blade.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/A8C644A3_edit.tmp/index.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/A8C644A3.tmp/index.php",
-		"/F/wwwroot/xyshop/resources/views/admin/manzeng/index.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/tuan/index.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/index.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/huodong/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/huodong/add.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/tuan/add.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/manzeng/add.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/manzeng/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/tuan/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/edit.blade.php",
-		"/F/wwwroot/xyshop/resources/views/admin/youhuiquan/add.blade.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Good/HuodongController.php",
-		"/F/wwwroot/xyshop/app/Http/Controllers/Good/ManzengController.php"
+		"/D/www/xyshop/app/Http/Controllers/HomeController.php"
 	],
 	"find":
 	{
@@ -972,6 +970,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"btn_huodong",
+			"dosubmit",
+			"myModal",
+			"PayController",
 			"address",
 			"aid",
 			"addressid",
@@ -1095,11 +1097,7 @@
 			"wxlogin",
 			"Overtrue\\LaravelSocialite\\ServiceProvider",
 			"Wx\\",
-			"openid",
-			"ewm",
-			"AuthController@redirectToProvider",
-			"pay",
-			"$ids"
+			"openid"
 		],
 		"highlight": true,
 		"in_selection": false,

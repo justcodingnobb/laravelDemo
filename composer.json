@@ -10,6 +10,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "lokielse/omnipay-alipay": "^2.0",
+        "lokielse/omnipay-unionpay": "dev-master",
         "lokielse/omnipay-wechatpay": "^1.0",
         "nwidart/db-exporter": "*",
         "overtrue/laravel-pinyin": "~3.0",

@@ -44,9 +44,13 @@ class TuanController extends Controller
     }
     public function postAdd(TuanRequest $req,$id = '')
     {
-    	$data = $req->input('data');
-    	Tuan::create($data);
-    	return back()->with('message','添加成功！');
+        try {
+    	   $data = $req->input('data');
+    	   Tuan::create($data);
+           echo 1;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
     // 修改团购
     public function getEdit($id = '')

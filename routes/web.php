@@ -13,7 +13,9 @@
 
 Route::get('/vue','VueController@index');
 
-
+// 测试银联接口
+Route::get('/pay/unionpay','PayController@unionpay');
+Route::any('/pay/notify','PayController@unionNotify');
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');

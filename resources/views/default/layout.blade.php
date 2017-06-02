@@ -21,13 +21,7 @@
 
 <body>
 
-    <header class="head container-fluid mt10">
-        <ul class="nav nav-pills">
-            <li class="active"><a href="{{ url('shop/yhq/index') }}">优惠券</a></li>
-            <li><a href="{{ url('shop/yhq/index') }}">优惠券</a></li>
-        </ul>
-    </header>
-    <hr class="mt10">
+
     <!-- 主内容 -->
     @yield('content')
 
@@ -47,7 +41,7 @@
             <li><a href="{{ url('cate',['url'=>$c->url]) }}">{{ $c->name }}</a></li>
             @endforeach
         </ul>
-        <p>优鲜·吉鲜蜂</p>
+        <p>冀ICP备15021375号-4</p>
     </footer>
     
     <!-- 提示信息 -->
