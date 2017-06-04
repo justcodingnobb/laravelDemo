@@ -42,7 +42,7 @@ class PayController extends BaseController
 	}
 	public function unionNotify(Request $req)
 	{
-		Storage::prepend('unionpay.log',json_encode($req->all()).date());
+		Storage::prepend('unionpay.log',json_encode($req->all()).date('Y-m-d H:i:s'));
 	}
     // 取订单可以使用的支付方式
     public function list($oid)
@@ -67,14 +67,14 @@ class PayController extends BaseController
     	// 根据支付方式调用不同的SDK
     	$pmod = $pay->code;
     	$ip = $req->ip();
-    	$res = $this->$pmod($oid,$pay,$ip);
-    	if ($res) {
+    	return $this->$pmod($oid,$pay,$ip);
+    	/*if ($res) {
     		return redirect('user/order')->with('message','支付成功！');
     	}
     	else
     	{
     		return back()->with('message','支付失败，稍后再试！');
-    	}
+    	}*/
     }
 
     // 余额支付
@@ -86,9 +86,17 @@ class PayController extends BaseController
     	if ($user_money < $order->total_prices) {
     		return back()->with('message','余额不足，请选择其它支付方式！');
     	}
-		// 库存计算
-		$this->updateStore($order);
-    	return true;
+    	// 支付
+    	try {
+    		DB::transaction(function() use($order){
+    			User::where('id',$order->user_id)->decrement('user_money',$order->total_prices);
+				// 库存计算
+				$this->updateStore($order);
+    		});
+    		return redirect('user/order')->with('message','支付成功！');
+    	} catch (\Exception $e) {
+    		return redirect('user/order')->with('message','支付失败，请稍后再试！');
+    	}
     }
 
     // 支付宝支付
@@ -99,27 +107,8 @@ class PayController extends BaseController
     	$gateway = Omnipay::create('Alipay_AopWap');
     	$gateway->setSignType('RSA'); //RSA/RSA2
     	$gateway->setAppId($set->alipay_appid);
-		$gateway->setPrivateKey('-----BEGIN RSA PRIVATE KEY-----
-MIICXQIBAAKBgQDswrmWnApQ6MKBY6ozxMTf6kfgSsSuqI90eqOhydbkkl9uaBqR
-PwkqWkPRxLgz4uh5qNMNbzDLkEFbLaWKpCECUU+VwyovoOeE4T4bHRQR+cXq2h8Q
-tbq6kOXrUFff0ZfzA5JTEU9amxU48b74Z+PQN5l2dAiE9Spi4+vYfA6AIQIDAQAB
-AoGBANS9hBWY0IwzGdM5ws4RmPW6his8A88NFxoKuM2/l6B7BdUnJfgtNAciZJ4w
-rXOyCEKJOFtx9d50GMXdFkqlgCHijVwMNan54wogdK4f4wghjpQlrytyzYhW/CKy
-Ggr4sZmYqJJY+8GR9SS5qGflcfER+4De864EoIIHurH61UABAkEA9yqDjo8+rAsq
-nCNCvNZnhov4IBXQ4T/LIxH5fXqvGD3fyIs5BAbjGYlIprewv8l2SxQJ1Oj9KbJC
-ctyh4ldSwQJBAPU5AUMH1rN9xiunE2iv127HyEd2nvBeKQlM5RFfwlymH9hafG6H
-wGAqW42j+3e4CmeUik+rstBPTabgAyPSZWECQC9AeHAboH6hj97TuuGBF7+YKLJx
-mUJGwN4OhKThfHHk+lBLlXXYnzf1j+cXfPndWPkXdp22gReklaGB3oz35sECQFR+
-/fZQ3yQd9IjaGw/5dywO3u3w67c7Wrx/qHaiHmC6RULRewrC8ACy17Uoid+opL0o
-K7hkG0s36DPWAH75YkECQQDk1qo49/chr+9CiA5HmF4ULRqpLrEBp9IhF9FR2zsj
-QmJaTs9taAe/xBbQbhsoJXrmSzAWPtDu86wYchHDiWH4
------END RSA PRIVATE KEY-----');
-		$gateway->setAlipayPublicKey('-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswrmWnApQ6MKBY6ozxMTf6kfg
-SsSuqI90eqOhydbkkl9uaBqRPwkqWkPRxLgz4uh5qNMNbzDLkEFbLaWKpCECUU+V
-wyovoOeE4T4bHRQR+cXq2h8Qtbq6kOXrUFff0ZfzA5JTEU9amxU48b74Z+PQN5l2
-dAiE9Spi4+vYfA6AIQIDAQAB
------END PUBLIC KEY-----');
+		$gateway->setPrivateKey(config('alipay.privatekey'));
+		$gateway->setAlipayPublicKey(config('alipay.publickey'));
     	// 即时到账
     	/*$gateway = Omnipay::create('Alipay_LegacyExpress');
 		$gateway->setSellerEmail($set->alipay_account);
@@ -130,11 +119,13 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		// $gateway->setAlipayPublicKey('the_alipay_public_key'); //For RSA sign type
 		$gateway->setReturnUrl(config('app.url').'/alipay/return');
 		$gateway->setNotifyUrl(config('app.url').'/alipay/gateway');
+		// 查订单信息
+    	$order = Order::findOrFail($oid);
 
 		$request = $gateway->purchase()->setBizContent([
-		  'out_trade_no' => date('YmdHis').mt_rand(1000,9999),
-		  'subject'      => 'test',
-		  'total_amount'    => '0.01',
+		  'out_trade_no' => $order->order_id,
+		  'subject'      => '吉鲜蜂订单',
+		  'total_amount'    => "$order->total_prices",
 		  'product_code' => 'QUICK_WAP_PAY',
 		]);
 
@@ -149,6 +140,54 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		$response->redirect();
     }
 
+
+    // 微信支付js
+    private function weixin($oid,$pay,$ip)
+    {
+    	$set = json_decode($pay->setting);
+    	// 查订单信息
+    	$order = Order::findOrFail($oid);
+    	$gateway = Omnipay::create('WechatPay_Js');
+		$gateway->setAppId($set->appid);
+		$gateway->setMchId($set->mchid);
+		$gateway->setApiKey($set->appkey);
+		$gateway->setNotifyUrl(config('app.url').'/weixin/return');
+
+		$order = [
+		    'body'              => '吉鲜蜂订单',
+		    'out_trade_no'      => $order->order_id,
+		    'total_fee'         => $order->total_prices * 100, //=0.01
+		    'spbill_create_ip'  => $ip,
+		    'fee_type'          => 'CNY',
+		    'openid'			=> session('member')->openid,
+		];
+		/**
+		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
+		 * @var Omnipay\WechatPay\Message\CreateOrderResponse $response
+		 */
+		$request  = $gateway->purchase($order);
+		$response = $request->send();
+
+		//available methods
+		// 如果下单成功，调起支付动作
+		if($response->isSuccessful())
+		{
+			$d = $response->getJsOrderData();
+			return view($this->theme.'.wxpay',compact('set','d'));
+		}
+		else
+		{
+			Storage::prepend('weixin.log',json_encode($response->getData()).date('Y-m-d H:i:s'));
+			return back()->with('message','微信支付失败，请稍后再试！');
+		}
+
+		// $response->getData(); //For debug
+		// $response->getAppOrderData(); //For WechatPay_App
+		// $response->getJsOrderData(); //For WechatPay_Js
+		// $response->getCodeUrl(); //For Native Trade Type
+    }
+
+
     // 微信支付
     private function weixin_js($oid,$pay,$ip)
     {
@@ -157,7 +196,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		$gateway->setAppId($set->appid);
 		$gateway->setMchId($set->mchid);
 		$gateway->setApiKey($set->appkey);
-		$gateway->setNotifyUrl(config('app.url').'/weixin/gateway');
+		$gateway->setNotifyUrl(config('app.url').'/weixin/return');
 
 		$order = [
 		    'body'              => 'The test order',
@@ -165,7 +204,7 @@ dAiE9Spi4+vYfA6AIQIDAQAB
 		    'total_fee'         => 1, //=0.01
 		    'spbill_create_ip'  => $ip,
 		    'fee_type'          => 'CNY',
-		    'openid'			=> 'osNUI0ats_6cQ6prrTKonB0AlrMs',
+		    'openid'			=> 'osxIs0mmwpMH5jHrcRFESwSEnW4k',
 		];
 		/**
 		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
@@ -191,93 +230,6 @@ dAiE9Spi4+vYfA6AIQIDAQAB
             $src = '/upload/qrcode/'.date('Ymd').'/'.$filename.'.png';
 			$ewm = QrCode::format('png')->size(200)->generate($codeurl,$path);
 			echo "<h3>扫码支付</h3><img src='".$src."'/>";
-		}
-		else
-		{
-			return 0;
-			// return back()->with('message','支付失败，请稍后再试');
-		}
-
-		// $response->getData(); //For debug
-		// $response->getAppOrderData(); //For WechatPay_App
-		// $response->getJsOrderData(); //For WechatPay_Js
-		// $response->getCodeUrl(); //For Native Trade Type
-    }
-
-    // 微信支付js
-    private function weixin($oid,$pay,$ip)
-    {
-    	$set = json_decode($pay->setting);
-    	$gateway = Omnipay::create('WechatPay_Js');
-		$gateway->setAppId($set->appid);
-		$gateway->setMchId($set->mchid);
-		$gateway->setApiKey($set->appkey);
-		$gateway->setNotifyUrl(config('app.url').'/weixin/gateway');
-
-		$order = [
-		    'body'              => 'The test order',
-		    'out_trade_no'      => date('YmdHis').mt_rand(1000, 9999),
-		    'total_fee'         => 1, //=0.01
-		    'spbill_create_ip'  => $ip,
-		    'fee_type'          => 'CNY',
-		    'openid'			=> 'osNUI0ats_6cQ6prrTKonB0AlrMs',
-		];
-		/**
-		 * @var Omnipay\WechatPay\Message\CreateOrderRequest $request
-		 * @var Omnipay\WechatPay\Message\CreateOrderResponse $response
-		 */
-		$request  = $gateway->purchase($order);
-		$response = $request->send();
-
-		//available methods
-		// 如果下单成功，调起支付动作
-		if($response->isSuccessful())
-		{
-			$d = $response->getJsOrderData();
-
-			$str = "
-			<html>
-				<head>
-					<script>
-						function onBridgeReady(){
-						    WeixinJSBridge.invoke('getBrandWCPayRequest',{
-						           	'appId':'".$set->appid."',
-						           	'timeStamp':'".$d['timeStamp']."',
-						           	'nonceStr':'".$d['nonceStr']."',
-						           	'package':'".$d['package']."',     
-						           	'signType': '".$d['signType']."',
-									'paySign': '".$d['paySign']."',
-						       },
-						       function(res){
-						            if(res.err_msg == 'get_brand_wcpay_request:ok') {
-						            	alert('ok');
-						            }
-						            if(res.err_msg == 'get_brand_wcpay_request:fail')
-						            {
-						            	alert('fail');
-						            }
-						        }
-						    );
-						}
-						window.onload = function(){
-							if (typeof WeixinJSBridge == 'undefined'){
-							   if( document.addEventListener ){
-							       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-							   }else if (document.attachEvent){
-							       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-							       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-							   }
-							}else{
-							   onBridgeReady();
-							}
-						}
-					</script>
-				</head>
-				<body>
-				".$set->appid."
-				</body>
-			</html>";
-			echo $str;
 		}
 		else
 		{

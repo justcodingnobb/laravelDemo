@@ -53,20 +53,21 @@ class WxController extends BaseController
     // oauth
     public function wx(Request $req)
     {
-        $sid = $req->sid;
+        /*$sid = $req->sid;
         // 如果是空的，说明直接登陆的，生成sid
         if (is_null($sid)) {
             // 存一个随机id到数据库里，以供后期确定是用户是否登陆，session不可以，全局没办法判断
             $sid = uniqid().str_random(10);
             // 存，过期时间5分钟
             AuthTmp::create(['auth_id'=>$sid,'overtime'=>time() + 300]);
-        }
-        return Socialite::driver('wechat')->scopes(['snsapi_userinfo'])->withRedirectUrl(config('app.url').'/oauth/wx/callback?sid='.$sid)->redirect();
+        }*/
+        // snsapi_base,snsapi_userinfo,?sid='.$sid
+        return Socialite::driver('wechat')->scopes(['snsapi_userinfo'])->withRedirectUrl(config('app.url').'/oauth/wx/callback')->redirect();
     }
 
     public function callback(Request $req)
     {
-        // 先清除5分钟前的临时数据
+        /*// 先清除5分钟前的临时数据
         AuthTmp::where('overtime','<',time())->delete();
         // 先判断是否已经失效
         $sid = $req->sid;
@@ -74,19 +75,28 @@ class WxController extends BaseController
         {
             return redirect('oauth/wxlogin')->with('message','二维码已失效，请刷新页面重试！');
         }
+        // AuthTmp::where('auth_id',$sid)->update(['openid'=>$user->id]);
+        */
         // 正常，更新临时数据
         $user = Socialite::driver('wechat')->user();
-        AuthTmp::where('auth_id',$sid)->update(['openid'=>$user->id]);
         // 查有没有openid，没有注册
-        if (is_null(User::where('openid',$user->id)->where('status',1)->first())) {
-            User::create(['openid'=>$user->id,'nickname'=>$user->name]);
+        if (is_null(User::where('openid',$user->id)->where('status',1)->orderBy('id','asc')->first())) {
+            // 如果已经登陆，即为绑定
+            if (session()->has('member')) {
+                User::where('id',session('member')->id)->update(['openid'=>$user->id]);
+            }
+            else
+            {
+                User::create(['openid'=>$user->id,'nickname'=>$user->name]);
+            }
         }
-        else
+
+        /*else
         {
-            User::where('openid',$user->id)->update(['nickname'=>$user->name]);   
-        }
+            User::where('openid',$user->id)->update(['nickname'=>$user->name]);
+        }*/
         // 实现登陆功能
-        $user = User::where('status',1)->where('openid',$user->id)->first();
+        $user = User::where('status',1)->where('openid',$user->id)->orderBy('id','asc')->first();
         User::where('id',$user->id)->update(['last_ip'=>$req->ip(),'last_time'=>Carbon::now()]);
         session()->put('member',$user);
         // 更新购物车

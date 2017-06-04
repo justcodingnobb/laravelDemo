@@ -16,9 +16,9 @@ return [
     /*
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
-    'app_id'  => 'wx1bb03278d5d74909',         // AppID
-    'secret'  => 'd8f9f0b33a89b1b78038c9fbe9b9d29a',     // AppSecret
-    'token'   => 'ddd222',          // Token
+    'app_id'  => 'wx0845c4b247acd58c',         // AppID
+    'secret'  => 'c68b97056e850850292c810fe375976c',     // AppSecret
+    'token'   => 'xyshop2017@',          // Token
     'aes_key' => '',                    // EncodingAESKey
 
     /**

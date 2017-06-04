@@ -55,7 +55,6 @@ class BaseController extends Controller
         try {
             DB::transaction(function() use($order){
                 Order::where('id',$order->id)->update(['paystatus'=>1]);
-                User::where('id',$order->user_id)->decrement('user_money',$order->total_prices);
                 User::where('id',$order->user_id)->increment('points',$order->total_prices);
                 // 减库存，先找出来所有的商品ID与商品属性ID
                 $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','format_id','nums')->get();

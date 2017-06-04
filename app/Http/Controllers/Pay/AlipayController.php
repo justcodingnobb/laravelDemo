@@ -42,7 +42,7 @@ class AlipayController extends BaseController
                  */
                 // 库存计算
                 $oid = $resData['out_trade_no'];
-                $order = Order::findOrFail($oid);
+                $order = Order::where('order_id',$oid)->first();
                 $this->updateStore($order);
                 Storage::prepend('alipay.log',json_encode($resData));
                 die('success'); //The notify response should be 'success' only

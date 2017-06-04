@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"bg",
+				"bg-primary \tBootstrap 3 Class"
+			],
+			[
+				"return",
+				"return"
+			],
+			[
+				"json",
+				"json_decode\t(PayController.php)"
+			],
+			[
+				"retur",
+				"return"
+			],
+			[
 				"cont",
 				"contents\t.contents()"
 			],
@@ -14,10 +30,6 @@
 			[
 				"res",
 				"response"
-			],
-			[
-				"return",
-				"returnUrl"
 			],
 			[
 				"for",
@@ -280,10 +292,6 @@
 				"attr_ids"
 			],
 			[
-				"json",
-				"json_encode"
-			],
-			[
 				"this",
 				"this\t$(this)"
 			],
@@ -506,14 +514,6 @@
 			[
 				"ish5",
 				"ish5=1"
-			],
-			[
-				"conte",
-				"content"
-			],
-			[
-				"chil",
-				"childspecial"
 			]
 		]
 	},
@@ -740,13 +740,36 @@
 		"/F/wwwroot/jxf",
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
+		"/F/wwwroot/jxf/app/Http/Controllers",
+		"/F/wwwroot/jxf/app/Http/Controllers/Auth",
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay",
+		"/F/wwwroot/jxf/public/statics/common",
 		"/F/wwwroot/jxf/resources",
-		"/F/wwwroot/jxf/resources/views",
-		"/F/wwwroot/jxf/resources/views/admin",
-		"/F/wwwroot/jxf/resources/views/admin/good"
+		"/F/wwwroot/jxf/resources/views"
 	],
 	"file_history":
 	[
+		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/wxpay.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/weixin.log",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
+		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/A63D38CD_edit.tmp/wxpay.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Auth/WxController.php",
+		"/F/wwwroot/jxf/config/wechat.php",
+		"/F/wwwroot/jxf/config/socialite.php",
+		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
+		"/F/wwwroot/index.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/B21A646D_edit.tmp/wechat.log",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/38973D84_edit.tmp/MP_verify_CYMxtYRg0jliZQ5N.txt",
+		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/F/希夷/康顺/康顺.txt",
+		"/F/wwwroot/lsf/composer.json",
+		"/F/希夷/懂秘帮/需求/20170602.txt",
 		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/.env",
@@ -764,7 +787,6 @@
 		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
 		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/tuan/add_old.blade.php",
-		"/F/希夷/懂秘帮/需求/20170602.txt",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/62CE2F3F_edit.tmp/.env",
 		"/F/wwwroot/jxf/resources/views/admin/user/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Requests/AdminRequest.php",
@@ -773,18 +795,13 @@
 		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/1CBA4D58_edit.tmp/Kernel.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/4263E4DB_edit.tmp/Meihuas.php",
-		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController11.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/1B09E198_edit.tmp/Kernel.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
 		"/F/wwwroot/jxf/sftp-config.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/0BDE70D5_edit.tmp/Meihuas.php",
-		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/jxf/public/.htaccess",
 		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/D/www/xyshop/readme.md",
 		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
 		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
@@ -859,22 +876,7 @@
 		"/D/www/xyshop/resources/views/default/banner.blade.php",
 		"/D/www/xyshop/resources/views/default/goodcate.blade.php",
 		"/D/www/xyshop/resources/views/default/goodlist.blade.php",
-		"/D/www/xyshop/resources/views/default/list.blade.php",
-		"/D/www/xyshop/resources/views/default/list_pro.blade.php",
-		"/D/www/xyshop/resources/views/default/lyhq.blade.php",
-		"/D/www/xyshop/resources/views/default/myyhq.blade.php",
-		"/D/www/xyshop/resources/views/default/page.blade.php",
-		"/D/www/xyshop/resources/views/default/post.blade.php",
-		"/D/www/xyshop/resources/views/default/yhq.blade.php",
-		"/D/www/xyshop/app/Http/Requests/User/AddressRequest.php",
-		"/D/www/xyshop/app/Http/Middleware/Backurl.php",
-		"/D/www/xyshop/resources/views/user/usercenter.blade.php",
-		"/D/www/xyshop/app/Models/YhqUser.php",
-		"/D/www/xyshop/app/Models/Youhuiquan.php",
-		"/D/www/xyshop/app/Http/Middleware/Homeurl.php",
-		"/D/www/xyshop/resources/views/default/layout.blade.php",
-		"/D/www/xyshop/.gitignore",
-		"/D/www/xyshop/app/Http/Controllers/HomeController.php"
+		"/D/www/xyshop/resources/views/default/list.blade.php"
 	],
 	"find":
 	{
@@ -970,6 +972,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}}",
+			"{{",
+			"'",
+			"view",
+			"config",
+			"WxController",
+			"jxf",
+			"192.168.3.12",
 			"btn_huodong",
 			"dosubmit",
 			"myModal",
@@ -1089,15 +1099,7 @@
 			"huodong",
 			"Huodong",
 			"huodong/",
-			"活动",
-			"image3",
-			"aocomm",
-			"config(",
-			"$req->sid",
-			"wxlogin",
-			"Overtrue\\LaravelSocialite\\ServiceProvider",
-			"Wx\\",
-			"openid"
+			"活动"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1105,6 +1107,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"192.168.0.104",
 			"container-fluid",
 			"xyshop/",
 			"xyshop",
@@ -1258,6 +1261,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"wxpay.b",
+				"resources\\views\\default\\wxpay.blade.php"
+			],
 			[
 				"address.bl",
 				"resources\\views\\user\\address.blade.php"
@@ -1765,10 +1772,6 @@
 			[
 				"specialcon",
 				"app\\Http\\Controllers\\Admin\\SpecialController.php"
-			],
-			[
-				"show1",
-				"resources\\views\\article\\show1.blade.php"
 			]
 		],
 		"width": 0.0

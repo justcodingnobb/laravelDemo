@@ -38,4 +38,7 @@
 			</div>
 		</form>
 	</div>
+	<div class="container mt20">
+		<a href="{{ url('oauth/wx') }}" class="btn btn-success">微信登录</a>
+	</div>
 @endsection

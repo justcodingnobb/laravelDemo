@@ -13,6 +13,7 @@
 		<a href="{{ url('user/order') }}" class="btn btn-sm btn-primary">我的订单</a>
 		<a href="{{ url('user/yhq') }}" class="btn btn-sm btn-success">优惠券</a>
 		<a href="{{ url('user/address') }}" class="btn btn-sm btn-info">收货地址</a>
+		<a href="{{ url('oauth/wx') }}" class="btn btn-sm btn-warning">绑定微信号</a>
 	</div>
 
 	<div class="container mt20">
