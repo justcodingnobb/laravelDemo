@@ -57,7 +57,6 @@
 				<!-- 加购物车 -->
 				<div class="row mt10">
 						<input type="hidden" value="{{ $info->id }}" name="gid">
-						<input type="hidden" value="{{ $info->price }}" name="gp">
 						<div class="col-xs-6 col-sm-2"><input type="number" min="0" value="1" class="form-control" name="num"></div>
 						<div class="col-xs-6 col-sm-2"><button class="addcart btn btn-sm btn-success">加入购物车</button></div>
 				</div>

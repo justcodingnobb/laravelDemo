@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"tmp_f",
+				"tmp_format"
+			],
+			[
+				"tmp_for",
+				"tmp_format_name"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"pric",
+				"price"
+			],
+			[
 				"bg",
 				"bg-primary \tBootstrap 3 Class"
 			],
@@ -30,10 +46,6 @@
 			[
 				"res",
 				"response"
-			],
-			[
-				"for",
-				"format"
 			],
 			[
 				"goods",
@@ -74,10 +86,6 @@
 			[
 				"total",
 				"total_prices\t(paylist.blade.php)"
-			],
-			[
-				"pric",
-				"prices"
 			],
 			[
 				"btn-de",
@@ -506,14 +514,6 @@
 			[
 				"cqq",
 				"cqq1"
-			],
-			[
-				"start",
-				"starttime"
-			],
-			[
-				"ish5",
-				"ish5=1"
 			]
 		]
 	},
@@ -741,27 +741,33 @@
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
 		"/F/wwwroot/jxf/app/Http/Controllers",
-		"/F/wwwroot/jxf/app/Http/Controllers/Auth",
-		"/F/wwwroot/jxf/app/Http/Controllers/Pay",
-		"/F/wwwroot/jxf/public/statics/common",
-		"/F/wwwroot/jxf/resources",
 		"/F/wwwroot/jxf/resources/views"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/app/Http/Requests/GoodRequest.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Auth/WxController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/config/wechat.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
+		"/F/wwwroot/jxf/config/alipay.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay/AlipayController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/wxpay.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/weixin.log",
-		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
 		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/A63D38CD_edit.tmp/wxpay.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Auth/WxController.php",
-		"/F/wwwroot/jxf/config/wechat.php",
 		"/F/wwwroot/jxf/config/socialite.php",
 		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/index.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/B21A646D_edit.tmp/wechat.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/38973D84_edit.tmp/MP_verify_CYMxtYRg0jliZQ5N.txt",
@@ -771,7 +777,6 @@
 		"/F/wwwroot/lsf/composer.json",
 		"/F/希夷/懂秘帮/需求/20170602.txt",
 		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
-		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/.env",
 		"/F/wwwroot/jxf/resources/views/admin/goodcate/index.blade.php",
 		"/F/wwwroot/dmb/config/app.php",
@@ -797,7 +802,6 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/4263E4DB_edit.tmp/Meihuas.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController11.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/1B09E198_edit.tmp/Kernel.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
 		"/F/wwwroot/jxf/sftp-config.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/0BDE70D5_edit.tmp/Meihuas.php",
 		"/F/wwwroot/jxf/public/.htaccess",
@@ -868,15 +872,7 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/recharge.log",
 		"/D/www/dmb/sql/20170523.md",
 		"/D/www/xyshop/resources/views/admin/good/add.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/edit.blade.php",
-		"/D/www/xyshop/database/migrations/2017_05_20_032332_add_weight_to_goods.php",
-		"/D/www/xyshop/database/migrations/2017_05_20_031410_add_aid_yhq_to_order.php",
-		"/D/www/xyshop/public/statics/home/css/home.scss",
-		"/D/www/xyshop/resources/views/default/addcart.blade.php",
-		"/D/www/xyshop/resources/views/default/banner.blade.php",
-		"/D/www/xyshop/resources/views/default/goodcate.blade.php",
-		"/D/www/xyshop/resources/views/default/goodlist.blade.php",
-		"/D/www/xyshop/resources/views/default/list.blade.php"
+		"/D/www/xyshop/resources/views/admin/good/edit.blade.php"
 	],
 	"find":
 	{
@@ -972,6 +968,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"tmp_format_name",
+			"tmp_format",
+			"value['",
 			"}}",
 			"{{",
 			"'",
@@ -1096,10 +1095,7 @@
 			"huodong.",
 			"huodong",
 			"活动",
-			"huodong",
-			"Huodong",
-			"huodong/",
-			"活动"
+			"huodong"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1262,6 +1258,22 @@
 		"selected_items":
 		[
 			[
+				"cart.b",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"good.bl",
+				"resources\\views\\default\\good.blade.php"
+			],
+			[
+				"order.bl",
+				"resources\\views\\default\\order.blade.php"
+			],
+			[
+				"user/center",
+				"resources\\views\\user\\usercenter.blade.php"
+			],
+			[
 				"wxpay.b",
 				"resources\\views\\default\\wxpay.blade.php"
 			],
@@ -1276,10 +1288,6 @@
 			[
 				"ziti/index",
 				"resources\\views\\admin\\ziti\\index.blade.php"
-			],
-			[
-				"order.bl",
-				"resources\\views\\default\\order.blade.php"
 			],
 			[
 				"cart.bl",
@@ -1760,18 +1768,6 @@
 			[
 				"hot/",
 				"resources\\views\\admin\\hot\\index.blade.php"
-			],
-			[
-				"hot/ind",
-				"resources\\views\\admin\\hot\\index.blade.php"
-			],
-			[
-				"special/ed",
-				"resources\\views\\admin\\special\\edit.blade.php"
-			],
-			[
-				"specialcon",
-				"app\\Http\\Controllers\\Admin\\SpecialController.php"
 			]
 		],
 		"width": 0.0

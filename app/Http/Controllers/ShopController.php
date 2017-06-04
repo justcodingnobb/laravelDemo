@@ -141,7 +141,7 @@ class ShopController extends BaseController
             $total_prices += $tmp_total_price;
             // 如果属性值不为0，查属性值
             if ($v['format_id']) {
-                $tmp_format = $formats->where('id',$value['format_id'])->first();
+                $tmp_format = $formats->where('id',$v['format_id'])->first();
                 if (is_null($tmp_format)) {
                     $tmp_format = '';
                     $tmp_format_name = '';
@@ -149,7 +149,12 @@ class ShopController extends BaseController
                 else
                 {
                     $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
-                    $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                    $tmp_format_tmp = explode('.',$tmp_format);
+                    $tmp_format_name = $attrs->whereIn('id',$tmp_format_tmp)->pluck('value')->toArray();
+                    // 添加上单位
+                    foreach ($tmp_format_name as $kk => $vv) {
+                        $tmp_format_name[$kk] = $vv.$attrs->where('id',$tmp_format_tmp[$kk])->first()->unit;
+                    }
                 }
                 $goodlists[$k]['format'] = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
             }
@@ -251,7 +256,12 @@ class ShopController extends BaseController
                     else
                     {
                         $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
-                        $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
+                        $tmp_format_tmp = explode('.',$tmp_format);
+                        $tmp_format_name = $attrs->whereIn('id',$tmp_format_tmp)->pluck('value')->toArray();
+                        // 添加上单位
+                        foreach ($tmp_format_name as $kk => $vv) {
+                            $tmp_format_name[$kk] = $vv.$attrs->where('id',$tmp_format_tmp[$kk])->first()->unit;
+                        }
                     }
                     $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
                 }
