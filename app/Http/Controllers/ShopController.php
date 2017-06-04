@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Http\Controllers\BaseController;
+use App\Models\Ad;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\CateAttr;
@@ -45,13 +46,17 @@ class ShopController extends BaseController
             $childid = explode(',',$info->arrchildid);
             unset($childid[0]);
             $subcate = GoodCate::whereIn('id',$childid)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
-            return view($this->theme.'.goodcate',compact('info','allcate','subcate'));
+            // 找出来广告们
+            $info->pid = 2;
+            $ad = Ad::where('pos_id',8)->where('status',1)->where('del',1)->get()->random();
+            return view($this->theme.'.goodcate',compact('info','allcate','subcate','ad'));
         }
         else
         {
+            $info->pid = 2;
             $sort = isset($req->sort) ? $req->sort : 'sort';
             $sc = isset($req->sc) ? $req->sc : 'asc';
-            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->paginate(21);
+            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->paginate(20);
             return view($this->theme.'.goodlist',compact('info','list'));
         }
     }
@@ -62,7 +67,6 @@ class ShopController extends BaseController
     {
 
         $info = Good::with(['goodcate','format'])->findOrFail($id);
-        $info->pid = $info->goodcate->parentid == 0 ? $info->catid : $info->goodcate->parentid;
         // 有属性信息的时候，优先查属性信息
         $formats = GoodFormat::where('good_id',$id)->where('status',1)->orderBy('id','asc')->get();
         // 找出属性来，循环找，如果是0，则忽略
@@ -109,6 +113,7 @@ class ShopController extends BaseController
             $tmp_value = $tmp_formats->whereIn('id',explode('.',$tmp_ids))->pluck('value')->toArray();
             $formats[$k]['value'] = implode('-',$tmp_value);
         }
+        $info->pid = 0;
         return view($this->theme.'.good',compact('info','formats','good_format'));
     }
     // 购物车

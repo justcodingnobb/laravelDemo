@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>选择支付方式-希夷SHOP</title>
+    <title>选择支付方式-吉鲜商城</title>
 @endsection
 
 

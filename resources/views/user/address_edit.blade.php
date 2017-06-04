@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>添加收货地址-希夷SHOP</title>
+    <title>添加收货地址-吉鲜商城</title>
 @endsection
 
 @section('banner')

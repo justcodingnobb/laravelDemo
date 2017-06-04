@@ -21,16 +21,19 @@
 			</ul>
 		</div>
 
-		<div class="col-xs-9">
+		<div class="col-xs-9 goodcate_list">
+			<div class="good_cate_ad mt10">
+				<a href="{{ $ad->url }}"><img src="{{ $ad->thumb }}" class="img-responsive" alt="{{ $ad->title }}"></a>
+			</div>
+			<h3 class="goodcate_h3 mt10">{{ $info->name }}</h3>
 			<div class="row subcate">
 				@foreach($subcate as $l)
-				<div class="col-xs-6 col-sm-4 subcate_div">
+				<div class="col-xs-4 subcate_div">
 					<a href="{{ url('/shop/goodcate',['id'=>$l->id]) }}"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
-					<a href="{{ url('/shop/goodcate',['id'=>$l->id]) }}" class="db mt5 text-center">{{ $l->name }}</a>
+					<a href="{{ url('/shop/goodcate',['id'=>$l->id]) }}" class="db subcate_name text-center">{{ $l->name }}</a>
 				</div>
 				@endforeach
 			</div>
-
 		</div>
 
 

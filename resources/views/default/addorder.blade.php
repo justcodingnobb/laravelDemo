@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>提交订单成功-希夷SHOP</title>
+    <title>提交订单成功-吉鲜商城</title>
 @endsection
 
 

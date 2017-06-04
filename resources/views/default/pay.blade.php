@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>微信支付-希夷SHOP</title>
+    <title>微信支付-吉鲜商城</title>
 @endsection
 
 @section('banner')

@@ -28,10 +28,22 @@
     <!-- 导航 -->
     <nav class="navbar navbar-fixed-bottom menu_main">
         <ul class="container-fluid class">
-            <li><a href="{{ url('/') }}">商城首页</a></li>
-            <li><a href="{{ url('/shop/goodcate') }}">商品分类</a></li>
-            <li><a href="{{ url('/shop/cart') }}">购物车</a></li>
-            <li><a href="{{ url('/user/center') }}">用户中心</a></li>
+            <li><a href="{{ url('/') }}"@if($info->pid == 0) class="active" @endif>
+                <span class="glyphicon glyphicon-home"></span>
+                <p>首页</p>
+            </a></li>
+            <li><a href="{{ url('/shop/goodcate') }}"@if($info->pid == 2) class="active" @endif>
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <p>分类</p>
+            </a></li>
+            <li><a href="{{ url('/shop/cart') }}"@if($info->pid == 3) class="active" @endif>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <p>购物车</p>
+            </a></li>
+            <li><a href="{{ url('/user/center') }}"@if($info->pid == 4) class="active" @endif>
+                <span class="glyphicon glyphicon-user"></span>
+                <p>用户中心</p>
+            </a></li>
         </ul>
     </nav>
     <!-- footer -->
@@ -59,8 +71,8 @@
     </script>
     <script src="{{ $sites['static']}}home/js/com.js"></script>
 
-    <script id="__bs_script__">
-        document.write("<script async src='http://www.xyshop.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.xyshop.com", location.hostname));
-    </script>
+   <!--  <script id="__bs_script__">
+       document.write("<script async src='http://www.xyshop.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.xyshop.com", location.hostname));
+   </script> -->
 </body>
 </html>

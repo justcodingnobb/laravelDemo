@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>希夷管理中心</title>
+    <title>吉鲜商城管理中心</title>
     <meta name="author" content="李潇喃：www.www.xi-yi.ren" />
     <!-- IE最新兼容 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@
 <body class="box">
     <div class="mainbox">
         <header class="top clearfix overh">
-            <h1 class="logo overh">希夷CMF</h1>
+            <h1 class="logo overh">吉鲜商城</h1>
             <nav class="menu clearfix overh">
                 <ul id="mainmenu" class="clearfix">
                 @foreach($mainmenu as $mm)
@@ -48,7 +48,7 @@
         </section>
         <footer class="copyright clearfix">
             感谢使用
-            <a href="http://www.xi-yi.ren/" target="_blank" class="color_f60">希夷CMF</a>
+            <a href="http://www.xi-yi.ren/" target="_blank" class="color_f60">XYSHOP</a>
             <span class="vieison f_r">V 1.0</span>
             感谢优秀框架作者
             <a href="https://github.com/laravel/laravel" target="_blank">Laravel</a>

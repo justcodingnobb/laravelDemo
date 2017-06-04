@@ -11,7 +11,7 @@ class TagService
     // 广告
     public function ad($pos_id = 0,$num = 10)
     {
-        $ad = Ad::where('pos_id',$pos_id)->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
+        $ad = Ad::where('pos_id',$pos_id)->where('status',1)->where('del',1)->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
         return $ad;
     }
 

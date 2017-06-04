@@ -14,11 +14,7 @@
 <!-- 内容 -->
 @section('content')
 
-<section class="container-fluid mt20">
-	<ol class="breadcrumb">
-        <li><a href="/">首页</a></li>
-        {{ App::make('tag')->goodcatpos($info->cate_id) }}
-    </ol>
+<section class="container-fluid">
     <div class="good_top">
 		<div class="good_show row">
 			<a href="{{ url('shop/good',['id'=>$info->id]) }}" class="col-xs-12 col-sm-3"><img src="{{ $info->thumb }}" class="img-responsive" alt="{{ $info->title }}"></a>

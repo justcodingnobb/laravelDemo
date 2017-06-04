@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"bdr",
+				"bdr\tborder-right"
+			],
+			[
+				"col-xs",
+				"col-xs-7\t(home.blade.php)"
+			],
+			[
+				"db",
+				"d:b\tdisplay:block"
+			],
+			[
 				"tmp_f",
 				"tmp_format"
 			],
@@ -238,10 +250,6 @@
 			[
 				"hidd",
 				"hidden-sm \tBootstrap 3 Class"
-			],
-			[
-				"bdr",
-				"bdrz\tborder-radius"
 			],
 			[
 				"as",
@@ -506,14 +514,6 @@
 			[
 				"favo",
 				"favorites"
-			],
-			[
-				"is_a",
-				"is_array"
-			],
-			[
-				"cqq",
-				"cqq1"
 			]
 		]
 	},
@@ -544,9 +544,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "move",
+		"last_filter": "save",
 		"selected_items":
 		[
+			[
+				"save",
+				"File: Save All"
+			],
 			[
 				"move",
 				"File: Move"
@@ -562,10 +566,6 @@
 			[
 				"close",
 				"File: Close All"
-			],
-			[
-				"save",
-				"File: Save All"
 			],
 			[
 				"remov",
@@ -708,7 +708,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 856.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -741,21 +741,60 @@
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
 		"/F/wwwroot/jxf/app/Http/Controllers",
-		"/F/wwwroot/jxf/resources/views"
+		"/F/wwwroot/jxf/public",
+		"/F/wwwroot/jxf/public/statics",
+		"/F/wwwroot/jxf/resources",
+		"/F/wwwroot/jxf/resources/views",
+		"/F/wwwroot/jxf/resources/views/default"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/public/statics/home/css/home.css",
+		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
-		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
+		"/F/wwwroot/jxf/app/Services/TagService.php",
+		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
+		"/F/wwwroot/jxf/.env",
+		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/addcart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/pay.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/paylist.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/addcart.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/addorder.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/pay.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/paylist.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/register.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/wx/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address_add.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address_edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/register.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/resources/views/wx/login.blade.php",
+		"/F/wwwroot/jxf/sftp-config.json",
+		"/F/wwwroot/jxf/xyshop.sublime-project",
+		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
+		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/app/Http/Requests/GoodRequest.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Auth/WxController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
-		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
 		"/F/wwwroot/jxf/config/wechat.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/jxf/config/alipay.php",
@@ -767,7 +806,6 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/A63D38CD_edit.tmp/wxpay.blade.php",
 		"/F/wwwroot/jxf/routes/web.php",
 		"/F/wwwroot/jxf/config/socialite.php",
-		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
 		"/F/wwwroot/index.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/B21A646D_edit.tmp/wechat.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/38973D84_edit.tmp/MP_verify_CYMxtYRg0jliZQ5N.txt",
@@ -776,33 +814,27 @@
 		"/F/希夷/康顺/康顺.txt",
 		"/F/wwwroot/lsf/composer.json",
 		"/F/希夷/懂秘帮/需求/20170602.txt",
-		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
-		"/F/wwwroot/jxf/.env",
 		"/F/wwwroot/jxf/resources/views/admin/goodcate/index.blade.php",
 		"/F/wwwroot/dmb/config/app.php",
 		"/F/wwwroot/laravelDemo/config/app.php",
 		"/F/wwwroot/jxf/config/app.php",
 		"/F/wwwroot/dzys/config/app.php",
-		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/manzeng/add.blade.php",
 		"/F/scss/bootstrap/modal-form.html",
 		"/F/wwwroot/jxf/app/Http/Middleware/VerifyCsrfToken.php",
 		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/说明.txt",
 		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
-		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/tuan/add_old.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/62CE2F3F_edit.tmp/.env",
 		"/F/wwwroot/jxf/resources/views/admin/user/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Requests/AdminRequest.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArticleController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArtsController.php",
-		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/1CBA4D58_edit.tmp/Kernel.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/4263E4DB_edit.tmp/Meihuas.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController11.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/1B09E198_edit.tmp/Kernel.php",
-		"/F/wwwroot/jxf/sftp-config.json",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/0BDE70D5_edit.tmp/Meihuas.php",
 		"/F/wwwroot/jxf/public/.htaccess",
 		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
@@ -844,35 +876,7 @@
 		"/D/www/xyshop/resources/views/admin/order/index.blade.php",
 		"/D/www/xyshop/app/Http/Controllers/PayController.php",
 		"/D/www/xyshop/app/Http/Controllers/BaseController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/WxpayController.php",
-		"/D/www/xyshop/resources/views/admin/goodcate/index.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/CateController.php",
-		"/C/Users/Administrator/Downloads/secret_key_tools_RSA_win/rsa_private_key.pem",
-		"/C/Users/Administrator/Downloads/secret_key_tools_RSA_win/rsa_public_key.pem",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/index.php",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/wappay/pay.php",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/config.php",
-		"/D/www/xyshop/vendor/omnipay/common/src/Omnipay/Common/Message/AbstractRequest.php",
-		"/D/www/xyshop/.env",
-		"/D/www/xyshop/resources/views/default/paylist.blade.php",
-		"/D/www/xyshop/resources/views/default/pay.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/UserController.php",
-		"/D/www/xyshop/resources/views/admin/pay/yue.blade.php",
-		"/D/www/xyshop/resources/views/admin/member/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/member/chong.blade.php",
-		"/D/www/xyshop/public/statics/home/js/com.js",
-		"/D/www/xyshop/resources/views/default/addorder.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/YhqController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/PublicController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/4A84D22F_edit.tmp/.env.example",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/4A84D22F_edit.tmp/.env",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/goopay.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/recharge.log",
-		"/D/www/dmb/sql/20170523.md",
-		"/D/www/xyshop/resources/views/admin/good/add.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/edit.blade.php"
+		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php"
 	],
 	"find":
 	{
@@ -883,6 +887,8 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\jxf\\resources\\views\\admin",
+			"F:\\wwwroot\\jxf\\resources",
 			"D:\\www\\xyshop\\resources\\views\\default",
 			"F:\\wwwroot\\xyshop\\vendor\\overtrue\\laravel-wechat\\src",
 			"F:\\wwwroot\\xyshop\\app\\Http",
@@ -968,6 +974,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pid",
+			"<a href=\"{{ url('/shop/good',['id'=>$l->id]) }}\" class=\"good_thumb\"><img src=\"{{ $l->thumb }}\" class=\"img-responsive\" alt=\"\"></a>\n\t\t\t\t<div class=\"good_info clearfix\">\n\t\t\t\t\t<h4 class=\"good_title\"><a href=\"{{ url('/shop/good',['id'=>$l->id]) }}\">{{ $l->title }}</a></h4>\n\t\t\t\t\t<strong class=\"good_pric color_2\">￥ {{ $l->price }}</strong>\n\t\t\t\t</div>",
+			"希夷CMF",
+			"希夷SHOP",
+			"color_l",
+			"good_pric",
+			"good_li",
+			"col-xs-4 col-sm-3",
+			"App::make",
+			"goodcate",
+			"<icon",
+			"icon",
+			"menu_main",
 			"tmp_format_name",
 			"tmp_format",
 			"value['",
@@ -1082,20 +1101,7 @@
 			"good",
 			"youhuiquan",
 			"Youhuiquan",
-			"youhuiquan.",
-			"优惠券",
-			"Youhuiquan",
-			"youhuiquan/",
-			"lessprice",
-			"old('data.",
-			"price",
-			"title",
-			"Huodong",
-			"huodong/",
-			"huodong.",
-			"huodong",
-			"活动",
-			"huodong"
+			"youhuiquan."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1103,6 +1109,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"吉鲜商城",
+			"app",
 			"192.168.0.104",
 			"container-fluid",
 			"xyshop/",
@@ -1258,12 +1266,20 @@
 		"selected_items":
 		[
 			[
-				"cart.b",
-				"resources\\views\\default\\cart.blade.php"
-			],
-			[
 				"good.bl",
 				"resources\\views\\default\\good.blade.php"
+			],
+			[
+				"home.css",
+				"public\\statics\\home\\css\\home.css"
+			],
+			[
+				"home.scss",
+				"public\\statics\\home\\css\\home.scss"
+			],
+			[
+				"cart.b",
+				"resources\\views\\default\\cart.blade.php"
 			],
 			[
 				"order.bl",
@@ -1760,14 +1776,6 @@
 			[
 				"app/add",
 				"resources\\views\\admin\\app\\add.blade.php"
-			],
-			[
-				"user/add",
-				"resources\\views\\admin\\user\\add.blade.php"
-			],
-			[
-				"hot/",
-				"resources\\views\\admin\\hot\\index.blade.php"
 			]
 		],
 		"width": 0.0

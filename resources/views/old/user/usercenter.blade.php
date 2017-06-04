@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>会员中心-希夷SHOP</title>
+    <title>会员中心-吉鲜商城</title>
 @endsection
 
 @section('banner')

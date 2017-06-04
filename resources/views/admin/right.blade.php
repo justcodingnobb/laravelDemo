@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>希夷CMF-右侧框架</title>
+    <title>吉鲜商城-右侧框架</title>
     <meta name="author" content="李潇喃：www.www.xi-yi.ren" />
     <!-- IE最新兼容 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,10 +30,11 @@
 
 <body>
     <div class="right_con">
-        
-        <div class="alert_top @if(session('message')) show @endif" style="display: none;">
+        @if(session('message'))
+        <div class="alert_top">
             {{ session('message') }}
         </div>
+        @endif
         
         <!-- 右侧标题 -->
         <div class="clearfix">

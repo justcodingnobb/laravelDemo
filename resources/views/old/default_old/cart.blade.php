@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>购物车-希夷SHOP</title>
+    <title>购物车-吉鲜商城</title>
 @endsection
 
 

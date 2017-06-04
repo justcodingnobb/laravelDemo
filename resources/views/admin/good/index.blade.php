@@ -180,7 +180,7 @@
 	                else
 	                {
 	                	$('#myModal').modal('hide');
-	                	$('.alert_top').html('添加成功！').slideDown(100).delay(1500).slideUp(300);
+	                	alert('添加成功');
 	                }
                 },
                 error: function(data){
