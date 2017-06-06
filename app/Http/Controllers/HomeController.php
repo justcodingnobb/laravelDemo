@@ -24,7 +24,7 @@ class HomeController extends BaseController
         $info = (object) ['title'=>cache('config')['title'],'keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
         $info->pid = 0;
         // 找出 新品来
-        $news = Good::where('isnew',1)->limit(12)->orderBy('sort','asc')->orderBy('id','desc')->get();
+        $news = Good::limit(12)->orderBy('sort','asc')->orderBy('id','desc')->get();
         return view($this->theme.'.home',compact('info','news'));
     }
     // 栏目
@@ -40,7 +40,7 @@ class HomeController extends BaseController
         $aside_name = $info->name;
         $tpl = $info->theme;
         if ($info->type == 0) {
-            $list = Article::whereIn('catid',explode(',', $info->arrchildid))->orderBy('id','desc')->paginate(20);
+            $list = Article::whereIn('catid',explode(',', $info->arrchildid))->orderBy('id','desc')->simplePaginate(20);
             return view($this->theme.'.'.$tpl,compact('info','list','aside_name'));
         }
         else

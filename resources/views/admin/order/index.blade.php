@@ -13,6 +13,10 @@
 			<option value="2">完成</option>
 			<option value="3">申请退货</option>
 		</select>
+		<select name="ziti" id="ziti" class="form-control">
+			<option value="0">不自提</option>
+			<option value="1">自提</option>
+		</select>
 		开始时间：
 		<input name="starttime" class="form-control" id="laydate">
 		结束时间：
@@ -53,11 +57,14 @@
         	@endif
         </td>
     	<td>
-    	@if($o->orderstatus != 0)
+    	@if($o->orderstatus == 1)
 		@if(App::make('com')->ifCan('order-del'))
     	<a href="{{ url('/xyshop/order/del',['id'=>$o->id]) }}" class="btn btn-sm btn-danger confirm">关闭</a> 
 		@endif
-		@if(App::make('com')->ifCan('order-ship'))
+		@if(App::make('com')->ifCan('order-ziti') && $o->ziti != 0)
+    	<a href="{{ url('/xyshop/order/ziti',['id'=>$o->id]) }}" class="btn btn-sm btn-warning confirm">已自提</a>
+		@endif
+		@if(App::make('com')->ifCan('order-ship') && $o->ziti == 0)
     	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success confirm">发货</a>
 		@endif
 		@endif
@@ -105,7 +112,7 @@
 		@endforeach
 </table>
 <div class="pages">
-    {!! $orders->appends(['q'=>$q,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
+    {!! $orders->appends(['q'=>$q,'status'=>$status,'ziti'=>$ziti,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 <script>
 	laydate({

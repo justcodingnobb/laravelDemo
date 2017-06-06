@@ -54,8 +54,8 @@
 			<td><input type="text" min="0" name="sort[{{$a->id}}]" value="{{ $a->sort }}" class="form-control input-listorder"></td>
 			<td>{{ $a->id }}</td>
 			<td>
-				@if($a->isnew == 1)
-				<span class="text-danger">[新品]</span>
+				@if($a->tags == '')
+				<span class="text-danger">{{ $a->tags }}</span>
 				@endif
 				@if($a->isxs == 1)
 				<span class="text-primary">[限时]</span>

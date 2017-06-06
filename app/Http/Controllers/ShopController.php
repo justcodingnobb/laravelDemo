@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\Good\GoodCommentRequest;
 use App\Models\Ad;
 use App\Models\Address;
 use App\Models\Cart;
@@ -16,6 +17,7 @@ use App\Models\GoodFormat;
 use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
+use App\Models\Pay;
 use App\Models\User;
 use App\Models\YhqUser;
 use App\Models\Zitidian;
@@ -57,8 +59,25 @@ class ShopController extends BaseController
             $info->pid = 2;
             $sort = isset($req->sort) ? $req->sort : 'sort';
             $sc = isset($req->sc) ? $req->sc : 'asc';
-            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->paginate(20);
-            return view($this->theme.'.goodlist',compact('info','list'));
+            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->simplePaginate(20);
+            switch ($sort) {
+                case 'sales':
+                    $active = 2;
+                    break;
+
+                case 'id':
+                    $active = 3;
+                    break;
+
+                case 'price':
+                    $active = 4;
+                    break;
+                
+                default:
+                    $active = 1;
+                    break;
+            }
+            return view($this->theme.'.goodlist',compact('info','list','active'));
         }
     }
     /*
@@ -219,12 +238,12 @@ class ShopController extends BaseController
         // 事务
         DB::beginTransaction();
         try {
-            $oid = Order::create($order);
+            $order = Order::create($order);
             // 组合order_goods数组
             $order_goods = [];
             $clear_ids = [];
             foreach ($ids as $k => $v) {
-                $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$oid->id,'good_id'=>$v->good_id,'format_id'=>$v->format_id,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
+                $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$order->id,'good_id'=>$v->good_id,'format_id'=>$v->format_id,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
                 $clear_ids[] = $v->id;
             }
             // 插入
@@ -234,8 +253,10 @@ class ShopController extends BaseController
             // 清空购物车里的这几个产品
             Cart::whereIn('id',$clear_ids)->delete();
             $info = (object)['pid'=>3];
-            $oid = $oid->id;
-            return view($this->theme.'.addorder',compact('info','oid'));
+
+            $paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
+
+            return view($this->theme.'.addorder',compact('info','order','paylist'));
         } catch (\Exception $e) {
             // 出错回滚
             DB::rollBack();
@@ -247,33 +268,34 @@ class ShopController extends BaseController
     public function getOrder(Request $req,$status = 1)
     {
         $info = (object) ['pid'=>4];
-        // 找出订单
-        $where = [];
-        switch ($status) {
-            // 退货
-            case '5':
-                $where = ['orderstatus'=>3];
-                break;
-            // 待评价
-            case '4':
-                $where = ['orderstatus'=>2];
-                break;
-            // 待收货
-            case '3':
-                $where = ['paystatus'=>1,'shipstatus'=>1];
-                break;
-            // 待发货
-            case '2':
-                $where = ['paystatus'=>1,'shipstatus'=>0];
-                break;
-            // 待付款
-            default:
-                $where = ['paystatus'=>0];
-                break;
-        }
         $orders = Order::with(['good'=>function($q){
                     $q->with('good');
-                }])->where('user_id',session('member')->id)->where($where)->where('status',1)->orderBy('id','desc')->paginate(10);
+                }])->where('status',1)->where('user_id',session('member')->id)->where(function($q) use($status){
+                    // 找出订单
+                    switch ($status) {
+                        // 退货
+                        case '5':
+                            $q->where('paystatus',1)->where('orderstatus',3);
+                            break;
+                        // 待评价
+                        case '4':
+                            $q->whereIn('orderstatus',[2,4,0]);
+                            break;
+                        // 待收货
+                        case '3':
+                            $q->where('paystatus',1)->where('orderstatus',1)->where('shipstatus',1)->orWhere('ziti','!=',0);
+                            break;
+                        // 待发货
+                        case '2':
+                            $q->where(['paystatus'=>1,'shipstatus'=>0,'ziti'=>0,'orderstatus'=>1]);
+                            break;
+                        // 待付款
+                        default:
+                            $q->where(['paystatus'=>0,'orderstatus'=>1]);
+                            break;
+                    }
+                })->orderBy('id','desc')->simplePaginate(10);
+                // ->simplePaginate(10)
         $attrs = GoodAttr::get();
         $formats = GoodFormat::where('status',1)->get();
         // 缓存属性们
@@ -329,6 +351,28 @@ class ShopController extends BaseController
     {
         Order::where('id',$id)->update(['orderstatus'=>3]);
         return back()->with('message','退货申请已提交');
+    }
+    // 订单评价
+    public function getComment($oid = '',$gid = '')
+    {
+        $info = (object) ['pid'=>4];
+        $ref = session('homeurl');
+        return view($this->theme.'.good_comment',compact('info','gid','oid','ref'));
+    }
+    public function postComment(GoodCommentRequest $req,$oid = '',$gid = '')
+    {
+        GoodComment::create(['good_id'=>$gid,'user_id'=>session('member')->id,'title'=>$req->input('data.title'),'content'=>$req->input('data.content'),'score'=>$req->input('data.score')]);
+        OrderGood::where('good_id',$gid)->where('order_id',$oid)->update(['commentstatus'=>1]);
+        // 评价数+1
+        Good::where('id',$gid)->increment('commentnums');
+        return redirect($req->ref)->with('message','评价成功！');
+    }
+    // 订单评价
+    public function getShip($oid = '')
+    {
+        $info = (object) ['pid'=>4];
+        Order::where('id',$oid)->update(['orderstatus'=>2]);
+        return redirect('/user/order/4')->with('message','收货成功！');
     }
     // 添加购物车
     public function getAddcart(Request $req)

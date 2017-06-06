@@ -18,7 +18,7 @@
 		       },
 		       function(res){
 		            if(res.err_msg == 'get_brand_wcpay_request:ok') {
-		            	// alert('ok');
+		            	window.location.href = "{{ url('user/order/2') }}";
 		            }
 		            if(res.err_msg == 'get_brand_wcpay_request:fail')
 		            {

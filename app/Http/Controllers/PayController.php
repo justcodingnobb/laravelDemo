@@ -69,7 +69,7 @@ class PayController extends BaseController
     	$ip = $req->ip();
     	return $this->$pmod($oid,$pay,$ip);
     	/*if ($res) {
-    		return redirect('user/order')->with('message','支付成功！');
+    		return redirect('user/order/1')->with('message','支付成功！');
     	}
     	else
     	{
@@ -93,9 +93,9 @@ class PayController extends BaseController
 				// 库存计算
 				$this->updateStore($order);
     		});
-    		return redirect('user/order')->with('message','支付成功！');
+    		return redirect('user/order/2')->with('message','支付成功！');
     	} catch (\Exception $e) {
-    		return redirect('user/order')->with('message','支付失败，请稍后再试！');
+    		return redirect('user/order/1')->with('message','支付失败，请稍后再试！');
     	}
     }
 

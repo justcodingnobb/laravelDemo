@@ -98,6 +98,11 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
 Route::post('shop/addcart','ShopController@getAddcart');
 // 商城功能-登陆后的
 Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+    // 订单评价
+    Route::get('order/ship/{oid}','ShopController@getShip');
+    // 订单评价
+    Route::get('good/comment/{oid}/{gid}','ShopController@getComment');
+    Route::post('good/comment/{oid}/{gid}','ShopController@postComment');
     // 购物车
     Route::get('cart','ShopController@getCart');
     // 修改购物车数量
@@ -206,6 +211,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('order/ship/{id}', 'Admin\OrderController@getShip');
     Route::post('order/ship/{id}', 'Admin\OrderController@postShip');
     Route::get('order/tui/{id}', 'Admin\OrderController@getTui');
+    Route::get('order/ziti/{id}', 'Admin\OrderController@getZiti');
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');
     Route::get('pay/edit/{id}', 'Admin\PayController@getEdit');

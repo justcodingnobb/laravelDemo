@@ -35,8 +35,8 @@
 			<th width="80">排序</th>
 			<th width="50">ID</th>
 			<th>标题</th>
-			<th width="300">图片</th>
-			<th width="180">url</th>
+			<th width="200">图片</th>
+			<th width="150">url</th>
 			<th width="80">状态</th>
 			<th width="160">修改时间</th>
 			<th width="180">操作</th>
@@ -51,7 +51,7 @@
 			<td>
 				<span class="text-danger">[{{ cache('typeCache')[$a->pos_id]['name'] }}]</span> {{ $a->title }}
 			</td>
-			<td><img src="{{ $a->thumb }}" width="200" height="160" alt=""></td>
+			<td><img src="{{ $a->thumb }}" width="200" height="auto" alt=""></td>
 			<td><a href="{{ $a->url }}" target="_blank">{{ $a->url }}</a></td>
 			<td>
 				@if($a->status == 1)

@@ -91,17 +91,25 @@
 			@foreach(app('tag')->good(1127,6) as $l)
 			<div class="col-xs-6 pr">
 				<!-- 如果有标签，加标签 -->
+				@if($l->tags != '')
 				<div class="ps good_tag">
-					<img src="{{ $sites['static']}}home/images/hot.png" class="img-responsive" alt="">
+					{{ $l->tags }}
 				</div>
+				@endif
 
 				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
 				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp"><a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
+					<h4 class="good_title text-nowarp">
+					@if($l->isxs)
+					<span class="tags">限时</span>
+					@endif
+					@if($l->isxl)
+					<span class="tags">限量</span>
+					@endif
+					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
 					<div class="row">
 						<div class="col-xs-9">
 							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-							<p><span class="tags">限时</span><span class="tags">限量</span></p>
 						</div>
 						<div class="col-xs-3">
 							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
@@ -118,14 +126,25 @@
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
 			@foreach(app('tag')->good(1126,6) as $l)
-			<div class="col-xs-6">
+			<div class="col-xs-6 pr">
+				@if($l->tags != '')
+				<div class="ps good_tag">
+					{{ $l->tags }}
+				</div>
+				@endif
 				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
 				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp"><a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
+					<h4 class="good_title text-nowarp">
+					@if($l->isxs)
+					<span class="tags">限时</span>
+					@endif
+					@if($l->isxl)
+					<span class="tags">限量</span>
+					@endif
+					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
 					<div class="row">
 						<div class="col-xs-9">
 							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-							<p><span class="tags">限时</span><span class="tags">限量</span></p>
 						</div>
 						<div class="col-xs-3">
 							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
@@ -143,14 +162,25 @@
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
 			@foreach(app('tag')->good(1129,6) as $l)
-			<div class="col-xs-6">
+			<div class="col-xs-6 pr">
+				@if($l->tags != '')
+				<div class="ps good_tag">
+					{{ $l->tags }}
+				</div>
+				@endif
 				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
 				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp"><a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
+					<h4 class="good_title text-nowarp">
+					@if($l->isxs)
+					<span class="tags">限时</span>
+					@endif
+					@if($l->isxl)
+					<span class="tags">限量</span>
+					@endif
+					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
 					<div class="row">
 						<div class="col-xs-9">
 							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-							<p><span class="tags">限时</span><span class="tags">限量</span></p>
 						</div>
 						<div class="col-xs-3">
 							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
@@ -167,14 +197,25 @@
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
 			@foreach(app('tag')->good(1188,6) as $l)
-			<div class="col-xs-6">
+			<div class="col-xs-6 pr">
+				@if($l->tags != '')
+				<div class="ps good_tag">
+					{{ $l->tags }}
+				</div>
+				@endif
 				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
 				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp"><a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
+					<h4 class="good_title text-nowarp">
+					@if($l->isxs)
+					<span class="tags">限时</span>
+					@endif
+					@if($l->isxl)
+					<span class="tags">限量</span>
+					@endif
+					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
 					<div class="row">
 						<div class="col-xs-9">
 							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-							<p><span class="tags">限时</span><span class="tags">限量</span></p>
 						</div>
 						<div class="col-xs-3">
 							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">

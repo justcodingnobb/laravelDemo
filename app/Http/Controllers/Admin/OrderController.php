@@ -21,6 +21,7 @@ class OrderController extends Controller
     	$starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
+        $ziti = $req->input('ziti');
         // 找出订单
         $orders = Order::with(['good'=>function($q){
                     $q->with('good');
@@ -40,7 +41,15 @@ class OrderController extends Controller
 	                if ($status != '') {
 	                    $q->where('orderstatus',$status);
 	                }
-	            })->where('status',1)->orderBy('id','desc')->paginate(10);
+	            })->where(function($q) use($ziti){
+                    if ($ziti) {
+                        $q->where('ziti','!=',0);
+                    }
+                    else
+                    {
+                        $q->where('ziti',0);
+                    }
+                })->where('status',1)->orderBy('id','desc')->paginate(10);
         // 缓存属性们
         $attrs = GoodAttr::get();
         $formats = GoodFormat::where('status',1)->get();
@@ -70,13 +79,19 @@ class OrderController extends Controller
                 $value->format = $good_format;
             }
         }
-        return view('admin.order.index',compact('title','orders','q','status','starttime','endtime'));
+        return view('admin.order.index',compact('title','orders','q','status','starttime','endtime','ziti'));
     }
     // 关闭
     public function getDel($id = '')
     {
     	Order::where('id',$id)->update(['orderstatus'=>0]);
     	return back()->with('message','关闭成功！');
+    }
+    // 自提、完成
+    public function getZiti($id = '')
+    {
+        Order::where('id',$id)->update(['orderstatus'=>2]);
+        return back()->with('message','自提成功！');
     }
     // 发货
     public function getShip($id = '')
@@ -104,6 +119,6 @@ class OrderController extends Controller
             }
             Order::where('id',$id)->update(['orderstatus'=>0]);
         });
-        return back()->with('message','发货成功！');
+        return back()->with('message','退货成功！');
     } 
 }

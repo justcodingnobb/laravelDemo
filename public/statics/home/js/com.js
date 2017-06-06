@@ -38,7 +38,7 @@ $(function(){
     	var fid = that.attr('data-fid');
 		$.post(host+'shop/removecart',{id:gid,fid:fid},function(d){
 			if (d == 1) {
-    			that.parent('td').parent('tr').remove();
+    			that.parents('.good_cart_list_div').remove();
     			// 重新取购物车数量，计算总价
 				cartnum();
     			total_prices();

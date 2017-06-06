@@ -11,6 +11,7 @@ use App\Models\Good;
 use App\Models\GoodAttr;
 use App\Models\GoodCate;
 use App\Models\GoodFormat;
+use App\Models\Type;
 use DB;
 use Illuminate\Http\Request;
 
@@ -72,7 +73,8 @@ class GoodController extends Controller
 	    	$tree = App::make('com')->toTree($cats,'0');
 	    	$cate = App::make('com')->toTreeSelect($tree);
     	}
-    	return view('admin.good.add',compact('title','id','cate'));
+        $tags = Type::where('parentid',9)->get();
+    	return view('admin.good.add',compact('title','id','cate','tags'));
     }
     public function postAdd(GoodRequest $res)
     {
@@ -105,7 +107,8 @@ class GoodController extends Controller
     	$cate = App::make('com')->toTreeSelect($tree);
     	$ref = session('backurl');
     	$info = Good::findOrFail($id);
-    	return view('admin.good.edit',compact('title','ref','cate','info'));
+        $tags = Type::where('parentid',9)->get();
+    	return view('admin.good.edit',compact('title','ref','cate','info','tags'));
     }
     public function postEdit(GoodRequest $res,$id)
     {

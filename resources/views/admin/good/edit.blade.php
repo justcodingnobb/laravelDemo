@@ -159,10 +159,22 @@
     </div>
 
     <div class="form-group">
-        <label for="isnew">新品：</label>
-        <label class="radio-inline"><input type="radio" name="data[isnew]"@if($info->isnew == 1) checked="checked"@endif class="input-radio" value="1">
-            启用</label>
-        <label class="radio-inline"><input type="radio" name="data[isnew]"@if($info->isnew == 0) checked="checked"@endif class="input-radio" value="0">禁用</label>
+        <label for="tags">标签：</label>
+        <div class="row">
+            <div class="col-xs-3">
+                <select name="data[tags]" class="form-control">
+                    <option value="">无</option>
+                    @foreach($tags as $t)
+                    <option value="{{ $t->name }}"@if($t->name == $info->tags) selected="selected" @endif>{{ $t->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        @if ($errors->has('data.tags'))
+            <span class="help-block">
+                {{ $errors->first('data.tags') }}
+            </span>
+        @endif
     </div>
 
 

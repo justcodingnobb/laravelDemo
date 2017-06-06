@@ -64,7 +64,7 @@
 			<div class="user_order_list_div pr">
 				<a href="{{ url('/user/order',['status'=>4]) }}">
 					<span class="glyphicon glyphicon-gift"></span>
-					<p>待评价</p>
+					<p>已完成</p>
 				</a>
 				@if($order_4 != 0)<div class="user_order_nums ps">{{ $order_4 }}</div>@endif
 			</div>

@@ -137,9 +137,16 @@ a {color:#333;}
     .good_tag {
         left:0;
         top:0;
-        width:22%;
+        width:25%;
+        height:50px;
+        font-size: 10px;
+        padding-left: 5px;
+        padding-top: 8px;
+        color:#fff;
+        background: url("../images/hot.png") left top no-repeat;
+        background-size: 100% auto;
     }
-    .good_title {font-size: 14px; line-height: 1.6; height:1.6em; overflow: hidden; margin-top: 5px; margin-left: -5px;}
+    .good_title {font-size: 14px; line-height: 1.4; height:2.8em; overflow: hidden; margin-top: 5px; margin-left: -5px;}
     .tags {display: inline-block; padding:3px 5px; margin-right: 5px; border:#FEE6F1 solid 1px; border-radius: 2px; color:#F45899; line-height:1; font-size: 12px;}
     .good_pric {font-size: 12px;}
     .good_pric_span {font-size: 14px;}
@@ -192,10 +199,10 @@ a {color:#333;}
         font-size: 12px;
         span.glyphicon {
             display: block;padding:0;font-size: 18px;
-            color: #666;
+            color: #444444;
         }
         p {
-            color: #666;
+            color: #444444;
             margin-top: 5px;
         }
         .active {
@@ -323,7 +330,8 @@ a {color:#333;}
     }
     .cart_num,.cart_num_cart {
         font-size: 14px;
-        width:40px;
+        padding:0 5px;
+        width:auto;
         border-right:0;
         border-left:0;
     }
@@ -597,4 +605,25 @@ a {color:#333;}
     p {margin:3px 0;}
     .created_at {color:#666;}
     span.order_font {color:#999; font-size: 12px;}
+}
+.glyphicon {margin-right: 5px;}
+.sort_list {
+    padding:0;
+    line-height: 36px;
+    a {display: block; color:#888;}
+    a.active {color:#333; border-bottom:#46AE00 solid 3px;}
+}
+// 分页
+.pagination {
+    width:100%;
+    li{
+        width:50%;
+        float: left;
+        &:nth-child(2) {
+            text-align:right;
+        }
+        a,span {
+            width:100%;
+        }
+    }
 }

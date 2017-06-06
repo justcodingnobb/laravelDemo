@@ -122,11 +122,13 @@ class UserController extends BaseController
         $info->pid = 4;
         $yhq_nums = YhqUser::where('user_id',$uid)->count();
         // 数据
-        $order_1 = Order::where('user_id',$uid)->where('paystatus',0)->where('status',1)->count();
-        $order_2 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',0)->where('status',1)->count();
-        $order_3 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',1)->where('status',1)->count();
-        $order_4 = Order::where('user_id',$uid)->where('orderstatus',2)->where('status',1)->count();
-        $order_5 = Order::where('user_id',$uid)->where('orderstatus',3)->where('status',1)->count();
+        $order_1 = Order::where('user_id',$uid)->where('paystatus',0)->where('orderstatus',1)->where('status',1)->count();
+        $order_2 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',0)->where('ziti',0)->where('orderstatus',1)->where('status',1)->count();
+        $order_3 = Order::where('user_id',$uid)->where('status',1)->where('paystatus',1)->where('orderstatus',1)->where(function($q){
+                        $q->where('shipstatus',1)->orWhere('ziti','!=',0);
+                    })->count();
+        $order_4 = 0;
+        $order_5 = Order::where('user_id',$uid)->where('paystatus',1)->where('orderstatus',3)->where('status',1)->count();
     	return view('user.usercenter',compact('info','yhq_nums','order_1','order_2','order_3','order_4','order_5'));
     }
     // 修改个人信息

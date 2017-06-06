@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"si",
+				"simplePaginate(10"
+			],
+			[
+				"form",
+				"form-control \tBootstrap 3 Class"
+			],
+			[
+				"order",
+				"orderstatus"
+			],
+			[
 				"colo",
 				"color_l\t(order.blade.php)"
 			],
@@ -38,10 +50,6 @@
 			[
 				"with",
 				"with('message','添加购物车成功！"
-			],
-			[
-				"si",
-				"siblings\t.siblings()"
 			],
 			[
 				"t",
@@ -128,10 +136,6 @@
 				"goodlists"
 			],
 			[
-				"form",
-				"formatid"
-			],
-			[
 				"tmp",
 				"tmp_format"
 			],
@@ -214,10 +218,6 @@
 			[
 				"w",
 				"width\tAttr"
-			],
-			[
-				"order",
-				"orders"
 			],
 			[
 				"is_",
@@ -738,60 +738,76 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/jxf",
-		"/F/wwwroot/jxf/app",
-		"/F/wwwroot/jxf/app/Http",
-		"/F/wwwroot/jxf/app/Http/Controllers",
-		"/F/wwwroot/jxf/public",
-		"/F/wwwroot/jxf/public/statics",
-		"/F/wwwroot/jxf/public/statics/home",
 		"/F/wwwroot/jxf/resources",
 		"/F/wwwroot/jxf/resources/views"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/jxf/readme.md",
-		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
-		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
-		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/654458CE_edit.tmp/meihua.log",
+		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
+		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/info.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/edit.blade.php",
+		"/F/wwwroot/jxf/app/Services/TagService.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_06_163117_edit_goods_tags_isnew.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Old/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/admin/ad/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
+		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/paylist.blade.php",
+		"/F/wwwroot/jxf/public/statics/home/js/com.js",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/F/wwwroot/jxf/app/Http/Requests/Good/GoodCommentRequest.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_06_153313_add_commentstatus_to_order_goods.php",
 		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/good_comment.blade.php",
+		"/C/Users/Administrator/Downloads/bootstrap-star-rating-4.0.1/js/star-rating.js",
+		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
+		"/F/wwwroot/jxf/public/statics/home/css/star-rating.min.css",
+		"/C/Users/Administrator/Downloads/bootstrap-star-rating-4.0.1/css/theme-krajee-svg.min.css",
+		"/C/Users/Administrator/Downloads/bootstrap-star-rating-4.0.1/css/theme-krajee-svg.css",
+		"/F/wwwroot/jxf/public/statics/home/js/star-rating.min.js",
+		"/C/Users/Administrator/Downloads/bootstrap-star-rating-4.0.1/examples/index.html",
+		"/F/wwwroot/jxf/public/statics/home/js/star-rating_locale_LANG.js",
+		"/F/wwwroot/jxf/public/statics/home/css/theme-krajee-fa.min.css",
+		"/C/Users/Administrator/Downloads/bootstrap-star-rating-4.0.1/js/star-rating_locale_LANG.js",
+		"/F/wwwroot/jxf/resources/views/user/address_edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address_add.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/654458CE_edit.tmp/meihua.log",
+		"/F/wwwroot/jxf/resources/views/user/info.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Auth/WxController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/70A2B82F_edit.tmp/oauth.log",
 		"/F/wwwroot/jxf/resources/views/default/foot.blade.php",
-		"/F/wwwroot/jxf/public/statics/home/js/com.js",
 		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/address_edit.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/address_add.blade.php",
 		"/F/wwwroot/jxf/resources/views/user/address.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/YhqController.php",
 		"/F/wwwroot/jxf/resources/views/default/myyhq.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
 		"/F/wwwroot/jxf/public/statics/admin/js/com.js",
 		"/C/Windows/System32/drivers/etc/hosts",
-		"/F/wwwroot/jxf/resources/views/default/paylist.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/resources/views/default/yhq.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/pay.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/lyhq.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/list.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/list_pro.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/jxf/resources/views/default/post.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/page.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
 		"/F/wwwroot/jxf/.gitignore",
 		"/F/wwwroot/jxf/public/statics/home/css/home.css",
-		"/F/wwwroot/jxf/app/Services/TagService.php",
 		"/F/wwwroot/jxf/.env",
 		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/login.blade.php",
@@ -819,7 +835,6 @@
 		"/F/wwwroot/jxf/app/Http/Controllers/Pay/AlipayController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/wxpay.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/weixin.log",
-		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/A63D38CD_edit.tmp/wxpay.blade.php",
 		"/F/wwwroot/jxf/config/socialite.php",
 		"/F/wwwroot/index.php",
@@ -855,28 +870,7 @@
 		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
 		"/D/www/xyshop/readme.md",
 		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
-		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
-		"/D/www/xyshop/resources/views/user/address_add.blade.php",
-		"/D/www/xyshop/resources/views/user/address.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/UserController.php",
-		"/D/www/xyshop/resources/views/admin/ziti/edit.blade.php",
-		"/D/www/xyshop/resources/views/admin/ziti/add.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Good/ZitiController.php",
-		"/D/www/xyshop/resources/views/admin/ziti/index.blade.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033904_add_area_to_zitidian.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033919_add_area_to_orders.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033943_add_area_to_address.php",
-		"/D/www/xyshop/resources/views/default/cart.blade.php",
-		"/D/www/xyshop/app/Http/Requests/Good/ZitiRequest.php",
-		"/D/www/xyshop/routes/web.php",
-		"/D/www/xyshop/app/Http/Controllers/Good/AdController.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_005333_create_zitidian.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_005507_add_ziti_to_orders.php",
-		"/D/www/xyshop/app/Models/Zitidian.php",
-		"/D/www/xyshop/resources/views/default/order.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/OrderController.php",
-		"/D/www/laravelDemo-1.0.0/app/Http/Controllers/ShopController.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/default/cart.blade.php"
+		"/D/www/xyshop/resources/views/user/address_edit.blade.php"
 	],
 	"find":
 	{
@@ -974,6 +968,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$s",
+			"status",
+			"pages",
+			"Paginate",
+			"sort_list",
+			"<img src=\"{{ $sites['static']}}home/images/hot.png\" class=\"img-responsive\" alt=\"\">",
+			"isnew",
+			"good_tag",
+			"news",
+			"isnew",
+			"catid",
+			"<h4 class=\"good_title text-nowarp\"><a href=\"{{ url('/shop/good',['id'=>$l->id]) }}\">{{ $l->title }}</a></h4>",
+			"getTui",
+			"user/order",
+			"p",
+			"oid",
+			"5CB85C",
+			"caption",
+			"xs",
+			"fde16d",
+			"home.css",
+			"input-21d",
+			"phone",
+			"people",
+			"id",
+			"title",
+			"AddressEdit",
 			".good_cart_list",
 			"span",
 			"td",
@@ -1074,34 +1095,7 @@
 			"dosubmit",
 			"myModal",
 			"PayController",
-			"address",
-			"aid",
-			"addressid",
-			"addid",
-			";\n",
-			"old('data.",
-			"url",
-			"URL",
-			"url",
-			"title",
-			"AdC",
-			"ad/",
-			"ad-",
-			"ad/",
-			"ad-",
-			"ad",
-			"广告",
-			"where('id',$value['format_id'])",
-			"$formats->where('id',$value['format_id'])",
-			"yhq_id",
-			"$formats->where('id',$v['format_id'])",
-			"good_format",
-			"biz_content",
-			"biz_content ",
-			"biz_content",
-			"biz_content ",
-			"title",
-			"GroupController"
+			"address"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1266,8 +1260,16 @@
 		"selected_items":
 		[
 			[
+				"order.b",
+				"resources\\views\\default\\order.blade.php"
+			],
+			[
 				"home.scss",
 				"public\\statics\\home\\css\\home.scss"
+			],
+			[
+				"order.bla",
+				"resources\\views\\default\\order.blade.php"
 			],
 			[
 				"cart.b",
@@ -1768,14 +1770,6 @@
 			[
 				"hot/in",
 				"resources\\views\\admin\\hot\\index.blade.php"
-			],
-			[
-				"login",
-				"resources\\views\\admin\\login.blade.php"
-			],
-			[
-				"verifycsrftoken.php",
-				"app\\Http\\Middleware\\VerifyCsrfToken.php"
 			]
 		],
 		"width": 0.0

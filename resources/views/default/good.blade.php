@@ -6,13 +6,14 @@
     <title>{{ $info->title }}</title>
     <meta name="keywords" content="{{ $info->keyword }}">
     <meta name="description" content="{{ $info->describe }}">
-
 @endsection
 
 
 
 <!-- 内容 -->
 @section('content')
+<link href="{{ $sites['static']}}home/css/star-rating.min.css" rel="stylesheet">
+<script src="{{ $sites['static']}}home/js/star-rating.min.js"></script>
 
 <section class="container-fluid good_content">
     <div class="good_top">
@@ -121,12 +122,19 @@
 						@endif
 						{{ $g->user->nickname }}
 					</div>
-					<div class="col-xs-5 text-right text-danger">{{ $g->score }}</div>
+					<div class="col-xs-5 text-right">
+						<input class="score_name" value="{{ $g->score }}" type="number" name="data[score]" readonly="readonly" data-size="xs">
+					</div>
 				</div>
 				<h5 class="text-success text-nowarp">{{ $g->title }}</h5>
 				<p>{{$g->content}}</p>
 			</li>
 			@endforeach
+			<script>
+            	$(function(){
+            		$(".score_name").rating({displayOnly:true});
+            	});
+            </script>
 		</ul>
 	</div>
 	@endif

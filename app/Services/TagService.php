@@ -42,7 +42,7 @@ class TagService
                     $cid = explode(',',$cid);
                     $q->whereIn('cate_id',$cid);
                 }
-            })->where('status',1)->select('id','title','thumb','price')->limit($num)->orderBy($order,$desc)->get();
+            })->where('status',1)->select('id','title','thumb','price','isxs','isxl','tags')->limit($num)->orderBy($order,$desc)->get();
         return $good;
     }
 
