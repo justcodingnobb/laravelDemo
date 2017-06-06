@@ -63,7 +63,7 @@
 	</form>
 </section> -->
 	<!-- 主分类 -->
-	<section class="container-fluid mt10 row goodcate">
+	<section class="container-fluid mt10 goodcate">
 		@foreach(app('tag')->goodcate(0,8) as $c)
 		<div class="col-xs-3 mt10">
 			<a href="{{ url('/shop/goodcate',['id'=>$c->id]) }}" class="goodcate_img"><img src="{{ $c->thumb }}" alt="{{ $c->name }}" class="img-responsive"></a>
@@ -186,5 +186,5 @@
 			@endforeach
 		</div>
 	</div>
-
+@include('default.foot')
 @endsection

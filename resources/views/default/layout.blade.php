@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     @yield('title')
     <!-- Bootstrap -->
@@ -24,37 +23,6 @@
 
     <!-- 主内容 -->
     @yield('content')
-
-    <!-- 导航 -->
-    <nav class="navbar navbar-fixed-bottom menu_main">
-        <ul class="container-fluid class">
-            <li><a href="{{ url('/') }}"@if($info->pid == 0) class="active" @endif>
-                <span class="glyphicon glyphicon-home"></span>
-                <p>首页</p>
-            </a></li>
-            <li><a href="{{ url('/shop/goodcate') }}"@if($info->pid == 2) class="active" @endif>
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                <p>分类</p>
-            </a></li>
-            <li><a href="{{ url('/shop/cart') }}"@if($info->pid == 3) class="active" @endif>
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                <p>购物车</p>
-            </a></li>
-            <li><a href="{{ url('/user/center') }}"@if($info->pid == 4) class="active" @endif>
-                <span class="glyphicon glyphicon-user"></span>
-                <p>用户中心</p>
-            </a></li>
-        </ul>
-    </nav>
-    <!-- footer -->
-    <footer class="foot container-fluid text-center">
-        <ul class="foot_nav">
-            @foreach(App::make('tag')->cate(0,8) as $c)
-            <li><a href="{{ url('cate',['url'=>$c->url]) }}">{{ $c->name }}</a></li>
-            @endforeach
-        </ul>
-        <p>冀ICP备15021375号-4</p>
-    </footer>
     
     <!-- 提示信息 -->
     @if(session('message'))
@@ -65,14 +33,15 @@
         <p>{{ session('message') }}</p>
     </div>
     @endif
+
     <!-- 公用js文件 -->
     <script>
        var host = "{{ config('app.url') }}/";
     </script>
     <script src="{{ $sites['static']}}home/js/com.js"></script>
 
-   <!--  <script id="__bs_script__">
-       document.write("<script async src='http://www.xyshop.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.xyshop.com", location.hostname));
-   </script> -->
+    <script id="__bs_script__">
+      document.write("<script async src='http://www.jxf.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.jxf.com", location.hostname));
+      </script>
 </body>
 </html>

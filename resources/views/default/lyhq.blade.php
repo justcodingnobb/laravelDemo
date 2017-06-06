@@ -17,4 +17,5 @@
 		<a href="{{ session('homeurl') }}" class="btn btn-primary">继续领券</a>
 
 	</div>
+@include('default.foot')
 @endsection

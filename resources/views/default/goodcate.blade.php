@@ -42,5 +42,5 @@
 </section>
 
 	
-
+@include('default.foot')
 @endsection

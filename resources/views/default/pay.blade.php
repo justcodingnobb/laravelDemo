@@ -30,4 +30,5 @@
 			},3000);
 		});
 	</script>
+@include('default.foot')
 @endsection

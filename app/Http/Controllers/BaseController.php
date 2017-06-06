@@ -24,6 +24,8 @@ class BaseController extends Controller
         $sid = session()->getId();
         // 找出老数据库购物车里的东西
         $old_carts = Cart::where('user_id',$uid)->select('id','user_id','good_id','format_id','nums','price','total_prices')->get();
+        // 把session_id更新过来
+        Cart::where('user_id',$uid)->update(['session_id'=>$sid]);
         $old_carts = $old_carts->keyBy('good_id')->toArray();
         // 找出新加入购物车的东西
         $new_carts = Cart::where('session_id',$sid)->select('id','user_id','good_id','format_id','nums','price','total_prices')->get();
@@ -39,7 +41,7 @@ class BaseController extends Controller
                     $v = ['session_id'=>$sid,'user_id'=>$uid,'good_id'=>$gid,'format_id'=>$v['format_id'],'nums'=>$nums,'price'=>$price,'total_prices'=>$nums * $price];
                     // 把旧的删除，新的更新
                     Cart::where('user_id',$uid)->where('good_id',$gid)->where('format_id',$v['format_id'])->delete();
-                    Cart::where('session_id',$sid)->where('good_id',$gid)->where('format_id',$v['format_id'])->update($v);
+                    Cart::create($v);
                 }
                 else
                 {

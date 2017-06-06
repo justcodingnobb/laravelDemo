@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>添加收货地址-吉鲜商城</title>
+    <title>个人信息-吉鲜商城</title>
 @endsection
 
 
@@ -13,10 +13,10 @@
 			{{ csrf_field() }}
 				
 				<div class="form-group">
-	            	<input type="text" name="data[people]" value="{{ $info->people }}" placeholder="联系人" class="form-control">
-	            	@if ($errors->has('data.people'))
+	            	<input type="text" name="data[nickname]" value="{{ $info->nickname }}" placeholder="昵称" class="form-control">
+	            	@if ($errors->has('data.nickname'))
 	                    <span class="help-block">
-	                    	{{ $errors->first('data.people') }}
+	                    	{{ $errors->first('data.nickname') }}
 	                    </span>
 	                @endif
 	            </div>
@@ -30,16 +30,11 @@
 	                @endif
 	            </div>
 
-				<div class="form-group">
-	                <select name="data[area]" id="" class="form-control">
-	                	<option value="">区域</option>
-	                    @foreach($area as $a)
-	                    <option value="{{ $a->name }}" @if($a->name == $info->area) selected="selected"@endif>{{ $a->name }}</option>
-	                    @endforeach
-	                </select>
-	                @if ($errors->has('data.area'))
+	            <div class="form-group">
+	            	<input type="text" name="data[email]" value="{{ $info->email }}" placeholder="邮箱" class="form-control">
+	            	@if ($errors->has('data.email'))
 	                    <span class="help-block">
-	                        {{ $errors->first('data.area') }}
+	                    	{{ $errors->first('data.email') }}
 	                    </span>
 	                @endif
 	            </div>
@@ -54,10 +49,19 @@
 	            </div>
 
 	            <div class="form-group">
-	                <label for="default">默认：</label>
+	            	<input type="date" name="data[birthday]" value="{{ $info->birthday }}" placeholder="出生日期" class="form-control">
+	            	@if ($errors->has('data.birthday'))
+	                    <span class="help-block">
+	                    	{{ $errors->first('data.birthday') }}
+	                    </span>
+	                @endif
+	            </div>
+
+	            <div class="form-group">
+	                <label for="default">性别：</label>
 	                <label class="radio-inline"><input type="radio" name="data[default]"@if($info->default == '1') checked="checked" @endif class="input-radio" value="1">
-	                    是</label>
-	                <label class="radio-inline"><input type="radio" name="data[default]"@if($info->default == '0') checked="checked" @endif class="input-radio" value="0">否</label>
+	                    男</label>
+	                <label class="radio-inline"><input type="radio" name="data[default]"@if($info->default == '2') checked="checked" @endif class="input-radio" value="2">女</label>
 	            </div>
 
 

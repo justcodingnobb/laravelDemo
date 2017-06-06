@@ -32,7 +32,7 @@ class HomeController extends BaseController
     {
         // 找栏目
         $info = Cate::where('url',$url)->first();
-        $info->pid = $info->parentid == 0 ? $info->id : $info->parentid;
+        $info->pid = 0;
         // 如果存在栏目，接着找
         if (is_null($info)) {
             return back()->with('message','没有找到对应栏目！');
@@ -55,7 +55,7 @@ class HomeController extends BaseController
         $info = Article::with(['cate'=>function($q){
                 $q->select('id','parentid','name');
             }])->where('url',$url)->first();
-        $info->pid = $info->cate->parentid == 0 ? $info->catid : $info->cate->parentid;
+        $info->pid = 0;
         $aside_name = $info->cate->name;
         // 如果存在栏目，接着找
         if (is_null($info)) {

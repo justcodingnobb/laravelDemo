@@ -10,21 +10,21 @@
 @section('content')
 
 	<!-- 搜索 -->
-	<section class="search container-fluid overh">
-		<form action="#" class="form-inline mt10">
-			<div class="row">
-				<div class="col-xs-9">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search something">
-					</div>
-				</div>
-				<div class="col-xs-3">
-					<button type="submit" class="btn btn-success">Search</button>
+<!-- 	<section class="search container-fluid overh">
+	<form action="#" class="form-inline mt10">
+		<div class="row">
+			<div class="col-xs-9">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search something">
 				</div>
 			</div>
-		</form>
-	</section>
-
+			<div class="col-xs-3">
+				<button type="submit" class="btn btn-success">Search</button>
+			</div>
+		</div>
+	</form>
+</section>
+ -->
 <section class="container-fluid overh">
 	
 	<div class="row sort_list bg-info text-center">
@@ -65,5 +65,5 @@
 </section>
 
 	
-
+@include('default.foot')
 @endsection

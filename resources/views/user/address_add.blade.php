@@ -4,24 +4,16 @@
     <title>添加收货地址-吉鲜商城</title>
 @endsection
 
-@section('banner')
-    @include('default.banner')
-@endsection
 
 @section('content')
-	<div class="container-fluid mt20">
-		<a href="{{ url('user/order') }}" class="btn btn-sm btn-primary">我的订单</a>
-		<a href="{{ url('user/yhq') }}" class="btn btn-sm btn-success">优惠券</a>
-		<a href="{{ url('user/address') }}" class="btn btn-sm btn-info">收货地址</a>
-	</div>
+<div class="bgf">
 
-	<div class="container mt20">
+	<div class="container-fluid mt10 pb50">
 		<form action="" class="pure-form pure-form-stacked" method="post">
 			{{ csrf_field() }}
 				
 				<div class="form-group">
-	                <label for="people">联系人：<span class="color-red">*</span>不超过50字符</label>
-	            	<input type="text" name="data[people]" value="{{ old('data.people') }}" class="form-control">
+	            	<input type="text" name="data[people]" value="{{ old('data.people') }}" placeholder="联系人" class="form-control">
 	            	@if ($errors->has('data.people'))
 	                    <span class="help-block">
 	                    	{{ $errors->first('data.people') }}
@@ -30,8 +22,7 @@
 	            </div>
 
 	            <div class="form-group">
-	                <label for="phone">手机号：<span class="color-red">*</span></label>
-	            	<input type="text" name="data[phone]" value="{{ old('data.phone') }}" class="form-control">
+	            	<input type="text" name="data[phone]" value="{{ old('data.phone') }}" placeholder="手机号" class="form-control">
 	            	@if ($errors->has('data.phone'))
 	                    <span class="help-block">
 	                    	{{ $errors->first('data.phone') }}
@@ -40,8 +31,8 @@
 	            </div>
 				
 				<div class="form-group">
-	                <label for="area">区域：<span class="color-red">*</span></label>
 	                <select name="data[area]" id="" class="form-control">
+	                	<option value="">区域</option>
 	                    @foreach($area as $a)
 	                    <option value="{{ $a->name }}">{{ $a->name }}</option>
 	                    @endforeach
@@ -54,8 +45,7 @@
 	            </div>
 
 	            <div class="form-group">
-	                <label for="address">地址：<span class="color-red">*</span>不超过255字符</label>
-	            	<input type="text" name="data[address]" value="{{ old('data.address') }}" class="form-control">
+	            	<input type="text" name="data[address]" value="{{ old('data.address') }}" placeholder="地址" class="form-control">
 	            	@if ($errors->has('data.address'))
 	                    <span class="help-block">
 	                    	{{ $errors->first('data.address') }}
@@ -77,4 +67,6 @@
 		    </div>
 		</form>
 	</div>
+</div>
+@include('default.foot')
 @endsection

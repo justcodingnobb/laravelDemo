@@ -16,12 +16,14 @@ class YhqController extends BaseController
     {
     	$info = (object) ['title'=>'发放优惠券','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
     	$list = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->paginate(10);
+        $info->pid = 0;
     	return view($this->theme.'.yhq',compact('info','list'));
     }
     // 领
     public function getGet($id = '')
     {
     	$info = (object) ['title'=>'领取优惠券成功','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
+        $info->pid = 0;
     	// 先查是不是已经领过
     	if (!is_null(YhqUser::where('user_id',session('member')->id)->where('yhq_id',$id)->first())) {
     		return back()->with('message','领取过，请不要重复领取！');
@@ -47,7 +49,8 @@ class YhqController extends BaseController
     public function getList()
     {
     	$info = (object) ['title'=>'我的优惠券','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
-    	$list = YhqUser::with('yhq')->where('del',1)->orderBy('id','desc')->paginate(10);
+    	$list = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('del',1)->orderBy('id','desc')->paginate(10);
+        $info->pid = 0;
     	return view($this->theme.'.myyhq',compact('info','list'));
     }
     // 删除优惠券

@@ -7,8 +7,10 @@ use App\Http\Requests;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\User\AddressRequest;
 use App\Models\Address;
+use App\Models\Order;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\YhqUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
@@ -31,7 +33,7 @@ class UserController extends BaseController
 		}
         $ref = url()->previous();
         $info = (object) [];
-        $info->pid = 0;
+        $info->pid = 4;
         return view('user.login',compact('ref','info'));
 	}
 	// 登陆
@@ -55,7 +57,7 @@ class UserController extends BaseController
             User::where('id',$user->id)->update(['last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
             // 更新购物车
-            // $this->updateCart($user->id);
+            $this->updateCart($user->id);
 	    	return redirect($res->ref);
 	    }
     }
@@ -75,7 +77,7 @@ class UserController extends BaseController
 		}
         $ref = url()->previous();
         $info = (object) [];
-        $info->pid = 0;
+        $info->pid = 4;
         return view('user.register',compact('ref','info'));
 	}
 	// 注册
@@ -97,7 +99,7 @@ class UserController extends BaseController
 	    	$user = User::create(['username'=>$username,'password'=>$pwd,'email'=>$email,'last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
 	    	session()->put('member',$user);
             // 更新购物车
-            // $this->updateCart($user->id);
+            $this->updateCart($user->id);
 	    	return redirect($res->ref);
     	} catch (\Exception $e) {
     		return back()->with('message','注册失败，请稍候再试！');
@@ -115,22 +117,47 @@ class UserController extends BaseController
     public function getCenter(Request $req)
     {
     	// 取个人信息
-    	$info = User::findOrFail(session('member')->id);
-        $info->pid = 0;
-    	return view('user.usercenter',compact('info'));
+        $uid = session('member')->id;
+    	$info = User::findOrFail($uid);
+        $info->pid = 4;
+        $yhq_nums = YhqUser::where('user_id',$uid)->count();
+        // 数据
+        $order_1 = Order::where('user_id',$uid)->where('paystatus',0)->where('status',1)->count();
+        $order_2 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',0)->where('status',1)->count();
+        $order_3 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',1)->where('status',1)->count();
+        $order_4 = Order::where('user_id',$uid)->where('orderstatus',2)->where('status',1)->count();
+        $order_5 = Order::where('user_id',$uid)->where('orderstatus',3)->where('status',1)->count();
+    	return view('user.usercenter',compact('info','yhq_nums','order_1','order_2','order_3','order_4','order_5'));
+    }
+    // 修改个人信息
+    public function getInfo()
+    {
+        // 取个人信息
+        $uid = session('member')->id;
+        $info = User::findOrFail($uid);
+        $info->pid = 4;
+        return view('user.info',compact('info'));
+    }
+    public function postInfo(Request $req)
+    {
+        $data = $req->input('data');
+        User::where('id',session('member')->id)->update($data);
+        return redirect('user/center')->with('message','修改成功');
     }
 
     // 收货地址
     public function getAddress()
     {
         $list = Address::where('user_id',session('member')->id)->where('del',1)->get();
-        return view('user.address',compact('list'));
+        $info = (object) ['pid'=>4];
+        return view('user.address',compact('list','info'));
     }
     // 添加地址
     public function getAddressAdd()
     {
         $area = Type::where('parentid',4)->get();
-        return view('user.address_add',compact('area'));
+        $info = (object) ['pid'=>4];
+        return view('user.address_add',compact('area','info'));
     }
     public function postAddressAdd(AddressRequest $req)
     {
@@ -144,6 +171,7 @@ class UserController extends BaseController
     {
         $info = Address::findOrFail($id);
         $area = Type::where('parentid',4)->get();
+        $info->pid = 4;
         return view('user.address_edit',compact('info','area'));
     }
     public function postAddressEdit(AddressRequest $req,$id = '')

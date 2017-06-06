@@ -22,4 +22,5 @@
             {!! $list->links() !!}
         </div>
 	</div>
+@include('default.foot')
 @endsection

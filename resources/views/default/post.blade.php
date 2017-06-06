@@ -30,5 +30,5 @@
     </div>
 </section>
 
-
+@include('default.foot')
 @endsection

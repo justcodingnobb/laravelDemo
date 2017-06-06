@@ -47,7 +47,7 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
     // 取消订单
     Route::get('order/over/{id}','ShopController@getOverOrder');
     // 订单列表
-    Route::get('order','ShopController@getOrder');
+    Route::get('order/{status}','ShopController@getOrder');
     // 优惠券列表
     Route::get('yhq','YhqController@getList');
     // 删除优惠券
@@ -61,6 +61,9 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
     Route::get('address/edit/{id}','UserController@getAddressEdit');
     Route::post('address/edit/{id}','UserController@postAddressEdit');
     Route::get('address/del/{id}','UserController@getAddressDel');
+    // 修改个人信息
+    Route::get('info','UserController@getInfo');
+    Route::post('info','UserController@postInfo');
     // 会员中心
     Route::get('center','UserController@getCenter');
     // 退出登陆
@@ -91,12 +94,12 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     // 取购物车数量
     Route::get('cartnums','ShopController@getCartnums');
 });
+// 添加购物车
+Route::post('shop/addcart','ShopController@getAddcart');
 // 商城功能-登陆后的
 Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
     // 购物车
     Route::get('cart','ShopController@getCart');
-    // 添加购物车
-    Route::get('addcart','ShopController@getAddcart');
     // 修改购物车数量
     Route::post('changecart','ShopController@postChangecart');
     // 移除购物车

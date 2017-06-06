@@ -4,20 +4,15 @@
     <title>会员登陆-吉鲜商城</title>
 @endsection
 
-@section('banner')
-    @include('default.banner')
-@endsection
 
 @section('content')
-	<div class="container mt20">
+	<div class="container login_bg">
 		<form action="" method="post">
-			<h3 class="h3_cate"><span class="h3_cate_span">会员登陆</span></h3>
 			{{ csrf_field() }}
 			<input type="hidden" name="ref" value="{{ $ref }}">
 
 			<div class="form-group">
-				<label for="username">用户名：</label>
-				<input type="text" name="data[username]" value="" class="form-control">
+				<input type="text" name="data[username]" value="" class="form-control" placeholder="用户名">
 				@if ($errors->has('data.username'))
 				<span class="help-block">{{ $errors->first('data.username') }}</span>
 				@endif
@@ -25,20 +20,17 @@
 
 
 			<div class="form-group">
-				<label for="password">密码：</label>
-				<input type="password" name="data[password]" value="" class="form-control">
+				<input type="password" name="data[password]" value="" placeholder="密码" class="form-control">
 				@if ($errors->has('data.password'))
 				<span class="help-block">{{ $errors->first('data.password') }}</span>
 				@endif
 			</div>
 
 			<div class="clearfix">
-				<button type="submit" name="dosubmit" class="btn btn-primary">提交</button>
-				<button type="reset" name="reset" class="btn btn-default">重填</button>
+				<button type="submit" name="dosubmit" class="btn btn-primary col-xs-12">提交</button>
+				<a href="{{ url('oauth/wx') }}" class="btn btn-success col-xs-12 mt10"><span class="login_wx"><img src="{{ $sites['static']}}home/images/wx.png" class="img-responsive" width="20" alt=""></span>微信登录</a>
 			</div>
 		</form>
 	</div>
-	<div class="container mt20">
-		<a href="{{ url('oauth/wx') }}" class="btn btn-success">微信登录</a>
-	</div>
+@include('default.foot')
 @endsection

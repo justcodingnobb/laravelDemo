@@ -83,13 +83,18 @@ class WxController extends BaseController
         if (is_null(User::where('openid',$user->id)->where('status',1)->orderBy('id','asc')->first())) {
             // 如果已经登陆，即为绑定
             if (session()->has('member')) {
-                User::where('id',session('member')->id)->update(['openid'=>$user->id]);
+                User::where('id',session('member')->id)->update(['openid'=>$user->id,'thumb'=>$user->avatar,'nickname'=>$user->name]);
             }
             else
             {
-                User::create(['openid'=>$user->id,'nickname'=>$user->name]);
+                User::create(['openid'=>$user->id,'nickname'=>$user->name,'thumb'=>$user->avatar,]);
             }
         }
+        else
+        {
+            User::where('openid',$user->id)->update(['thumb'=>$user->avatar,'nickname'=>$user->name]);
+        }
+        // Storage::prepend('oauth.log',json_encode($user).date('Y-m-d H:i:s'));
 
         /*else
         {

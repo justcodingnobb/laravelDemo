@@ -4,33 +4,26 @@
     <title>收货地址-吉鲜商城</title>
 @endsection
 
-@section('banner')
-    @include('default.banner')
-@endsection
-
 @section('content')
-	<div class="container-fluid mt20">
-		<a href="{{ url('user/order') }}" class="btn btn-sm btn-primary">我的订单</a>
-		<a href="{{ url('user/yhq') }}" class="btn btn-sm btn-success">优惠券</a>
-		<a href="{{ url('user/address') }}" class="btn btn-sm btn-info">收货地址</a>
+<div class="bgf">
+	<div class="container-fluid mt10">
+		<a href="{{ url('user/address/add') }}" class="btn btn-sm btn-success">添加地址</a>
 	</div>
 
-	<div class="container-fluid mt20">
-		<a href="{{ url('user/address/add') }}" class="btn btn-sm btn-primary">添加地址</a>
-	</div>
-
-	<div class="container mt20">
+	<div class="container-fluid mt10">
 		@foreach($list as $l)
-		<div class="mt10">
-			<h4>
+		<div class="mt10 user_address_list">
+			<h5>
 			@if($l->default)
-			<span class="bg-primary">默认</span>
+			<span class="label label-primary">默认</span>
 			@endif
-			{{ $l->area }} - {{ $l->address }}</h4>
-			<p>{{ $l->people }}：{{ $l->phone }}</p>
-			<a href="{{ url('user/address/edit',['id'=>$l->id]) }}" class="btn btn-sm btn-info">修改</a>
-			<a href="{{ url('user/address/del',['id'=>$l->id]) }}" class="btn btn-sm btn-danger">删除</a>
+			{{ $l->people }}：{{ $l->phone }}</h5>
+			<p>{{ $l->area }} - {{ $l->address }}</p>
+			<a href="{{ url('user/address/edit',['id'=>$l->id]) }}"><span class="glyphicon glyphicon-edit"></span>修改</a>
+			<a href="{{ url('user/address/del',['id'=>$l->id]) }}"><span class="glyphicon glyphicon-trash"></span>删除</a>
 		</div>
 		@endforeach
 	</div>
+</div>
+@include('default.foot')
 @endsection
