@@ -5,9 +5,29 @@ use App\Models\Article;
 use App\Models\Cate;
 use App\Models\Good;
 use App\Models\GoodCate;
+use App\Models\Huodong;
+use App\Models\Tuan;
 
 class TagService
 {
+
+    // 活动
+    public function hd($num = 5)
+    {
+        $hd = Huodong::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit($num)->get();
+        return $hd;
+    }
+
+    // 团购
+    public function tuan($num = 10)
+    {
+        $tuan = Tuan::with(['good'=>function($q){
+                $q->where('status',1)->select('id','title','thumb','price','isxs','isxl','tags');
+            }])->where('store','>',0)->where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit($num)->get();
+        return $tuan;
+    }
+
+
     // 广告
     public function ad($pos_id = 0,$num = 10)
     {

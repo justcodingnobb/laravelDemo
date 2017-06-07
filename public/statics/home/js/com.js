@@ -28,7 +28,7 @@ $(function(){
 		return;
 	});
 	/*打开添加购物车*/
-	$('.alert_addcart').on('click',function(){
+	$('.good_addcart').on('click',function(){
 		$('#myModal').modal('show');
 	});
 	// 移除购物车
@@ -98,7 +98,8 @@ $(function(){
 		var fid = $('input[name="fid"]').val();
 		var gp = $('input[name="gp"]').val();
 		var token = $('input[name="_token"]').val();
-		$.post(host+'shop/addcart',{gid:gid,fid:fid,num:num,gp:gp,_token:token},function(d){
+		var url = $('.form_addcart').attr('action');
+		$.post(url,{gid:gid,fid:fid,num:num,gp:gp,_token:token},function(d){
 			if (d == 1) {
     			// 重新取购物车数量，计算总价
 				cartnum();
@@ -108,11 +109,35 @@ $(function(){
 			}
 			else
 			{
-				alert('添加失败，请稍后再试！');
+				alert(d);
+				$('#myModal').modal('hide');
 			}
 		});
 	});
-	
+	// 添加到团购
+	$('.tuan_addcart').click(function(event) {
+		$('#myModal').modal('show');
+		// var gid = $('input[name="gid"]').val();
+		// var num = $('input[name="num"]').val();
+		// var tid = $('input[name="tid"]').val();
+		// var gp = $('input[name="gp"]').val();
+		// var token = $('input[name="_token"]').val();
+		// var url = $('.form_addcart').attr('action');
+		// $.post(url,{gid:gid,tid:tid,num:num,gp:gp,_token:token},function(d){
+		// 	if (d == 1) {
+  //   			// 重新取购物车数量，计算总价
+		// 		cartnum();
+		// 		// $('#myModal').modal('hide');
+		// 		/*alert('添加成功！');*/
+		// 		$('.alert_good').slideToggle().delay(1500).slideToggle();
+		// 	}
+		// 	else
+		// 	{
+		// 		alert(d);
+		// 		$('#myModal').modal('hide');
+		// 	}
+		// });
+	});
 })
 // 更新总价
 function total_prices()

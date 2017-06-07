@@ -18,51 +18,28 @@
 <section class="container-fluid good_content">
     <div class="good_top">
 		<div class="good_thumb"><img src="{{ $info->thumb }}" class="img-responsive" alt="{{ $info->title }}"></div>
+		<!-- 团购信息 -->
+		<div class="bgf mt10">
+			<p class="tuan_times label label-success">自 {{ $tuan->starttime }} 开始</p>
+			<p class="tuan_times label label-danger">至 {{ $tuan->endtime }} 结束</p>
+			<span class="label label-warning mt5">最少参团：{{ $tuan->nums }} 人</span>
+			<span class="label label-primary mt5">已参加：{{ $tuan->havnums }} 人</span>
+		</div>
+
 		<div class="good_bgf">
 			<div class="good_show">
-				@if($info->isxs)
-				<span class="label label-warning">限时购： {{ $info->endtime }} 结束</span>
-				@endif
-				@if($info->isxl)
-				<span class="label label-warning">限每人 {{ $info->xlnums }} 件</span>
-				@endif
-				<h1 class="good_show_title mt10">
-					@if($info->isxs)
-					<span class="tags">限时</span>
-					@endif
-					@if($info->isxl)
-					<span class="tags">限量</span>
-					@endif
-					<a href="{{ url('shop/good',['id'=>$info->id]) }}">{{ $info->title }}</a></h1>
+				<h1 class="good_show_title"><a href="{{ url('shop/good',['id'=>$info->id]) }}">{{ $info->title }}</a></h1>
 				<!-- <h4>{{ $info->pronums }}</h4> -->
-				<form action="{{ url('shop/addcart') }}" class="form_addcart">
+				<form action="{{ url('shop/tuan/addorder') }}" class="form_addcart">
 					{{ csrf_field() }}
-					@if ($formats->count() > 0)
-					<!-- 属性 -->
-					<div class="row mt10">
-						<!-- <div class="col-xs-12 sx_title"><h3><small>{{ $good_format->title }}</small></h3></div> -->
-						@foreach($formats as $f)
-						<div class="col-xs-3 col-sm-2 col-md-1"><a href="{{ url('shop/good',['id'=>$info->id,'format'=>$f->format]) }}" class="btn btn-sm btn-default @if($f->id == $good_format->id) btn-success @endif">{{ $f->value }}</a></div>
-						@endforeach
-					</div>
-
 					<!-- 价格、库存，购物车 -->
+					<input type="hidden" value="{{ $tuan->prices }}" name="gp">
+					<input type="hidden" value="{{ $tuan->id }}" name="tid">
 					<div class="row price_store mt10">
-						<div class="col-xs-6">价格：<span class="price color_l">{{ $good_format->price }}</span>￥</div>
-						<div class="col-xs-6 mt5 text-right store">库存：{{ $good_format->store }}</div>
+						<div class="col-xs-6">价格：<del class="price color_l">{{ $info->price }}</del>￥</div>
+						<div class="col-xs-6">团购格：<del class="price color_l">{{ $tuan->prices }}</del>￥</div>
+						<div class="col-xs-6 text-left mt store">库存：{{ $tuan->store }}</div>
 					</div>
-					<input type="hidden" value="{{ $good_format->price }}" name="gp">
-					<input type="hidden" value="{{ $good_format->id }}" name="fid">
-					@else
-					<!-- 价格、库存，购物车 -->
-					<input type="hidden" value="{{ $info->price }}" name="gp">
-					<input type="hidden" value="0" name="fid">
-					<div class="row price_store mt10">
-						<div class="col-xs-6">价格：<span class="price color_l">{{ $info->price }}</span>￥</div>
-						<div class="col-xs-6 text-right mt store">库存：{{ $info->store }}</div>
-					</div>
-					@endif
-
 					<div class="row ship">
 						<div class="col-xs-4">
 							<span class="glyphicon glyphicon-home"></span>送至
@@ -74,11 +51,11 @@
 							免运费
 						</div>
 					</div>
-
-					
 					<!-- 加购物车 -->
+					<input type="hidden" name="aid" class="aid" value="0">
+					<input type="hidden" name="ziti" class="ziti" value="0">
+					<input type="hidden" name="tt" value="{{ microtime(true) }}">
 					<input type="hidden" value="{{ $info->id }}" name="gid">
-
 					<input type="hidden" min="0" value="1" class="form-control cartnum" name="num">
 				</form>
 			</div>
@@ -159,33 +136,68 @@
 		<span class="glyphicon glyphicon-shopping-cart"></span>
 		<div class="good_alert_num ps"></div>
 	</a>
-	<botton class="alert_addcart good_addcart">加入购物车</botton>
+	<botton class="alert_addcart tuan_addcart">立即参团</botton>
 </div>
-
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-body">
-      	<h4>{{ $info->title }}</h4>
-      	<div class=" clearfix mt10">
-	      	<!-- 数量 -->
-	        <div class="cart_nums clearfix pull-left">
-				<div class="cart_dec">-</div>
-				<div class="cart_num">1</div>
-				<div class="cart_inc">+</div>
-			</div>
-			<div class="addcart btn btn-sm btn-success pull-right ml10">添加</div>
-		</div>
-      </div>
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">选择送货方式</h4>
+	      </div>
+      	<div class="modal-body">
+      		<!-- 送货地址 -->
+      		<h3 class="h3_cate"><span class="h3_cate_span">配送至</span></h3>
+      		<ul class="mt10">
+      			@foreach($address as $y)
+      			<li class="radio ship_li">
+      			  <label>
+      			    <input type="radio" name="addid" value="{{ $y->id }}" class="addressid">
+      			    <h4>{{ $y->people }}：{{ $y->phone }}</h4>
+      			    <p class="mt5">{{ $y->address }}</p>
+      			  </label>
+      			</li>
+      			@endforeach
+      		</ul>
+      		
+      		<!-- 自提点 -->
+      		<h3 class="h3_cate"><span class="h3_cate_span">自提</span></h3>
+      		<ul class="mt10">
+      			@foreach($ziti as $y)
+      			<li class="radio ship_li">
+      			  <label>
+      			    <input type="radio" name="ziti" value="{{ $y->id }}" class="zitiid">
+      			    <h4>{{ $y->address }}</h4>
+      			    <p class="mt5">{{ $y->phone }}</p>
+      			  </label>
+      			</li>
+      			@endforeach
+      		</ul>
+      	</div>
     </div>
   </div>
 </div>
+<script>
+	$(function(){
+		$('.aid').val($('.addressid:checked').val());
 
-<div class="alert alert-success alert_good" style="display: none;" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <p>添加成功</p>
-</div>
+		$('.addressid').change(function() {
+			var aid = $(this).val();
+			$('.aid').val(aid);
+			var html = '<h3 class="h3_cate"><span class="h3_cate_span">送货至</span></h3>' + $(this).parent('label').parent('.ship_li').html();
+			$('.ship').html(html);
+			$('.form_addcart').submit();
+		});
+
+		$('.zitiid').change(function() {
+			var aid = $(this).val();
+			$('.ziti').val(aid);
+			$('.aid').val(0);
+			var html = '<h3 class="h3_cate"><span class="h3_cate_span">自提点</span></h3>' + $(this).parent('label').parent('.ship_li').html();
+			$('.ship').html(html);
+			$('.form_addcart').submit();
+		});
+	});
+</script>
 @endsection

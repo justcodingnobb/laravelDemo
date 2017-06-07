@@ -47,7 +47,7 @@ class PayController extends BaseController
     // 取订单可以使用的支付方式
     public function list($oid)
     {
-    	$info = (object) ['pid'=>2];
+    	$info = (object) ['pid'=>3];
     	$order = Order::findOrFail($oid);
     	$paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
     	return view($this->theme.'.paylist',compact('info','order','paylist'));

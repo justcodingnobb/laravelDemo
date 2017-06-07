@@ -11,7 +11,12 @@
 	<div class="user_order_list clearfix">
 		@foreach($orders as $o)
         <div class="user_order_list_top clearfix">
-            <h5><span class="order_font">订单单号：</span>{{ $o->order_id }}</h5>
+            <h5>
+                <span class="order_font">订单单号：</span>{{ $o->order_id }}
+                @if($o->tuan_id != 0)
+                <span class="label label-success">团</span>
+                @endif
+            </h5>
             <p class="clearfix"><span class="order_font">订单总价：</span><strong class="color_2">￥{{ $o->total_prices }}</strong>
             @if($status == 1)
             	<a href="{{ url('shop/order/pay',['oid'=>$o->id]) }}" class="text-danger pull-right topay"><span class="glyphicon glyphicon-jpy topay"></span>去支付</a>
@@ -65,7 +70,7 @@
                         <p class="fs12">价格：<span class="good_prices color_l">￥{{ $l->price }}</span></p>
                         <p class="fs12">数量：<span class="good_prices color_l">￥{{ $l->nums }}</span></p>
                         <p class="fs12">小计：<span class="good_prices color_l">￥{{ $l->total_prices }}</span></p>
-                        @if($l->commentstatus == 0)
+                        @if($l->commentstatus == 0 && $o->orderstatus == 2)
                         <p><a href="{{ url('shop/good/comment',['oid'=>$o->id,'gid'=>$l->good->id]) }}" class="text-success"><span class="glyphicon glyphicon-edit"></span>提交评价</a></p>
                         @endif
 					</div>

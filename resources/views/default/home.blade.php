@@ -84,6 +84,61 @@
 
 		</div>
 	</div>
+	<!-- 活动 -->
+	<div class="container-fluid mt10">
+		<h2 class="h_t mb10"><a href="{{ url('shop/hd/index') }}"><img src="{{ $sites['static']}}home/images/hd_t.png" class="img-responsive" alt=""></a></h2>
+		@foreach(app('tag')->hd(5) as $l)
+		<div class="hd_list_div pr">
+			<a href="{{ url('/shop/hd/list',['id'=>$l->id]) }}"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
+			<div class="hd_info clearfix">
+				<h4 class="hd_title text-nowarp"><a class="text-success" href="{{ url('/shop/hd/list',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
+				<p class="times">活动时间：{{ str_limit($l->starttime,10,'') }} 至 {{ str_limit($l->endtime,10,'') }}</p>
+			</div>
+		</div>
+		@endforeach
+	</div>
+	<!-- 团 -->
+	<div class="container-fluid cate_list mt10">
+		<!-- 优惠券 -->
+		<a href="{{ url('shop/yhq/index') }}"><img src="{{ $sites['static']}}home/images/yhq.jpg" class="img-responsive" alt=""></a>
+		
+		<h2 class="h_t mt20"><img src="{{ $sites['static']}}home/images/tuan_t.png" class="img-responsive" alt=""></h2>
+		<div class="row good_list">
+			@foreach(app('tag')->tuan(6) as $l)
+			<div class="col-xs-6 pr">
+				<!-- 如果有标签，加标签 -->
+				@if($l->good->tags != '')
+				<div class="ps good_tag">
+					{{ $l->good->tags }}
+				</div>
+				@endif
+
+				<a href="{{ url('/shop/tuan',['tid'=>$l->id,'gid'=>$l->good_id]) }}" class="good_thumb"><img src="{{ $l->good->thumb }}" class="img-responsive" alt=""></a>
+				<div class="good_info clearfix">
+					<h4 class="good_title text-nowarp">
+					@if($l->good->isxs)
+					<span class="tags">限时</span>
+					@endif
+					@if($l->good->isxl)
+					<span class="tags">限量</span>
+					@endif
+					<a href="{{ url('/shop/tuan',['tid'=>$l->id,'gid'=>$l->good_id]) }}">{{ $l->title }}</a></h4>
+					<div class="row">
+						<div class="col-xs-9">
+							<p class="good_pric">会员价：<del class="good_pric_span">￥{{ $l->good->price }}</del></p>
+							<p class="good_pric">团购价：<strong class="good_pric_span color_2">￥{{ $l->prices }}</strong></p>
+						</div>
+						<div class="col-xs-3">
+							<a href="{{ url('/shop/tuan',['tid'=>$l->id,'gid'=>$l->good_id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
+							</a>
+						</div>
+					</div>
+					<div class="text-warning fz12 good_tuan">开团至：{{ str_limit($l->endtime,10,'') }}</div>
+				</div>
+			</div>
+			@endforeach
+		</div>
+	</div>
 	<!-- 新鲜蔬菜 -->
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>

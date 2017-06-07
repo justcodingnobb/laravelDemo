@@ -85,6 +85,9 @@ Route::group(['prefix' => 'oauth'],function(){
 
 // 商城功能
 Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
+    // 活动
+    Route::get('hd/index','HuodongController@getIndex');
+    Route::get('hd/list/{id}','HuodongController@getList');
     // 优惠券
     Route::get('yhq/index','YhqController@getIndex');
     // 分类
@@ -98,6 +101,10 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
 Route::post('shop/addcart','ShopController@getAddcart');
 // 商城功能-登陆后的
 Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+    // 团购商品
+    Route::get('tuan/{tid}/{gid}','TuanController@getGood');
+    // 团购下单
+    Route::get('tuan/addorder','TuanController@getAddorder');
     // 订单评价
     Route::get('order/ship/{oid}','ShopController@getShip');
     // 订单评价

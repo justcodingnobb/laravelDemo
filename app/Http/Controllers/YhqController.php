@@ -14,8 +14,8 @@ class YhqController extends BaseController
 	// 所有优惠券
     public function getIndex()
     {
-    	$info = (object) ['title'=>'发放优惠券','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
-    	$list = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->paginate(10);
+    	$info = (object) ['title'=>'领取优惠券','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
+    	$list = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->get();
         $info->pid = 0;
     	return view($this->theme.'.yhq',compact('info','list'));
     }
@@ -43,13 +43,13 @@ class YhqController extends BaseController
             DB::rollBack();
             return back()->with('message','领取失败，请稍后再试！');
     	}
-    	return view($this->theme.'.lyhq',compact('info'));
+    	return back()->with('message','领取成功！');
     }
     // 我的优惠券
     public function getList()
     {
     	$info = (object) ['title'=>'我的优惠券','keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
-    	$list = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('del',1)->orderBy('id','desc')->paginate(10);
+    	$list = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('del',1)->orderBy('id','desc')->simplePaginate(10);
         $info->pid = 0;
     	return view($this->theme.'.myyhq',compact('info','list'));
     }

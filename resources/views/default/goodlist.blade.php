@@ -70,7 +70,7 @@
 	</div>
 
 	<div class="pages">
-        {!! $list->links() !!}
+        {!! $list->appends(['sort'=>$sort,'sc'=>$sc])->links() !!}
     </div>
 
 </section>

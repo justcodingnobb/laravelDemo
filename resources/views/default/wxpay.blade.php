@@ -46,5 +46,9 @@
 	<div class="bg-primary" style="padding: 15px;">
 		<strong>下单成功，请及时支付！</strong>
 	</div>
+	<div style="margin-top: 40%;" class="text-center">
+		<a href="{{ url('/user/order/1') }}" class="btn btn-default">查看订单</a>
+		<a href="{{ url('/') }}" class="btn btn-success">继续购物</a>
+	</div>
 </body>
 </html>

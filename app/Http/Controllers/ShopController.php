@@ -77,7 +77,7 @@ class ShopController extends BaseController
                     $active = 1;
                     break;
             }
-            return view($this->theme.'.goodlist',compact('info','list','active'));
+            return view($this->theme.'.goodlist',compact('info','list','active','sort','sc'));
         }
     }
     /*
@@ -223,7 +223,7 @@ class ShopController extends BaseController
         $old_prices = Cart::where('user_id',session('member')->id)->sum('total_prices');
         $uid = session('member')->id;
         // 创建订单
-        $order_id = App::make('com')->orderid();
+        $order_id = app('com')->orderid();
         // 查出优惠券优惠多少
         $yh_price = 0;
         $prices = $old_prices;
@@ -385,21 +385,42 @@ class ShopController extends BaseController
             $id = $req->gid;
             $formatid = $req->fid;
             $num = $req->num;
+            $userid = !is_null(session('member')) ? session('member')->id : 0;
             $price = $req->gp;
             // 如果用户已经登陆，查以前的购物车
-            if (session()->has('member')) {
+            if ($userid) {
+                // 查看是否限时，限购
+                $good = Good::findOrFail($id);
+                if ($good->isxs && strtotime($good->endtime) < time()) {
+                    echo '限时抢购，已经结束！';
+                    return;
+                }
+                // 购物车里有，过往30天订单里有，都算已经购买过
+                if ($good->isxl && (Cart::where('good_id',$id)->where('user_id',$userid)->sum('nums') >= $good->xlnums || OrderGood::where('good_id',$id)->where('user_id',$userid)->where('status',1)->where('created_at','>',Carbon::now()->subday(30))->sum('nums') >= $good->xlnums)) {
+                    echo '限量购买，已购买过了！';
+                    return;
+                }
                 // 当前用户此次登陆添加的
-                $tmp = Cart::where('session_id',$sid)->where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+                $tmp = Cart::where('session_id',$sid)->where('user_id',$userid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
                 // 如果没有，看以前有没有添加过这类商品
                 if(is_null($tmp))
                 {
-                    $tmp = Cart::where('user_id',session('member')->id)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+                    $tmp = Cart::where('user_id',$userid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
                 }
             }
             else
             {
-                $tmp = Cart::where('session_id',$sid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+                echo "请先登陆！";
+                return;
             }
+/*            // 如果用户已经登陆，查以前的购物车
+            if (session()->has('member')) {
+                
+            }
+            else
+            {
+                $tmp = Cart::where('session_id',$sid)->where('tuan_id',0)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+            }*/
             // 查看有没有在购物车里，有累计数量
             if (!is_null($tmp)) {
                 $nums = $num + $tmp->nums;
@@ -408,7 +429,6 @@ class ShopController extends BaseController
             {
                 $nums = $num;
             }
-            $userid = !is_null(session('member')) ? session('member')->id : 0;
             $total_prices = $price * $nums;
             $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'format_id'=>$formatid,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
             // 查看有没有在购物车里，有累计数量
@@ -420,8 +440,11 @@ class ShopController extends BaseController
                 Cart::create($a);
             }
             echo 1;
+            return;
         } catch (\Exception $e) {
-            echo 0;
+            echo '添加失败，请稍后再试！';
+            // echo $e->getMessage();
+            return;
         }
         // 找出所有商品来
         // return back()->with('message','添加购物车成功！');
