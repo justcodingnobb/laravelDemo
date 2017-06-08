@@ -32,6 +32,7 @@
 		      			  </label>
 		      			</li>
 		      			@endforeach
+		      			<a href="{{ url('/user/address/add') }}" class="btn btn-sm btn-success">添加配送地址</a>
 		      		</ul>
 		      		
 		      		<!-- 自提点 -->

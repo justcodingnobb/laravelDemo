@@ -59,6 +59,9 @@
             // 加载默认左侧菜单
             $("#subnav").load('/xyshop/index/left/1');
             // 点击切换左侧菜单列表
+            $(".logo").click(function(){
+                $("#rightMain").attr('src','/xyshop/index/main');
+            });
             $("#mainmenu li a").click(function(){
                 var mid = $(this).attr('data-menuid');
                 $("#subnav").load("/xyshop/index/left/"+mid);

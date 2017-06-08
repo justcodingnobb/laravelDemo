@@ -20,6 +20,7 @@ use App\Models\OrderGood;
 use App\Models\Pay;
 use App\Models\User;
 use App\Models\YhqUser;
+use App\Models\Youhuiquan;
 use App\Models\Zitidian;
 use Carbon\Carbon;
 use DB;
@@ -138,11 +139,13 @@ class ShopController extends BaseController
         $goodcomment = GoodComment::with(['user'=>function($q){
                 $q->select('id','nickname','thumb','username');
             }])->where('good_id',$id)->where('del',1)->orderBy('id','desc')->limit(20)->get();
-        return view($this->theme.'.good',compact('info','formats','good_format','goodcomment'));
+        $havyhq = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit(2)->get();
+        return view($this->theme.'.good',compact('info','formats','good_format','goodcomment','havyhq'));
     }
     // 购物车
     public function getCart()
     {
+        $info = (object) ['pid'=>3];
         // 找出购物车
         $goods = Cart::where(function($q){
                 if (!is_null(session('member'))) {
@@ -153,6 +156,10 @@ class ShopController extends BaseController
                     $q->where('session_id',session()->getId());
                 }
             })->orderBy('updated_at','desc')->get();
+        // 如果购物车为空，显示空模板
+        if ($goods->count() == 0) {
+            return view($this->theme.'.cart_empty',compact('info'));
+        }
         $goodlists = [];
         $total_prices = 0;
         // 缓存属性们
@@ -193,7 +200,6 @@ class ShopController extends BaseController
             }
         }
         // 找出所有商品来
-        $info = (object) ['pid'=>3];
         $total_prices = number_format($total_prices,2,'.','');
         // 查此用户的所有可用优惠券
         $yhq = YhqUser::with('yhq')->where('user_id',session('member')->id)->where('endtime','>',date('Y-m-d H:i:s'))->where('status',1)->where('del',1)->get();

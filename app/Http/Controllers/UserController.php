@@ -124,8 +124,8 @@ class UserController extends BaseController
         // 数据
         $order_1 = Order::where('user_id',$uid)->where('paystatus',0)->where('orderstatus',1)->where('status',1)->count();
         $order_2 = Order::where('user_id',$uid)->where('paystatus',1)->where('shipstatus',0)->where('ziti',0)->where('orderstatus',1)->where('status',1)->count();
-        $order_3 = Order::where('user_id',$uid)->where('status',1)->where('paystatus',1)->where('orderstatus',1)->where(function($q){
-                        $q->where('shipstatus',1)->orWhere('ziti','!=',0);
+        $order_3 = Order::where('user_id',$uid)->where('status',1)->where(function($q){
+                        $q->where('paystatus',1)->where('orderstatus',1)->where('shipstatus',1)->orWhere('ziti','!=',0);
                     })->count();
         $order_4 = 0;
         $order_5 = Order::where('user_id',$uid)->where('paystatus',1)->where('orderstatus',3)->where('status',1)->count();

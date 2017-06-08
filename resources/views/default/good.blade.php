@@ -21,10 +21,10 @@
 		<div class="good_bgf">
 			<div class="good_show">
 				@if($info->isxs)
-				<span class="label label-warning">限时购： {{ $info->endtime }} 结束</span>
+				<span class="tuan_times">限时购： {{ $info->endtime }} 结束</span>
 				@endif
 				@if($info->isxl)
-				<span class="label label-warning">限每人 {{ $info->xlnums }} 件</span>
+				<span class="tuan_times">限每人 {{ $info->xlnums }} 件</span>
 				@endif
 				<h1 class="good_show_title mt10">
 					@if($info->isxs)
@@ -58,7 +58,7 @@
 					<input type="hidden" value="{{ $info->price }}" name="gp">
 					<input type="hidden" value="0" name="fid">
 					<div class="row price_store mt10">
-						<div class="col-xs-6">价格：<span class="price color_l">{{ $info->price }}</span>￥</div>
+						<div class="col-xs-6">价格：￥<span class="price color_l">{{ $info->price }}</span></div>
 						<div class="col-xs-6 text-right mt store">库存：{{ $info->store }}</div>
 					</div>
 					@endif
@@ -81,9 +81,26 @@
 
 					<input type="hidden" min="0" value="1" class="form-control cartnum" name="num">
 				</form>
+				<!-- 优惠券 -->
+				@if($havyhq->count() > 0)
+				<div class="yhq_lq clearfix mt10">
+					<a href="{{ url('shop/yhq/index') }}">
+						<img src="{{ $sites['static']}}home/images/yhq.png" class="img-responsive pull-left" width="74" alt="">
+						<div class="yhq_font">
+							<div class="pull-right yhq_r">
+								>
+							</div>
+							@foreach($havyhq as $y)
+							<p class="text-nowarp">{{ str_limit($y->title,20,'...') }}</p>
+							@endforeach
+						</div>
+					</a>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>
+
 	
 	<!-- 店铺 -->
 	<div class="shop_info">

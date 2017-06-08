@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"今日",
+				"今日销售统计表\t(main.blade.php)"
+			],
+			[
+				"table-",
+				"table-striped \tBootstrap 3 Class"
+			],
+			[
+				"label-de",
+				"label-danger \tBootstrap 3 Class"
+			],
+			[
+				"today_pri",
+				"today_prices_real"
+			],
+			[
+				"toda",
+				"today_prices"
+			],
+			[
+				"tmp",
+				"tmp_good"
+			],
+			[
+				"tm",
+				"tmp_good"
+			],
+			[
+				"tmp_",
+				"tmp_good"
+			],
+			[
+				"array_mr",
+				"array_merge"
+			],
+			[
+				"format",
+				"format"
+			],
+			[
+				"fore",
+				"foreach\tforeach …"
+			],
+			[
+				"p",
+				"pointer"
+			],
+			[
+				"hidd",
+				"hidden-xs \tBootstrap 3 Class"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
 				"tex",
 				"text-center \tBootstrap 3 Class"
 			],
@@ -148,10 +204,6 @@
 				"goodlists"
 			],
 			[
-				"tmp",
-				"tmp_format"
-			],
-			[
 				"de",
 				"decrement"
 			],
@@ -208,10 +260,6 @@
 				"is_null"
 			],
 			[
-				"fore",
-				"forever"
-			],
-			[
 				"var",
 				"var_dump"
 			],
@@ -234,10 +282,6 @@
 			[
 				"Car",
 				"Carbon"
-			],
-			[
-				"format",
-				"format_id"
 			],
 			[
 				"good",
@@ -310,10 +354,6 @@
 			[
 				"cl",
 				"clearfix"
-			],
-			[
-				"hidd",
-				"hidden-sm \tBootstrap 3 Class"
 			],
 			[
 				"as",
@@ -474,46 +514,6 @@
 			[
 				"R",
 				"Request\t(BaseController.php)"
-			],
-			[
-				"create",
-				"created_at"
-			],
-			[
-				"new",
-				"newuser\t(Emchat.php)"
-			],
-			[
-				"App",
-				"AppComment\t(AppComment.php)"
-			],
-			[
-				"wi",
-				"width"
-			],
-			[
-				"url",
-				"urlencode"
-			],
-			[
-				"key",
-				"keywords"
-			],
-			[
-				"attrs",
-				"attrsT"
-			],
-			[
-				"pat",
-				"path"
-			],
-			[
-				"array",
-				"array_push($header"
-			],
-			[
-				"comment_i",
-				"comment_input"
 			]
 		]
 	},
@@ -746,26 +746,58 @@
 		"/F/wwwroot/jxf/public/statics/home",
 		"/F/wwwroot/jxf/resources",
 		"/F/wwwroot/jxf/resources/views",
-		"/F/wwwroot/jxf/routes"
+		"/F/wwwroot/jxf/resources/views/default"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/jxf/readme.md",
-		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
 		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart_empty.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/76BCE12B_edit.tmp/index.html",
+		"/F/希夷/cxchaoshi/服务器.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/6CA7BA8D_edit.tmp/product.html",
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
+		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/config/app.php",
+		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/public/statics/admin/css/reset.scss",
+		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
+		"/C/Users/Administrator/Desktop/今日事.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/list.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/show.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/page.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/50AB9072_edit.tmp/home.css",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/category.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/index.html",
+		"/F/希夷/v9_content/index.html",
+		"/F/希夷/v9_content/page.html",
+		"/C/Users/Administrator/Desktop/sfd.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/footer.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/message.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/16154470_edit.tmp/global.func.php",
+		"/F/希夷/v9_content/list.html",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$EXa0.510/v9_content/header.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/header.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/7F09F0A2_edit.tmp/.htaccess",
+		"/F/希夷/康顺/康顺.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1C60957A_edit.tmp/system.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1C60957A_edit.tmp/database.php",
+		"/F/希夷/康顺/localhost.sql",
 		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/paylist.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/TuanController.php",
 		"/F/wwwroot/jxf/public/statics/home/js/com.js",
-		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_07_151307_del_tuan_id_to_carts.php",
-		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
 		"/C/Users/Administrator/Desktop/载体和行业.txt",
 		"/F/wwwroot/jxf/database/migrations/2017_06_07_112746_add_tid_to_carts.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_07_112249_add_tid_to_orders.php",
@@ -781,7 +813,6 @@
 		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
 		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
 		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
 		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
@@ -792,7 +823,6 @@
 		"/F/wwwroot/jxf/database/migrations/2017_06_06_163117_edit_goods_tags_isnew.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Old/ShopController.php",
 		"/F/wwwroot/jxf/resources/views/admin/ad/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wwwroot/jxf/app/Http/Requests/Good/GoodCommentRequest.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_06_153313_add_commentstatus_to_order_goods.php",
 		"/F/wwwroot/jxf/resources/views/default/good_comment.blade.php",
@@ -826,7 +856,6 @@
 		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
 		"/F/wwwroot/jxf/.gitignore",
 		"/F/wwwroot/jxf/.env",
-		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/login.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
@@ -848,36 +877,7 @@
 		"/F/wwwroot/jxf/app/Http/Requests/GoodRequest.php",
 		"/F/wwwroot/jxf/config/wechat.php",
 		"/F/wwwroot/jxf/config/alipay.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Pay/AlipayController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/wxpay.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/66C8931B_edit.tmp/weixin.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/A63D38CD_edit.tmp/wxpay.blade.php",
-		"/F/wwwroot/jxf/config/socialite.php",
-		"/F/wwwroot/index.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/B21A646D_edit.tmp/wechat.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/38973D84_edit.tmp/MP_verify_CYMxtYRg0jliZQ5N.txt",
-		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/F/希夷/康顺/康顺.txt",
-		"/F/wwwroot/lsf/composer.json",
-		"/F/希夷/懂秘帮/需求/20170602.txt",
-		"/F/wwwroot/jxf/resources/views/admin/goodcate/index.blade.php",
-		"/F/wwwroot/dmb/config/app.php",
-		"/F/wwwroot/laravelDemo/config/app.php",
-		"/F/wwwroot/jxf/config/app.php",
-		"/F/wwwroot/dzys/config/app.php",
-		"/F/wwwroot/jxf/resources/views/admin/manzeng/add.blade.php",
-		"/F/scss/bootstrap/modal-form.html",
-		"/F/wwwroot/jxf/app/Http/Middleware/VerifyCsrfToken.php",
-		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/说明.txt",
-		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
-		"/F/wwwroot/jxf/resources/views/admin/tuan/add_old.blade.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/62CE2F3F_edit.tmp/.env",
-		"/F/wwwroot/jxf/resources/views/admin/user/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Requests/AdminRequest.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArticleController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/3E22DBA3_edit.tmp/ArtsController.php"
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php"
 	],
 	"find":
 	{
@@ -975,6 +975,37 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"yhq",
+			"label label-warning",
+			"pd10",
+			"E32EA1",
+			"span class=\"label label-warning mt5\"",
+			"alert",
+			"btn-fastbuy",
+			"alert",
+			"btn-fastbuy",
+			"order/over",
+			"order/tui",
+			"span",
+			"tmp_goods",
+			"->",
+			".single1",
+			"{IMG_PATH}",
+			"></img",
+			".navbar",
+			"center-block",
+			"col-xs-12",
+			" col-lg-6",
+			"mt30",
+			"line.png",
+			"statics/images/line.png",
+			"#footer",
+			"footer",
+			"h2",
+			"h4",
+			"catpos",
+			"div",
+			"http://localhost/ks",
 			"5",
 			"60px",
 			"6",
@@ -1071,38 +1102,7 @@
 			"ship",
 			"$('#myModal').modal('hide');",
 			"4",
-			"h5",
-			"ship",
-			"ship_li",
-			"zitiid",
-			"yhq",
-			"yhqid",
-			"yhq",
-			"change_cart",
-			"alert",
-			"$('.addcart')",
-			"addcart",
-			"span",
-			"total_price_",
-			"total_prices",
-			"mt5",
-			"mt10",
-			"1",
-			"cart_dec_cart",
-			"cart_num",
-			"cart_nums",
-			"good_prices",
-			"</td>",
-			"<td>",
-			"div",
-			"h4",
-			"40",
-			"50",
-			"5",
-			"30",
-			"addcart",
-			"cart_nums",
-			"cartnum"
+			"h5"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1110,6 +1110,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"/statics/images/",
 			"app('com')",
 			"吉鲜商城",
 			"app",
@@ -1268,16 +1269,60 @@
 		"selected_items":
 		[
 			[
-				"home.scss",
+				"tuan",
+				"resources\\views\\default\\tuan.blade.php"
+			],
+			[
+				"home.",
 				"public\\statics\\home\\css\\home.scss"
+			],
+			[
+				"shopc",
+				"app\\Http\\Controllers\\ShopController.php"
+			],
+			[
+				"good",
+				"resources\\views\\default\\good.blade.php"
+			],
+			[
+				"home.bl",
+				"resources\\views\\default\\home.blade.php"
+			],
+			[
+				"web.",
+				"routes\\web.php"
+			],
+			[
+				"main.blade",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"main.bl",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"cart",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"user",
+				"app\\Http\\Controllers\\Admin\\UserController.php"
+			],
+			[
+				"shopcon",
+				"app\\Http\\Controllers\\ShopController.php"
 			],
 			[
 				"order",
 				"resources\\views\\default\\order.blade.php"
 			],
 			[
-				"cart",
-				"resources\\views\\default\\cart.blade.php"
+				"reset.scss",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
+				"home.scss",
+				"public\\statics\\home\\css\\home.scss"
 			],
 			[
 				"good.bl",
@@ -1450,10 +1495,6 @@
 			[
 				"109",
 				"database\\migrations\\2016_12_09_200519_create_authstatus.php"
-			],
-			[
-				"reset.scss",
-				"public\\statics\\admin\\css\\reset.scss"
 			],
 			[
 				"auth/in",
@@ -1684,10 +1725,6 @@
 				"resources\\views\\article\\show.blade.php"
 			],
 			[
-				"user",
-				"app\\Http\\Controllers\\Admin\\UserController.php"
-			],
-			[
 				"show.ba",
 				"resources\\views\\article\\show.blade.php"
 			],
@@ -1742,42 +1779,6 @@
 			[
 				"article/com",
 				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"rese",
-				"public\\statics\\reset.scss"
-			],
-			[
-				"jquery",
-				"public\\statics\\common\\js\\jquery.min.js"
-			],
-			[
-				"underscore",
-				"public\\statics\\common\\js\\underscore.js"
-			],
-			[
-				"pinchzoom",
-				"public\\statics\\common\\js\\pinchzoom.js"
-			],
-			[
-				"smart-zoom-jquery.min",
-				"public\\statics\\common\\js\\smart-zoom-jquery.min.js"
-			],
-			[
-				"article/sho",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"article/",
-				"resources\\views\\article\\article.blade.php"
-			],
-			[
-				"special/index",
-				"resources\\views\\admin\\special\\index.blade.php"
-			],
-			[
-				"hot/index",
-				"resources\\views\\admin\\hot\\index.blade.php"
 			]
 		],
 		"width": 0.0

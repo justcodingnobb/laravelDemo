@@ -20,11 +20,12 @@
             <p class="clearfix"><span class="order_font">订单总价：</span><strong class="color_2">￥{{ $o->total_prices }}</strong>
             @if($status == 1)
             	<a href="{{ url('shop/order/pay',['oid'=>$o->id]) }}" class="text-danger pull-right topay"><span class="glyphicon glyphicon-jpy topay"></span>去支付</a>
-            	<a href="{{ url('shop/order/over',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
+            	<a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
             </p>
             @endif
             @if($status == 2)
             	<span class="color_l pull-right">已支付</span>
+                <a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
         	</p>
 <!--             <p><span class="order_font">发货状态：</span>
 	@if($o->shipstatus == 0)
@@ -47,9 +48,9 @@
             	<!-- 三天内完成的可申请退货 -->
             	@elseif($o->orderstatus == 2 && (time() - strtotime($o->updated_at)) < 259200 )
             	<span class="color-success">已完成</span>
-            	<a href="{{ url('shop/order/tui',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
+            	<a href="{{ url('user/order/tui',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
             	@elseif($o->orderstatus == 3)
-            	<span class="text-warning">已退货</span>
+            	<span class="text-warning">已申请退货</span>
             	@else
             	<span class="text-danger">结束</span>
             	@endif

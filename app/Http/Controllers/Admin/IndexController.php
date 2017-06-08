@@ -6,9 +6,15 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Config;
+use App\Models\Good;
+use App\Models\GoodAttr;
+use App\Models\GoodFormat;
 use App\Models\Menu;
+use App\Models\Order;
+use App\Models\OrderGood;
 use App\Models\Priv;
 use Cache;
+use Excel;
 
 class IndexController extends Controller
 {
@@ -55,8 +61,100 @@ class IndexController extends Controller
     public function getMain()
     {
         $title = '系统信息';
-        $main = 'Is Laravel CMF!';
-        return view('admin.index.main',compact('main','title'));
+        $data = [];
+        // 今日总订单量
+        $data['today_ordernum'] = Order::where('orderstatus','>',0)->where('created_at','>',date('Y-m-d 00:00:00'))->count();
+        // 今日销售额
+        $data['today_prices'] = Order::where('orderstatus','>',0)->where('created_at','>',date('Y-m-d 00:00:00'))->sum('total_prices');
+        // 今日已收款数
+        $data['today_prices_real'] = Order::whereIn('orderstatus',[1,2])->where('created_at','>',date('Y-m-d 00:00:00'))->where('paystatus',1)->sum('total_prices');
+        // 今日未收款数
+        $data['today_prices_no'] = $data['today_prices'] - $data['today_prices_real'];
+        // 今日待发货
+        $data['today_ship'] = Order::where('orderstatus',1)->where('shipstatus',0)->where('ziti',0)->where('created_at','>',date('Y-m-d 00:00:00'))->where('paystatus',1)->count();
+        // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
+        // ->where('created_at','>',date('Y-m-d 00:00:00'))
+        $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->pluck('id');
+        $goods = OrderGood::whereIn('order_id',$order_ids)->get();
+        // 循环出来每一个产品的重量值，并去重累加
+        $good_ship = [];
+        foreach ($goods as $k => $v) {
+            if (isset($good_ship[$v->good_id.'_'.$v->format_id])) {
+                $good_ship[$v->good_id.'_'.$v->format_id]['nums'] += $v->nums;
+            }
+            else
+            {
+                $good_ship[$v->good_id.'_'.$v->format_id] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'format'=>$v->format_id];
+            }
+        }
+        // 查每个的重量并累加，先查出所有商品属性及商品规格，省去重复查询
+        $formats = GoodFormat::whereIn('good_id',$goods->pluck('good_id'))->get();
+        $attrs = GoodAttr::where('status',1)->get();
+        foreach ($good_ship as $k => $v) {
+            $tmp_good = Good::select('id','title','pronums','price','weight')->findOrFail($v['good_id'])->toArray();
+            if ($v['format']) {
+                $tmp_format = $formats->where('id',$v['format'])->first()->attr_ids;
+                // 查第一个的值
+                $tmp_format = explode('-', trim($tmp_format,'-'))[0];
+                $tmp_weight = $attrs->where('id',$tmp_format)->first()->value;
+                $tmp_good['weight'] = (float) $tmp_weight;
+                $tmp_good['total_weight'] = $v['nums'] * (float) $tmp_weight;
+            }
+            else
+            {
+                $tmp_good['total_weight'] = $v['nums'] * $tmp_good['weight'];
+            }
+            unset($v['good_id']);
+            $good_ship[$k] = array_merge($tmp_good,$v);
+        }
+        return view('admin.index.main',compact('title','data','good_ship'));
+    }
+    public function getExcel()
+    {
+        // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
+        // ->where('created_at','>',date('Y-m-d 00:00:00'))
+        $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->pluck('id');
+        $goods = OrderGood::whereIn('order_id',$order_ids)->get();
+        // 循环出来每一个产品的重量值，并去重累加
+        $good_ship = [];
+        foreach ($goods as $k => $v) {
+            if (isset($good_ship[$v->good_id.'_'.$v->format_id])) {
+                $good_ship[$v->good_id.'_'.$v->format_id]['nums'] += $v->nums;
+            }
+            else
+            {
+                $good_ship[$v->good_id.'_'.$v->format_id] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'format'=>$v->format_id];
+            }
+        }
+        // 查每个的重量并累加，先查出所有商品属性及商品规格，省去重复查询
+        $formats = GoodFormat::whereIn('good_id',$goods->pluck('good_id'))->get();
+        $attrs = GoodAttr::where('status',1)->get();
+        foreach ($good_ship as $k => $v) {
+            $tmp_good = Good::select('id','title','pronums','price','weight')->findOrFail($v['good_id'])->toArray();
+            if ($v['format']) {
+                $tmp_format = $formats->where('id',$v['format'])->first()->attr_ids;
+                // 查第一个的值
+                $tmp_format = explode('-', trim($tmp_format,'-'))[0];
+                $tmp_weight = $attrs->where('id',$tmp_format)->first()->value;
+                $tmp_good['weight'] = (float) $tmp_weight;
+                $tmp_good['total_weight'] = $v['nums'] * (float) $tmp_weight;
+            }
+            else
+            {
+                $tmp_good['total_weight'] = $v['nums'] * $tmp_good['weight'];
+            }
+            unset($v['good_id']);
+            unset($v['format']);
+            $good_ship[$k] = array_merge($tmp_good,$v);
+        }
+        $cellData = array_merge(
+            [['ID','标题','货号','单价','单件重量','数量','总重量']],$good_ship
+        );
+        Excel::create('今日销售统计表',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
     }
     public function getLeft($pid)
     {

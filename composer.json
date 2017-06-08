@@ -12,6 +12,7 @@
         "lokielse/omnipay-alipay": "^2.0",
         "lokielse/omnipay-unionpay": "dev-master",
         "lokielse/omnipay-wechatpay": "^1.0",
+        "maatwebsite/excel": "^2.1",
         "nwidart/db-exporter": "*",
         "overtrue/laravel-pinyin": "~3.0",
         "overtrue/laravel-socialite": "~1.0",

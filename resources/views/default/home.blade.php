@@ -98,11 +98,8 @@
 		@endforeach
 	</div>
 	<!-- 团 -->
-	<div class="container-fluid cate_list mt10">
-		<!-- 优惠券 -->
-		<a href="{{ url('shop/yhq/index') }}"><img src="{{ $sites['static']}}home/images/yhq.jpg" class="img-responsive" alt=""></a>
-		
-		<h2 class="h_t mt20"><img src="{{ $sites['static']}}home/images/tuan_t.png" class="img-responsive" alt=""></h2>
+	<div class="container-fluid cate_list">
+		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/tuan_t.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
 			@foreach(app('tag')->tuan(6) as $l)
 			<div class="col-xs-6 pr">

@@ -589,6 +589,15 @@ a {color:#333;}
     }
     
 }
+.yhq_font {
+    margin-top: 3px;
+    line-height: 1.6;
+    color:#666;
+}
+.yhq_r {
+    font-size: 16px;
+    line-height: 40px;
+}
 // 订单列表
 .good_cart_list_order {
     line-height: 1.4;
@@ -648,12 +657,19 @@ a {color:#333;}
 .good_tuan {
     margin:0 -5px;
 }
+.tuan_info {
+    font-size: 12px;
+}
+.pd10 {padding:10px;}
 .tuan_times {
-    display: block;
-    padding:5px 0;
+    padding:1px 5px;
+    border: #46AE00 solid 1px;
+    color: #46AE00;
+    border-radius: 12px;
     line-height: 20px;
-    margin-top: 5px;
+    margin-right: 5px;
 }
 .paylist_label {
     font-weight: normal;
 }
+.cart_empty {min-height:600px; padding-top: 100px;}

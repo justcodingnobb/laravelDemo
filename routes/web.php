@@ -154,6 +154,8 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 导出出货量
+    Route::get('index/goodship', 'Admin\IndexController@getExcel');
     // 自提点管理
     Route::get('ziti/index', 'Good\ZitiController@getIndex');
     Route::get('ziti/add', 'Good\ZitiController@getAdd');

@@ -208,6 +208,9 @@ return [
         // 微信
         Overtrue\LaravelWechat\ServiceProvider::class,
 
+        // excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -271,6 +274,9 @@ return [
 
         // 微信
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+
+        // excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

@@ -19,11 +19,9 @@
     <div class="good_top">
 		<div class="good_thumb"><img src="{{ $info->thumb }}" class="img-responsive" alt="{{ $info->title }}"></div>
 		<!-- 团购信息 -->
-		<div class="bgf mt10">
-			<p class="tuan_times label label-success">自 {{ $tuan->starttime }} 开始</p>
-			<p class="tuan_times label label-danger">至 {{ $tuan->endtime }} 结束</p>
-			<span class="label label-warning mt5">最少参团：{{ $tuan->nums }} 人</span>
-			<span class="label label-primary mt5">已参加：{{ $tuan->havnums }} 人</span>
+		<div class="bgf pd10 mt10 tuan_info text-left">
+				<p>从 <span class="tuan_times">{{ str_limit($tuan->starttime,10,'') }}</span> 至 <span class="tuan_times">{{ str_limit($tuan->endtime,10,'') }}</span> 结束</p>
+				<p class="mt5">最少参团：<span class="tuan_times">{{ $tuan->nums }}</span> 人  已参加：<span class="tuan_times">{{ $tuan->havnums }}</span> 人</p>
 		</div>
 
 		<div class="good_bgf">
@@ -36,8 +34,8 @@
 					<input type="hidden" value="{{ $tuan->prices }}" name="gp">
 					<input type="hidden" value="{{ $tuan->id }}" name="tid">
 					<div class="row price_store mt10">
-						<div class="col-xs-6">价格：<del class="price color_l">{{ $info->price }}</del>￥</div>
-						<div class="col-xs-6">团购格：<del class="price color_l">{{ $tuan->prices }}</del>￥</div>
+						<div class="col-xs-6">价格：￥<del class="price color_l">{{ $info->price }}</del></div>
+						<div class="col-xs-6">团购格：￥<del class="price color_l">{{ $tuan->prices }}</del></div>
 						<div class="col-xs-6 text-left mt store">库存：{{ $tuan->store }}</div>
 					</div>
 					<div class="row ship">
