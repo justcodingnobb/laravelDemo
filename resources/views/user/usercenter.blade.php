@@ -69,7 +69,7 @@
 				@if($order_4 != 0)<div class="user_order_nums ps">{{ $order_4 }}</div>@endif
 			</div>
 			<div class="user_order_list_div pr">
-				<a href="{{ url('/user/order',['status'=>5]) }}">
+				<a href="{{ url('/user/returngood') }}">
 					<span class="glyphicon glyphicon-log-out"></span>
 					<p>退货</p>
 				</a>
@@ -84,6 +84,12 @@
 		</li>
 		<li class="clearfix">
 			<a href="{{ url('user/info') }}"><span class="glyphicon glyphicon-cog"></span>通用设置<span class="user_other_r"> > </span></a>
+		</li>
+		<li class="clearfix">
+			<a href="{{ url('user/card') }}"><span class="glyphicon glyphicon-credit-card"></span>充值卡激活<span class="user_other_r"> > </span></a>
+		</li>
+		<li class="clearfix">
+			<a href="{{ url('user/consume') }}"><span class="glyphicon glyphicon-tree-deciduous"></span>消费记录<span class="user_other_r"> > </span></a>
 		</li>
 		<li class="clearfix">
 			<a href="{{ url('oauth/wx') }}"><span class="glyphicon glyphicon-retweet"></span>绑定微信号<span class="user_other_r"> > </span></a>

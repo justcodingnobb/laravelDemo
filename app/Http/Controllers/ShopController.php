@@ -18,6 +18,7 @@ use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
 use App\Models\Pay;
+use App\Models\ReturnGood;
 use App\Models\User;
 use App\Models\YhqUser;
 use App\Models\Youhuiquan;
@@ -42,44 +43,49 @@ class ShopController extends BaseController
         {
             $info = GoodCate::findOrFail($id);
         }
-        // 如果是一级分类，打开分类列表，如果是二级分类打开产品列表
-        if ($info->parentid == 0) {
-            // 找出所有的一级分类来
-            $allcate = GoodCate::where('parentid',0)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
-            // 找当前分类的所有子分类
-            $childid = explode(',',$info->arrchildid);
-            unset($childid[0]);
-            $subcate = GoodCate::whereIn('id',$childid)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
-            // 找出来广告们
-            $info->pid = 2;
-            $ad = Ad::where('pos_id',8)->where('status',1)->where('del',1)->get()->random();
-            return view($this->theme.'.goodcate',compact('info','allcate','subcate','ad'));
+        // 如果当前分类下没有子分类，直接跳转到产品上
+        if ($id == $info->arrchildid) {
+            return redirect("/shop/goodlist/$id");
         }
-        else
-        {
-            $info->pid = 2;
-            $sort = isset($req->sort) ? $req->sort : 'sort';
-            $sc = isset($req->sc) ? $req->sc : 'asc';
-            $list = Good::where('cate_id',$id)->orderBy($sort,$sc)->orderBy('id','desc')->simplePaginate(20);
-            switch ($sort) {
-                case 'sales':
-                    $active = 2;
-                    break;
+        // 找出所有的一级分类来
+        $allcate = GoodCate::where('parentid',0)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
+        // 找当前分类的所有子分类
+        $childid = explode(',',$info->arrchildid);
+        unset($childid[0]);
+        $subcate = GoodCate::whereIn('id',$childid)->where('status',1)->orderBy('sort','asc')->orderBy('id','asc')->get();
+        // 找出来广告们
+        $info->pid = 2;
+        $ad = Ad::where('pos_id',8)->where('status',1)->where('del',1)->get()->random();
+        return view($this->theme.'.goodcate',compact('info','allcate','subcate','ad'));
+        
+    }
+    // 一级分类直接显示商品页面
+    public function getGoodlist(Request $req,$id = 0)
+    {   
+        // 如果没有标明分类，取第一个
+        $info = GoodCate::findOrFail($id);
+        $info->pid = 2;
+        $sort = isset($req->sort) ? $req->sort : 'sort';
+        $sc = isset($req->sc) ? $req->sc : 'asc';
+        $list = Good::whereIn('cate_id',explode(',',$info->arrchildid))->where('status',1)->orderBy($sort,$sc)->orderBy('id','desc')->simplePaginate(20);
+        switch ($sort) {
+            case 'sales':
+                $active = 2;
+                break;
 
-                case 'id':
-                    $active = 3;
-                    break;
+            case 'id':
+                $active = 3;
+                break;
 
-                case 'price':
-                    $active = 4;
-                    break;
-                
-                default:
-                    $active = 1;
-                    break;
-            }
-            return view($this->theme.'.goodlist',compact('info','list','active','sort','sc'));
+            case 'price':
+                $active = 4;
+                break;
+            
+            default:
+                $active = 1;
+                break;
         }
+        return view($this->theme.'.goodlist',compact('info','list','active','sort','sc'));
     }
     /*
      * 当传了属性时，按属性值计算，没传时按第一个计算
@@ -240,7 +246,7 @@ class ShopController extends BaseController
             $prices = $old_prices - $yh_price;
         }
         $area = Address::where('id',$req->aid)->value('area');
-        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
+        $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area,'mark'=>$req->mark];
         // 事务
         DB::beginTransaction();
         try {
@@ -279,13 +285,9 @@ class ShopController extends BaseController
                 }])->where('status',1)->where('user_id',session('member')->id)->where(function($q) use($status){
                     // 找出订单
                     switch ($status) {
-                        // 退货
-                        case '5':
-                            $q->where('paystatus',1)->where('orderstatus',3);
-                            break;
                         // 待评价
                         case '4':
-                            $q->whereIn('orderstatus',[2,4,0]);
+                            $q->whereIn('orderstatus',[2,0]);
                             break;
                         // 待收货
                         case '3':
@@ -353,9 +355,19 @@ class ShopController extends BaseController
         return back()->with('message','订单已取消');
     }
     // 退货申请
-    public function getTui($id = '')
+    public function getTui($id = '',$gid = '')
     {
-        Order::where('id',$id)->update(['orderstatus'=>3]);
+        $info = (object) ['pid'=>4];
+        return view($this->theme.'.tui',compact('info'));
+    }
+    public function postTui(Request $req,$id = '',$gid = '')
+    {
+        // Order::where('id',$id)->update(['orderstatus'=>3]);
+        // 先查出来具体的订单商品信息
+        $og = OrderGood::where('order_id',$id)->where('good_id',$gid)->first();
+        $data = ['user_id'=>$og->user_id,'order_id'=>$og->order_id,'good_id'=>$og->good_id,'format_id'=>$og->format_id,'nums'=>$og->nums,'price'=>$og->price,'total_prices'=>$og->total_prices,'mark'=>$req->mark];
+        OrderGood::where('order_id',$id)->where('good_id',$gid)->update(['status'=>0]);
+        ReturnGood::create($data);
         return back()->with('message','退货申请已提交');
     }
     // 订单评价

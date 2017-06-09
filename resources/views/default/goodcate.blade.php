@@ -29,8 +29,8 @@
 			<div class="row subcate">
 				@foreach($subcate as $l)
 				<div class="col-xs-4 subcate_div">
-					<a href="{{ url('/shop/goodcate',['id'=>$l->id]) }}"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
-					<a href="{{ url('/shop/goodcate',['id'=>$l->id]) }}" class="db subcate_name text-center">{{ $l->name }}</a>
+					<a href="{{ url('/shop/goodlist',['id'=>$l->id]) }}"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
+					<a href="{{ url('/shop/goodlist',['id'=>$l->id]) }}" class="db subcate_name text-center">{{ $l->name }}</a>
 				</div>
 				@endforeach
 			</div>

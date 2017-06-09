@@ -7,10 +7,10 @@
 
 
 @section('content')
-	<div class="container-fluid pb50 mt20">
+	<div class="container-fluid pb50 mt10">
 		<!-- 选择送货方式 -->
-		<div class="btn btn-warning" data-toggle="modal" data-target="#myModal">选择送货方式</div>
 		<div class="bgf ship">
+			<p class="text-center btn_ship"><span class="glyphicon glyphicon-plus"></span> 选择送货方式</p>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
@@ -125,69 +125,75 @@
 			</div>
 			@endif
 
-
 			
+<form action="{{ url('shop/addorder') }}">
+	{{ csrf_field() }}
+	<div class="bgf mt10">
+		<textarea name="mark" class="form-control" rows="4" placeholder="备注"></textarea>
 	</div>
-
-	<script>
-		$(function(){
-			$('.aid').val($('.addressid:checked').val());
-
-			$('.addressid').change(function() {
-				var aid = $(this).val();
-				$('.aid').val(aid);
-				var html = '<h3 class="h3_cate"><span class="h3_cate_span">送货至</span></h3>' + $(this).parent('label').parent('.ship_li').html();
-				$('.ship').html(html);
-				$('#myModal').modal('hide');
-			});
-
-			$('.zitiid').change(function() {
-				var aid = $(this).val();
-				$('.ziti').val(aid);
-				$('.aid').val(0);
-				var html = '<h3 class="h3_cate"><span class="h3_cate_span">自提点</span></h3>' + $(this).parent('label').parent('.ship_li').html();
-				$('.ship').html(html);
-				$('#myModal').modal('hide');
-			});
-
-			$('.yhqid').click(function() {
-				var that = $(this);
-				var yid = that.val();
-				// 查一下是否比总价多，不多，不可用
-				$.get('/user/yhq/price/' + yid,function(d){
-					if (d == 1) {
-						$('.yid').val(yid);  
-						// 选择优惠券  
-						$('.cart_yhq_list').on('click', function(event) {
-							$('.cart_yhq_list').removeClass('active');
-							$(this).addClass('active');
-						});
-					}
-					else
-					{
-						alert('总价格低于优惠券需要！');
-						$('.cart_yhq_list').removeClass('active');
-						that.attr('checked',false);
-						return false;
-					}
-				});
-			});
-		})
-	</script>
-
-<!-- 添加购物车 -->
-<div class="good_alert clearfix navbar navbar-fixed-bottom">
-	<div class="cart_total pr">
-		总计：<strong class="total_prices text-right color_2">￥{{ $total_prices }}</strong>
-	</div>
-	<form action="{{ url('shop/addorder') }}">
-		{{ csrf_field() }}
-		<input type="hidden" name="yid" class="yid" value="0">
-		<input type="hidden" name="aid" class="aid" value="0">
-		<input type="hidden" name="ziti" class="ziti" value="0">
-		<input type="hidden" name="tt" value="{{ microtime(true) }}">
-		<button type="submit" class="alert_addorder">提交订单</button> 
-	</form>
 </div>
+	
+
+	<!-- 添加购物车 -->
+	<div class="good_alert clearfix navbar navbar-fixed-bottom">
+		<div class="cart_total pr">
+			总计：<strong class="total_prices text-right color_2">￥{{ $total_prices }}</strong>
+		</div>
+
+			<input type="hidden" name="yid" class="yid" value="0">
+			<input type="hidden" name="aid" class="aid" value="0">
+			<input type="hidden" name="ziti" class="ziti" value="0">
+			<input type="hidden" name="tt" value="{{ microtime(true) }}">
+			<button type="submit" class="alert_addorder">提交订单</button> 
+	</div>
+</form>
+
+<script>
+	$(function(){
+		$('.aid').val($('.addressid:checked').val());
+
+		$('.addressid').change(function() {
+			var aid = $(this).val();
+			$('.aid').val(aid);
+			var html = '<h3 class="h3_cate"><span class="h3_cate_span">送货至</span></h3>' + $(this).parent('label').parent('.ship_li').html();
+			$('.ship').html(html);
+			$('#myModal').modal('hide');
+		});
+
+		$('.zitiid').change(function() {
+			var aid = $(this).val();
+			$('.ziti').val(aid);
+			$('.aid').val(0);
+			var html = '<h3 class="h3_cate"><span class="h3_cate_span">自提点</span></h3>' + $(this).parent('label').parent('.ship_li').html();
+			$('.ship').html(html);
+			$('#myModal').modal('hide');
+		});
+		$('.btn_ship').click(function(){
+			$('#myModal').modal('show');
+		});
+		$('.yhqid').click(function() {
+			var that = $(this);
+			var yid = that.val();
+			// 查一下是否比总价多，不多，不可用
+			$.get('/user/yhq/price/' + yid,function(d){
+				if (d == 1) {
+					$('.yid').val(yid);  
+					// 选择优惠券  
+					$('.cart_yhq_list').on('click', function(event) {
+						$('.cart_yhq_list').removeClass('active');
+						$(this).addClass('active');
+					});
+				}
+				else
+				{
+					alert('总价格低于优惠券需要！');
+					$('.cart_yhq_list').removeClass('active');
+					that.attr('checked',false);
+					return false;
+				}
+			});
+		});
+	})
+</script>
 
 @endsection

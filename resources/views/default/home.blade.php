@@ -66,14 +66,14 @@
 	<section class="container-fluid mt10 goodcate">
 		@foreach(app('tag')->goodcate(0,8) as $c)
 		<div class="col-xs-3 mt10">
-			<a href="{{ url('/shop/goodcate',['id'=>$c->id]) }}" class="goodcate_img"><img src="{{ $c->thumb }}" alt="{{ $c->name }}" class="img-responsive"></a>
-			<a href="{{ url('/shop/goodcate',['id'=>$c->id]) }}" class="mt5 db">{{ str_limit($c->name,10,'') }}</a>
+			<a href="{{ url('/shop/goodlist',['id'=>$c->id]) }}" class="goodcate_img"><img src="{{ $c->thumb }}" alt="{{ $c->name }}" class="img-responsive"></a>
+			<a href="{{ url('/shop/goodlist',['id'=>$c->id]) }}" class="mt5 db">{{ str_limit($c->name,10,'') }}</a>
 		</div>
 		@endforeach
 	</section>
 
 	<!-- 固定位广告 -->
-	<div class="container-fluid mt20 cate_list">
+	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_1.png" class="img-responsive" alt=""></h2>
 		<div class="row ad_pos">
 			 @foreach(app('tag')->ad(3,3) as $k => $c)

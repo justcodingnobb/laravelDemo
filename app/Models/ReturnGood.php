@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class ReturnGood extends Model
 {
-    // 用户表
+    // 退货管理
     /**
      * 关联到模型的数据表
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'return_good';
 
     // 不可以批量赋值的字段，为空则表示都可以
     protected $guarded = [];
@@ -30,21 +30,14 @@ class User extends Model
      */
     public $timestamps = true;
 
-    // 关联商品评价
-    public function good_comment()
+    // 用户
+    public function user()
     {
-        return $this->hasMany('\App\Models\GoodComment','user_id','id');
+        return $this->belongsTo('\App\Models\User','user_id','id');
     }
-
-    // 属性值
-    public function return_good()
+    // 商品
+    public function good()
     {
-        return $this->hasMany('\App\Models\ReturnGood','user_id','id');
-    }
-
-    // 属性值
-    public function card()
-    {
-        return $this->hasMany('\App\Models\Card','user_id','id');
+        return $this->belongsTo('\App\Models\Good','good_id','id');
     }
 }

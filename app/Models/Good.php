@@ -57,4 +57,9 @@ class Good extends Model
     {
         return $this->hasMany('\App\Models\Tuan','good_id','id');
     }
+    // 退货
+    public function return_good()
+    {
+        return $this->hasMany('\App\Models\ReturnGood','good_id','id');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Consume;
 use Auth;
 use Cache;
 use Gate;
@@ -9,6 +10,11 @@ use Storage;
 class ComService
 {
 
+    // 消费记录
+    public function consume($uid,$oid = 0,$price = 0,$mark = '')
+    {
+        Consume::create(['user_id'=>$uid,'order_id'=>$oid,'price'=>$price,'mark'=>$mark]);
+    }
     // 生成订单号
     // 基于当前时间的微秒+8位随机字符串，uniqid() 函数基于以微秒计的当前时间，生成一个唯一的 ID。
     public function orderid()

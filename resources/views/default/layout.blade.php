@@ -7,10 +7,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ $sites['static']}}home/css/home.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
@@ -40,8 +36,8 @@
     </script>
     <script src="{{ $sites['static']}}home/js/com.js"></script>
 
-    <script id="__bs_script__">
+    <!-- <script id="__bs_script__">
       document.write("<script async src='http://www.jxf.com:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("www.jxf.com", location.hostname));
-      </script>
+      </script> -->
 </body>
 </html>

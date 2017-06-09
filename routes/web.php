@@ -42,8 +42,15 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
 
 // 会员功能
 Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
+    // 消费记录
+    Route::get('consume','UserController@getConsume');
+    // 充值卡激活
+    Route::get('card','UserController@getCard');
+    Route::post('card','UserController@postCard');
     // 退货
-    Route::get('order/tui/{id}','ShopController@getTui');
+    Route::get('returngood','UserController@getReturngood');
+    Route::get('order/tui/{id}/{gid}','ShopController@getTui');
+    Route::post('order/tui/{id}/{gid}','ShopController@postTui');
     // 取消订单
     Route::get('order/over/{id}','ShopController@getOverOrder');
     // 订单列表
@@ -90,6 +97,8 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     Route::get('hd/list/{id}','HuodongController@getList');
     // 优惠券
     Route::get('yhq/index','YhqController@getIndex');
+    // 分类列表
+    Route::get('goodlist/{id}','ShopController@getGoodlist');
     // 分类
     Route::get('goodcate/{id?}','ShopController@getGoodcate');
     // 商品
@@ -154,6 +163,15 @@ Route::group(['prefix'=>'xyshop'],function(){
 });
 
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+    // 会员卡
+    Route::get('card/index', 'Good\CardController@getIndex');
+    Route::get('card/add', 'Good\CardController@getAdd');
+    Route::post('card/add', 'Good\CardController@postAdd');
+    Route::post('card/del', 'Good\CardController@postAlldel');
+    // 退货管理
+    Route::get('returngood/index', 'Good\RetrunGoodController@getIndex');
+    Route::get('returngood/status/{id}', 'Good\RetrunGoodController@getStatus');
+    Route::post('returngood/status/{id}', 'Good\RetrunGoodController@postStatus');
     // 导出出货量
     Route::get('index/goodship', 'Admin\IndexController@getExcel');
     // 自提点管理

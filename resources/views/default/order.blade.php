@@ -46,9 +46,8 @@
             	@elseif($o->orderstatus == 1)
             	<span class="color-green">正常</span>
             	<!-- 三天内完成的可申请退货 -->
-            	@elseif($o->orderstatus == 2 && (time() - strtotime($o->updated_at)) < 259200 )
+            	@elseif($o->orderstatus == 2)
             	<span class="color-success">已完成</span>
-            	<a href="{{ url('user/order/tui',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
             	@elseif($o->orderstatus == 3)
             	<span class="text-warning">已申请退货</span>
             	@else
@@ -72,7 +71,11 @@
                         <p class="fs12">数量：<span class="good_prices color_l">￥{{ $l->nums }}</span></p>
                         <p class="fs12">小计：<span class="good_prices color_l">￥{{ $l->total_prices }}</span></p>
                         @if($l->commentstatus == 0 && $o->orderstatus == 2)
-                        <p><a href="{{ url('shop/good/comment',['oid'=>$o->id,'gid'=>$l->good->id]) }}" class="text-success"><span class="glyphicon glyphicon-edit"></span>提交评价</a></p>
+                        <p><a href="{{ url('shop/good/comment',['oid'=>$o->id,'gid'=>$l->good->id]) }}" class="text-success pull-left"><span class="glyphicon glyphicon-edit"></span>提交评价</a></p>
+                        @endif
+                        <!-- 三天内完成的可申请退货 -->
+                        @if($o->orderstatus == 2 && (time() - strtotime($o->updated_at)) < 259200 && $l->status == 1)
+                        <a href="{{ url('user/order/tui',['id'=>$o->id,'gid'=>$l->good->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
                         @endif
 					</div>
 				</div>

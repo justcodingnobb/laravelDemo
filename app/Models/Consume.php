@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Consume extends Model
 {
-    // 用户表
+    // 消费记录
     /**
      * 关联到模型的数据表
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'consume';
 
     // 不可以批量赋值的字段，为空则表示都可以
     protected $guarded = [];
@@ -29,22 +29,4 @@ class User extends Model
      * @var bool
      */
     public $timestamps = true;
-
-    // 关联商品评价
-    public function good_comment()
-    {
-        return $this->hasMany('\App\Models\GoodComment','user_id','id');
-    }
-
-    // 属性值
-    public function return_good()
-    {
-        return $this->hasMany('\App\Models\ReturnGood','user_id','id');
-    }
-
-    // 属性值
-    public function card()
-    {
-        return $this->hasMany('\App\Models\Card','user_id','id');
-    }
 }

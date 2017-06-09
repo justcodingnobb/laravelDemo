@@ -100,12 +100,10 @@ class OrderController extends Controller
     	$ref = session('backurl');
     	return view('admin.order.ship',compact('title','id','ref'));
     }
-    public function postShip(ShipRequest $req,$id = '')
+    public function postShip(Request $req,$id = '')
     {
-    	$data = $req->input('data');
-    	Ship::create($data);
     	// 更新为已经发货
-    	Order::where('id',$id)->update(['shipstatus'=>1]);
+    	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark')]);
     	return redirect($req->ref)->with('message','发货成功！');
     }
     // 退货

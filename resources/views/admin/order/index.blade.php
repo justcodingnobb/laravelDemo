@@ -11,7 +11,6 @@
 			<option value="0">关闭</option>
 			<option value="1">正常</option>
 			<option value="2">完成</option>
-			<option value="3">申请退货</option>
 		</select>
 		<select name="ziti" id="ziti" class="form-control">
 			<option value="0">不自提</option>
@@ -47,11 +46,6 @@
         	<span class="color-red">已关闭</span>
         	@elseif($o->orderstatus == 1)
         	<span class="color-blue">正常</span>
-        	@elseif($o->orderstatus == 3)
-        	<span class="text-danger">申请退货</span>
-	        	@if(App::make('com')->ifCan('order-ship'))
-		    	<a href="{{ url('/xyshop/order/tui',['id'=>$o->id]) }}" class="btn btn-sm btn-warning confirm">同意</a>
-				@endif
     		@else
         	<span class="color-green">已完成</span>
         	@endif
@@ -64,8 +58,8 @@
 		@if(App::make('com')->ifCan('order-ziti') && $o->ziti != 0)
     	<a href="{{ url('/xyshop/order/ziti',['id'=>$o->id]) }}" class="btn btn-sm btn-warning confirm">已自提</a>
 		@endif
-		@if(App::make('com')->ifCan('order-ship') && $o->ziti == 0)
-    	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success confirm">发货</a>
+		@if(App::make('com')->ifCan('order-ship') && $o->ziti == 0 && $o->shipstatus == 0)
+    	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success">发货</a>
 		@endif
 		@endif
     	</td>
