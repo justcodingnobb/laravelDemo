@@ -21,6 +21,7 @@ class OrderController extends Controller
     	$starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
+        $shipstatus = $req->input('shipstatus');
         $ziti = $req->input('ziti');
         // 找出订单
         $orders = Order::with(['good'=>function($q){
@@ -41,7 +42,11 @@ class OrderController extends Controller
 	                if ($status != '') {
 	                    $q->where('orderstatus',$status);
 	                }
-	            })->where(function($q) use($ziti){
+	            })->where(function($q) use($shipstatus){
+                    if ($shipstatus != '') {
+                        $q->where('shipstatus',$shipstatus);
+                    }
+                })->where(function($q) use($ziti){
                     if ($ziti) {
                         $q->where('ziti','!=',0);
                     }

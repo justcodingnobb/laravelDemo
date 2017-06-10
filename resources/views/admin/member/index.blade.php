@@ -20,8 +20,8 @@
 			<th width="220">邮箱</th>
 			<th width="220">电话</th>
 			<th>余额</th>
+			<th>积分</th>
 			<th>最后登陆时间</th>
-			<th>最后登陆IP</th>
 			<th>修改状态</th>
 			<th>操作</th>
 		</tr>
@@ -36,8 +36,8 @@
 			<td>{{ $m->email }}</td>
 			<td>{{ $m->phone }}</td>
 			<td>{{ $m->user_money }} ￥</td>
+			<td>{{ $m->points }}</td>
 			<td>{{ $m->last_time }}</td>
-			<td>{{ $m->last_ip }}</td>
 			<td>
 				@if($m->status == 0)
 				<span class="color-red">禁用</span> -> <a href="{{ url('/xyshop/user/status',['id'=>$m->id,'status'=>1]) }}" class="color-green">正常</a>
@@ -50,7 +50,13 @@
 				<div data-url="{{ url('/xyshop/user/chong',$m->id) }}" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-success btn_chong">充值</div>
 				@endif
 				@if(App::make('com')->ifCan('user-edit'))
-				<a href="{{ url('/xyshop/user/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<a href="{{ url('/xyshop/user/edit',$m->id) }}" class="btn btn-sm btn-info">改密码</a>
+				@endif
+				@if(App::make('com')->ifCan('user-consume'))
+				<a href="{{ url('/xyshop/user/consume',$m->id) }}" class="btn btn-sm btn-warning">消费记录</a>
+				@endif
+				@if(App::make('com')->ifCan('user-address'))
+				<a href="{{ url('/xyshop/user/address',$m->id) }}" class="btn btn-sm btn-info">收货地址</a>
 				@endif
 			</td>
 		</tr>

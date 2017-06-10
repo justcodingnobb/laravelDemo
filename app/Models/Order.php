@@ -35,4 +35,16 @@ class Order extends Model
     {
         return $this->hasMany('\App\Models\OrderGood','order_id','id');
     }
+    public function address()
+    {
+        return $this->belongsTo('\App\Models\Address','address_id','id');
+    }
+    public function zitidian()
+    {
+        return $this->belongsTo('\App\Models\Zitidian','ziti','id');
+    }
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User','user_id','id');
+    }
 }

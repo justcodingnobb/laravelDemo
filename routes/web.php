@@ -172,8 +172,13 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('returngood/index', 'Good\RetrunGoodController@getIndex');
     Route::get('returngood/status/{id}', 'Good\RetrunGoodController@getStatus');
     Route::post('returngood/status/{id}', 'Good\RetrunGoodController@postStatus');
+    // 今日消费情况
+    Route::get('index/consume', 'Admin\IndexController@getConsume');
+    Route::get('index/excel_consume', 'Admin\IndexController@getExcelConsume');
     // 导出出货量
-    Route::get('index/goodship', 'Admin\IndexController@getExcel');
+    Route::get('index/excel_goods', 'Admin\IndexController@getExcelGoods');
+    // 导出待打印订单
+    Route::get('index/excel_order', 'Admin\IndexController@getExcelOrders');
     // 自提点管理
     Route::get('ziti/index', 'Good\ZitiController@getIndex');
     Route::get('ziti/add', 'Good\ZitiController@getAdd');
@@ -371,5 +376,6 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('user/status/{id}/{status}', 'Admin\UserController@getStatus');
     Route::get('user/chong/{id}', 'Admin\UserController@getChong');
     Route::post('user/chong/{id}', 'Admin\UserController@postChong');
-
+    Route::get('user/consume/{id}', 'Admin\UserController@getConsume');
+    Route::get('user/address/{id}', 'Admin\UserController@getAddress');
 });

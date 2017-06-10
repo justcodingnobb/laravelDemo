@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"tod",
+				"today_over"
+			],
+			[
+				"total",
+				"total_prices"
+			],
+			[
 				"te",
 				"text-danger \tBootstrap 3 Class"
 			],
@@ -242,10 +250,6 @@
 			[
 				"pays",
 				"paystatus\t(PayController.php)"
-			],
-			[
-				"total",
-				"total_prices\t(paylist.blade.php)"
 			],
 			[
 				"btn-de",
@@ -510,10 +514,6 @@
 			[
 				"max",
 				"maxage"
-			],
-			[
-				"dev",
-				"device"
 			]
 		]
 	},
@@ -741,20 +741,41 @@
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
 		"/F/wwwroot/jxf/app/Http/Controllers",
-		"/F/wwwroot/jxf/database",
-		"/F/wwwroot/jxf/public/statics",
-		"/F/wwwroot/jxf/public/statics/home",
-		"/F/wwwroot/jxf/public/statics/home/css",
 		"/F/wwwroot/jxf/resources",
-		"/F/wwwroot/jxf/resources/views"
+		"/F/wwwroot/jxf/routes"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/resources/views/admin/index/consume.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/consume.blade.php",
+		"/F/wwwroot/jxf/database/factories/ModelFactory.php",
+		"/F/wwwroot/jxf/app/Models/Consume.php",
+		"/F/wwwroot/jxf/app/Models/User.php",
+		"/F/wwwroot/jxf/resources/views/admin/log/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/app/Services/ComService.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_10_112030_add_type_to_consume.php",
+		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/address.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/consume.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/index.blade - 副本.php",
+		"/F/wwwroot/jxf/app/Models/Zitidian.php",
+		"/F/wwwroot/jxf/app/Models/Order.php",
+		"/F/wwwroot/jxf/app/Models/Address.php",
+		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/index.blade.php",
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
 		"/F/wwwroot/jxf/app/Http/Requests/Good/UserCardRequest.php",
 		"/F/wwwroot/jxf/resources/views/user/card.blade.php",
 		"/F/希夷/吉鲜蜂/密码.txt",
@@ -762,13 +783,9 @@
 		"/F/wwwroot/jxf/app/Http/Controllers/Good/CardController.php",
 		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/card/add.blade.php",
-		"/F/wwwroot/jxf/app/Services/ComService.php",
-		"/F/wwwroot/jxf/app/Models/User.php",
 		"/F/wwwroot/jxf/app/Models/Card.php",
 		"/F/wwwroot/jxf/app/Http/Requests/Good/CardRequest.php",
 		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
 		"/F/wwwroot/jxf/app/Ecs/Card.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
@@ -776,15 +793,11 @@
 		"/F/wamp64/logs/mysql.log",
 		"/C/Users/Administrator/Desktop/card.sql",
 		"/F/wamp64/bin/mysql/mysql5.7.9/my.ini",
-		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
-		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_09_145751_create_consume.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
 		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/tui/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
 		"/F/wwwroot/jxf/resources/views/user/returngood.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/order/ship.blade.php",
@@ -796,7 +809,6 @@
 		"/F/wwwroot/jxf/app/Http/Requests/Good/TuiRequest.php",
 		"/F/wwwroot/jxf/resources/views/admin/tui/add.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/tui.blade.php",
-		"/F/wwwroot/jxf/app/Models/Consume.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_09_145816_create_cards.php",
 		"/F/wwwroot/jxf/database/migrations/2017_06_09_145427_add_mark_to_orders.php",
 		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/近7日阅读量排行.txt",
@@ -832,10 +844,7 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/76BCE12B_edit.tmp/index.html",
 		"/F/希夷/cxchaoshi/服务器.txt",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/6CA7BA8D_edit.tmp/product.html",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
-		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
 		"/F/wwwroot/jxf/config/app.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
 		"/F/wwwroot/jxf/public/statics/admin/css/reset.scss",
 		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
 		"/C/Users/Administrator/Desktop/今日事.txt",
@@ -864,20 +873,7 @@
 		"/F/wwwroot/jxf/resources/views/default/wxpay.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/TuanController.php",
 		"/F/wwwroot/jxf/public/statics/home/js/com.js",
-		"/F/wwwroot/jxf/database/migrations/2017_06_07_151307_del_tuan_id_to_carts.php",
-		"/C/Users/Administrator/Desktop/载体和行业.txt",
-		"/F/wwwroot/jxf/database/migrations/2017_06_07_112746_add_tid_to_carts.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_07_112249_add_tid_to_orders.php",
-		"/F/wwwroot/jxf/app/Models/Tuan.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/HuodongController.php",
-		"/F/wwwroot/jxf/resources/views/default/hd.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/HuodongController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/YhqController.php",
-		"/F/wwwroot/jxf/resources/views/default/lyhq.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/yhq.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php"
+		"/F/wwwroot/jxf/database/migrations/2017_06_07_151307_del_tuan_id_to_carts.php"
 	],
 	"find":
 	{
@@ -888,6 +884,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\jxf\\app\\Http\\Controllers",
 			"F:\\wwwroot\\jxf\\resources\\views\\admin",
 			"F:\\wwwroot\\jxf\\resources",
 			"D:\\www\\xyshop\\resources\\views\\default",
@@ -975,6 +972,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"m",
+			"data",
+			"starttime",
+			"random",
+			"span",
+			"app('com')->consume",
+			"status",
+			"ziti",
+			"edit",
+			"g->",
+			"ziti",
+			"order",
+			"ii",
 			"phone",
 			"people",
 			"id",
@@ -1089,20 +1099,7 @@
 			"tuan",
 			"$id",
 			"shop/good",
-			"good_info",
-			"p",
-			"time",
-			"strong",
-			"ad",
-			"span",
-			"->yhq",
-			"paginate",
-			"yhq",
-			"$s",
-			"status",
-			"pages",
-			"Paginate",
-			"sort_list"
+			"good_info"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1272,16 +1269,52 @@
 		"selected_items":
 		[
 			[
+				"index/main",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"index/co",
+				"resources\\views\\admin\\index\\consume.blade.php"
+			],
+			[
+				"member/con",
+				"resources\\views\\admin\\member\\consume.blade.php"
+			],
+			[
+				"web",
+				"routes\\web.php"
+			],
+			[
+				"member/cons",
+				"resources\\views\\admin\\member\\consume.blade.php"
+			],
+			[
+				"member/index",
+				"resources\\views\\admin\\member\\index.blade.php"
+			],
+			[
+				"order.p",
+				"app\\Models\\Order.php"
+			],
+			[
+				"art/index",
+				"resources\\views\\admin\\art\\index.blade.php"
+			],
+			[
+				"tuan.b",
+				"resources\\views\\admin\\tuan\\index.blade.php"
+			],
+			[
+				"main.b",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
 				"userce",
 				"resources\\views\\user\\usercenter.blade.php"
 			],
 			[
 				"usercent",
 				"resources\\views\\user\\usercenter.blade.php"
-			],
-			[
-				"web",
-				"routes\\web.php"
 			],
 			[
 				"card/in",
@@ -1660,10 +1693,6 @@
 				"vendor\\tymon\\jwt-auth\\src\\JWTManager.php"
 			],
 			[
-				"art/index",
-				"resources\\views\\admin\\art\\index.blade.php"
-			],
-			[
 				"comment.b",
 				"resources\\views\\article\\comment.blade.php"
 			],
@@ -1750,38 +1779,6 @@
 			[
 				"art/pos",
 				"resources\\views\\admin\\art\\pos.blade.php"
-			],
-			[
-				"show.b",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"show.ba",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"show.blade",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"comment.bl",
-				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"show.blade.php",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"sho.bl",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"comment/in",
-				"resources\\views\\admin\\comment\\index.blade.php"
-			],
-			[
-				"article/error",
-				"resources\\views\\article\\error.blade.php"
 			]
 		],
 		"width": 0.0

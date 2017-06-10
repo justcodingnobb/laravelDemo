@@ -29,4 +29,9 @@ class Address extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    public function order()
+    {
+        return $this->hasMany('\App\Models\Order','address_id','id');
+    }
 }

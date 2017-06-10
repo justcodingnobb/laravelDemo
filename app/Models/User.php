@@ -47,4 +47,15 @@ class User extends Model
     {
         return $this->hasMany('\App\Models\Card','user_id','id');
     }
+    // 订单
+    public function order()
+    {
+        return $this->hasMany('\App\Models\Order','user_id','id');
+    }
+
+    // 关联消费记录
+    public function consume()
+    {
+        return $this->hasMany('\App\Models\Consume','user_id','id');
+    }
 }

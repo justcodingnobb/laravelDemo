@@ -50,7 +50,7 @@ class RetrunGoodController extends Controller
                 $order = ReturnGood::findOrFail($id);
                 User::where('id',$order->user_id)->increment('user_money',$order->total_prices);
                 // 消费记录
-                app('com')->consume($order->user_id,$order->order_id,'+'.$order->total_prices,'退货返现');
+                app('com')->consume($order->user_id,$order->order_id,$order->total_prices,'退货返现',1);
             }
         });
     	return back()->with('message','处理成功！');

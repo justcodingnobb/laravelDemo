@@ -29,5 +29,9 @@ class Zitidian extends Model
      * @var bool
      */
     public $timestamps = true;
-
+    // 订单
+    public function order()
+    {
+        return $this->hasMany('\App\Models\Order','ziti','id');
+    }
 }

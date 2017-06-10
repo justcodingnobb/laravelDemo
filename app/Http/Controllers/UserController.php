@@ -221,7 +221,7 @@ class UserController extends BaseController
             Card::where('id',$card->id)->update(['status'=>1,'user_id'=>session('member')->id]);
             User::where('id',session('member')->id)->increment('user_money',$card->price);
             // 消费记录
-            app('com')->consume(session('member')->id,0,'+'.$card->price,'充值卡充值');
+            app('com')->consume(session('member')->id,0,$card->price,'充值卡充值',1);
             return redirect('user/center')->with('message','充值成功');
         }
     }

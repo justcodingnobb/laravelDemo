@@ -59,7 +59,7 @@ class BaseController extends Controller
                 Order::where('id',$order->id)->update(['paystatus'=>1]);
                 User::where('id',$order->user_id)->increment('points',$order->total_prices);
                 // 消费记录
-                app('com')->consume($order->user_id,$order->id,'-'.$order->total_prices,'支付订单');
+                app('com')->consume($order->user_id,$order->id,$order->total_prices,'支付订单');
                 // 减库存，先找出来所有的商品ID与商品属性ID
                 $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','format_id','nums')->get();
                 // 循环，判断是直接减商品库存，还是减带属性的库存

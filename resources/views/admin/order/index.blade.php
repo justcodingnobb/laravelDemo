@@ -12,7 +12,13 @@
 			<option value="1">正常</option>
 			<option value="2">完成</option>
 		</select>
+		<select name="shipstatus" id="shipstatus" class="form-control">
+			<option value="">发货状态</option>
+			<option value="0">未发货</option>
+			<option value="1">已发货</option>
+		</select>
 		<select name="ziti" id="ziti" class="form-control">
+			<option value="">自提状态</option>
 			<option value="0">不自提</option>
 			<option value="1">自提</option>
 		</select>
@@ -87,13 +93,15 @@
     		@foreach($o->good as $l)
 			<tr>
 				<td width="55%">
-					<div class="media">
+					<!-- <div class="media">
 						<a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object" alt=""></a>
-						<div class="media-body">
-							<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}">{{ $l->good->title }}</a></h4>
-							@if($l->format['format_name'] != '')<span class="btn btn-sm btn-info mt10">{{ $l->format['format_name'] }}</span>@endif
-						</div>
-					</div>
+						<div class="media-body"> -->
+					<h5>
+					@if($l->format['format_name'] != '')<span class="label label-warning">{{ $l->format['format_name'] }}</span>@endif
+					<a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}">{{ $l->good->title }}</a>
+					</h5>
+						<!-- </div>
+											</div> -->
 				</td>
 				<td width="15%">{{ $l->nums }} 件</td>
 				<td width="15%"><span class="good_prices color_1">￥{{ $l->price }}</span></td>

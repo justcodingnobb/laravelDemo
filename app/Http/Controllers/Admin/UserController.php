@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\Consume;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class UserController extends Controller
     	$q = trim($res->input('q',''));
         $list = User::where(function($r)use($q){
         	if ($q != '') {
-        		$r->where('username',$q)->orWhere('email',$q)->orWhere('phone',$q);
+        		$r->where('username',$q)->orWhere('email',$q)->orWhere('phone',$q)->orWhere('nickname',$q);
         	}
         })->orderBy('id','desc')->paginate(15);
         return view('admin.member.index',compact('list','title'));
@@ -63,5 +65,19 @@ class UserController extends Controller
         $money = $req->input('data.user_money');
         User::where('id',$id)->increment('user_money',$money);
         return back()->with('message', '会员充值成功！');
+    }
+    // 消费记录
+    public function getConsume($id = '')
+    {
+        $title = '消费记录';
+        $list = Consume::where('user_id',$id)->orderBy('id','desc')->paginate(15);
+        return view('admin.member.consume',compact('list','title'));
+    }
+    // 收货地址
+    public function getAddress($id = '')
+    {
+        $title = '收货地址';
+        $list = Address::where('user_id',$id)->where('del',1)->orderBy('id','desc')->paginate(15);
+        return view('admin.member.address',compact('list','title'));
     }
 }

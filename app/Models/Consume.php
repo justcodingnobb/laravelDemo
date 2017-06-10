@@ -29,4 +29,10 @@ class Consume extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 用户
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User','user_id','id');
+    }
 }
