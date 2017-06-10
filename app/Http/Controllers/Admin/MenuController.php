@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\MenuRequest;
 use App\Models\Menu;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuController extends BaseController
 {
     public function __construct()
     {
@@ -38,10 +39,10 @@ class MenuController extends Controller
                  $html .= "<tr>
                     <td>".$v['listorder']."</td>
                     <td>".$v['id']."</td>
-                    <td><span class='level-".$level."'></span>".$v['name']."<a href='/xycmf/menu/add/".$v['id']."' class='glyphicon glyphicon-plus add_submenu'></a></td>
+                    <td><span class='level-".$level."'></span>".$v['name']."<div data-url='/xycmf/menu/add/".$v['id']."' class='glyphicon glyphicon-plus add_submenu btn_modal' data-title='添加菜单' data-toggle='modal' data-target='#myModal'></div></td>
                     <td>".$v['url']."</td>
                     <td>".$disStr."</td>
-                    <td><a href='/xycmf/menu/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/xycmf/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
+                    <td><div data-url='/xycmf/menu/edit/".$v['id']."' class='btn btn-sm btn-info btn_modal' data-title='修改菜单' data-toggle='modal' data-target='#myModal'>修改</div> <a href='/xycmf/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
                     </tr>";
             }
             else
@@ -52,7 +53,7 @@ class MenuController extends Controller
                     <td><span class='level-".$level."'></span>".$v['name']."</td>
                     <td>".$v['url']."</td>
                     <td>".$disStr."</td>
-                    <td><a href='/xycmf/menu/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/xycmf/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
+                    <td><div data-url='/xycmf/menu/edit/".$v['id']."' class='btn btn-sm btn-info btn_modal' data-title='修改菜单' data-toggle='modal' data-target='#myModal'>修改</div> <a href='/xycmf/menu/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
                     </tr>";
             }
             if ($v['parentid'] != '')
@@ -84,7 +85,8 @@ class MenuController extends Controller
     	$data = request('data');
     	$this->menu->create($data);
         App::make('com')->updateCache($this->menu,'menuCache');
-    	return redirect('/xycmf/menu/index')->with('message', '添加菜单成功！');
+        return $this->ajaxReturn(1,'添加菜单成功',url('/xycmf/menu/index'));
+    	// return redirect('')->with('message', '');
     }
     /**
      * 修改菜单，当修改父级菜单的时候level要相应的进行修改
@@ -105,7 +107,8 @@ class MenuController extends Controller
         $data = $res->input('data');
         $this->menu->where('id',$id)->update($data);
         App::make('com')->updateCache($this->menu,'menuCache');
-        return redirect('/xycmf/menu/index')->with('message', '修改菜单成功！');
+        return $this->ajaxReturn(1,'修改菜单成功',url('/xycmf/menu/index'));
+        // return redirect('/xycmf/menu/index')->with('message', '修改菜单成功！');
     }
     /**
      * 删除菜单及下属子菜单，取出当前菜单ID下边所有的子菜单ID（添加修改的时候会进行更新，包含最小是自身），然后转换成数组格式，指进行删除，然后更新菜单

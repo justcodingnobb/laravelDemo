@@ -30,11 +30,6 @@
 
 <body>
     <div class="right_con">
-        @if(session('message'))
-        <div class="alert_top">
-            {{ session('message') }}
-        </div>
-        @endif
         <!-- 右侧标题 -->
         <div class="clearfix">
             <h2 class="main_title btn btn-primary f-l">{{ $title }}</h2>
@@ -46,11 +41,22 @@
             @yield('content')
         </div>
     </div>
-    <script type="text/javascript">
-        $(function(){
-            $('div.alert_top').delay(1500).slideUp(300);
-        })
-    </script>
+    <!-- 弹出层 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel_right"></h4>
+          </div>
+          <div class="modal-body" id="modal_right">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 提示层 -->
+    <div class="alert alert-success dn" id="success_alert" role="alert"></div>
+    <div class="alert alert-danger dn" id="error_alert" role="alert"></div>
 </body>
 
 </html>

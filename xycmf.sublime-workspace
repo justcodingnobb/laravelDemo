@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"text",
+				"text-align"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"erro",
+				"error_alert\t(right.blade.php)"
+			],
+			[
 				"hidd",
 				"hidden-sm \tBootstrap 3 Class"
 			],
@@ -502,18 +514,6 @@
 			[
 				"Spec",
 				"SpecialArt"
-			],
-			[
-				"js",
-				"json_encode"
-			],
-			[
-				"pure-",
-				"pure-button-secondary"
-			],
-			[
-				"ios_",
-				"ios_size"
 			]
 		]
 	},
@@ -543,8 +543,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 380.0,
-		"last_filter": "move",
+		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -737,10 +737,33 @@
 	},
 	"expanded_folders":
 	[
-		"/D/www/xycmf"
+		"/F/wwwroot/laravelDemo",
+		"/F/wwwroot/laravelDemo/app",
+		"/F/wwwroot/laravelDemo/app/Http",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers",
+		"/F/wwwroot/laravelDemo/public",
+		"/F/wwwroot/laravelDemo/public/statics",
+		"/F/wwwroot/laravelDemo/public/statics/admin",
+		"/F/wwwroot/laravelDemo/resources",
+		"/F/wwwroot/laravelDemo/resources/views"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/MenuController.php",
+		"/F/wwwroot/laravelDemo/public/statics/admin/js/com.js",
+		"/F/wwwroot/laravelDemo/resources/views/admin/right.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/menu/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/menu/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/menu/index.blade.php",
+		"/F/wwwroot/laravelDemo/public/statics/admin/css/reset.scss",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/ConfigController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Requests/MenuRequest.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/config/index.blade.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/BaseController.php",
+		"/F/wwwroot/laravelDemo/.env",
+		"/F/wwwroot/laravelDemo/sql/XYCMF-INIT.sql",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
 		"/D/www/l54/app/Http/Kernel.php",
 		"/D/www/l54/routes/api.php",
 		"/D/www/xyshop/sftp-config.json",
@@ -833,8 +856,6 @@
 		"/F/wwwroot/l54/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/l54/app/Exceptions/Handler.php",
 		"/F/wwwroot/l54/.env",
-		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/l54/sql/CMS-init.sql",
 		"/F/wwwroot/l54/composer.json",
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.363/Kernel.php",
@@ -855,20 +876,7 @@
 		"/G/soft/FlashFXP4/Cache/~flashfxp/82554A1D_edit.tmp/laravel-2017-04-21.log",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/ED09F343_edit.tmp/Event.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/116E4E71_edit.tmp/footer.html",
-		"/D/www/laravel53/package.json",
-		"/D/www/laravel/package.json",
-		"/D/www/laravel53/gulpfile.js",
-		"/D/www/laravel53/npm-debug.log",
-		"/C/Program Files/Git/ReleaseNotes.html",
-		"/D/www/laravel53/app/Http/Controllers/ShopController.php",
-		"/D/www/laravel53/resources/views/shop/goodcate.blade.php",
-		"/D/www/laravel53/sftp-config.json",
-		"/D/www/ecshop/themes/default/category.dwt",
-		"/C/Windows/System32/drivers/etc/HOSTS",
-		"/C/wamp/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/C/Users/Administrator/Desktop/good_old.blade.php",
-		"/D/www/laravel53/routes/web.php",
-		"/D/www/laravel53/resources/views/shop/good.blade.php"
+		"/D/www/laravel53/package.json"
 	],
 	"find":
 	{
@@ -955,6 +963,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\"",
+			".dn",
+			"laraveldemo",
 			"['",
 			"->where('site_id',session('site')->id)",
 			"goodcate",
@@ -1079,10 +1090,7 @@
 			"notifyResp",
 			"version",
 			"RsaSign",
-			"local_date",
-			"userreq_ip",
-			"risk_item",
-			"money_order"
+			"local_date"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1238,6 +1246,34 @@
 		"selected_items":
 		[
 			[
+				"menu/add",
+				"resources\\views\\admin\\menu\\add.blade.php"
+			],
+			[
+				"reset",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
+				"menu/in",
+				"resources\\views\\admin\\menu\\index.blade.php"
+			],
+			[
+				"menu/edit",
+				"resources\\views\\admin\\menu\\edit.blade.php"
+			],
+			[
+				"config/in",
+				"resources\\views\\admin\\config\\index.blade.php"
+			],
+			[
+				"reset.scs",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
+				"reset.scss",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
 				"good/addfor",
 				"resources\\views\\admin\\good\\addformat.blade.php"
 			],
@@ -1262,10 +1298,6 @@
 				"resources\\views\\user\\register.blade.php"
 			],
 			[
-				"reset",
-				"public\\statics\\admin\\css\\reset.scss"
-			],
-			[
 				"wxmsg/add",
 				"resources\\views\\admin\\wxmsg\\add.blade.php"
 			],
@@ -1284,10 +1316,6 @@
 			[
 				"109",
 				"database\\migrations\\2016_12_09_200519_create_authstatus.php"
-			],
-			[
-				"reset.scss",
-				"public\\statics\\admin\\css\\reset.scss"
 			],
 			[
 				"auth/in",
@@ -1718,10 +1746,6 @@
 				"public\\statics\\admin\\css\\reset.css"
 			],
 			[
-				"reset.scs",
-				"public\\statics\\reset.scss"
-			],
-			[
 				"right",
 				"resources\\views\\admin\\right.blade.php"
 			],
@@ -1732,22 +1756,6 @@
 			[
 				"adminreq",
 				"app\\Http\\Requests\\AdminRequest.php"
-			],
-			[
-				"/illuminate/database/connection",
-				"vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php"
-			],
-			[
-				"/illuminate/database/databasemanager",
-				"vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php"
-			],
-			[
-				"illuminate/support/facades/db",
-				"vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\DB.php"
-			],
-			[
-				"error",
-				"resources\\views\\article\\error.blade.php"
 			]
 		],
 		"width": 0.0

@@ -1,7 +1,7 @@
 @extends('admin.right')
 
 @section('content')
-<form action="" class="pure-form pure-form-stacked" method="post">
+<form action="" class="pure-form pure-form-stacked" id="form_ajax" method="post">
 	{{ csrf_field() }}
 
 	<div class="row">
@@ -89,7 +89,7 @@
 	</div>
 	<div class="btn-group mt10">
 		<button type="reset" name="reset" class="btn btn-warning">重填</button>
-		<button type="submit" name="dosubmit" class="btn btn-info">提交</button>
+		<div onclick='ajax_submit_form("form_ajax","{{ url('/xycmf/config/index') }}")' name="dosubmit" class="btn btn-info">提交</div>
 	</div>
 </form>
 @endsection
