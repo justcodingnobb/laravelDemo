@@ -14,6 +14,8 @@ use App\Models\GoodAttr;
 use App\Models\GoodCate;
 use App\Models\GoodComment;
 use App\Models\GoodFormat;
+use App\Models\GoodSpecItem;
+use App\Models\GoodSpecPrice;
 use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
@@ -90,63 +92,39 @@ class ShopController extends BaseController
     /*
      * 当传了属性时，按属性值计算，没传时按第一个计算
      */
-    public function getGood($id = '',$format='')
+    public function getGood($id = '')
     {
+        // 查出来商品信息，关联查询出对应属性及属性名称
+        $info = Good::with(['goodattr'=>function($q){
+                    $q->with('goodattr');
+                }])->findOrFail($id);
+        /*
+        * 查出来所有的规格信息
+        * 1、找出所有的规格ID 
+        * 2，查出所有的规格ID对应的名字spec_item及spec内容
+        * 3、循环出来所有的规格及规格值
+        * */
+        $good_spec_ids = GoodSpecPrice::where('good_id',$id)->pluck('key')->toArray();
+        $good_spec_ids = explode('_',implode('_',$good_spec_ids));
+        $good_spec = GoodSpecItem::with(['goodspec'=>function($q){
+                        $q->select('id','name');
+                    }])->whereIn('id',$good_spec_ids)->get();
+        $filter_spec = [];
+        foreach ($good_spec as $k => $v) {
+            $filter_spec[$v->goodspec->name][] = ['item_id'=>$v->id,'item'=>$v->item];
+        }
+        // 查出第一个规格信息来，标红用的
+        $good_spec_price = GoodSpecPrice::where('good_id',$id)->get()->keyBy('key')->toJson();
+        // 查属性
 
-        $info = Good::with(['goodcate','format'])->findOrFail($id);
-        // 有属性信息的时候，优先查属性信息
-        $formats = GoodFormat::where('good_id',$id)->where('status',1)->orderBy('id','asc')->get();
-        // 找出属性来，循环找，如果是0，则忽略
-        $format = $format == '' ? '' : explode('.', trim($format));
-        $attr_vals = '-';
-        // 没有这个参数时
-        if($format != '')
-        {
-            $temp_arrt_url_arr = array();
-            // 对应的属性及值，循环取下一级
-            // 找商品的属性
-            $attrs = CateAttr::where('cate_id',$info->cate_id)->pluck('attr_id');
-            $attr_p = GoodAttr::whereIn('id',$attrs)->where('status',1)->orderBy('id','asc')->get()->count();
-            for ($i = 0; $i < $attr_p; $i++) {
-                $temp_arrt_url_arr[$i] = !empty($format[$i]) ? $format[$i] : 0;
-            }
-            foreach ($temp_arrt_url_arr as $k => $t) {
-                if($t != 0)
-                {
-                    $attr_vals .= $t.'.';
-                }
-            }
-            $attr_vals = str_replace('.', '-', $attr_vals);
-        }
-        if(trim($attr_vals,'-') != '')
-        {
-            $good_format = GoodFormat::where('attr_ids','like',"%$attr_vals%")->where('good_id',$id)->where('status',1)->orderBy('id','asc')->first();
-        }
-        else
-        {
-            if (is_null($formats)) {
-                $good_format = null;
-            }
-            else
-            {
-                $good_format = $formats->first();
-            }
-        }
-        // 循环生成属性的URL
-        $tmp_formats = GoodAttr::where('status',1)->get();
-        foreach ($formats as $k => $f) {
-            $formats[$k]['format'] = $tmp_ids = str_replace('-','.',trim($f->attr_ids,'-'));
-            // 找出来对应的属性值以显示
-            $tmp_value = $tmp_formats->whereIn('id',explode('.',$tmp_ids))->pluck('value')->toArray();
-            $formats[$k]['value'] = implode('-',$tmp_value);
-        }
-        $info->pid = 0;
         // 取评价，20条
         $goodcomment = GoodComment::with(['user'=>function($q){
                 $q->select('id','nickname','thumb','username');
             }])->where('good_id',$id)->where('del',1)->orderBy('id','desc')->limit(20)->get();
         $havyhq = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit(2)->get();
-        return view($this->theme.'.good',compact('info','formats','good_format','goodcomment','havyhq'));
+        
+        $info->pid = 0;
+        return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec'));
     }
     // 购物车
     public function getCart()
@@ -401,7 +379,8 @@ class ShopController extends BaseController
             // 清除完成
             $sid = session()->getId();
             $id = $req->gid;
-            $formatid = $req->fid;
+            // 规格key
+            $spec_key = $req->spec_key;
             $num = $req->num;
             $userid = !is_null(session('member')) ? session('member')->id : 0;
             $price = $req->gp;

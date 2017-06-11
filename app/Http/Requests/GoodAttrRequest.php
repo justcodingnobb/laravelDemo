@@ -25,9 +25,9 @@ class GoodAttrRequest extends FormRequest
     {
         return [
             'data.name' => 'required|max:100',
-            'data.parentid'  => 'integer',
-            'data.value'  => 'max:100',
-            'data.unit'  => 'max:100',
+            'data.good_cate_id'  => 'required|integer',
+            'data.value'  => 'max:1000',
+            'data.sort'  => 'required|integer',
         ];
     }
     
@@ -35,9 +35,9 @@ class GoodAttrRequest extends FormRequest
     {
         return [
             'data.name' => '名称',
-            'data.parentid'  => '父ID',
+            'data.good_cate_id'  => '分类ID',
             'data.value'  => '值',
-            'data.unit'  => '单位',
+            'data.sort'  => '排序',
         ];
     }
 }

@@ -37,31 +37,74 @@
 				<!-- <h4>{{ $info->pronums }}</h4> -->
 				<form action="{{ url('shop/addcart') }}" class="form_addcart">
 					{{ csrf_field() }}
-					@if ($formats->count() > 0)
-					<!-- 属性 -->
-					<div class="row mt10">
-						<!-- <div class="col-xs-12 sx_title"><h3><small>{{ $good_format->title }}</small></h3></div> -->
-						@foreach($formats as $f)
-						<div class="col-xs-3 col-sm-2 col-md-1"><a href="{{ url('shop/good',['id'=>$info->id,'format'=>$f->format]) }}" class="btn btn-sm btn-default @if($f->id == $good_format->id) btn-success @endif">{{ $f->value }}</a></div>
-						@endforeach
-					</div>
+					
+					<!-- 规格开始 -->
+					@if(count($filter_spec) > 0)
+					<table class="table">
+					@foreach($filter_spec as $ks => $gs)
+						<tr>
+							<td width="80" class="text-right">{{ $ks }}：</td>
+							<td>
+								@foreach($gs as $kks => $ggs)
+								<span onclick="select_filter(this);" class="label label-default @if($kks == 0) label-success @endif spec_item" data-item_id="{{ $ggs['item_id'] }}"><input type="radio" name="goods_spec[{{$ks}}]" class="hidden"@if($kks == 0) checked="checked"@endif value="{{ $ggs['item_id'] }}">{{ $ggs['item'] }}</span>
+								@endforeach
+								<input type="hidden" name="spec_key" class="spec_key" value="">
+							</td>
+						</tr>
+					@endforeach
+					</table>
+					<script>
+						$(function(){
+							get_goods_price();
+						})
+	                    /**
+	                     * 切换规格
+	                     */
+	                    function select_filter(obj)
+	                    {
+	                        $(obj).addClass('label-success').siblings('span').removeClass('label-success');
+	                        $(obj).children('input').prop('checked','checked');
+	                        $(obj).siblings('span').children('input').attr('checked',false);// 让隐藏的 单选按钮选中
+	                        // 更新商品价格
+	                        get_goods_price();
+	                    }
+	                    function get_goods_price()
+				        {
+				            var price = "{{$info->price}}"; // 商品起始价
+				            var store = "{{$info->store}}"; // 商品起始库存
+				            var spec_goods_price = {!! $good_spec_price !!};  // 规格 对应 价格 库存表 //alert(spec_goods_price['28_100']['price']);
+				            // 如果有属性选择项
+				            if(spec_goods_price != null && spec_goods_price !='')
+				            {
+				                goods_spec_arr = new Array();
+				                $("input[name^='goods_spec']:checked").each(function(){
+				                    goods_spec_arr.push($(this).val());
+				                });
+				                var spec_key = goods_spec_arr.sort(sortNumber).join('_');  //排序后组合成 key
+				                // console.log(spec_key);
+				                $(".spec_key").val(spec_key);
+				                price = spec_goods_price[spec_key]['price']; // 找到对应规格的价格
+				                store = spec_goods_price[spec_key]['store']; // 找到对应规格的库存
+				            }
+				            $('#store').html(store);    //对应规格库存显示出来
+				            $(".price").html(price); // 变动价格显示
+				        }
+				        /***用作 sort 排序用*/
+				        function sortNumber(a,b)
+				        {
+				            return a - b;
+				        }
+	                </script>
+					@endif
+					<!-- 规格结束 -->
 
-					<!-- 价格、库存，购物车 -->
-					<div class="row price_store mt10">
-						<div class="col-xs-6">价格：<span class="price color_l">{{ $good_format->price }}</span>￥</div>
-						<div class="col-xs-6 mt5 text-right store">库存：{{ $good_format->store }}</div>
-					</div>
-					<input type="hidden" value="{{ $good_format->price }}" name="gp">
-					<input type="hidden" value="{{ $good_format->id }}" name="fid">
-					@else
 					<!-- 价格、库存，购物车 -->
 					<input type="hidden" value="{{ $info->price }}" name="gp">
 					<input type="hidden" value="0" name="fid">
 					<div class="row price_store mt10">
 						<div class="col-xs-6">价格：￥<span class="price color_l">{{ $info->price }}</span></div>
-						<div class="col-xs-6 text-right mt store">库存：{{ $info->store }}</div>
+						<div class="col-xs-6 text-right mt store">库存：<span id="store">{{ $info->store }}</span></div>
 					</div>
-					@endif
 
 					<div class="row ship">
 						<div class="col-xs-4">
@@ -126,15 +169,23 @@
 	<div class="good_show_con mt10">
 		{!! $info->content !!}
 	</div>
-	@if($info->notice != '')
+	@if($info->goodattr->count() > 0)
 	<div class="good_show_con mt10">
-		{!! $info->notice !!}
-	</div>
-	@endif
-	@if($info->pack != '')
-	<div class="good_show_con mt10">
-		<h3 class="h3_cate"><span class="h3_cate_span">规格包装</span></h3>
-		{!! $info->pack !!}
+		<h3 class="h3_cate"><span class="h3_cate_span">商品属性</span></h3>
+		<table class="table table-bordered table-striped">
+		@foreach($info->goodattr as $ga)
+			<tr>
+			<td width="100" class="text-right">{{ $ga->goodattr->name }}：</td>
+			<td>
+				@if(!is_array($ga->good_attr_value))
+				{{ $ga->good_attr_value }}
+				@else
+				{{ implode(',',$ga->good_attr_value) }}
+				@endif
+			</td>
+			</tr>
+		@endforeach
+		</table>
 	</div>
 	@endif
 	@if($goodcomment->count() > 0)

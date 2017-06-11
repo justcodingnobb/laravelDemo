@@ -5,7 +5,7 @@
 	{{ csrf_field() }}
 	<!-- 提交返回用的url参数 -->
 	<input type="hidden" name="ref" value="{!! $ref !!}">
-
+    <input type="hidden" name="goods_id" value="{{ $info->id }}">
     <div class="row">
         <div class="col-xs-4">
             <div class="form-group">
@@ -20,6 +20,7 @@
                     </span>
                 @endif
             </div>
+            
 
             <div class="form-group">
                 <label for="title">商品标题：<span class="color-red">*</span>不超过255字符</label>
@@ -79,27 +80,7 @@
             </span>
         @endif
     </div>
-    <div class="form-group">
-        <label for="notice">购买须知：<span class="color-red">*</span></label>
-        <!-- 加载编辑器的容器 -->
-        <textarea name="data[notice]" class="form-control" id="editor_id2">{{ $info->notice }}</textarea> 
-        @if ($errors->has('data.notice'))
-            <span class="help-block">
-                {{ $errors->first('data.notice') }}
-            </span>
-        @endif
-    </div>
 
-    <div class="form-group">
-        <label for="pack">规格包装：<span class="color-red">*</span></label>
-        <!-- 加载编辑器的容器 -->
-        <textarea name="data[pack]" class="form-control" id="editor_id3">{{ $info->pack }}</textarea> 
-        @if ($errors->has('data.pack'))
-            <span class="help-block">
-                {{ $errors->first('data.pack') }}
-            </span>
-        @endif
-    </div>
     
     <div class="form-group">
         <label for="price">价格：数字</label>
@@ -128,6 +109,16 @@
                 {{ $errors->first('data.store') }}
             </span>
         @endif
+    </div>
+
+    <!-- 产品规格 -->
+    <div id="good_spec" class="form-group">
+        
+    </div>
+    
+    <!-- 产品属性 -->
+    <div id="good_attr" class="form-group">
+        
     </div>
 
     <div class="form-group">
@@ -232,7 +223,38 @@
 
 
 <script>
-	$('#catid option[value=' + {{ $info->cate_id }} + ']').prop('selected','selected');
+    $(function(){
+        // 修改产品分类时，取出对应的属性及规格
+        $('#catid').on('change',function() {
+            var cid = $('#catid').val();
+            var attr_url = "{{url('/xyshop/good/goodattr')}}";
+            var spec_url = "{{url('/xyshop/good/goodspec')}}";
+            var good_id = $("input[name='goods_id']").val();
+            // 属性
+            $.get(attr_url,{'cid':cid,'good_id':good_id},function(d){
+                $("#good_attr").html(d);
+            });
+            // 规格
+            $.get(spec_url,{'cid':cid,'good_id':good_id},function(d){
+                $("#good_spec").html(d);
+            });
+        });
+        $('#catid option[value=' + {{ $info->cate_id }} + ']').prop('selected','selected');
+
+        var cid = $('#catid').val();
+        var attr_url = "{{url('/xyshop/good/goodattr')}}";
+        var spec_url = "{{url('/xyshop/good/goodspec')}}";
+        var good_id = $("input[name='goods_id']").val();
+        // 属性
+        $.get(attr_url,{'cid':cid,'good_id':good_id},function(d){
+            $("#good_attr").html(d);
+        });
+        // 规格
+        $.get(spec_url,{'cid':cid,'good_id':good_id},function(d){
+            $("#good_spec").html(d);
+            ajaxGetSpecInput(); // 触发完  马上触发 规格输入框
+        });
+    })
 
 	// 上传时要填上sessionId与csrf表单令牌，否则无法通过验证
 	KindEditor.ready(function(K) {
@@ -243,20 +265,6 @@
 				session_id : "{{ session('user')->id }}",
             }
 		});
-		window.editor2 = K.create('#editor_id2',{
-            minHeight:350,
-            uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
-            extraFileUploadParams: {
-                session_id : "{{ session('user')->id }}",
-            }
-        });
-        window.editor1 = K.create('#editor_id3',{
-            minHeight:350,
-            uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
-            extraFileUploadParams: {
-                session_id : "{{ session('user')->id }}",
-            }
-        });
 		var uploadbutton = K.uploadbutton({
             button : K('#image3')[0],
             fieldName : 'imgFile',

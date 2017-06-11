@@ -30,10 +30,15 @@ class Good extends Model
      */
     public $timestamps = true;
 
-    // 属性值
-    public function format()
+    // 商品规格价格库存表
+    public function goodspecprice()
     {
-        return $this->hasMany('\App\Models\GoodFormat','good_id','id');
+        return $this->hasMany('\App\Models\GoodSpecPrice','good_id','id');
+    }
+    // 商品对应属性表
+    public function goodattr()
+    {
+        return $this->hasMany('\App\Models\GoodsAttr','good_id','id');
     }
     // 关联商品分类
     public function goodcate()

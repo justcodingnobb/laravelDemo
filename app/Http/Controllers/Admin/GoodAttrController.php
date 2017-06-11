@@ -5,29 +5,37 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GoodAttrRequest;
 use App\Models\GoodAttr;
+use App\Models\GoodCate;
 use Illuminate\Http\Request;
 
 class GoodAttrController extends Controller
 {
-    public function getIndex(Request $res,$pid = 0)
+    public function getIndex(Request $res)
     {
     	$title = '商品属性列表';
-        $list = GoodAttr::where('parentid',$pid)->where('status',1)->paginate(15);
-        return view('admin.goodattr.index',compact('list','title','pid'));
+        $list = GoodAttr::with(['goodcate'=>function($q){
+                    $q->select('id','name');
+                }])->orderBy('id','desc')->paginate(15);
+        return view('admin.goodattr.index',compact('list','title'));
     }
 
     // 添加商品属性
-    public function getAdd($id)
+    public function getAdd()
     {
         $title = '添加商品属性';
-        return view('admin.goodattr.add',compact('title','id'));
+        // 商品分类
+        $all = GoodCate::where('status',1)->orderBy('sort','asc')->get();
+        $tree = app('com')->toTree($all,'0');
+        $treeHtml = app('com')->toTreeSelect($tree,0);
+        return view('admin.goodattr.add',compact('title','treeHtml'));
     }
 
-    public function postAdd(GoodAttrRequest $request,$id = 0)
+    public function postAdd(GoodAttrRequest $req)
     {
-        $data = $request->input('data');
+        $data = $req->input('data');
+        $data['value'] = app('com')->trim_value($data['value']);
         GoodAttr::create($data);
-        return redirect('xyshop/goodattr/index/'.$id)->with('message', '添加商品属性成功！');
+        return redirect('xyshop/goodattr/index')->with('message', '添加商品属性成功！');
     }
     // 修改商品属性
     public function getEdit(Request $req,$id)
@@ -36,17 +44,23 @@ class GoodAttrController extends Controller
         // 拼接返回用的url参数
         $ref = session('backurl');
         $info = GoodAttr::findOrFail($id);
-        return view('admin.goodattr.edit',compact('title','info','ref','id'));
+        // 商品分类
+        $all = GoodCate::where('status',1)->orderBy('sort','asc')->get();
+        $tree = app('com')->toTree($all,'0');
+        $treeHtml = app('com')->toTreeSelect($tree,0);
+        return view('admin.goodattr.edit',compact('title','info','ref','id','treeHtml'));
     }
     public function postEdit(GoodAttrRequest $req,$id)
     {
-        GoodAttr::where('id',$id)->update($req->input('data'));
+        $data = $req->input('data');
+        $data['value'] = app('com')->trim_value($data['value']);
+        GoodAttr::where('id',$id)->update($data);
         return redirect($req->input('ref'))->with('message', '修改商品属性成功！');
     }
     // 删除商品属性
     public function getDel($id)
     {
-    	GoodAttr::where('id',$id)->orWhere('parentid',$id)->update(['status'=>0]);
+    	GoodAttr::destroy($id);
         return back()->with('message', '商品属性删除成功！');
     }
 }

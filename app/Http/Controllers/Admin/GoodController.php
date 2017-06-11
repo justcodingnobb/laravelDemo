@@ -11,9 +11,14 @@ use App\Models\Good;
 use App\Models\GoodAttr;
 use App\Models\GoodCate;
 use App\Models\GoodFormat;
+use App\Models\GoodSpec;
+use App\Models\GoodSpecItem;
+use App\Models\GoodSpecPrice;
+use App\Models\GoodsAttr;
 use App\Models\Type;
 use DB;
 use Illuminate\Http\Request;
+use Storage;
 
 class GoodController extends Controller
 {
@@ -82,7 +87,22 @@ class GoodController extends Controller
         // 开启事务
         DB::beginTransaction();
         try {
-            Good::create($data);
+            $good = Good::create($data);
+            $date = date('Y-m-d H:i:s');
+            // 规格对应的值
+            $spec_item = $res->input('spec_item');
+            $tmp_spec = [];
+            foreach ($spec_item as $sk => $sv) {
+                $tmp_spec[] = ['good_id'=>$good->id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+            }
+            // 属性对应的值
+            $good_attr = $res->input('good_attr');
+            $tmp_attr = [];
+            foreach ($good_attr as $ak => $av) {
+                $tmp_attr[] = ['good_id'=>$good->id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+            }
+            GoodSpecPrice::insert($tmp_spec);
+            GoodsAttr::insert($tmp_attr);
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
@@ -113,12 +133,28 @@ class GoodController extends Controller
     public function postEdit(GoodRequest $res,$id)
     {
         $data = $res->input('data');
-        // 如果分类变了要删除所有属性重新添加
-
         // 开启事务
         DB::beginTransaction();
         try {
             Good::where('id',$id)->update($data);
+            $date = date('Y-m-d H:i:s');
+            // 如果分类变了要删除所有属性重新添加
+            // 规格对应的值
+            GoodSpecPrice::where('good_id',$id)->delete();
+            $spec_item = $res->input('spec_item');
+            $tmp_spec = [];
+            foreach ($spec_item as $sk => $sv) {
+                $tmp_spec[] = ['good_id'=>$id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+            }
+            // 属性对应的值
+            GoodsAttr::where('good_id',$id)->delete();
+            $good_attr = $res->input('good_attr');
+            $tmp_attr = [];
+            foreach ($good_attr as $ak => $av) {
+                $tmp_attr[] = ['good_id'=>$id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+            }
+            GoodSpecPrice::insert($tmp_spec);
+            GoodsAttr::insert($tmp_attr);
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
@@ -134,69 +170,6 @@ class GoodController extends Controller
     {
     	Good::where('id',$id)->update(['status'=>0]);
     	return back()->with('message','下架成功！');
-    }
-    // 属性列表
-    public function getFormat($id)
-    {
-        $title = '属性列表';
-        $list = GoodFormat::where('good_id',$id)->where('status',1)->orderBy('id','desc')->paginate(15);
-        return view('admin.good.format',compact('title','list','id'));
-    }
-    // 添加属性
-    public function getAddformat($id)
-    {
-        $title = '添加属性';
-        // 找出栏目，找出栏目下属性
-        $cid = Good::where('id',$id)->value('cate_id');
-        $attrids = CateAttr::where('cate_id',$cid)->pluck('attr_id');
-        $attrs = GoodAttr::whereIn('id',$attrids)->get();
-        $lists = [];
-        foreach ($attrs as $k) {
-            $lists[] = ['name'=>$k->name,'unit'=>$k->unit,'value'=>$k->value,'sub'=>GoodAttr::where('parentid',$k->id)->where('status',1)->get()];
-        }
-        return view('admin.good.addformat',compact('title','lists','id'));
-    }
-    public function postAddformat(FormatRequest $req,$id)
-    {
-        $data = $req->input('attr');
-        // 组合出名字与值
-        $titles = [];
-        $values = [];
-        foreach ($data as $k => $v) {
-            $titles[] = $k;
-            $values[] = $v;
-        }
-        $titles = implode('-', $titles);
-        $values = '-'.implode('-', $values).'-';
-        // 查一下是否已经有了值的组合
-        $hav = GoodFormat::where('attr_ids',$values)->where('good_id',$id)->where('status',1)->first();
-        if (!is_null($hav)) {
-            return back()->with('message','属性已经存在，修改后再提交！');
-        }
-        $insert = ['good_id'=>$id,'title'=>$titles,'attr_ids'=>$values,'price'=>$req->input('data.price'),'store'=>$req->input('data.store')];
-        GoodFormat::create($insert);
-        return redirect('/xyshop/good/format/'.$id)->with('message', '添加商品属性成功！');
-    }
-    // 修改属性
-    public function getEditformat($id)
-    {
-        $title = '修改属性';
-        $info = GoodFormat::findOrFail($id);
-        $ref = session('backurl');
-        // 找出栏目，找出栏目下属性
-        return view('admin.good.editformat',compact('title','info','ref'));
-    }
-    public function postEditformat(FormatRequest $req,$id)
-    {
-        $insert = ['price'=>$req->input('data.price'),'store'=>$req->input('data.store')];
-        GoodFormat::where('id',$id)->update($insert);
-        return redirect($req->ref)->with('message', '修改商品属性成功！');
-    }
-    // 删除属性
-    public function getDelformat($id)
-    {
-        GoodFormat::where('id',$id)->update(['status'=>0]);
-        return back()->with('message','删除成功！');
     }
 
     // 排序
@@ -239,6 +212,102 @@ class GoodController extends Controller
         else
         {
             return back()->with('message','请选择商品！');
+        }
+    }
+
+    // 取商品分类下规格
+    public function getGoodSpec(Request $req)
+    {
+        $cid = $req->cid;
+        $good_id = $req->good_id;
+        $list = GoodSpec::with('goodspecitem')->where('good_cate_id',$cid)->orderBy('id')->get();
+        // 查出来所有的规格ID
+        $items_id = GoodSpecPrice::where('good_id',$good_id)->pluck('key');
+        $items_ids = [];
+        $items_id = $items_id->unique();
+        foreach ($items_id as $t) {
+            $items_ids = array_merge($items_ids,explode('_',$t));
+        }
+        $items_ids = array_unique($items_ids);
+        return view('admin.good.goodspec',compact('list','items_ids'));
+    }
+    // 取商品分类下属性
+    public function getGoodAttr(Request $req)
+    {
+        $cid = $req->cid;
+        $good_id = $req->good_id;
+        $list = GoodAttr::where('good_cate_id',$cid)->orderBy('id')->get();
+        // 查出来所有的属性值及ID
+        $good_attrs = GoodsAttr::where('good_id',$good_id)->get()->keyBy('good_attr_id')->toArray();
+        return view('admin.good.goodattr',compact('list','good_attrs'));
+    }
+    /**
+     * 动态获取商品规格输入框 根据不同的数据返回不同的输入框
+     * 获取 规格的 笛卡尔积
+     * @param $goods_id 商品 id     
+     * @param $spec_arr 笛卡尔积
+     * @return string 返回表格字符串
+     */
+    public function postGoodSpecInput(Request $req){
+        try {
+            $goods_id = isset(($req->all())['goods_id']) ? ($req->all())['goods_id'] : 0;
+            $spec_arr = isset(($req->all())['spec_arr']) ? ($req->all())['spec_arr'] : [[]];
+
+            // 排序
+            foreach ($spec_arr as $k => $v)
+            {
+                $spec_arr_sort[$k] = count($v);
+            }
+            asort($spec_arr_sort);        
+            foreach ($spec_arr_sort as $key =>$val)
+            {
+                $spec_arr2[$key] = $spec_arr[$key];
+            }
+            
+            $clo_name = array_keys($spec_arr2);
+            $spec_arr2 = app('com')->combineDika($spec_arr2); //  获取 规格的 笛卡尔积                 
+                       
+            $spec = GoodSpec::select('id','name')->get()->keyBy('id')->toArray(); // 规格表
+            $specItem = GoodSpecItem::get()->keyBy('id')->toArray();    //规格项
+            $keySpecGoodsPrice = GoodSpecPrice::where('good_id',$goods_id)->select('key','key_name','price','store')->get()->keyBy('key')->toArray();//规格项
+
+           $str = "<table class='table table-bordered' id='spec_input_tab'>";
+           $str .="<tr>";       
+           // 显示第一行的数据
+            foreach ($clo_name as $k => $v) 
+            {
+                if ($v != 0) {
+                    $str .=" <td><b>".$spec[$v]['name']."</b></td>";
+                }
+            }    
+            $str .="<td><b>价格</b></td>
+                   <td><b>库存</b></td>
+                 </tr>";
+           // 显示第二行开始 
+           foreach ($spec_arr2 as $k => $v) 
+           {
+                $str .="<tr>";
+                $item_key_name = array();
+                foreach($v as $k2 => $v2)
+                {
+                    $str .="<td>".$specItem[$v2]['item']."</td>";
+                    $item_key_name[$v2] = $spec[$specItem[$v2]['good_spec_id']]['name'].':'.$specItem[$v2]['item'];
+                }   
+                ksort($item_key_name);            
+                $item_key = implode('_', array_keys($item_key_name));
+                $item_name = implode(' ', $item_key_name);
+                
+                $keySpecGoodsPrice[$item_key]['price'] = isset($keySpecGoodsPrice[$item_key]['price']) ? $keySpecGoodsPrice[$item_key]['price'] : 0; // 价格默认为0
+                $keySpecGoodsPrice[$item_key]['store'] = isset($keySpecGoodsPrice[$item_key]['store']) ? $keySpecGoodsPrice[$item_key]['store'] : 0; //库存默认为0
+                $str .="<td><input name='spec_item[$item_key][price]' class='form-control' value='{$keySpecGoodsPrice[$item_key]['price']}' onkeyup='this.value=this.value.replace(/[^\d.]/g,\"\")' onpaste='this.value=this.value.replace(/[^\d.]/g,\"\")' /></td>";
+                $str .="<td><input name='spec_item[$item_key][store]' class='form-control' value='{$keySpecGoodsPrice[$item_key]['store']}' onkeyup='this.value=this.value.replace(/[^\d.]/g,\"\")' onpaste='this.value=this.value.replace(/[^\d.]/g,\"\")'/>
+                    <input type='hidden' name='spec_item[$item_key][key_name]' value='$item_name' /></td>";
+                $str .="</tr>";           
+           }
+            $str .= "</table>";
+            exit($str);
+        } catch (\Exception $e) {
+            exit($e->getLine().' - '.$e->getMessage());
         }
     }
 }

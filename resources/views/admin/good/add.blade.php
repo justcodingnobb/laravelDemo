@@ -81,27 +81,6 @@
             </span>
         @endif
     </div>
-    <div class="form-group">
-        <label for="notice">购买须知：<span class="color-red">*</span></label>
-        <!-- 加载编辑器的容器 -->
-        <textarea name="data[notice]" class="form-control" id="editor_id2">{{ old('data.notice') }}</textarea> 
-        @if ($errors->has('data.notice'))
-            <span class="help-block">
-                {{ $errors->first('data.notice') }}
-            </span>
-        @endif
-    </div>
-
-    <div class="form-group">
-        <label for="pack">规格包装：<span class="color-red">*</span></label>
-        <!-- 加载编辑器的容器 -->
-        <textarea name="data[pack]" class="form-control" id="editor_id3">{{ old('data.pack') }}</textarea> 
-        @if ($errors->has('data.pack'))
-            <span class="help-block">
-                {{ $errors->first('data.pack') }}
-            </span>
-        @endif
-    </div>
     
     <div class="form-group">
         <label for="price">价格：数字</label>
@@ -130,17 +109,47 @@
             </span>
         @endif
     </div>
+    <!-- 产品规格 -->
+    <div id="good_spec" class="form-group">
+        
+    </div>
+    
+    <!-- 产品属性 -->
+    <div id="good_attr" class="form-group">
+        
+    </div>
+    <script>
+        $(function(){
+            // 修改产品分类时，取出对应的属性及规格
+            $('#catid').change(function() {
+                var cid = $('#catid').val();
+                var attr_url = "{{url('/xyshop/good/goodattr')}}";
+                var spec_url = "{{url('/xyshop/good/goodspec')}}";
+                var good_id = 0;
+                // 属性
+                $.get(attr_url,{'cid':cid,'good_id':good_id},function(d){
+                    $("#good_attr").html(d);
+
+                });
+                // 规格
+                $.get(spec_url,{'cid':cid,'good_id':good_id},function(d){
+                    $("#good_spec").html(d);
+                    ajaxGetSpecInput(); // 触发完  马上触发 规格输入框
+                });
+            });
+        })
+    </script>
 
     <div class="form-group">
-        <label for="weithg">单件重量：数字</label>
+        <label for="weight">单件重量：数字</label>
         <div class="row">
             <div class="col-xs-1">
-                <input type="text" name="data[weithg]" value="1" class="form-control">
+                <input type="text" name="data[weight]" value="1" class="form-control">
             </div>
         </div>
-        @if ($errors->has('data.weithg'))
+        @if ($errors->has('data.weight'))
             <span class="help-block">
-                {{ $errors->first('data.weithg') }}
+                {{ $errors->first('data.weight') }}
             </span>
         @endif
     </div>
@@ -236,20 +245,6 @@
     // 上传时要填上sessionId与csrf表单令牌，否则无法通过验证
     KindEditor.ready(function(K) {
         window.editor = K.create('#editor_id',{
-            minHeight:350,
-            uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
-            extraFileUploadParams: {
-                session_id : "{{ session('user')->id }}",
-            }
-        });
-        window.editor2 = K.create('#editor_id2',{
-            minHeight:350,
-            uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
-            extraFileUploadParams: {
-                session_id : "{{ session('user')->id }}",
-            }
-        });
-        window.editor1 = K.create('#editor_id3',{
             minHeight:350,
             uploadJson : "{{ url('xyshop/attr/uploadimg') }}",
             extraFileUploadParams: {

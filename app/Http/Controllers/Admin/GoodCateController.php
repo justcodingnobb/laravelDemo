@@ -46,7 +46,7 @@ class GoodCateController extends Controller
                         <td><input type='checkbox' name='sids[]' class='check_s' value='".$v['id']."'></td>
                         <td><input type='text' min='0' name='sort[".$v['id']."]' value='".$v['sort']."' class='form-control input-listorder'></td>
 	                    <td>".$v['id']."</td>
-	                    <td><span class='level-".$level."'></span>".$v['name']." <a href='/xyshop/goodcate/attr/".$v['id']."' class='btn btn-sm btn-info'>属性</a></td>
+	                    <td><span class='level-".$level."'></span>".$v['name']."</td>
 	                    <td><a href='/xyshop/goodcate/edit/".$v['id']."' class='btn btn-sm btn-info'>修改</a> <a href='/xyshop/goodcate/del/".$v['id']."' class='confirm btn btn-sm btn-danger'>删除</a></td>
 	                    </tr>";
                 }

@@ -25,5 +25,7 @@ class VerifyCsrfToken extends BaseVerifier
         'oauth/*',
     	// 后台文件上传
         'xyshop/attr/uploadimg',
+        // 取规格
+        'xyshop/good/goodspecinput',
     ];
 }

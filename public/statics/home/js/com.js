@@ -95,11 +95,11 @@ $(function(){
 	$('.addcart').click(function(event) {
 		var gid = $('input[name="gid"]').val();
 		var num = $('input[name="num"]').val();
-		var fid = $('input[name="fid"]').val();
+		var spec_key = $('.spec_key').val();
 		var gp = $('input[name="gp"]').val();
 		var token = $('input[name="_token"]').val();
 		var url = $('.form_addcart').attr('action');
-		$.post(url,{gid:gid,fid:fid,num:num,gp:gp,_token:token},function(d){
+		$.post(url,{gid:gid,spec_key:spec_key,num:num,gp:gp,_token:token},function(d){
 			if (d == 1) {
     			// 重新取购物车数量，计算总价
 				cartnum();

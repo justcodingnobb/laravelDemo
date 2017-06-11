@@ -162,6 +162,8 @@ Route::group(['prefix'=>'xyshop'],function(){
     Route::get('logout', 'Admin\PublicController@getLogout');
 });
 
+
+
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     // 会员卡
     Route::get('card/index', 'Good\CardController@getIndex');
@@ -259,10 +261,17 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('goodcate/attr/{id?}', 'Admin\GoodCateController@getAttr');
     Route::post('goodcate/attr/{id?}', 'Admin\GoodCateController@postAttr');
     Route::post('goodcate/sort', 'Admin\GoodCateController@postSort');
+    // 商品规格
+    Route::get('goodspec/index/{pid?}', 'Admin\GoodSpecController@getIndex');
+    Route::get('goodspec/add', 'Admin\GoodSpecController@getAdd');
+    Route::post('goodspec/add', 'Admin\GoodSpecController@postAdd');
+    Route::get('goodspec/edit/{id?}', 'Admin\GoodSpecController@getEdit');
+    Route::post('goodspec/edit/{id?}', 'Admin\GoodSpecController@postEdit');
+    Route::get('goodspec/del/{id?}', 'Admin\GoodSpecController@getDel');
     // 商品属性
     Route::get('goodattr/index/{pid?}', 'Admin\GoodAttrController@getIndex');
-    Route::get('goodattr/add/{id}', 'Admin\GoodAttrController@getAdd');
-    Route::post('goodattr/add/{id}', 'Admin\GoodAttrController@postAdd');
+    Route::get('goodattr/add', 'Admin\GoodAttrController@getAdd');
+    Route::post('goodattr/add', 'Admin\GoodAttrController@postAdd');
     Route::get('goodattr/edit/{id?}', 'Admin\GoodAttrController@getEdit');
     Route::post('goodattr/edit/{id?}', 'Admin\GoodAttrController@postEdit');
     Route::get('goodattr/del/{id?}', 'Admin\GoodAttrController@getDel');
@@ -273,14 +282,21 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('good/edit/{id?}', 'Admin\GoodController@getEdit');
     Route::post('good/edit/{id?}', 'Admin\GoodController@postEdit');
     Route::get('good/del/{id?}', 'Admin\GoodController@getDel');
+    Route::post('good/sort', 'Admin\GoodController@postSort');
+    Route::post('good/alldel', 'Admin\GoodController@postAlldel');
+    // 取商品分类及规格
+    Route::get('good/goodattr', 'Admin\GoodController@getGoodAttr');
+    Route::get('good/goodspec', 'Admin\GoodController@getGoodSpec');
+    Route::post('good/goodspecinput', 'Admin\GoodController@postGoodSpecInput');
+
+
+    // 老版属性信息
     Route::get('good/format/{id}', 'Admin\GoodController@getFormat');
     Route::get('good/addformat/{id}', 'Admin\GoodController@getAddformat');
     Route::post('good/addformat/{id}', 'Admin\GoodController@postAddformat');
     Route::get('good/editformat/{id}', 'Admin\GoodController@getEditformat');
     Route::post('good/editformat/{id}', 'Admin\GoodController@postEditformat');
     Route::get('good/delformat/{id}', 'Admin\GoodController@getDelformat');
-    Route::post('good/sort', 'Admin\GoodController@postSort');
-    Route::post('good/alldel', 'Admin\GoodController@postAlldel');
     // Index
     Route::get('index/index', 'Admin\IndexController@getIndex');
     Route::get('index/main', 'Admin\IndexController@getMain');

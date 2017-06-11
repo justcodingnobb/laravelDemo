@@ -30,8 +30,6 @@ class GoodRequest extends FormRequest
             'data.describe'  => 'max:255',
             'data.thumb'  => 'max:255',
             'data.content'  => 'required',
-            // 'data.notice'  => 'required',
-            // 'data.pack'  => 'required',
         ];
     }
     
@@ -44,8 +42,6 @@ class GoodRequest extends FormRequest
             'data.describe'  => '描述',
             'data.thumb'  => '缩略图',
             'data.content'  => '内容',
-            // 'data.notice'  => '注意事项',
-            // 'data.pack'  => '规格包装',
         ];
     }
 }

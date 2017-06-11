@@ -9,6 +9,59 @@ use Storage;
 
 class ComService
 {
+    
+    // 处理属性值
+    public function trim_value($v)
+    {
+        // 替换特殊字符
+        $v = trim(str_replace('@','',str_replace('_', '', $v)));
+        // 处理为json
+        $v = json_encode(explode(PHP_EOL, $v));
+        return $v; 
+    }
+
+    /**
+     * 多个数组的笛卡尔积
+    *
+    * @param unknown_type $data
+    */
+    public function combineDika() {
+        $data = func_get_args();
+        $data = current($data);
+        $cnt = count($data);
+        $result = array();
+        $arr1 = array_shift($data);
+        foreach($arr1 as $key=>$item) 
+        {
+            $result[] = array($item);
+        }       
+
+        foreach($data as $key=>$item) 
+        {                                
+            $result = $this->combineArray($result,$item);
+        }
+        return $result;
+    }
+
+
+    /**
+     * 两个数组的笛卡尔积
+     * @param unknown_type $arr1
+     * @param unknown_type $arr2
+    */
+    public function combineArray($arr1,$arr2) {         
+        $result = array();
+        foreach ($arr1 as $item1) 
+        {
+            foreach ($arr2 as $item2) 
+            {
+                $temp = $item1;
+                $temp[] = $item2;
+                $result[] = $temp;
+            }
+        }
+        return $result;
+    }
 
     // 消费记录
     public function consume($uid,$oid = 0,$price = 0,$mark = '',$type = 0)
