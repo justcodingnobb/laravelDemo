@@ -749,6 +749,7 @@
 	],
 	"file_history":
 	[
+		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/MenuController.php",
 		"/F/wwwroot/laravelDemo/public/statics/admin/js/com.js",
 		"/F/wwwroot/laravelDemo/resources/views/admin/right.blade.php",
@@ -762,7 +763,6 @@
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/BaseController.php",
 		"/F/wwwroot/laravelDemo/.env",
 		"/F/wwwroot/laravelDemo/sql/XYCMF-INIT.sql",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
 		"/D/www/l54/app/Http/Kernel.php",
 		"/D/www/l54/routes/api.php",
@@ -963,6 +963,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"3.12",
 			"\"",
 			".dn",
 			"laraveldemo",
@@ -1089,8 +1090,7 @@
 			"flag_modify",
 			"notifyResp",
 			"version",
-			"RsaSign",
-			"local_date"
+			"RsaSign"
 		],
 		"highlight": true,
 		"in_selection": false,
