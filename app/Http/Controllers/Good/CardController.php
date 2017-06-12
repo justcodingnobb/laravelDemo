@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Good;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Good\CardRequest;
 use App\Models\Card;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -17,6 +18,7 @@ class CardController extends Controller
         $starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
+        $q = $req->input('q');
 		$list = Card::with(['user'=>function($q){
 				$q->select('id','nickname','username');
 			}])->where(function($q) use($starttime,$endtime){
@@ -27,8 +29,14 @@ class CardController extends Controller
                 if ($status != '') {
                     $q->where('status',$status);
                 }
+            })->where(function($r) use($q){
+                if ($q != '') {
+                    // 查出来用户ID
+                    $uid = User::where('nickname','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
+                    $r->whereIn('user_id',$uid);
+                }
             })->orderBy('id','desc')->paginate(15);
-    	return view('admin.card.index',compact('title','list','starttime','endtime','status'));
+    	return view('admin.card.index',compact('title','list','starttime','endtime','status','q'));
     }
     // 处理
     public function getAdd()

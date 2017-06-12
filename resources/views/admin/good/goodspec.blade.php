@@ -61,7 +61,7 @@
 	function ajaxGetSpecInput2(spec_arr)
 	{		
 	    var goods_id = $("input[name='goods_id']").val();
-		$.post("http://www.xyshop.com/xyshop/good/goodspecinput",{'spec_arr':spec_arr,'goods_id':goods_id},
+		$.post("{{ url('/xyshop/good/goodspecinput') }}",{'spec_arr':spec_arr,'goods_id':goods_id},
 			function(d){
 				// console.log(d);
 				   $("#goods_spec_table2").html('')

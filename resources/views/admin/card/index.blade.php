@@ -20,6 +20,11 @@
 		到：<input type="text" name="endtime" class="form-control" value="" id="laydate2">
 		<button class="btn btn-info">查找</button>
 	</form>
+
+	<form action="" class="form-inline pull-right" method="get">
+		<input type="text" name="q" class="form-control" placeholder="请输入手机号或者昵称..">
+		<button class="btn btn-info">搜索</button>
+	</form>
 </div>
 <form action="" class="form-inline form_submit" method="get">
 {{ csrf_field() }}

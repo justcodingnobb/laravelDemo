@@ -219,11 +219,13 @@ class IndexController extends Controller
                 if ($g->good_id == $first_gid) {
                     // 判断是自提还是配送
                     if (!is_null($v->address)) {
-                        $tmp = [$v->address->people,$v->address->phone,'','河北','衡水',$v->address->area,$v->address->address,$v->total_prices,$v->mark,$v->shopmark,$title,$g['nums'],''];
+                        $phone = $v->address->phone == '' ? '13333332222' : $v->address->phone;
+                        $tmp = [$v->address->people,$phone,'','河北','衡水',$v->address->area,$v->address->address,$v->total_prices,$v->mark,$v->shopmark,$title,$g['nums'],''];
                     }
                     else
                     {
-                        $tmp = [$v->user->nickname.'（自提）',$v->user->phone,'','河北','衡水',$v->zitidian->area,$v->zitidian->address,$v->total_prices,$v->mark,$v->shopmark,$title,$g['nums'],''];
+                        $phone = $v->user->phone == '' ? '13333332222' : $v->user->phone;
+                        $tmp = [$v->user->nickname.'（自提）',$phone,'','河北','衡水',$v->zitidian->area,$v->zitidian->address,$v->total_prices,$v->mark,$v->shopmark,$title,$g['nums'],''];
                     }
                     $excel[] = $tmp;
                 }

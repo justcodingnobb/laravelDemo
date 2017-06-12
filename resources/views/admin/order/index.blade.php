@@ -30,7 +30,7 @@
 	</form>
 
 	<form action="" class="form-inline pull-right" method="get">
-		<input type="text" name="q" value="{{ $q }}" class="form-control" placeholder="请输入单号查询..">
+		<input type="text" name="q" value="{{ $q }}" class="form-control" placeholder="请输入手机号或昵称查询..">
 		<button class="btn btn-sm btn-info">搜索</button>
 	</form>
 </div>
@@ -87,6 +87,12 @@
         </td>
         <td>{{ $o->created_at }}</td>
     </tr>
+	<tr>
+		<td colspan="7">
+    		<p>{{ $o->address->area }}{{ $o->address->address }}</p>
+    		<p>{{ $o->address->people }}：{{ $o->address->phone }}</p>
+    	</td>
+	</tr>
     <tr>
     	<td colspan="7">
     		<table class="table">

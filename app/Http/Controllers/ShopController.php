@@ -123,7 +123,52 @@ class ShopController extends BaseController
         $havyhq = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit(2)->get();
         
         $info->pid = 0;
-        return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec'));
+
+        // 送货地址
+        $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        // 自提点
+        $ziti = Zitidian::where('status',1)->where('del',1)->orderBy('sort','asc')->get();
+        return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec','ziti','address'));
+    }
+    // 直接购买
+    public function getFirstOrder(Request $req)
+    {
+        // 查看有没有在购物车里，有累计数量
+        DB::beginTransaction();
+        try {
+            $sid = session()->getId();
+            $id = $req->gid;
+            $spec_key = $req->spec_key;
+            $num = $req->num;
+            $price = $req->gp;
+            $userid = !is_null(session('member')) ? session('member')->id : 0;
+            $nums = $num;
+            $total_prices = $price * $nums;
+            $area = Address::where('id',$req->aid)->value('area');
+            // 创建订单
+            $order_id = app('com')->orderid();
+            $order = ['order_id'=>$order_id,'user_id'=>$userid,'yhq_id'=>'0','yh_price'=>0,'old_prices'=>$total_prices,'total_prices'=>$total_prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
+        
+            $order = Order::create($order);
+            $spec_key_name = GoodSpecPrice::where('good_id',$id)->where('key',$spec_key)->value('key_name');
+            $good_title = Good::where('id',$id)->value('title');
+            // 组合order_goods数组
+            $order_goods = ['user_id'=>$userid,'order_id'=>$order->id,'good_id'=>$id,'good_title'=>$good_title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
+            // 插入
+            OrderGood::create($order_goods);
+            // 没出错，提交事务
+            DB::commit();
+
+            $info = (object)['pid'=>3];
+            $paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
+
+            return view($this->theme.'.addorder',compact('info','order','paylist'));
+        } catch (\Exception $e) {
+            // 出错回滚
+            DB::rollBack();
+            // return back()->with('message','添加失败，请稍后再试！');
+            dd($e->getMessage());
+        }
     }
     // 购物车
     public function getCart()

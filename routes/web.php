@@ -110,6 +110,8 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
 Route::post('shop/addcart','ShopController@getAddcart');
 // 商城功能-登陆后的
 Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+    // 直接购买
+    Route::get('firstorder','ShopController@getFirstOrder');
     // 团购商品
     Route::get('tuan/{tid}/{gid}','TuanController@getGood');
     // 团购下单

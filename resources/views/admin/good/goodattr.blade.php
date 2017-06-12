@@ -1,4 +1,4 @@
-<label>商品规格：</label>
+<label>商品属性：</label>
 <table class="table table-striped table-bordered">
 @if(count($good_attrs) > 0)
 @foreach($list as $l)

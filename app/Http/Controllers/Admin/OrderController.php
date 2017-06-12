@@ -24,11 +24,15 @@ class OrderController extends Controller
         $shipstatus = $req->input('shipstatus');
         $ziti = $req->input('ziti');
         // 找出订单
-        $orders = Order::with('good')->where(function($s) use($q){
-	                if ($q != '') {
-	                    $s->where('order_id',$q);
-	                }
-	            })->where(function($q) use($starttime){
+        $orders = Order::with(['good'=>function($q){
+                    $q->select('id','user_id','order_id','good_id','good_title','good_spec_key','good_spec_name','nums','price','total_prices');
+                },'address'])->where(function($r) use($q){
+                    if ($q != '') {
+                        // 查出来用户ID
+                        $uid = User::where('nickname','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
+                        $r->whereIn('user_id',$uid);
+                    }
+                })->where(function($q) use($starttime){
 	                if ($starttime != '') {
 	                    $q->where('created_at','>',$starttime);
 	                }

@@ -4,120 +4,236 @@
 		"selected_items":
 		[
 			[
-				"good_spec",
-				"good_spec_name"
+				"tod",
+				"today_over"
 			],
 			[
-				"good_spe",
-				"good_spec_name"
+				"total",
+				"total_prices"
 			],
 			[
-				"val",
-				"value\tAttr"
+				"te",
+				"text-danger \tBootstrap 3 Class"
 			],
 			[
-				"remove",
-				"removeAttr\t.removeAttr()"
+				"card",
+				"card"
 			],
 			[
-				"label-d",
-				"label-default \tBootstrap 3 Class"
-			],
-			[
-				"good_s",
-				"good_spec_ids"
-			],
-			[
-				"json",
-				"json_decode"
-			],
-			[
-				"good_att",
-				"good_attrs"
-			],
-			[
-				"good",
-				"good_id"
-			],
-			[
-				"btn-s",
-				"btn-success"
-			],
-			[
-				"Goods",
-				"GoodSpecPrice"
-			],
-			[
-				"tmp",
-				"tmp_attr"
-			],
-			[
-				"GoodSp",
-				"GoodSpecPrice"
-			],
-			[
-				"spe",
-				"spec_item"
-			],
-			[
-				"spec",
-				"spec_item"
-			],
-			[
-				"gooda",
-				"good_attr"
-			],
-			[
-				"va",
-				"val"
-			],
-			[
-				"item",
-				"item_id"
-			],
-			[
-				"to",
-				"toArray\t.toArray()"
-			],
-			[
-				"St",
-				"Storage::prepend\tInsert content at the beginning of a file"
-			],
-			[
-				"form",
-				"form-group \tBootstrap 3 Class"
-			],
-			[
-				"order",
-				"orderBy"
-			],
-			[
-				"goodspecit",
-				"goodspecitem"
-			],
-			[
-				"goodspeci",
-				"goodspecitem"
-			],
-			[
-				"DB",
-				"DB::transaction\tExecute a Closure within a transaction."
-			],
-			[
-				"tree",
-				"treeHtml"
+				"card_",
+				"card_id"
 			],
 			[
 				"for",
+				"for\tfor …"
+			],
+			[
+				"pull",
+				"pull-left"
+			],
+			[
+				"com",
+				"compact"
+			],
+			[
+				"Or",
+				"OrderGood"
+			],
+			[
+				"arr",
+				"arrchildid"
+			],
+			[
+				"tex",
+				"text-danger \tBootstrap 3 Class"
+			],
+			[
+				"今日",
+				"今日销售统计表\t(main.blade.php)"
+			],
+			[
+				"table-",
+				"table-striped \tBootstrap 3 Class"
+			],
+			[
+				"label-de",
+				"label-danger \tBootstrap 3 Class"
+			],
+			[
+				"today_pri",
+				"today_prices_real"
+			],
+			[
+				"toda",
+				"today_prices"
+			],
+			[
+				"tmp",
+				"tmp_good"
+			],
+			[
+				"tm",
+				"tmp_good"
+			],
+			[
+				"tmp_",
+				"tmp_good"
+			],
+			[
+				"array_mr",
+				"array_merge"
+			],
+			[
+				"format",
 				"format"
+			],
+			[
+				"fore",
+				"foreach\tforeach …"
+			],
+			[
+				"p",
+				"pointer"
+			],
+			[
+				"hidd",
+				"hidden-xs \tBootstrap 3 Class"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"user",
+				"userid"
+			],
+			[
+				"添加",
+				"添加失败，请稍后再试！\t(com.js)"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"si",
+				"simplePaginate(10"
+			],
+			[
+				"form",
+				"form-control \tBootstrap 3 Class"
+			],
+			[
+				"order",
+				"orderstatus"
+			],
+			[
+				"colo",
+				"color_l\t(order.blade.php)"
+			],
+			[
+				"text-de",
+				"text-danger \tBootstrap 3 Class"
+			],
+			[
+				"lh",
+				"lh\tline-height"
+			],
+			[
+				"sess",
+				"session"
+			],
+			[
+				"login",
+				"login.jpg\tw:750 h:1209"
+			],
+			[
+				"images",
+				"images/"
+			],
+			[
+				"with",
+				"with('message','添加购物车成功！"
+			],
+			[
+				"t",
+				"this\t$(this)"
+			],
+			[
+				"cart_n",
+				"cart_num_\t(cart.blade.php)"
+			],
+			[
+				"img-",
+				"img-thumbnail \tBootstrap 3 Class"
+			],
+			[
+				"bdrz",
+				"bdrz\tborder-radius"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"bd",
+				"bdrz\tborder-radius"
+			],
+			[
+				"col-xs",
+				"col-xs-4\t(good.blade.php)"
+			],
+			[
+				"bdr",
+				"bdr\tborder-right"
+			],
+			[
+				"db",
+				"d:b\tdisplay:block"
+			],
+			[
+				"tmp_f",
+				"tmp_format"
+			],
+			[
+				"tmp_for",
+				"tmp_format_name"
+			],
+			[
+				"pric",
+				"price"
+			],
+			[
+				"bg",
+				"bg-primary \tBootstrap 3 Class"
+			],
+			[
+				"return",
+				"return"
+			],
+			[
+				"json",
+				"json_decode\t(PayController.php)"
+			],
+			[
+				"retur",
+				"return"
+			],
+			[
+				"cont",
+				"contents\t.contents()"
+			],
+			[
+				"sub",
+				"submit\t.submit()"
+			],
+			[
+				"res",
+				"response"
 			],
 			[
 				"goods",
 				"goodlists"
-			],
-			[
-				"tex",
-				"text-warning \tBootstrap 3 Class"
 			],
 			[
 				"de",
@@ -128,24 +244,12 @@
 				"total_prices"
 			],
 			[
-				"user",
-				"user_id"
-			],
-			[
 				"pay",
 				"paystatus"
 			],
 			[
 				"pays",
 				"paystatus\t(PayController.php)"
-			],
-			[
-				"total",
-				"total_prices\t(paylist.blade.php)"
-			],
-			[
-				"pric",
-				"prices"
 			],
 			[
 				"btn-de",
@@ -184,10 +288,6 @@
 				"is_null"
 			],
 			[
-				"fore",
-				"forever"
-			],
-			[
 				"var",
 				"var_dump"
 			],
@@ -212,12 +312,16 @@
 				"Carbon"
 			],
 			[
-				"format",
-				"format_id"
+				"good",
+				"goodlists"
 			],
 			[
 				"numb",
 				"number_format"
+			],
+			[
+				"btn-s",
+				"btn-sm \tBootstrap 3 Class"
 			],
 			[
 				"media",
@@ -238,10 +342,6 @@
 			[
 				"po",
 				"pos:f\tposition:fixed"
-			],
-			[
-				"lh",
-				"line-height"
 			],
 			[
 				"exp",
@@ -282,14 +382,6 @@
 			[
 				"cl",
 				"clearfix"
-			],
-			[
-				"hidd",
-				"hidden-sm \tBootstrap 3 Class"
-			],
-			[
-				"bdr",
-				"bdrz\tborder-radius"
 			],
 			[
 				"as",
@@ -422,98 +514,6 @@
 			[
 				"max",
 				"maxage"
-			],
-			[
-				"dev",
-				"device"
-			],
-			[
-				"device",
-				"devicetoken"
-			],
-			[
-				"res",
-				"result"
-			],
-			[
-				"code",
-				"codetime"
-			],
-			[
-				"cod",
-				"codetime"
-			],
-			[
-				"fil",
-				"file\t(ComService.php)"
-			],
-			[
-				"exc",
-				"exchangerate"
-			],
-			[
-				"R",
-				"Request\t(BaseController.php)"
-			],
-			[
-				"create",
-				"created_at"
-			],
-			[
-				"new",
-				"newuser\t(Emchat.php)"
-			],
-			[
-				"App",
-				"AppComment\t(AppComment.php)"
-			],
-			[
-				"wi",
-				"width"
-			],
-			[
-				"url",
-				"urlencode"
-			],
-			[
-				"key",
-				"keywords"
-			],
-			[
-				"attrs",
-				"attrsT"
-			],
-			[
-				"pat",
-				"path"
-			],
-			[
-				"array",
-				"array_push($header"
-			],
-			[
-				"comment_i",
-				"comment_input"
-			],
-			[
-				"ths",
-				"this"
-			],
-			[
-				"pub",
-				"public_path"
-			],
-			[
-				"str",
-				"string\t(helpers.php)"
-			],
-			[
-				"down",
-				"downUrl"
-			],
-			[
-				"path",
-				"pathToFile"
 			]
 		]
 	},
@@ -548,6 +548,10 @@
 		"selected_items":
 		[
 			[
+				"save",
+				"File: Save All"
+			],
+			[
 				"move",
 				"File: Move"
 			],
@@ -562,10 +566,6 @@
 			[
 				"close",
 				"File: Close All"
-			],
-			[
-				"save",
-				"File: Save All"
 			],
 			[
 				"remov",
@@ -708,7 +708,7 @@
 				"phpfmt: toggle PHP 5.5 compatibility mode"
 			]
 		],
-		"width": 818.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -737,140 +737,143 @@
 	},
 	"expanded_folders":
 	[
-		"/F/wwwroot/laravelDemo",
-		"/F/wwwroot/laravelDemo/app",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers"
+		"/F/wwwroot/jxf",
+		"/F/wwwroot/jxf/app",
+		"/F/wwwroot/jxf/app/Http",
+		"/F/wwwroot/jxf/app/Http/Controllers",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin",
+		"/F/wwwroot/jxf/resources"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/laravelDemo/readme.md",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/IndexController.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/index/consume.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/index/main.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/ShopController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/TuanController.php",
-		"/F/wwwroot/laravelDemo/resources/views/default/tuan.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/default/good.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/default/order.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/order/index.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/OrderController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Good/RetrunGoodController.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/tui/index.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/default/tui.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/PayController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/BaseController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Pay/WxpayController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Pay/AlipayController.php",
-		"/F/wwwroot/laravelDemo/public/statics/home/js/com.js",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_12_085643_edit_return_good_spec.php",
-		"/F/wwwroot/laravelDemo/resources/views/default/cart.blade.php",
-		"/F/wwwroot/laravelDemo/app/Models/Order.php",
-		"/F/wwwroot/laravelDemo/app/Models/Cart.php",
-		"/F/wwwroot/laravelDemo/app/Models/Good.php",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/C/Users/Administrator/Desktop/1、.txt",
-		"/C/Users/Administrator/Desktop/今日事.txt",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodController.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_223627_edit_carts.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_224158_edit_order_goodss.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_224313_edit_orders.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodsAttr.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodAttr.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodSpecItem.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/ShopController_old.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/goodattr.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/goodspec.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/add.blade.php",
-		"/F/wwwroot/laravelDemo/routes/web.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodSpecPrice.php",
-		"/F/wwwroot/laravelDemo/app/Http/Requests/GoodRequest.php",
-		"/F/wwwroot/laravelDemo/app/Services/ComService.php",
-		"/F/wwwroot/laravelDemo/public/upload/log.log",
-		"/F/wwwroot/laravelDemo/storage/logs/laravel-2017-06-11.log",
-		"/F/wwwroot/laravelDemo/app/Http/Middleware/VerifyCsrfToken.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodSpec.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodController_old.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_085217_add_good_spec_price.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_112457_create_good_attr.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodattr/edit.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodSpecController.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodspec/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodspec/add.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodspec/index.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodAttrController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Requests/GoodSpecRequest.php",
-		"/F/wwwroot/laravelDemo/app/Models/GoodCate.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodCateController.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_103226_drop_good_formats.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodattr/index.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodattr/add.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Requests/GoodAttrRequest.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/editformat.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/goodcate/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/good/addformat.blade.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_084945_drop_good_cate_attr.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_10_112030_add_type_to_consume.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_085018_edit_good_attrs.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_085120_add_good_spec.php",
-		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_085146_add_good_spec_item.php",
-		"/F/wwwroot/laravelDemo/composer.json",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/goodspec.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/D/www/xyshop/readme.md",
-		"/D/www/xyshop/app/Http/Controllers/ShopController.php",
-		"/D/www/xyshop/resources/views/user/address_edit.blade.php",
-		"/D/www/xyshop/resources/views/user/address_add.blade.php",
-		"/D/www/xyshop/resources/views/user/address.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/UserController.php",
-		"/D/www/xyshop/resources/views/admin/ziti/edit.blade.php",
-		"/D/www/xyshop/resources/views/admin/ziti/add.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Good/ZitiController.php",
-		"/D/www/xyshop/resources/views/admin/ziti/index.blade.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033904_add_area_to_zitidian.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033919_add_area_to_orders.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_033943_add_area_to_address.php",
-		"/D/www/xyshop/resources/views/default/cart.blade.php",
-		"/D/www/xyshop/app/Http/Requests/Good/ZitiRequest.php",
-		"/D/www/xyshop/routes/web.php",
-		"/D/www/xyshop/app/Http/Controllers/Good/AdController.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_005333_create_zitidian.php",
-		"/D/www/xyshop/database/migrations/2017_05_27_005507_add_ziti_to_orders.php",
-		"/D/www/xyshop/app/Models/Zitidian.php",
-		"/D/www/xyshop/resources/views/default/order.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/OrderController.php",
-		"/D/www/laravelDemo-1.0.0/app/Http/Controllers/ShopController.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/default/cart.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/addformat.blade.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/editformat.blade.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/edit.blade.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/addformat.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/GoodController.php",
-		"/D/www/xyshop/app/Http/Controllers/ShopController11.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/default/good.blade.php",
-		"/D/www/xyshop/resources/views/default/good.blade.php",
-		"/D/www/laravelDemo-1.0.0/app/Http/Controllers/Admin/GoodController.php",
-		"/D/www/laravelDemo-1.0.0/resources/views/admin/good/format.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Old/ShopController.php",
-		"/D/www/xyshop/resources/views/admin/order/index.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/PayController.php",
-		"/D/www/xyshop/app/Http/Controllers/BaseController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/AlipayController.php",
-		"/D/www/xyshop/app/Http/Controllers/Pay/WxpayController.php",
-		"/D/www/xyshop/resources/views/admin/goodcate/index.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/CateController.php",
-		"/C/Users/Administrator/Downloads/secret_key_tools_RSA_win/rsa_private_key.pem",
-		"/C/Users/Administrator/Downloads/secret_key_tools_RSA_win/rsa_public_key.pem",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/index.php",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/wappay/pay.php",
-		"/C/Users/Administrator/Downloads/alipay.trade.wap.pay-PHP-UTF-8/config.php",
-		"/D/www/xyshop/vendor/omnipay/common/src/Omnipay/Common/Message/AbstractRequest.php",
-		"/D/www/xyshop/.env",
-		"/D/www/xyshop/resources/views/default/paylist.blade.php",
-		"/D/www/xyshop/resources/views/default/pay.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/UserController.php",
-		"/D/www/xyshop/resources/views/admin/pay/yue.blade.php",
-		"/D/www/xyshop/resources/views/admin/member/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/index.blade.php"
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/F/wamp64/bin/mysql/mysql5.7.9/my.ini",
+		"/E/迅雷下载/www/安装前必看.txt",
+		"/F/wwwroot/jxf/resources/views/admin/index/consume.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/consume.blade.php",
+		"/F/wwwroot/jxf/database/factories/ModelFactory.php",
+		"/F/wwwroot/jxf/app/Models/Consume.php",
+		"/F/wwwroot/jxf/app/Models/User.php",
+		"/F/wwwroot/jxf/resources/views/admin/log/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/app/Services/ComService.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_10_112030_add_type_to_consume.php",
+		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/address.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/consume.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/index.blade - 副本.php",
+		"/F/wwwroot/jxf/app/Models/Zitidian.php",
+		"/F/wwwroot/jxf/app/Models/Order.php",
+		"/F/wwwroot/jxf/app/Models/Address.php",
+		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/index.blade.php",
+		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/app/Http/Requests/Good/UserCardRequest.php",
+		"/F/wwwroot/jxf/resources/views/user/card.blade.php",
+		"/F/希夷/吉鲜蜂/密码.txt",
+		"/F/wwwroot/jxf/resources/views/admin/card/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/CardController.php",
+		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/card/add.blade.php",
+		"/F/wwwroot/jxf/app/Models/Card.php",
+		"/F/wwwroot/jxf/app/Http/Requests/Good/CardRequest.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
+		"/F/wwwroot/jxf/app/Ecs/Card.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
+		"/E/迅雷下载/www.hsjixianfeng.com.sql",
+		"/F/wamp64/logs/mysql.log",
+		"/C/Users/Administrator/Desktop/card.sql",
+		"/F/wwwroot/jxf/database/migrations/2017_06_09_145751_create_consume.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tui/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/returngood.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/order/ship.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tui/status.blade.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_09_145709_create_return_good.php",
+		"/F/wwwroot/jxf/app/Models/ReturnGood.php",
+		"/F/wwwroot/jxf/app/Models/Good.php",
+		"/F/wwwroot/jxf/app/Models/TuanUser.php",
+		"/F/wwwroot/jxf/app/Http/Requests/Good/TuiRequest.php",
+		"/F/wwwroot/jxf/resources/views/admin/tui/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/tui.blade.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_09_145816_create_cards.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_09_145427_add_mark_to_orders.php",
+		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/近7日阅读量排行.txt",
+		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
+		"/F/wwwroot/jxf/app/Services/TagService.php",
+		"/F/scss/bootstrap/css/home.scss",
+		"/F/scss/bootstrap/css/bootstrap.css",
+		"/F/scss/pure/css/reset.scss",
+		"/F/scss/pure/css/reset.css",
+		"/F/scss/pure/css/pure-min.css",
+		"/C/Users/Administrator/Downloads/config.json",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
+		"/F/scss/bootstrap/index.html",
+		"/F/scss/bootstrap/css/bootstrap.min.css",
+		"/F/xi-yi(1).txt",
+		"/F/scss/bootstrap/css/home.css",
+		"/F/scss/bootstrap/css/iconfont.css",
+		"/C/Users/Administrator/Downloads/淘宝ICON/demo_fontclass.html",
+		"/C/Users/Administrator/Downloads/淘宝ICON/demo_symbol.html",
+		"/C/Users/Administrator/Downloads/淘宝ICON/demo.css",
+		"/C/Users/Administrator/Downloads/淘宝ICON/iconfont.js",
+		"/C/Users/Administrator/Downloads/css/bootstrap-theme.css",
+		"/C/Users/Administrator/Downloads/css/bootstrap.min.css",
+		"/C/Users/Administrator/Downloads/css/bootstrap.css",
+		"/C/Users/Administrator/Downloads/font_echh04i9dzbmx6r/iconfont.css",
+		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
+		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
+		"/F/wwwroot/jxf/public/statics/home/css/home.css",
+		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart_empty.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/76BCE12B_edit.tmp/index.html",
+		"/F/希夷/cxchaoshi/服务器.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/6CA7BA8D_edit.tmp/product.html",
+		"/F/wwwroot/jxf/config/app.php",
+		"/F/wwwroot/jxf/public/statics/admin/css/reset.scss",
+		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
+		"/C/Users/Administrator/Desktop/今日事.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/list.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/show.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/page.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/50AB9072_edit.tmp/home.css",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/category.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/index.html",
+		"/F/希夷/v9_content/index.html",
+		"/F/希夷/v9_content/page.html",
+		"/C/Users/Administrator/Desktop/sfd.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/footer.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/message.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/16154470_edit.tmp/global.func.php",
+		"/F/希夷/v9_content/list.html",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$EXa0.510/v9_content/header.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/731FC53E_edit.tmp/header.html",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/7F09F0A2_edit.tmp/.htaccess",
+		"/F/希夷/康顺/康顺.txt",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1C60957A_edit.tmp/system.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/1C60957A_edit.tmp/database.php",
+		"/F/希夷/康顺/localhost.sql",
+		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php"
 	],
 	"find":
 	{
@@ -881,7 +884,10 @@
 		"height": 90.0,
 		"where_history":
 		[
-			"F:\\wwwroot\\laravelDemo\\app\\Http\\Controllers",
+			"F:\\wwwroot\\jxf\\resources\\views\\admin\\good",
+			"F:\\wwwroot\\jxf\\app\\Http\\Controllers",
+			"F:\\wwwroot\\jxf\\resources\\views\\admin",
+			"F:\\wwwroot\\jxf\\resources",
 			"D:\\www\\xyshop\\resources\\views\\default",
 			"F:\\wwwroot\\xyshop\\vendor\\overtrue\\laravel-wechat\\src",
 			"F:\\wwwroot\\xyshop\\app\\Http",
@@ -967,134 +973,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"allgood",
-			"price",
-			"pronums",
-			"title",
-			"id",
-			"'id','title','pronums','weight'",
-			"good_spec_name",
-			"main",
-			"gp",
-			"gid",
-			"ship",
-			"good_title",
-			"format_id",
-			",'format'=>$l->format['format']",
-			"alert_addorder",
-			"good_title",
-			"remove_cart",
-			"total_prices",
-			"total_price_",
-			"fid",
-			"total_price_",
-			"change_cart",
-			"total_prices",
-			"cart_num_cart",
-			"cart_num_",
-			"['",
-			"total_prices",
-			"'spec_key'",
-			"spec_key",
-			"fid",
-			"format_id",
-			"3.12",
-			"fid",
-			"store_count",
-			"goods_",
-			"ShopController_old.php",
-			"json_decode(",
-			"$good->id",
-			"div class=\"form-group\"",
-			"0.106",
-			"selected",
-			"GoodAttrs",
-			"/{cid}",
-			"goods_id",
-			" + '/' + cid",
-			"$info->id",
-			"weithg",
-			"key_name",
-			"spec_item",
-			"item_spec",
-			"spec_arr",
-			"spec_id",
-			"goods_spec_table2",
-			"spec_input_tab",
-			"good_attr_{{$l->id}}",
-			"catid",
-			"goodspec",
-			"Transaction",
-			"data.value",
-			"goodattr",
-			"GoodAttrController",
-			"goodattr/",
-			"GoodAttrRequest",
-			"GoodAttr:",
-			"goodattr/",
-			"goodattr.",
-			"属性",
-			"value",
-			"old('data.",
-			"unit",
-			"input_type",
-			"value",
-			"/{id}",
-			"address",
-			"aid",
-			"addressid",
-			"addid",
-			";\n",
-			"old('data.",
-			"url",
-			"URL",
-			"url",
-			"title",
-			"AdC",
-			"ad/",
-			"ad-",
-			"ad/",
-			"ad-",
-			"ad",
-			"广告",
-			"where('id',$value['format_id'])",
-			"$formats->where('id',$value['format_id'])",
-			"yhq_id",
-			"$formats->where('id',$v['format_id'])",
-			"good_format",
-			"biz_content",
-			"biz_content ",
-			"biz_content",
-			"biz_content ",
-			"title",
-			"GroupController",
-			"edit",
-			"Edit",
-			"h4",
-			"change_cart",
-			"logout",
-			"59229f9dd3a03iwXLBLd2",
-			"59229f60bcc55X7rLVotm",
-			"5922aa50005aaoICaAzQx1k1l",
-			"store",
-			"old_prices",
-			"container ",
+			"xyshop/good/goodspecinput",
+			"good/goodspecinput",
+			"xyshop/good/goodspecinput",
+			"global sql-mode",
+			"global sql_mode",
+			"ENGINE_SUBSTITUTION",
+			"sql-mode",
+			"sql_mode",
+			"sql-mode",
+			"sql_mode",
+			"m",
+			"data",
+			"starttime",
+			"random",
+			"span",
+			"app('com')->consume",
 			"status",
-			"old('data.",
-			"address",
-			"title",
-			"yhq/price",
-			"updateCart",
-			"cartnum();",
-			"cartnum",
-			"total_prices",
+			"ziti",
+			"edit",
+			"g->",
+			"ziti",
+			"order",
+			"ii",
+			"phone",
+			"people",
+			"id",
+			"form_submit",
+			"Status",
+			"status",
+			"Status",
+			"prices",
+			"优惠券",
+			"Status",
+			"RetrunGood",
+			"returngood",
+			"`date` date ",
+			" '0000-00-00'",
+			"vc_type_id",
+			"ecs_valuecard",
+			"card",
+			"skip-grant-tables",
+			"card",
+			"tui",
+			"h4",
+			"getaddorder",
+			"res",
+			"TuiController",
+			"Ziti",
+			"ziti/",
+			"tuan",
+			"data.address",
+			"data[address]",
+			"price",
+			"user_id",
+			"user",
+			"font-family",
+			"Helvetica Neue",
+			"6",
+			"f7",
+			"pd",
+			"pt",
+			"mb",
+			"mt",
+			"5",
+			"pt",
+			"padding",
+			"pd",
+			"5",
+			"bootcss",
+			"iconfontyyy",
+			"iconfont",
+			"yyy",
+			"iconfontyyy",
+			"iconfont",
+			"yyy",
+			"iconfontyyy",
+			"iconfont",
+			"icon",
+			"col-xs-4",
+			"icon",
 			"div",
-			"shop",
-			"DB",
-			"->where('format_id',$formatid)",
-			"gp",
-			"App\\Http\\Controllers",
-			"ShopController"
+			"yhq",
+			"label label-warning",
+			"pd10",
+			"E32EA1",
+			"span class=\"label label-warning mt5\"",
+			"alert",
+			"btn-fastbuy",
+			"alert",
+			"btn-fastbuy",
+			"order/over",
+			"order/tui",
+			"span",
+			"tmp_goods",
+			"->",
+			".single1",
+			"{IMG_PATH}",
+			"></img",
+			".navbar",
+			"center-block",
+			"col-xs-12",
+			" col-lg-6",
+			"mt30",
+			"line.png",
+			"statics/images/line.png",
+			"#footer",
+			"footer",
+			"h2",
+			"h4",
+			"catpos",
+			"div",
+			"http://localhost/ks",
+			"5",
+			"60px",
+			"6",
+			"pay",
+			"getaddor",
+			"p",
+			"where('tuan_id',0)",
+			")->",
+			"->where('tuan_id',0)",
+			"form_addcart",
+			"App::make('com')",
+			"tt",
+			"tuan",
+			"aid",
+			"Transaction",
+			"DB"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1102,10 +1108,14 @@
 		"regex": false,
 		"replace_history":
 		[
-			"'good_spec_key'",
-			"good_spec_key",
-			"0.107",
-			"GoodSpec:",
+			"`date` ",
+			"`date`",
+			"",
+			"/statics/images/",
+			"app('com')",
+			"吉鲜商城",
+			"app",
+			"192.168.0.104",
 			"container-fluid",
 			"xyshop/",
 			"xyshop",
@@ -1260,23 +1270,75 @@
 		"selected_items":
 		[
 			[
-				"index/consume",
-				"resources\\views\\admin\\index\\consume.blade.php"
+				"goodspec.bla",
+				"resources\\views\\admin\\good\\goodspec.blade.php"
 			],
 			[
-				"main.blade",
+				"index/main",
 				"resources\\views\\admin\\index\\main.blade.php"
 			],
 			[
-				"good",
-				"resources\\views\\default\\good.blade.php"
+				"index/co",
+				"resources\\views\\admin\\index\\consume.blade.php"
 			],
 			[
-				"tuan.bla",
-				"resources\\views\\default\\tuan.blade.php"
+				"member/con",
+				"resources\\views\\admin\\member\\consume.blade.php"
 			],
 			[
-				"order.blade",
+				"web",
+				"routes\\web.php"
+			],
+			[
+				"member/cons",
+				"resources\\views\\admin\\member\\consume.blade.php"
+			],
+			[
+				"member/index",
+				"resources\\views\\admin\\member\\index.blade.php"
+			],
+			[
+				"order.p",
+				"app\\Models\\Order.php"
+			],
+			[
+				"art/index",
+				"resources\\views\\admin\\art\\index.blade.php"
+			],
+			[
+				"tuan.b",
+				"resources\\views\\admin\\tuan\\index.blade.php"
+			],
+			[
+				"main.b",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"userce",
+				"resources\\views\\user\\usercenter.blade.php"
+			],
+			[
+				"usercent",
+				"resources\\views\\user\\usercenter.blade.php"
+			],
+			[
+				"card/in",
+				"resources\\views\\admin\\card\\index.blade.php"
+			],
+			[
+				"yuhuiquan/inde",
+				"resources\\views\\admin\\youhuiquan\\index.blade.php"
+			],
+			[
+				"tuan/add",
+				"resources\\views\\admin\\tuan\\add.blade.php"
+			],
+			[
+				"art/in",
+				"resources\\views\\admin\\art\\index.blade.php"
+			],
+			[
+				"order.bl",
 				"resources\\views\\default\\order.blade.php"
 			],
 			[
@@ -1284,92 +1346,120 @@
 				"resources\\views\\admin\\order\\index.blade.php"
 			],
 			[
-				"tui/index",
-				"resources\\views\\admin\\tui\\index.blade.php"
+				"web.",
+				"routes\\web.php"
 			],
 			[
-				"tui.bal",
-				"resources\\views\\default\\tui.blade.php"
+				"goodcate.bl",
+				"resources\\views\\default\\goodcate.blade.php"
 			],
 			[
-				"cart.bl",
-				"resources\\views\\default\\cart.blade.php"
+				"home.bl",
+				"resources\\views\\default\\home.blade.php"
 			],
 			[
-				"order.bl",
-				"resources\\views\\default\\order.blade.php"
+				"tuan",
+				"resources\\views\\default\\tuan.blade.php"
 			],
 			[
-				"com.js",
-				"public\\statics\\home\\js\\com.js"
+				"home.",
+				"public\\statics\\home\\css\\home.scss"
+			],
+			[
+				"shopc",
+				"app\\Http\\Controllers\\ShopController.php"
+			],
+			[
+				"good",
+				"resources\\views\\default\\good.blade.php"
+			],
+			[
+				"main.blade",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"main.bl",
+				"resources\\views\\admin\\index\\main.blade.php"
 			],
 			[
 				"cart",
 				"resources\\views\\default\\cart.blade.php"
 			],
 			[
+				"user",
+				"app\\Http\\Controllers\\Admin\\UserController.php"
+			],
+			[
+				"shopcon",
+				"app\\Http\\Controllers\\ShopController.php"
+			],
+			[
+				"order",
+				"resources\\views\\default\\order.blade.php"
+			],
+			[
+				"reset.scss",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
+				"home.scss",
+				"public\\statics\\home\\css\\home.scss"
+			],
+			[
 				"good.bl",
 				"resources\\views\\default\\good.blade.php"
 			],
 			[
-				"default/good",
-				"resources\\views\\default\\good.blade.php"
+				"com.js",
+				"public\\statics\\home\\js\\com.js"
 			],
 			[
-				"good/edit",
-				"resources\\views\\admin\\good\\edit.blade.php"
+				"tuan.bl",
+				"resources\\views\\default\\tuan.blade.php"
 			],
 			[
-				"goodattr",
-				"resources\\views\\admin\\good\\goodattr.blade.php"
+				"home",
+				"public\\statics\\home\\css\\home.scss"
 			],
 			[
-				"goodspec.b",
-				"resources\\views\\admin\\good\\goodspec.blade.php"
+				"home.s",
+				"public\\statics\\home\\css\\home.scss"
 			],
 			[
-				"good/add",
-				"resources\\views\\admin\\good\\add.blade.php"
+				"home.css",
+				"public\\statics\\home\\css\\home.css"
 			],
 			[
-				"good/ed",
-				"resources\\views\\admin\\good\\edit.blade.php"
+				"order.b",
+				"resources\\views\\default\\order.blade.php"
 			],
 			[
-				"goodattr.bl",
-				"resources\\views\\admin\\good\\goodattr.blade.php"
+				"order.bla",
+				"resources\\views\\default\\order.blade.php"
 			],
 			[
-				"goodspec/in",
-				"resources\\views\\admin\\goodspec\\index.blade.php"
+				"cart.b",
+				"resources\\views\\default\\cart.blade.php"
 			],
 			[
-				"goodattr/in",
-				"resources\\views\\admin\\goodattr\\index.blade.php"
+				"addorder",
+				"resources\\views\\default\\addorder.blade.php"
 			],
 			[
-				"good/edit.",
-				"resources\\views\\admin\\good\\edit.blade.php"
+				"good/index",
+				"resources\\views\\admin\\good\\index.blade.php"
 			],
 			[
-				"goodcate/ed",
-				"resources\\views\\admin\\goodcate\\edit.blade.php"
+				"layu",
+				"resources\\views\\default\\layout.blade.php"
 			],
 			[
-				"goodattr/ed",
-				"resources\\views\\admin\\goodattr\\edit.blade.php"
+				"user/center",
+				"resources\\views\\user\\usercenter.blade.php"
 			],
 			[
-				"good/add.",
-				"resources\\views\\admin\\good\\add.blade.php"
-			],
-			[
-				"goodcate/edi",
-				"resources\\views\\admin\\goodcate\\edit.blade.php"
-			],
-			[
-				"goodattr/add",
-				"resources\\views\\admin\\goodattr\\add.blade.php"
+				"wxpay.b",
+				"resources\\views\\default\\wxpay.blade.php"
 			],
 			[
 				"address.bl",
@@ -1382,6 +1472,10 @@
 			[
 				"ziti/index",
 				"resources\\views\\admin\\ziti\\index.blade.php"
+			],
+			[
+				"cart.bl",
+				"resources\\views\\default\\cart.blade.php"
 			],
 			[
 				"addform",
@@ -1422,6 +1516,14 @@
 			[
 				"good/inde",
 				"resources\\views\\admin\\good\\index.blade.php"
+			],
+			[
+				"good/edit",
+				"resources\\views\\admin\\good\\editformat.blade.php"
+			],
+			[
+				"good/add",
+				"resources\\views\\admin\\good\\addformat.blade.php"
 			],
 			[
 				"good/addfor",
@@ -1468,10 +1570,6 @@
 				"database\\migrations\\2016_12_09_200519_create_authstatus.php"
 			],
 			[
-				"reset.scss",
-				"public\\statics\\admin\\css\\reset.scss"
-			],
-			[
 				"auth/in",
 				"resources\\views\\admin\\auth\\index.blade.php"
 			],
@@ -1516,10 +1614,6 @@
 				"resources\\views\\v2_article\\show.blade.php"
 			],
 			[
-				"art/in",
-				"resources\\views\\admin\\art\\index.blade.php"
-			],
-			[
 				"send",
 				"app\\Jobs\\SendEmail.php"
 			],
@@ -1550,10 +1644,6 @@
 			[
 				"v2/ar",
 				"app\\Http\\Controllers\\V2\\ArtController.php"
-			],
-			[
-				"home",
-				"app\\Http\\Controllers\\V2\\HomeController.php"
 			],
 			[
 				"art",
@@ -1606,10 +1696,6 @@
 			[
 				"jwtmanager.php",
 				"vendor\\tymon\\jwt-auth\\src\\JWTManager.php"
-			],
-			[
-				"art/index",
-				"resources\\views\\admin\\art\\index.blade.php"
 			],
 			[
 				"comment.b",
@@ -1694,82 +1780,6 @@
 			[
 				"special/add",
 				"resources\\views\\admin\\special\\add.blade.php"
-			],
-			[
-				"art/pos",
-				"resources\\views\\admin\\art\\pos.blade.php"
-			],
-			[
-				"show.b",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"user",
-				"app\\Http\\Controllers\\Admin\\UserController.php"
-			],
-			[
-				"show.ba",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"show.blade",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"comment.bl",
-				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"show.blade.php",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"sho.bl",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"comment/in",
-				"resources\\views\\admin\\comment\\index.blade.php"
-			],
-			[
-				"article/error",
-				"resources\\views\\article\\error.blade.php"
-			],
-			[
-				"article/im",
-				"resources\\views\\article\\img.blade.php"
-			],
-			[
-				"hot/inde",
-				"resources\\views\\admin\\hot\\index.blade.php"
-			],
-			[
-				"img.",
-				"resources\\views\\article\\img.blade.php"
-			],
-			[
-				"img",
-				"resources\\views\\article\\img.blade.php"
-			],
-			[
-				"add.bl",
-				"resources\\views\\admin\\app\\add.blade.php"
-			],
-			[
-				"img.b",
-				"resources\\views\\article\\img.blade.php"
-			],
-			[
-				"article/com",
-				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"rese",
-				"public\\statics\\reset.scss"
-			],
-			[
-				"jquery",
-				"public\\statics\\common\\js\\jquery.min.js"
 			]
 		],
 		"width": 0.0

@@ -30,6 +30,10 @@ $(function(){
 	$('.good_addcart').on('click',function(){
 		$('#myModal').modal('show');
 	});
+	/*打开直接购买*/
+	$('.good_firstorder').on('click',function(){
+		$('#myModal_order').modal('show');
+	});
 	// 移除购物车
 	$(".remove_cart").on('click',function(){
 		var that = $(this);
@@ -112,6 +116,36 @@ $(function(){
 				$('#myModal').modal('hide');
 			}
 		});
+	});
+	// 直接购买
+	$('.firstorder').click(function(event) {
+		var gid = $('input[name="gid"]').val();
+		var num = $('input[name="num"]').val();
+		var spec_key = $('.spec_key').val();
+		var gp = $('input[name="gp"]').val();
+		var aid = $('input[name="aid"]').val();
+		var ziti = $('input[name="ziti"]').val();
+		var token = $('input[name="_token"]').val();
+		var url = $('.form_addcart').attr('data-firstorder');
+		if (aid == 0 && ziti == 0) {
+			alert('请选择送货地址！');
+			return;
+		}
+		$('.form_addcart').attr('action',url).submit();
+	});
+	// 直接购买数量
+	// 购物车数量变化
+	$('.first_cart_dec').click(function(event) {
+		var num = parseInt($('.first_cart_num').text());
+		if (num > 1) {
+			$('.first_cart_num').text(num - 1);
+			$('.cartnum').val(num - 1);
+		}
+	});
+	$('.first_cart_inc').click(function(event) {
+		var num = parseInt($('.first_cart_num').text());
+		$('.first_cart_num').text(num + 1);
+		$('.cartnum').val(num + 1);
 	});
 	// 添加到团购
 	$('.tuan_addcart').click(function(event) {

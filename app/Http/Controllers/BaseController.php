@@ -56,13 +56,13 @@ class BaseController extends Controller
     public function updateStore($order = '',$paymod = '余额')
     {
         try {
-            DB::transaction(function() use($order){
+            DB::transaction(function() use($order,$paymod){
                 Order::where('id',$order->id)->update(['paystatus'=>1,'pay_name'=>$paymod]);
                 User::where('id',$order->user_id)->increment('points',$order->total_prices);
                 // 消费记录
                 app('com')->consume($order->user_id,$order->id,$order->total_prices,$paymod.'支付订单');
                 // 减库存，先找出来所有的商品ID与商品属性ID
-                $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','spec_key','nums')->get();
+                $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','good_spec_key','nums')->get();
                 // 循环，判断是直接减商品库存，还是减带属性的库存
                 foreach ($goods as $k => $v) {
                     if ($v->spec_key == '') {
@@ -70,7 +70,7 @@ class BaseController extends Controller
                     }
                     else
                     {
-                        GoodSpecPrice::where('good_id',$v->good_id)->where('spec_key',$v->spec_key)->decrement('store',$v->nums); 
+                        GoodSpecPrice::where('good_id',$v->good_id)->where('key',$v->spec_key)->decrement('store',$v->nums); 
                     }
                     // 加销量
                     Good::where('id',$v->good_id)->increment('sales',$v->nums);
@@ -78,6 +78,7 @@ class BaseController extends Controller
             });
             return true;
         } catch (\Exception $e) {
+            // dd($e->getMessage());
             return false;
         }
     }

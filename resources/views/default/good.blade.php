@@ -35,7 +35,7 @@
 					@endif
 					<a href="{{ url('shop/good',['id'=>$info->id]) }}">{{ $info->title }}</a></h1>
 				<!-- <h4>{{ $info->pronums }}</h4> -->
-				<form action="{{ url('shop/addcart') }}" class="form_addcart">
+				<form action="{{ url('shop/addcart') }}" data-firstorder="{{ url('shop/firstorder') }}" class="form_addcart">
 					{{ csrf_field() }}
 					
 					<!-- 规格开始 -->
@@ -119,9 +119,10 @@
 					</div>
 
 					
-					<!-- 加购物车 -->
+					<!-- 加购物车的信息字段 -->
 					<input type="hidden" value="{{ $info->id }}" name="gid">
-
+					<input type="hidden" name="aid" class="aid" value="0">
+					<input type="hidden" name="ziti" class="ziti" value="0">
 					<input type="hidden" min="0" value="1" class="form-control cartnum" name="num">
 				</form>
 				<!-- 优惠券 -->
@@ -228,8 +229,56 @@
 		<div class="good_alert_num ps"></div>
 	</a>
 	<botton class="alert_addcart good_addcart">加入购物车</botton>
+	<botton class="alert_addcart good_firstorder">直接购买</botton>
 </div>
 
+
+<div class="modal fade" id="myModal_order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<h4>{{ $info->title }}</h4>
+      	<div class="clearfix mt10">
+      		<!-- 送货地址 -->
+      		<h3 class="h3_cate"><span class="h3_cate_span">配送至</span></h3>
+      		<ul class="mt10">
+      			@foreach($address as $y)
+      			<li class="radio ship_li">
+      			  <label>
+      			    <input type="radio" name="addid" value="{{ $y->id }}" class="addressid">
+      			    <h4>{{ $y->people }}：{{ $y->phone }}</h4>
+      			    <p class="mt5">{{ $y->address }}</p>
+      			  </label>
+      			</li>
+      			@endforeach
+      		</ul>
+      		
+      		<!-- 自提点 -->
+      		<h3 class="h3_cate"><span class="h3_cate_span">自提</span></h3>
+      		<ul class="mt10">
+      			@foreach($ziti as $y)
+      			<li class="radio ship_li">
+      			  <label>
+      			    <input type="radio" name="ziti" value="{{ $y->id }}" class="zitiid">
+      			    <h4>{{ $y->address }}</h4>
+      			    <p class="mt5">{{ $y->phone }}</p>
+      			  </label>
+      			</li>
+      			@endforeach
+      		</ul>
+	      	<!-- 数量 -->
+	        <div class="cart_nums clearfix pull-left">
+	        	<div class="pull-left">数量：</div>
+				<div class="first_cart_dec">-</div>
+				<div class="first_cart_num">1</div>
+				<div class="first_cart_inc">+</div>
+			</div>
+			<div class="firstorder btn btn-sm btn-success pull-right ml10">购买</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -256,4 +305,22 @@
     </button>
     <p>添加成功</p>
 </div>
+
+<script>
+	$(function(){
+		$('.addressid').change(function() {
+			var aid = $(this).val();
+			$('.aid').val(aid);
+			$('.zitiid').removeAttr('checked');
+			$('.ziti').val(0);
+		});
+
+		$('.zitiid').change(function() {
+			var aid = $(this).val();
+			$('.addressid').removeAttr('checked');
+			$('.ziti').val(aid);
+			$('.aid').val(0);
+		});
+	})
+</script>
 @endsection
