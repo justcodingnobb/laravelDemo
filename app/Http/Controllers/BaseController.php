@@ -65,7 +65,7 @@ class BaseController extends Controller
                 $goods = OrderGood::where('order_id',$order->id)->where('status',1)->select('id','good_id','good_spec_key','nums')->get();
                 // 循环，判断是直接减商品库存，还是减带属性的库存
                 foreach ($goods as $k => $v) {
-                    if ($v->spec_key == '') {
+                    if ($v->good_spec_key == '') {
                         Good::where('id',$v->good_id)->decrement('store',$v->nums);
                     }
                     else

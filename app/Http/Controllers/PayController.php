@@ -17,33 +17,7 @@ use Storage;
 
 class PayController extends BaseController
 {
-	// 银联
-	public function unionpay()
-	{
-		$gateway    = Omnipay::create('UnionPay_Express');
-		$config = ['merId'=>'802130053110595','certPath'=>storage_path('pay/unionpay/700000000000001_acp.pfx'),'certPassword'=>'000000','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
-		$gateway->setMerId($config['merId']);
-		$gateway->setCertPath($config['certPath']); // .pfx file
-		$gateway->setCertPassword($config['certPassword']);
-		$gateway->setReturnUrl($config['returnUrl']);
-		$gateway->setNotifyUrl($config['notifyUrl']);
-
-		$order = [
-		    'orderId'   => date('YmdHis'), //Your order ID
-		    'txnTime'   => date('YmdHis'), //Should be format 'YmdHis'
-		    'orderDesc' => 'My order title', //Order Title
-		    'txnAmt'    => '0.01', //Order Total Fee
-		];
-
-		$response = $gateway->purchase($order)->send();
-		echo $response->getRedirectHtml(); //For PC/Wap
-		// return $res;
-		// $response->getTradeNo(); //For APP
-	}
-	public function unionNotify(Request $req)
-	{
-		Storage::prepend('unionpay.log',json_encode($req->all()).date('Y-m-d H:i:s'));
-	}
+	
     // 取订单可以使用的支付方式
     public function list($oid)
     {
@@ -97,6 +71,54 @@ class PayController extends BaseController
     	} catch (\Exception $e) {
     		return redirect('user/order/1')->with('message','支付失败，请稍后再试！');
     	}
+    }
+
+    // 银联
+    public function unionpay($oid = '',$pay ='',$ip = '')
+    {
+    	$gateway    = Omnipay::create('UnionPay_Express');
+    	// 测试环境参数
+    	// $config = ['merId'=>'700000000000001','certPath'=>storage_path('pay/unionpay/700000000000001_acp.pfx'),'certPassword'=>'000000','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+    	// 正式环境参数
+    	$config = ['merId'=>'802130053110595','certPath'=>storage_path('pay/unionpay/pr.pfx'),'certPassword'=>'201706','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+    	$gateway->setEnvironment('production'); // 环境设置，默认是测试环境，必须手动修改成正式的
+    	$gateway->setMerId($config['merId']);
+    	$gateway->setCertPath($config['certPath']); // .pfx file
+    	$gateway->setCertPassword($config['certPassword']);
+    	$gateway->setReturnUrl($config['returnUrl']);
+    	$gateway->setNotifyUrl($config['notifyUrl']);
+
+    	$order = [
+    	    'orderId'   => date('YmdHis'), //Your order ID
+    	    'txnTime'   => date('YmdHis'), //Should be format 'YmdHis'
+    	    'orderDesc' => 'My order title', //Order Title
+    	    'txnAmt'    => 1, //Order Total Fee
+    	];
+    	$response = $gateway->purchase($order)->send();
+    	echo $response->getRedirectHtml(); //For PC/Wap
+    	// return $res;
+    	// $response->getTradeNo(); //For APP
+    }
+    public function unionNotify(Request $req)
+    {
+    	// 正式环境参数
+    	$config = ['merId'=>'802130053110595','certDir'=>storage_path('pay/unionpay/'),'certPath'=>storage_path('pay/unionpay/pr.pfx'),'certPassword'=>'201706','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+	    $gateway = Omnipay::create('UnionPay_Express');
+		$gateway->setMerId($config['merId']);
+		$gateway->setCertDir($config['certDir']); //The directory contain *.cer files
+		$response = $gateway->completePurchase(['request_params'=>$_REQUEST])->send();
+		// 写入到日日志里方便查看
+        Storage::prepend('unionpay.log',json_encode($response->getRequestData()).date('Y-m-d H:i:s'));
+		if ($response->isPaid()) {
+            $resData = $response->getRequestData();
+            // 库存计算
+            $oid = $resData['out_trade_no'];
+            $order = Order::where('order_id',$oid)->first();
+            $this->updateStore($order,$paymod = '银联');
+		    exit('success');
+		}else{
+		    exit('fail');
+		}
     }
 
     // 支付宝支付
