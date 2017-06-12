@@ -40,7 +40,7 @@
 			<td>{{ $a->id }}</td>
 			<td>@if(!is_null($a->user)){{ $a->user->username }}<br />{{ $a->user->nickname }}@endif</td>
 			<td>
-				@if(!is_null($a->good)){{ $a->good->title }}@endif
+				{{ $a->good_title }} —— {{ $a->good_spec_name }}
 			</td>
 			<td>{{ $a->mark }}</td>
 			<td>{{ $a->shopmark }}</td>

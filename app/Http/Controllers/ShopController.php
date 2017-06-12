@@ -115,7 +115,6 @@ class ShopController extends BaseController
         }
         // 查出第一个规格信息来，标红用的
         $good_spec_price = GoodSpecPrice::where('good_id',$id)->get()->keyBy('key')->toJson();
-        // 查属性
 
         // 取评价，20条
         $goodcomment = GoodComment::with(['user'=>function($q){
@@ -131,7 +130,9 @@ class ShopController extends BaseController
     {
         $info = (object) ['pid'=>3];
         // 找出购物车
-        $goods = Cart::where(function($q){
+        $goods = Cart::with(['good'=>function($q){
+                    $q->select('id','thumb');
+                }])->where(function($q){
                 if (!is_null(session('member'))) {
                     $q->where('user_id',session('member')->id);
                 }
@@ -146,42 +147,13 @@ class ShopController extends BaseController
         }
         $goodlists = [];
         $total_prices = 0;
-        // 缓存属性们
-        $attrs = GoodAttr::get();
         // 如果有购物车
-        $goods = $goods->toArray();
-        $formats = GoodFormat::where('status',1)->get();
         // 循环查商品，方便带出属性来
         foreach ($goods as $k => $v) {
-            $goodlists[$k] = Good::where('id',$v['good_id'])->where('status',1)->first();
-            $goodlists[$k]['num'] = $v['nums'];
-            $goodlists[$k]['price'] = $v['price'];
-            $tmp_total_price = number_format($v['nums'] * $v['price'],2,'.','');
+            $goodlists[$k] = $v;
+            $tmp_total_price = number_format($v->nums * $v->price,2,'.','');
             $goodlists[$k]['total_prices'] = $tmp_total_price;
             $total_prices += $tmp_total_price;
-            // 如果属性值不为0，查属性值
-            if ($v['format_id']) {
-                $tmp_format = $formats->where('id',$v['format_id'])->first();
-                if (is_null($tmp_format)) {
-                    $tmp_format = '';
-                    $tmp_format_name = '';
-                }
-                else
-                {
-                    $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
-                    $tmp_format_tmp = explode('.',$tmp_format);
-                    $tmp_format_name = $attrs->whereIn('id',$tmp_format_tmp)->pluck('value')->toArray();
-                    // 添加上单位
-                    foreach ($tmp_format_name as $kk => $vv) {
-                        $tmp_format_name[$kk] = $vv.$attrs->where('id',$tmp_format_tmp[$kk])->first()->unit;
-                    }
-                }
-                $goodlists[$k]['format'] = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
-            }
-            else
-            {
-                $goodlists[$k]['format'] = ['fid'=>0,'format'=>'','format_name'=>''];
-            }
         }
         // 找出所有商品来
         $total_prices = number_format($total_prices,2,'.','');
@@ -205,12 +177,13 @@ class ShopController extends BaseController
             return back()->with('message','请选择送货地址！');
         }
         // 找出所有 购物车
-        $ids = Cart::where('user_id',session('member')->id)->orderBy('updated_at','desc')->get();
-        if ($ids->count() == 0) {
+        $ids = $req->input('cid');
+        if (count($ids) == 0) {
             return back()->with('message','购物车里是空的，请先购物！');
         }
         // 所有产品总价
-        $old_prices = Cart::where('user_id',session('member')->id)->sum('total_prices');
+        $old_prices = Cart::whereIn('id',$ids)->sum('total_prices');
+        $carts = Cart::whereIn('id',$ids)->orderBy('updated_at','desc')->get();
         $uid = session('member')->id;
         // 创建订单
         $order_id = app('com')->orderid();
@@ -232,16 +205,17 @@ class ShopController extends BaseController
             // 组合order_goods数组
             $order_goods = [];
             $clear_ids = [];
-            foreach ($ids as $k => $v) {
-                $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$order->id,'good_id'=>$v->good_id,'format_id'=>$v->format_id,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>Carbon::now(),'updated_at'=>Carbon::now()];
+            $date = Carbon::now();
+            foreach ($carts as $k => $v) {
+                $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$order->id,'good_id'=>$v->good_id,'good_title'=>$v->good_title,'good_spec_key'=>$v->good_spec_key,'good_spec_name'=>$v->good_spec_name,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>$date,'updated_at'=>$date];
                 $clear_ids[] = $v->id;
             }
             // 插入
             OrderGood::insert($order_goods);
-            // 没出错，提交事务
-            DB::commit();
             // 清空购物车里的这几个产品
             Cart::whereIn('id',$clear_ids)->delete();
+            // 没出错，提交事务
+            DB::commit();
             $info = (object)['pid'=>3];
 
             $paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
@@ -251,6 +225,7 @@ class ShopController extends BaseController
             // 出错回滚
             DB::rollBack();
             return back()->with('message','添加失败，请稍后再试！');
+            // dd($e->getMessage());
         }
         // return view('shop.cart',compact('seo','goodcateid','pcatid','goods','goodlists'));
     }
@@ -282,41 +257,6 @@ class ShopController extends BaseController
                     }
                 })->orderBy('id','desc')->simplePaginate(10);
                 // ->simplePaginate(10)
-        $attrs = GoodAttr::get();
-        $formats = GoodFormat::where('status',1)->get();
-        // 缓存属性们
-        $attrs = GoodAttr::get();
-        // 如果有购物车
-        $goodlists = [];
-        // 循环查商品，方便带出属性来
-        foreach ($orders as $k => $v) {
-            // 如果属性值不为0，查属性值
-            foreach ($v->good as $key => $value) {
-                if ($value->format_id) {
-                    $tmp_format = $formats->where('id',$value['format_id'])->first();
-                    if (is_null($tmp_format)) {
-                        $tmp_format = '';
-                        $tmp_format_name = '';
-                    }
-                    else
-                    {
-                        $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
-                        $tmp_format_tmp = explode('.',$tmp_format);
-                        $tmp_format_name = $attrs->whereIn('id',$tmp_format_tmp)->pluck('value')->toArray();
-                        // 添加上单位
-                        foreach ($tmp_format_name as $kk => $vv) {
-                            $tmp_format_name[$kk] = $vv.$attrs->where('id',$tmp_format_tmp[$kk])->first()->unit;
-                        }
-                    }
-                    $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
-                }
-                else
-                {
-                    $good_format = ['fid'=>0,'format'=>'','format_name'=>''];
-                }
-                $value->format = $good_format;
-            }
-        }
         return view($this->theme.'.order',compact('info','orders','status'));
     }
     // 取消订单
@@ -343,7 +283,7 @@ class ShopController extends BaseController
         // Order::where('id',$id)->update(['orderstatus'=>3]);
         // 先查出来具体的订单商品信息
         $og = OrderGood::where('order_id',$id)->where('good_id',$gid)->first();
-        $data = ['user_id'=>$og->user_id,'order_id'=>$og->order_id,'good_id'=>$og->good_id,'format_id'=>$og->format_id,'nums'=>$og->nums,'price'=>$og->price,'total_prices'=>$og->total_prices,'mark'=>$req->mark];
+        $data = ['user_id'=>$og->user_id,'order_id'=>$og->order_id,'good_id'=>$og->good_id,'good_title'=>$og->good_title,'good_spec_key'=>$og->good_spec_key,'good_spec_name'=>$og->good_spec_name,'nums'=>$og->nums,'price'=>$og->price,'total_prices'=>$og->total_prices,'mark'=>$req->mark];
         OrderGood::where('order_id',$id)->where('good_id',$gid)->update(['status'=>0]);
         ReturnGood::create($data);
         return back()->with('message','退货申请已提交');
@@ -363,11 +303,11 @@ class ShopController extends BaseController
         Good::where('id',$gid)->increment('commentnums');
         return redirect($req->ref)->with('message','评价成功！');
     }
-    // 订单评价
+    // 确认收货
     public function getShip($oid = '')
     {
         $info = (object) ['pid'=>4];
-        Order::where('id',$oid)->update(['orderstatus'=>2]);
+        Order::where('id',$oid)->update(['orderstatus'=>2,'confirm_at'=>date('Y-m-d H:i:s')]);
         return redirect('/user/order/4')->with('message','收货成功！');
     }
     // 添加购物车
@@ -398,11 +338,11 @@ class ShopController extends BaseController
                     return;
                 }
                 // 当前用户此次登陆添加的
-                $tmp = Cart::where('session_id',$sid)->where('user_id',$userid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+                $tmp = Cart::where('session_id',$sid)->where('user_id',$userid)->where('good_id',$id)->where('good_spec_key',$spec_key)->orderBy('id','desc')->first();
                 // 如果没有，看以前有没有添加过这类商品
                 if(is_null($tmp))
                 {
-                    $tmp = Cart::where('user_id',$userid)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+                    $tmp = Cart::where('user_id',$userid)->where('good_id',$id)->where('good_spec_key',$spec_key)->orderBy('id','desc')->first();
                 }
             }
             else
@@ -427,7 +367,9 @@ class ShopController extends BaseController
                 $nums = $num;
             }
             $total_prices = $price * $nums;
-            $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'format_id'=>$formatid,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
+            // 规格信息
+            $spec_key_name = GoodSpecPrice::where('good_id',$id)->where('key',$spec_key)->value('key_name');
+            $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'good_title'=>$good->title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices,'selected'=>1,'type'=>0];
             // 查看有没有在购物车里，有累计数量
             if (!is_null($tmp)) {
                 Cart::where('id',$tmp->id)->update($a);
@@ -439,8 +381,8 @@ class ShopController extends BaseController
             echo 1;
             return;
         } catch (\Exception $e) {
-            echo '添加失败，请稍后再试！';
-            // echo $e->getMessage();
+            // echo '添加失败，请稍后再试！';
+            echo $e->getMessage();
             return;
         }
         // 找出所有商品来
@@ -454,9 +396,8 @@ class ShopController extends BaseController
         try {
             $id = $req->gid;
             $num = $req->num < 1 ? 1 : $req->num;
-            $fid = $req->fid;
             $price = $req->price;
-            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->update(['nums'=>$num,'total_prices'=>$num * $price]);
+            Cart::where('id',$id)->update(['nums'=>$num,'total_prices'=>$num * $price]);
             echo $num;
         } catch (\Exception $e) {
             echo 0;
@@ -467,8 +408,7 @@ class ShopController extends BaseController
     {
         try {
             $id = $req->id;
-            $fid = $req->fid;
-            Cart::where('session_id',session()->getId())->where('good_id',$id)->where('format_id',$fid)->delete();
+            Cart::where('id',$id)->update(['selected'=>0]);
             echo 1;
         } catch (\Exception $e) {
             echo 0;

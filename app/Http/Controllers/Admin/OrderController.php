@@ -24,9 +24,7 @@ class OrderController extends Controller
         $shipstatus = $req->input('shipstatus');
         $ziti = $req->input('ziti');
         // 找出订单
-        $orders = Order::with(['good'=>function($q){
-                    $q->with('good');
-                }])->where(function($s) use($q){
+        $orders = Order::with('good')->where(function($s) use($q){
 	                if ($q != '') {
 	                    $s->where('order_id',$q);
 	                }
@@ -55,35 +53,6 @@ class OrderController extends Controller
                         $q->where('ziti',0);
                     }
                 })->where('status',1)->orderBy('id','desc')->paginate(10);
-        // 缓存属性们
-        $attrs = GoodAttr::get();
-        $formats = GoodFormat::where('status',1)->get();
-        // 如果有购物车
-        // 循环查商品，方便带出属性来
-        $goodlists = [];
-        foreach ($orders as $k => $v) {
-            // 如果属性值不为0，查属性值
-            foreach ($v->good as $key => $value) {
-                if ($value->format_id) {
-                    $tmp_format = $formats->where('id',$value['format_id'])->first();
-                    if (is_null($tmp_format)) {
-                        $tmp_format = '';
-                        $tmp_format_name = '';
-                    }
-                    else
-                    {
-                        $tmp_format = str_replace('-','.',trim($tmp_format->attr_ids,'-'));
-                        $tmp_format_name = $attrs->whereIn('id',explode('.',$tmp_format))->pluck('value')->toArray();
-                    }
-                    $good_format = ['fid'=>$v['format_id'],'format'=>$tmp_format,'format_name'=>implode('-',$tmp_format_name)];
-                }
-                else
-                {
-                    $good_format = ['fid'=>0,'format'=>'','format_name'=>''];
-                }
-                $value->format = $good_format;
-            }
-        }
         return view('admin.order.index',compact('title','orders','q','status','starttime','endtime','ziti'));
     }
     // 关闭
@@ -108,7 +77,7 @@ class OrderController extends Controller
     public function postShip(Request $req,$id = '')
     {
     	// 更新为已经发货
-    	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark')]);
+    	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark'),'ship_at'=>date('Y-m-d H:i:s')]);
     	return redirect($req->ref)->with('message','发货成功！');
     }
     // 退货

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"good_spec",
+				"good_spec_name"
+			],
+			[
+				"good_spe",
+				"good_spec_name"
+			],
+			[
 				"val",
 				"value\tAttr"
 			],
@@ -506,14 +514,6 @@
 			[
 				"path",
 				"pathToFile"
-			],
-			[
-				"jon",
-				"json_encode\t(ComService.php)"
-			],
-			[
-				"and",
-				"android_version"
 			]
 		]
 	},
@@ -739,32 +739,49 @@
 	[
 		"/F/wwwroot/laravelDemo",
 		"/F/wwwroot/laravelDemo/app",
-		"/F/wwwroot/laravelDemo/app/Http",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin",
-		"/F/wwwroot/laravelDemo/resources/views",
-		"/F/wwwroot/laravelDemo/routes"
+		"/F/wwwroot/laravelDemo/app/Http/Controllers"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/laravelDemo/public/statics/home/js/com.js",
-		"/F/wwwroot/laravelDemo/resources/views/default/good.blade.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/ShopController.php",
-		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/laravelDemo/readme.md",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/IndexController.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/index/consume.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/TuanController.php",
+		"/F/wwwroot/laravelDemo/resources/views/default/tuan.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/default/good.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/default/order.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/order/index.blade.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/OrderController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Good/RetrunGoodController.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/tui/index.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/default/tui.blade.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Pay/WxpayController.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Pay/AlipayController.php",
+		"/F/wwwroot/laravelDemo/public/statics/home/js/com.js",
+		"/F/wwwroot/laravelDemo/database/migrations/2017_06_12_085643_edit_return_good_spec.php",
+		"/F/wwwroot/laravelDemo/resources/views/default/cart.blade.php",
+		"/F/wwwroot/laravelDemo/app/Models/Order.php",
+		"/F/wwwroot/laravelDemo/app/Models/Cart.php",
+		"/F/wwwroot/laravelDemo/app/Models/Good.php",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Users/Administrator/Desktop/1、.txt",
+		"/C/Users/Administrator/Desktop/今日事.txt",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_223627_edit_carts.php",
 		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_224158_edit_order_goodss.php",
 		"/F/wwwroot/laravelDemo/database/migrations/2017_06_11_224313_edit_orders.php",
 		"/F/wwwroot/laravelDemo/app/Models/GoodsAttr.php",
 		"/F/wwwroot/laravelDemo/app/Models/GoodAttr.php",
-		"/F/wwwroot/laravelDemo/app/Models/Good.php",
 		"/F/wwwroot/laravelDemo/app/Models/GoodSpecItem.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/ShopController_old.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/good/edit.blade.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/good/goodattr.blade.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/good/goodspec.blade.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/good/add.blade.php",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/laravelDemo/routes/web.php",
 		"/F/wwwroot/laravelDemo/app/Models/GoodSpecPrice.php",
 		"/F/wwwroot/laravelDemo/app/Http/Requests/GoodRequest.php",
@@ -853,28 +870,7 @@
 		"/D/www/xyshop/app/Http/Controllers/Admin/UserController.php",
 		"/D/www/xyshop/resources/views/admin/pay/yue.blade.php",
 		"/D/www/xyshop/resources/views/admin/member/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/index.blade.php",
-		"/D/www/xyshop/resources/views/admin/member/chong.blade.php",
-		"/D/www/xyshop/public/statics/home/js/com.js",
-		"/D/www/xyshop/resources/views/default/addorder.blade.php",
-		"/D/www/xyshop/app/Http/Controllers/YhqController.php",
-		"/D/www/xyshop/app/Http/Controllers/Admin/PublicController.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/4A84D22F_edit.tmp/.env.example",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/4A84D22F_edit.tmp/.env",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/goopay.log",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/01BA747A_edit.tmp/recharge.log",
-		"/D/www/dmb/sql/20170523.md",
-		"/D/www/xyshop/resources/views/admin/good/add.blade.php",
-		"/D/www/xyshop/resources/views/admin/good/edit.blade.php",
-		"/D/www/xyshop/database/migrations/2017_05_20_032332_add_weight_to_goods.php",
-		"/D/www/xyshop/database/migrations/2017_05_20_031410_add_aid_yhq_to_order.php",
-		"/D/www/xyshop/public/statics/home/css/home.scss",
-		"/D/www/xyshop/resources/views/default/addcart.blade.php",
-		"/D/www/xyshop/resources/views/default/banner.blade.php",
-		"/D/www/xyshop/resources/views/default/goodcate.blade.php",
-		"/D/www/xyshop/resources/views/default/goodlist.blade.php",
-		"/D/www/xyshop/resources/views/default/list.blade.php",
-		"/D/www/xyshop/resources/views/default/list_pro.blade.php"
+		"/D/www/xyshop/resources/views/admin/good/index.blade.php"
 	],
 	"find":
 	{
@@ -971,6 +967,38 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"allgood",
+			"price",
+			"pronums",
+			"title",
+			"id",
+			"'id','title','pronums','weight'",
+			"good_spec_name",
+			"main",
+			"gp",
+			"gid",
+			"ship",
+			"good_title",
+			"format_id",
+			",'format'=>$l->format['format']",
+			"alert_addorder",
+			"good_title",
+			"remove_cart",
+			"total_prices",
+			"total_price_",
+			"fid",
+			"total_price_",
+			"change_cart",
+			"total_prices",
+			"cart_num_cart",
+			"cart_num_",
+			"['",
+			"total_prices",
+			"'spec_key'",
+			"spec_key",
+			"fid",
+			"format_id",
+			"3.12",
 			"fid",
 			"store_count",
 			"goods_",
@@ -1066,39 +1094,7 @@
 			"->where('format_id',$formatid)",
 			"gp",
 			"App\\Http\\Controllers",
-			"ShopController",
-			"App\\Http\\Controllers",
-			"getGood",
-			"allcate",
-			"goodcate/",
-			"goodcate",
-			"pid",
-			"addcart",
-			"btn_tuan",
-			"goodcate/sort",
-			"button",
-			"span",
-			"{{",
-			"\"",
-			"huodong",
-			"Huodong",
-			"HuodongController",
-			"huodong",
-			"good",
-			"form_submit",
-			"form_status",
-			"btn_del",
-			"listorder",
-			"good/",
-			"btn_del",
-			"xlnums",
-			"old('data.",
-			"manzeng",
-			"store",
-			"nums",
-			"price",
-			"满赠",
-			"manzeng"
+			"ShopController"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1106,6 +1102,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'good_spec_key'",
+			"good_spec_key",
+			"0.107",
 			"GoodSpec:",
 			"container-fluid",
 			"xyshop/",
@@ -1261,8 +1260,56 @@
 		"selected_items":
 		[
 			[
+				"index/consume",
+				"resources\\views\\admin\\index\\consume.blade.php"
+			],
+			[
+				"main.blade",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"good",
+				"resources\\views\\default\\good.blade.php"
+			],
+			[
+				"tuan.bla",
+				"resources\\views\\default\\tuan.blade.php"
+			],
+			[
+				"order.blade",
+				"resources\\views\\default\\order.blade.php"
+			],
+			[
+				"order/index",
+				"resources\\views\\admin\\order\\index.blade.php"
+			],
+			[
+				"tui/index",
+				"resources\\views\\admin\\tui\\index.blade.php"
+			],
+			[
+				"tui.bal",
+				"resources\\views\\default\\tui.blade.php"
+			],
+			[
+				"cart.bl",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"order.bl",
+				"resources\\views\\default\\order.blade.php"
+			],
+			[
 				"com.js",
 				"public\\statics\\home\\js\\com.js"
+			],
+			[
+				"cart",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"good.bl",
+				"resources\\views\\default\\good.blade.php"
 			],
 			[
 				"default/good",
@@ -1337,14 +1384,6 @@
 				"resources\\views\\admin\\ziti\\index.blade.php"
 			],
 			[
-				"order.bl",
-				"resources\\views\\default\\order.blade.php"
-			],
-			[
-				"cart.bl",
-				"resources\\views\\default\\cart.blade.php"
-			],
-			[
 				"addform",
 				"resources\\views\\admin\\good\\addformat.blade.php"
 			],
@@ -1359,10 +1398,6 @@
 			[
 				"order/in",
 				"resources\\views\\admin\\order\\index.blade.php"
-			],
-			[
-				"cart",
-				"resources\\views\\default\\cart.blade.php"
 			],
 			[
 				"goodcate/in",
@@ -1735,42 +1770,6 @@
 			[
 				"jquery",
 				"public\\statics\\common\\js\\jquery.min.js"
-			],
-			[
-				"underscore",
-				"public\\statics\\common\\js\\underscore.js"
-			],
-			[
-				"pinchzoom",
-				"public\\statics\\common\\js\\pinchzoom.js"
-			],
-			[
-				"smart-zoom-jquery.min",
-				"public\\statics\\common\\js\\smart-zoom-jquery.min.js"
-			],
-			[
-				"article/sho",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"article/",
-				"resources\\views\\article\\article.blade.php"
-			],
-			[
-				"special/index",
-				"resources\\views\\admin\\special\\index.blade.php"
-			],
-			[
-				"hot/index",
-				"resources\\views\\admin\\hot\\index.blade.php"
-			],
-			[
-				"art/show",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"special/art",
-				"resources\\views\\admin\\special\\art.blade.php"
 			]
 		],
 		"width": 0.0

@@ -33,9 +33,71 @@
 					<!-- 价格、库存，购物车 -->
 					<input type="hidden" value="{{ $tuan->prices }}" name="gp">
 					<input type="hidden" value="{{ $tuan->id }}" name="tid">
+
+					<!-- 规格开始 -->
+					@if(count($filter_spec) > 0)
+					<table class="table">
+					@foreach($filter_spec as $ks => $gs)
+						<tr>
+							<td width="80" class="text-right">{{ $ks }}：</td>
+							<td>
+								@foreach($gs as $kks => $ggs)
+								<span onclick="select_filter(this);" class="label label-default @if($kks == 0) label-success @endif spec_item" data-item_id="{{ $ggs['item_id'] }}"><input type="radio" name="goods_spec[{{$ks}}]" class="hidden"@if($kks == 0) checked="checked"@endif value="{{ $ggs['item_id'] }}">{{ $ggs['item'] }}</span>
+								@endforeach
+								<input type="hidden" name="spec_key" class="spec_key" value="">
+							</td>
+						</tr>
+					@endforeach
+					</table>
+					<script>
+						$(function(){
+							get_goods_price();
+						})
+	                    /**
+	                     * 切换规格
+	                     */
+	                    function select_filter(obj)
+	                    {
+	                        $(obj).addClass('label-success').siblings('span').removeClass('label-success');
+	                        $(obj).children('input').prop('checked','checked');
+	                        $(obj).siblings('span').children('input').attr('checked',false);// 让隐藏的 单选按钮选中
+	                        // 更新商品价格
+	                        get_goods_price();
+	                    }
+	                    function get_goods_price()
+				        {
+				            var price = "{{$info->price}}"; // 商品起始价
+				            var store = "{{$info->store}}"; // 商品起始库存
+				            var spec_goods_price = {!! $good_spec_price !!};  // 规格 对应 价格 库存表 //alert(spec_goods_price['28_100']['price']);
+				            // 如果有属性选择项
+				            if(spec_goods_price != null && spec_goods_price !='')
+				            {
+				                goods_spec_arr = new Array();
+				                $("input[name^='goods_spec']:checked").each(function(){
+				                    goods_spec_arr.push($(this).val());
+				                });
+				                var spec_key = goods_spec_arr.sort(sortNumber).join('_');  //排序后组合成 key
+				                // console.log(spec_key);
+				                $(".spec_key").val(spec_key);
+				                price = spec_goods_price[spec_key]['price']; // 找到对应规格的价格
+				                store = spec_goods_price[spec_key]['store']; // 找到对应规格的库存
+				            }
+				            $('#store').html(store);    //对应规格库存显示出来
+				            $("del.price").html(price); // 变动价格显示
+				            // $("input[name='gp']").val(price);
+				        }
+				        /***用作 sort 排序用*/
+				        function sortNumber(a,b)
+				        {
+				            return a - b;
+				        }
+	                </script>
+					@endif
+
+
 					<div class="row price_store mt10">
 						<div class="col-xs-6">价格：￥<del class="price color_l">{{ $info->price }}</del></div>
-						<div class="col-xs-6">团购格：￥<del class="price color_l">{{ $tuan->prices }}</del></div>
+						<div class="col-xs-6">团购格：￥<span class="price color_l">{{ $tuan->prices }}</span></div>
 						<div class="col-xs-6 text-left mt store">库存：{{ $tuan->store }}</div>
 					</div>
 					<div class="row ship">

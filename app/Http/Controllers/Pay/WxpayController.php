@@ -33,7 +33,7 @@ class WxpayController extends BaseController
                 // 库存计算
                 $oid = $resData['out_trade_no'];
                 $order = Order::where('order_id',$oid)->first();
-                $this->updateStore($order);
+                $this->updateStore($order,$paymod = '微信');
                 $msg = ['msg'=>'OK','code'=>'SUCCESS'];
             }else{
                 //pay fail

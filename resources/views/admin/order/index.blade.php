@@ -93,19 +93,14 @@
     		@foreach($o->good as $l)
 			<tr>
 				<td width="55%">
-					<!-- <div class="media">
-						<a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object" alt=""></a>
-						<div class="media-body"> -->
 					<h5>
-					@if($l->format['format_name'] != '')<span class="label label-warning">{{ $l->format['format_name'] }}</span>@endif
-					<a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}">{{ $l->good->title }}</a>
+						<a href="{{ url('/shop/good',['id'=>$l->good->id]) }}">{{ $l->good_title }}</a>
+						@if($l->good_spec_name != '')<span class="label label-warning">{{ $l->good_spec_name }}</span>@endif
 					</h5>
-						<!-- </div>
-											</div> -->
 				</td>
 				<td width="15%">{{ $l->nums }} 件</td>
 				<td width="15%"><span class="good_prices color_1">￥{{ $l->price }}</span></td>
-				<td width="15%"><span class="color_2">￥<span class="one_total_price total_price_{{ $l->id }}_{{ $l->format['fid'] }}">{{ $l->total_prices }}</span></span></td>
+				<td width="15%"><span class="color_2">￥<span class="one_total_price">{{ $l->total_prices }}</span></span></td>
 			</tr>
 			@endforeach
 			</table>

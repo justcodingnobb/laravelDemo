@@ -30,6 +30,12 @@ class Good extends Model
      */
     public $timestamps = true;
 
+    // 购物车
+    public function cart()
+    {
+        return $this->hasMany('\App\Models\Cart','good_id','id');
+    }
+
     // 商品规格价格库存表
     public function goodspecprice()
     {

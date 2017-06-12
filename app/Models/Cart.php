@@ -29,4 +29,10 @@ class Cart extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 关联商品
+    public function good()
+    {
+        return $this->belongsTo('\App\Models\Good','good_id','id');
+    }
 }

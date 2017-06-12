@@ -53,31 +53,43 @@
 		  </div>
 		</div>
 
+<form action="{{ url('shop/addorder') }}">
+	{{ csrf_field() }}
+
+	
 			<h3 class="h3_cate mt10"><span class="h3_cate_span">购物车</span></h3>
 			<div class="good_cart_list overh">
 				@foreach($goodlists as $l)
 				<div class="mt5 good_cart_list_div">
+					<div class="checkbox pull-left mr10" style="padding-top: 30px;">
+					<label>
+					    <input type="checkbox" name="cid[]" @if($l->selected) checked="checked"@endif value="{{ $l->id }}">
+				  	</label>
+					</div>
 					<div class="media">
-						<a href="{{ url('/shop/good',['id'=>$l->id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->thumb }}" width="100" class="media-object img-thumbnail" alt=""></a>
+						<a href="{{ url('/shop/good',['id'=>$l->good_id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object img-thumbnail" alt=""></a>
 						<div class="media-body">
-							<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->id,'format'=>$l->format['format']]) }}">{{ $l->title }}</a><span class="remove_cart glyphicon glyphicon-trash ml10" data-gid="{{ $l->id }}" data-fid="{{ $l->format['fid'] }}"></span></h4>
-							@if($l->format['format_name'] != '')<span class="btn btn-sm btn-info mt10">{{ $l->format['format_name'] }}</span>@endif
+							<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good_id]) }}">{{ $l->good_title }}</a></h4>
+							<!-- 删除功能 -->
+							<!-- <span class="remove_cart glyphicon glyphicon-trash ml10" data-gid="{{ $l->id }}"></span> -->
+							<!-- end 删除功能 -->
+							@if($l->good_spec_name != '')<span class="btn btn-sm btn-info mt10">{{ $l->good_spec_name }}</span>@endif
 							<div class="row mt5">
 								
 								<div class="col-xs-6">
 									<!-- 价格 -->
 									<p class="fs12">价格：<span class="good_prices color_l">￥{{ $l->price }}</span></p>
 
-									<span class="one_total_price hidden total_price_{{ $l->id }}_{{ $l->format['fid'] }}">{{ $l->total_prices }}</span>
+									<span class="one_total_price hidden total_price_{{ $l->id }}">{{ $l->total_prices }}</span>
 								</div>
 
 								<div class="col-xs-6">
 									<!-- 数量 -->
-									<input type="hidden" min="1" name="num[]" value="{{ $l->num }}" data-gid="{{ $l->id }}" data-fid="{{ $l->format['fid'] }}" data-price="{{ $l->price }}" class="form-control input-nums change_cart cart_num_{{ $l->id }}">
+									<input type="hidden" min="1" name="num[]" value="{{ $l->num }}" data-gid="{{ $l->id }}" data-price="{{ $l->price }}" class="form-control input-nums change_cart cart_num_{{ $l->id }}">
 									
 									<div class="cart_nums clearfix pull-left">
 										<div class="cart_dec_cart" data-gid="{{ $l->id }}">-</div>
-										<div class="cart_num_cart cart_num_cart_{{ $l->id }}">{{ $l->num }}</div>
+										<div class="cart_num_cart cart_num_cart_{{ $l->id }}">{{ $l->nums }}</div>
 										<div class="cart_inc_cart" data-gid="{{ $l->id }}">+</div>
 									</div>
 								</div>
@@ -126,8 +138,6 @@
 			@endif
 
 			
-<form action="{{ url('shop/addorder') }}">
-	{{ csrf_field() }}
 	<div class="bgf mt10">
 		<textarea name="mark" class="form-control" rows="4" placeholder="备注"></textarea>
 	</div>

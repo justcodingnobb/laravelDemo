@@ -107,6 +107,8 @@ class IndexController extends Controller
         $data = [];
         $starttime = date('Y-m-d 00:00:00');
         $endtime = date('Y-m-d 24:00:00');
+        // $starttime = date('2017-05-01 00:00:00');
+        // $endtime = date('2017-06-12 24:00:00');
         // 今日总订单量
         $data['today_ordernum'] = Order::where('orderstatus','>',0)->where('created_at','>',date('Y-m-d 00:00:00'))->count();
         // 今日销售额
@@ -123,33 +125,20 @@ class IndexController extends Controller
         // 循环出来每一个产品的重量值，并去重累加
         $good_ship = [];
         foreach ($goods as $k => $v) {
-            if (isset($good_ship[$v->good_id.'_'.$v->format_id])) {
-                $good_ship[$v->good_id.'_'.$v->format_id]['nums'] += $v->nums;
+            if (isset($good_ship[$v->good_id.'_'.$v->good_spec_key])) {
+                $good_ship[$v->good_id.'_'.$v->good_spec_key]['nums'] += $v->nums;
             }
             else
             {
-                $good_ship[$v->good_id.'_'.$v->format_id] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'format'=>$v->format_id];
+                $good_ship[$v->good_id.'_'.$v->good_spec_key] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'spec_key'=>$v->good_spec_key,'good_spec_name'=>$v->good_spec_name,'price'=>$v->price];
             }
         }
         // 查每个的重量并累加，先查出所有商品属性及商品规格，省去重复查询
-        $formats = GoodFormat::whereIn('good_id',$goods->pluck('good_id'))->get();
-        $attrs = GoodAttr::where('status',1)->get();
+        $goods_weigth = Good::whereIn('id',$goods->pluck('good_id'))->select('id','title','pronums','weight')->get();
         foreach ($good_ship as $k => $v) {
-            $tmp_good = Good::select('id','title','pronums','price','weight')->findOrFail($v['good_id'])->toArray();
-            if ($v['format']) {
-                $tmp_format = $formats->where('id',$v['format'])->first()->attr_ids;
-                // 查第一个的值
-                $tmp_format = explode('-', trim($tmp_format,'-'))[0];
-                $tmp_weight = $attrs->where('id',$tmp_format)->first()->value;
-                $tmp_good['weight'] = (float) $tmp_weight;
-                $tmp_good['total_weight'] = $v['nums'] * (float) $tmp_weight;
-                $tmp_good['price'] = $formats->where('id',$v['format'])->first()->price;
-            }
-            else
-            {
-                $tmp_good['total_weight'] = $v['nums'] * $tmp_good['weight'];
-            }
-            $tmp_good['total_prices'] = $v['nums'] * $tmp_good['price'];
+            $tmp_good = $goods_weigth->where('id',$v['good_id'])->first()->toArray();
+            $tmp_good['total_weight'] = $v['nums'] * $tmp_good['weight'];
+            $tmp_good['total_prices'] = $v['nums'] * $v['price'];
             unset($v['good_id']);
             $good_ship[$k] = array_merge($tmp_good,$v);
         }
@@ -162,42 +151,36 @@ class IndexController extends Controller
         $endtime = $req->endtime;
         $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->where('created_at','>',$starttime)->where('created_at','<',$endtime)->pluck('id');
         $goods = OrderGood::whereIn('order_id',$order_ids)->get();
+
         // 循环出来每一个产品的重量值，并去重累加
         $good_ship = [];
         foreach ($goods as $k => $v) {
-            if (isset($good_ship[$v->good_id.'_'.$v->format_id])) {
-                $good_ship[$v->good_id.'_'.$v->format_id]['nums'] += $v->nums;
+            if (isset($good_ship[$v->good_id.'_'.$v->good_spec_key])) {
+                $good_ship[$v->good_id.'_'.$v->good_spec_key]['nums'] += $v->nums;
             }
             else
             {
-                $good_ship[$v->good_id.'_'.$v->format_id] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'format'=>$v->format_id];
+                $good_ship[$v->good_id.'_'.$v->good_spec_key] = ['good_id'=>$v->good_id,'nums'=>$v->nums,'spec_key'=>$v->good_spec_key,'good_spec_name'=>$v->good_spec_name,'price'=>$v->price];
             }
         }
         // 查每个的重量并累加，先查出所有商品属性及商品规格，省去重复查询
-        $formats = GoodFormat::whereIn('good_id',$goods->pluck('good_id'))->get();
-        $attrs = GoodAttr::where('status',1)->get();
+        $goods_weigth = Good::whereIn('id',$goods->pluck('good_id'))->select('id','title','pronums','weight')->get();
         foreach ($good_ship as $k => $v) {
-            $tmp_good = Good::select('id','title','pronums','price','weight')->findOrFail($v['good_id'])->toArray();
-            if ($v['format']) {
-                $tmp_format = $formats->where('id',$v['format'])->first()->attr_ids;
-                // 查第一个的值
-                $tmp_format = explode('-', trim($tmp_format,'-'))[0];
-                $tmp_weight = $attrs->where('id',$tmp_format)->first()->value;
-                $tmp_good['weight'] = (float) $tmp_weight;
-                $tmp_good['total_weight'] = $v['nums'] * (float) $tmp_weight;
-                $tmp_good['price'] = $formats->where('id',$v['format'])->first()->price;
-            }
-            else
-            {
-                $tmp_good['total_weight'] = $v['nums'] * $tmp_good['weight'];
-            }
-            $v['total_prices'] = $v['nums'] * $tmp_good['price'];
-            unset($v['good_id']);
-            unset($v['format']);
-            $good_ship[$k] = array_merge($tmp_good,$v);
+            $tmp_arr = [];
+            $tmp_good = $goods_weigth->where('id',$v['good_id'])->first()->toArray();
+            $tmp_arr['id'] = $v['good_id'];
+            $tmp_arr['title'] = $tmp_good['title'];
+            $tmp_arr['good_spec_name'] = $v['good_spec_name'];
+            $tmp_arr['pronums'] = $tmp_good['pronums'];
+            $tmp_arr['price'] = $v['price'];
+            $tmp_arr['weight'] = $tmp_good['weight'];
+            $tmp_arr['nums'] = $v['nums'];
+            $tmp_arr['total_weight'] = $v['nums'] * $tmp_good['weight'];
+            $tmp_arr['total_prices'] = $v['nums'] * $v['price'];
+            $good_ship[$k] = $tmp_arr;
         }
         $cellData = array_merge(
-            [['ID','标题','货号','单价','单件重量','数量','总重量','总价']],$good_ship
+            [['ID','标题','规格','货号','单价','单件重量','数量','总重量','总价']],$good_ship
         );
         Excel::create('今日销售统计表',function($excel) use ($cellData){
             $excel->sheet('score', function($sheet) use ($cellData){
@@ -218,10 +201,7 @@ class IndexController extends Controller
                         $q->select('id','nickname','address','phone');
                     }])->where('orderstatus',1)->where('paystatus',1)->where('created_at','>',$starttime)->where('created_at','<',$endtime)->get();
         $goods = OrderGood::whereIn('order_id',$orders->pluck('id'))->get();
-        // 查所有商品的规格
-        $formats = GoodFormat::whereIn('good_id',$goods->pluck('good_id'))->get();
-        // 查所有商品
-        $allgood = Good::whereIn('id',$goods->pluck('good_id'))->select('id','title')->get();
+
         // 循环每个订单的订单信息
         $excel = [];
         foreach ($orders as $k => $v) {
@@ -230,11 +210,10 @@ class IndexController extends Controller
             $first_gid = $goods->where('order_id',$v->id)->first()->good_id;
             foreach ($tmp_good as $kg => $g) {
                 $tmp = [];
-                $title = $allgood->where('id',$g['good_id'])->first()->title;
+                $title = $g['good_title'];
                 // 判断是否有规格
-                if ($g['format'] != 0) {
-                    $format = $formats->where('id',$g['format'])->first();
-                    $title .= $format->value.' '.$format->unit;
+                if ($g['good_spec_key'] != '') {
+                    $title .= ' - '.$g['good_spec_name'];
                 }
                 // 第一个订单产品写出详细信息来
                 if ($g->good_id == $first_gid) {

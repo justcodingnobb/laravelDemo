@@ -51,7 +51,7 @@
 		</tr>
 		@foreach($good_ship as $g)
 		<tr>
-			<td>{{ $g['title'] }}</td>
+			<td>{{ $g['title'] }}@if($g['good_spec_name'] != '') <span class="label label-default">{{ $g['good_spec_name'] }}</span>@endif</td>
 			<td>{{ $g['pronums'] }}</td>
 			<td>{{ $g['nums'] }} 件</td>
 			<td>{{ $g['weight'] }} 斤</td>

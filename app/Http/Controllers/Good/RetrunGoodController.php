@@ -19,9 +19,7 @@ class RetrunGoodController extends Controller
         $starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
-		$list = ReturnGood::with(['good'=>function($q){
-				$q->select('id','title');
-			},'user'=>function($q){
+		$list = ReturnGood::with(['user'=>function($q){
 				$q->select('id','nickname','username');
 			}])->where(function($q) use($starttime,$endtime){
                 if ($starttime != '' && $endtime != '') {

@@ -56,16 +56,22 @@
             </p>
             @endif
             <p class="created_at"><span class="order_font">下单时间：</span>{{ $o->created_at }}</p>
+            @if($o->shipstatus == 1)
+            <p class="created_at"><span class="order_font">发货时间：</span>{{ $o->ship_at }}</p>
+            @endif
+            @if($o->orderstatus == 2 || $o->orderstatus == 0)
+            <p class="created_at"><span class="order_font">完成时间：</span>{{ $o->confirm_at }}</p>
+            @endif
         </div>
 			<div class="good_cart_list good_cart_list_order overh">
 			@foreach($o->good as $l)
 			<div class="mt5 good_cart_list_div">
 				<div class="media">
-					<a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object img-thumbnail" alt=""></a>
+					<a href="{{ url('/shop/good',['id'=>$l->good->id]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object img-thumbnail" alt=""></a>
 					<div class="media-body">
-						<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good->id,'format'=>$l->format['format']]) }}">{{ $l->good->title }}</a>
+						<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good->id]) }}">{{ $l->good->title }}</a>
                         </h4>
-                        @if($l->format['format_name'] != '')<span class="btn btn-sm btn-info mt10">{{ $l->format['format_name'] }}</span>@endif
+                        @if($l->good_spec_name != '')<span class="btn btn-sm btn-info mt10">{{ $l->good_spec_name }}</span>@endif
                         <!-- 价格 -->
                         <p class="fs12">价格：<span class="good_prices color_l">￥{{ $l->price }}</span></p>
                         <p class="fs12">数量：<span class="good_prices color_l">￥{{ $l->nums }}</span></p>

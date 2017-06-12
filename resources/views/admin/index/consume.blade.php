@@ -37,7 +37,7 @@
 		</tr>
 		@foreach($consume as $g)
 		<tr>
-			<td>{{ $g->user->nickname }}</td>
+			<td>@if(!is_null($g->user)){{ $g->user->nickname }}@endif</td>
 			<td>{{ $g->mark }}</td>
 			<td><span class="text-danger">@if($g->type == 1)+@else-@endif</span> {{ $g->price }}</td>
 			<td>{{ $g->created_at }}</td>

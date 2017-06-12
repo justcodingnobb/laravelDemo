@@ -88,6 +88,7 @@
 				            }
 				            $('#store').html(store);    //对应规格库存显示出来
 				            $(".price").html(price); // 变动价格显示
+				            $("input[name='gp']").val(price);
 				        }
 				        /***用作 sort 排序用*/
 				        function sortNumber(a,b)
@@ -100,7 +101,6 @@
 
 					<!-- 价格、库存，购物车 -->
 					<input type="hidden" value="{{ $info->price }}" name="gp">
-					<input type="hidden" value="0" name="fid">
 					<div class="row price_store mt10">
 						<div class="col-xs-6">价格：￥<span class="price color_l">{{ $info->price }}</span></div>
 						<div class="col-xs-6 text-right mt store">库存：<span id="store">{{ $info->store }}</span></div>

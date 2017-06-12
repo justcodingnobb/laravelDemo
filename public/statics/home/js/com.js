@@ -7,16 +7,15 @@ $(function(){
 	$('.change_cart').on('change',function(event) {
 		var that = $(this);
     	var gid = that.attr('data-gid');
-    	var fid = that.attr('data-fid');
 		var num = that.val();
 		var price = that.attr('data-price');
     	var new_prices = parseFloat(price) * parseInt(num);
     	// 更新购物车
-		$.post(host+'shop/changecart',{gid:gid,num:num,price:price,fid:fid},function(d){
+		$.post(host+'shop/changecart',{gid:gid,num:num,price:price},function(d){
 			if (d != 0) {
 				cartnum();
 		    	// 更新end
-		    	$('.total_price_' + gid + '_' + fid).html(new_prices.toFixed(2));
+		    	$('.total_price_' + gid).html(new_prices.toFixed(2));
 		    	that.val(d);
 		    	total_prices();
 			}
@@ -45,7 +44,7 @@ $(function(){
 			}
 			else
 			{
-				alert('删除失败，请稍后再试！');
+				alert('移除失败，请稍后再试！');
 			}
 		});
 	});

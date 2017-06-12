@@ -91,7 +91,7 @@ class PayController extends BaseController
     		DB::transaction(function() use($order){
     			User::where('id',$order->user_id)->decrement('user_money',$order->total_prices);
 				// 库存计算
-				$this->updateStore($order);
+				$this->updateStore($order,$paymod = '余额');
     		});
     		return redirect('user/order/2')->with('message','支付成功！');
     	} catch (\Exception $e) {
