@@ -744,7 +744,24 @@
 	],
 	"file_history":
 	[
+		"/F/wwwroot/jxf/.gitignore",
+		"/F/wwwroot/jxf/config/filesystems.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/F/wwwroot/jxf/public/statics/home/js/com.js",
 		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
+		"/F/wwwroot/jxf/resources/views/admin/pay/unionpay.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/ACBF3D30_edit.tmp/unionpay.log",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/resources/views/user/union.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/config/app.php",
+		"/F/wwwroot/jxf/vendor/omnipay/common/src/Omnipay/Omnipay.php",
+		"/F/wwwroot/jxf/app/Http/Middleware/VerifyCsrfToken.php",
+		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
+		"/F/wwwroot/jxf/public/statics/home/css/home.css",
+		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
+		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/app/Http/Controllers/Pay/AlipayController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AE78CF85_edit.tmp/unionpay.log",
 		"/F/wwwroot/jxf/vendor/lokielse/omnipay-alipay/src/AbstractAopGateway.php",
@@ -765,8 +782,6 @@
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.429/multiKeyDemo.php",
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.249/multiCertDemo.php",
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.665/getdir.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
-		"/F/wwwroot/jxf/vendor/omnipay/common/src/Omnipay/Omnipay.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
 		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
 		"/F/wwwroot/jxf/app/Models/Order.php",
@@ -776,14 +791,7 @@
 		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
-		"/F/wwwroot/jxf/public/statics/home/js/com.js",
-		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
 		"/F/希夷/吉鲜蜂/密码.txt",
-		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
-		"/F/wwwroot/jxf/public/statics/home/css/home.css",
-		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
-		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/app/Http/Controllers/TuanController.php",
 		"/F/wwwroot/laravelDemo/readme.md",
 		"/F/wwwroot/jxf/app/Http/Controllers/HuodongController.php",
@@ -863,15 +871,7 @@
 		"/C/Users/Administrator/Downloads/淘宝ICON/demo_fontclass.html",
 		"/C/Users/Administrator/Downloads/淘宝ICON/demo_symbol.html",
 		"/C/Users/Administrator/Downloads/淘宝ICON/demo.css",
-		"/C/Users/Administrator/Downloads/淘宝ICON/iconfont.js",
-		"/C/Users/Administrator/Downloads/css/bootstrap-theme.css",
-		"/C/Users/Administrator/Downloads/css/bootstrap.min.css",
-		"/C/Users/Administrator/Downloads/css/bootstrap.css",
-		"/C/Users/Administrator/Downloads/font_echh04i9dzbmx6r/iconfont.css",
-		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/cart_empty.blade.php",
-		"/G/soft/FlashFXP4/Cache/~flashfxp/76BCE12B_edit.tmp/index.html"
+		"/C/Users/Administrator/Downloads/淘宝ICON/iconfont.js"
 	],
 	"find":
 	{
@@ -974,6 +974,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"remove_cart",
+			"unionpay",
+			"$order->total_prices * 100",
+			"appkey",
+			"appsecret",
+			"appid",
+			"00",
+			"certDir",
+			"updateStore",
+			"Omnipay",
+			"certId",
+			"pay/notify",
+			"pay",
+			"spec_key",
+			"getFirstOrder",
 			"6216261000000000018",
 			"生产",
 			"切换生产有哪些需要改动的地方",
@@ -1086,22 +1101,7 @@
 			"></img",
 			".navbar",
 			"center-block",
-			"col-xs-12",
-			" col-lg-6",
-			"mt30",
-			"line.png",
-			"statics/images/line.png",
-			"#footer",
-			"footer",
-			"h2",
-			"h4",
-			"catpos",
-			"div",
-			"http://localhost/ks",
-			"5",
-			"60px",
-			"6",
-			"pay"
+			"col-xs-12"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1271,6 +1271,34 @@
 		"selected_items":
 		[
 			[
+				"com.js",
+				"public\\statics\\home\\js\\com.js"
+			],
+			[
+				"cart",
+				"resources\\views\\default\\cart.blade.php"
+			],
+			[
+				"web",
+				"routes\\web.php"
+			],
+			[
+				"web.",
+				"routes\\web.php"
+			],
+			[
+				"home.css",
+				"public\\statics\\home\\css\\home.css"
+			],
+			[
+				"homescss",
+				"public\\statics\\home\\css\\home.scss"
+			],
+			[
+				"tuan",
+				"resources\\views\\default\\tuan.blade.php"
+			],
+			[
 				"order/index",
 				"resources\\views\\admin\\order\\index.blade.php"
 			],
@@ -1295,10 +1323,6 @@
 				"public\\statics\\home\\css\\home.scss"
 			],
 			[
-				"com.js",
-				"public\\statics\\home\\js\\com.js"
-			],
-			[
 				"good.bl",
 				"resources\\views\\default\\good.blade.php"
 			],
@@ -1317,10 +1341,6 @@
 			[
 				"member/con",
 				"resources\\views\\admin\\member\\consume.blade.php"
-			],
-			[
-				"web",
-				"routes\\web.php"
 			],
 			[
 				"member/cons",
@@ -1375,20 +1395,12 @@
 				"resources\\views\\default\\order.blade.php"
 			],
 			[
-				"web.",
-				"routes\\web.php"
-			],
-			[
 				"goodcate.bl",
 				"resources\\views\\default\\goodcate.blade.php"
 			],
 			[
 				"home.bl",
 				"resources\\views\\default\\home.blade.php"
-			],
-			[
-				"tuan",
-				"resources\\views\\default\\tuan.blade.php"
 			],
 			[
 				"home.",
@@ -1409,10 +1421,6 @@
 			[
 				"main.bl",
 				"resources\\views\\admin\\index\\main.blade.php"
-			],
-			[
-				"cart",
-				"resources\\views\\default\\cart.blade.php"
 			],
 			[
 				"user",
@@ -1441,10 +1449,6 @@
 			[
 				"home.s",
 				"public\\statics\\home\\css\\home.scss"
-			],
-			[
-				"home.css",
-				"public\\statics\\home\\css\\home.css"
 			],
 			[
 				"order.b",
@@ -1777,10 +1781,6 @@
 			[
 				"user/edit",
 				"resources\\views\\admin\\user\\edit.blade.php"
-			],
-			[
-				"admin/ed",
-				"resources\\views\\admin\\app\\edit.blade.php"
 			]
 		],
 		"width": 0.0

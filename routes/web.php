@@ -13,9 +13,6 @@
 
 Route::get('/vue','VueController@index');
 
-// 测试银联接口
-Route::get('/pay/unionpay','PayController@unionpay');
-Route::any('/pay/notify','PayController@unionNotify');
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');
@@ -144,6 +141,10 @@ Route::group([],function(){
     Route::post('alipay/return','Pay\AlipayController@gateway');
     // 微信回调
     Route::post('weixin/return','Pay\WxpayController@gateway');
+    // 银联回调接口
+    // Route::get('/pay/unionpay','PayController@unionpay');
+    Route::post('union/return','PayController@unionNotify');
+    Route::any('union/success','PayController@unionSuccess');
 });
 
 // 微信功能

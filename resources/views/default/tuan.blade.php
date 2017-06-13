@@ -196,7 +196,7 @@
 		<span class="glyphicon glyphicon-shopping-cart"></span>
 		<div class="good_alert_num ps"></div>
 	</a>
-	<botton class="alert_addcart tuan_addcart">立即参团</botton>
+	<botton class="alert_addcart alert_addcart_tuan tuan_addcart">立即参团</botton>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

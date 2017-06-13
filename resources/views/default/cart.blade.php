@@ -69,7 +69,7 @@
 					<div class="media">
 						<a href="{{ url('/shop/good',['id'=>$l->good_id,'format'=>$l->format['format']]) }}" class="pull-left"><img src="{{ $l->good->thumb }}" width="100" class="media-object img-thumbnail" alt=""></a>
 						<div class="media-body">
-							<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good_id]) }}">{{ $l->good_title }}</a></h4>
+							<h4 class="mt5 cart_h4"><a href="{{ url('/shop/good',['id'=>$l->good_id]) }}">{{ $l->good_title }}</a><span class="remove_cart glyphicon glyphicon-trash ml10" data-gid="{{ $l->id }}"></span></h4>
 							<!-- 删除功能 -->
 							<!-- <span class="remove_cart glyphicon glyphicon-trash ml10" data-gid="{{ $l->id }}"></span> -->
 							<!-- end 删除功能 -->

@@ -78,9 +78,10 @@ class PayController extends BaseController
     {
     	$gateway    = Omnipay::create('UnionPay_Express');
     	// 测试环境参数
-    	// $config = ['merId'=>'700000000000001','certPath'=>storage_path('pay/unionpay/700000000000001_acp.pfx'),'certPassword'=>'000000','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+    	// $config = ['merId'=>'700000000000001','certPath'=>storage_path('pay/unionpay/700000000000001_acp.pfx'),'certPassword'=>'000000','returnUrl'=>config('app.url').'/union/success','notifyUrl'=>config('app.url').'/union/return'];
     	// 正式环境参数
-    	$config = ['merId'=>'802130053110595','certPath'=>storage_path('pay/unionpay/pr.pfx'),'certPassword'=>'201706','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
+        $set = json_decode($pay->setting);
+        $config = ['merId'=>$set->mchid,'certPath'=>storage_path('pay/unionpay/'.$set->certname.'.pfx'),'certPassword'=>$set->pwd,'returnUrl'=>config('app.url').'/union/success?oid='.$oid,'notifyUrl'=>config('app.url').'/union/return'];
     	$gateway->setEnvironment('production'); // 环境设置，默认是测试环境，必须手动修改成正式的
     	$gateway->setMerId($config['merId']);
     	$gateway->setCertPath($config['certPath']); // .pfx file
@@ -88,37 +89,47 @@ class PayController extends BaseController
     	$gateway->setReturnUrl($config['returnUrl']);
     	$gateway->setNotifyUrl($config['notifyUrl']);
 
+        // 查订单信息
+        $order = Order::findOrFail($oid);
+
     	$order = [
-    	    'orderId'   => date('YmdHis'), //Your order ID
+    	    // 'orderId'   => date('YmdHis'), //Your order ID $order->order_id
+            'orderId'   => $order->order_id, //Your order ID 
     	    'txnTime'   => date('YmdHis'), //Should be format 'YmdHis'
-    	    'orderDesc' => 'My order title', //Order Title
-    	    'txnAmt'    => 1, //Order Total Fee
+    	    'orderDesc' => '吉鲜蜂订单', //Order Title
+    	    'txnAmt'    => $order->total_prices * 100, //Order Total Fee
     	];
     	$response = $gateway->purchase($order)->send();
     	echo $response->getRedirectHtml(); //For PC/Wap
     	// return $res;
     	// $response->getTradeNo(); //For APP
     }
+    public function unionSuccess(Request $req)
+    {
+        // 查出订单信息来，并展示成功页面
+        $oid = $req->oid;
+        $info = Order::findOrFail($oid);
+        $info->pid = 4;
+        return view('user.union',compact('info'));
+    }
     public function unionNotify(Request $req)
     {
-    	// 正式环境参数
-    	$config = ['merId'=>'802130053110595','certDir'=>storage_path('pay/unionpay/'),'certPath'=>storage_path('pay/unionpay/pr.pfx'),'certPassword'=>'201706','returnUrl'=>config('app.url').'/pay/notify','notifyUrl'=>config('app.url').'/pay/notify'];
-	    $gateway = Omnipay::create('UnionPay_Express');
-		$gateway->setMerId($config['merId']);
-		$gateway->setCertDir($config['certDir']); //The directory contain *.cer files
-		$response = $gateway->completePurchase(['request_params'=>$_REQUEST])->send();
-		// 写入到日日志里方便查看
-        Storage::prepend('unionpay.log',json_encode($response->getRequestData()).date('Y-m-d H:i:s'));
-		if ($response->isPaid()) {
-            $resData = $response->getRequestData();
-            // 库存计算
-            $oid = $resData['out_trade_no'];
-            $order = Order::where('order_id',$oid)->first();
-            $this->updateStore($order,$paymod = '银联');
-		    exit('success');
-		}else{
-		    exit('fail');
-		}
+        try {
+    		// 写入到日日志里方便查看
+            if ($req->respCode == 00) {
+                // 库存计算
+                $oid = $req->orderId;
+                $order = Order::where('order_id',$oid)->first();
+                $this->updateStore($order,$paymod = '银联');
+                exit('200');
+            }else{
+                exit('fail');
+            }
+        } catch (\Exception $e) {
+            Storage::prepend('unionpay.log',json_encode($req->all()).date('Y-m-d H:i:s'));
+            Storage::prepend('unionpay.log',json_encode($e->getMessage()).date('Y-m-d H:i:s'));
+            exit('fail');
+        }
     }
 
     // 支付宝支付

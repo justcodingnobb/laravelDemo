@@ -11,6 +11,7 @@ use App\Models\OrderGood;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
+use Storage;
 
 class BaseController extends Controller
 {
@@ -36,12 +37,12 @@ class BaseController extends Controller
             foreach ($new_carts as $k => $v) {
                 $gid = $v->good_id;
                 // 判断一下现在的session_id里有没有同一款产品
-                if (isset($old_carts[$gid]) && $old_carts[$gid]['spec_key'] == $v['spec_key']) {
+                if (isset($old_carts[$gid]) && $old_carts[$gid]['good_spec_key'] == $v['good_spec_key']) {
                     $nums = $v->nums + $old_carts[$gid]['nums'];
                     $price = $v->price;
-                    $v = ['session_id'=>$sid,'user_id'=>$uid,'good_id'=>$gid,'spec_key'=>$v['spec_key'],'nums'=>$nums,'price'=>$price,'total_prices'=>$nums * $price];
+                    $v = ['session_id'=>$sid,'user_id'=>$uid,'good_id'=>$gid,'good_spec_key'=>$v['good_spec_key'],'nums'=>$nums,'price'=>$price,'total_prices'=>$nums * $price];
                     // 把旧的删除，新的更新
-                    Cart::where('user_id',$uid)->where('good_id',$gid)->where('spec_key',$v['spec_key'])->delete();
+                    Cart::where('user_id',$uid)->where('good_id',$gid)->where('good_spec_key',$v['good_spec_key'])->delete();
                     Cart::create($v);
                 }
                 else
@@ -79,6 +80,7 @@ class BaseController extends Controller
             return true;
         } catch (\Exception $e) {
             // dd($e->getMessage());
+            Storage::prepend('updateStore.log',json_encode($e->getMessage()).date('Y-m-d H:i:s'));
             return false;
         }
     }

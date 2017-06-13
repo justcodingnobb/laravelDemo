@@ -123,9 +123,11 @@ class ShopController extends BaseController
         $havyhq = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit(2)->get();
         
         $info->pid = 0;
-
-        // 送货地址
-        $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        $address = [];
+        if (session()->has('member')) {
+            // 送货地址
+            $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        }
         // 自提点
         $ziti = Zitidian::where('status',1)->where('del',1)->orderBy('sort','asc')->get();
         return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec','ziti','address'));
@@ -453,7 +455,7 @@ class ShopController extends BaseController
     {
         try {
             $id = $req->id;
-            Cart::where('id',$id)->update(['selected'=>0]);
+            Cart::where('id',$id)->delete();
             echo 1;
         } catch (\Exception $e) {
             echo 0;
