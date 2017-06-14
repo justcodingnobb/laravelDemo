@@ -18,6 +18,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
+        // 算折扣
         $info = (object) ['title'=>cache('config')['title'],'keyword'=>cache('config')['keyword'],'describe'=>cache('config')['describe']];
         $info->pid = 0;
         // 找出 新品来

@@ -26,7 +26,7 @@ class OrderController extends Controller
         // 找出订单
         $orders = Order::with(['good'=>function($q){
                     $q->select('id','user_id','order_id','good_id','good_title','good_spec_key','good_spec_name','nums','price','total_prices');
-                },'address'])->where(function($r) use($q){
+                },'address','zitidian'])->where(function($r) use($q){
                     if ($q != '') {
                         // 查出来用户ID
                         $uid = User::where('nickname','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
@@ -49,10 +49,10 @@ class OrderController extends Controller
                         $q->where('shipstatus',$shipstatus);
                     }
                 })->where(function($q) use($ziti){
-                    if ($ziti) {
+                    if ($ziti != 0 && $ziti != '') {
                         $q->where('ziti','!=',0);
                     }
-                    else
+                    elseif($ziti == 0 && $ziti != '')
                     {
                         $q->where('ziti',0);
                     }
@@ -84,7 +84,7 @@ class OrderController extends Controller
     	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark'),'ship_at'=>date('Y-m-d H:i:s')]);
     	return redirect($req->ref)->with('message','发货成功！');
     }
-    // 退货
+    /*// 退货
     public function getTui($id = '')
     {
         // 更新为关闭，退款到余额里
@@ -96,5 +96,5 @@ class OrderController extends Controller
             Order::where('id',$id)->update(['orderstatus'=>0]);
         });
         return back()->with('message','退货成功！');
-    } 
+    } */
 }

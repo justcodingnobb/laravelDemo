@@ -89,8 +89,14 @@
     </tr>
 	<tr>
 		<td colspan="7">
+			@if(!is_null($o->address))
     		<p>{{ $o->address->area }}{{ $o->address->address }}</p>
     		<p>{{ $o->address->people }}：{{ $o->address->phone }}</p>
+    		@endif
+    		@if(!is_null($o->zitidian))
+    		<p>{{ $o->zitidian->area }}{{ $o->zitidian->address }}</p>
+    		<p>{{ $o->zitidian->phone }}</p>
+    		@endif
     	</td>
 	</tr>
     <tr>
@@ -99,7 +105,8 @@
     		@foreach($o->good as $l)
 			<tr>
 				<td width="55%">
-					<h5>
+					<img src="{{ $l->good->thumb }}" class="img-responsive img-thumbnail mr10 pull-left" width="100" alt="">
+					<h5 class="mt10">
 						<a href="{{ url('/shop/good',['id'=>$l->good->id]) }}">{{ $l->good_title }}</a>
 						@if($l->good_spec_name != '')<span class="label label-warning">{{ $l->good_spec_name }}</span>@endif
 					</h5>

@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>微信登陆-吉鲜商城</title>
+    <title>微信登陆-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 @section('banner')

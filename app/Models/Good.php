@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Model;
 
 class Good extends Model
@@ -29,6 +30,16 @@ class Good extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    // 计算会员价
+/*    public function getUserPriceAttribute()
+    {
+        if (!session()->has('member')) {
+            return $this->price;
+        }
+       $prices = ($this->price * session('member')->discount) / 100;
+        return $prices;
+    }*/
 
     // 购物车
     public function cart()

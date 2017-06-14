@@ -67,7 +67,7 @@
 				<img src="{{ $sites['static']}}home/images/jxf_logo.png" class="img-responsive" alt="">
 			</div>
 			<div class="col-xs-9">
-				<h5>吉鲜蜂</h5>
+				<h5>{{ cache('config')['sitename'] }}</h5>
 				<p class="color_l"><span class="glyphicon glyphicon-ok-sign"></span>微信认证</p>
 			</div>
 		</div>

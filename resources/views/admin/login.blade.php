@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <title>吉鲜商城登陆</title>
+  <title>{{ cache('config')['sitename'] }}登陆</title>
   <meta name="author" content="李潇喃：www.xi-yi.ren" />
   <!-- IE最新兼容 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
   <div class="row container m-a">
     <div class="login_box col-xs-10 col-sm-6 col-md-4 m-a">
       <h1>
-        <small>吉鲜商城管理中心</small>
+        <small>{{ cache('config')['sitename'] }}管理中心</small>
       </h1>
       <form method="POST" action="{{ url('/xyshop/login') }}">
         {!! csrf_field() !!}

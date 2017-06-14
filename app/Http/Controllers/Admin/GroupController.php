@@ -8,6 +8,7 @@ use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
+use Cache;
 
 class GroupController extends Controller
 {
@@ -29,6 +30,7 @@ class GroupController extends Controller
     {
         $data = $request->input('data');
         Group::create($data);
+        $this->groupCache();
         return redirect('xyshop/group/index')->with('message', '添加用户组成功！');
     }
     // 修改用户组
@@ -43,6 +45,7 @@ class GroupController extends Controller
     public function postEdit(GroupRequest $request,$id)
     {
         Group::where('id',$id)->update($request->input('data'));
+        $this->groupCache();
         return redirect($request->input('ref'))->with('message', '修改用户组成功！');
     }
     // 删除用户组
@@ -58,6 +61,7 @@ class GroupController extends Controller
                 Group::where('id',$id)->update(['status'=>0]);
                 // 没出错，提交事务
                 DB::commit();
+                $this->groupCache();
                 return back()->with('message', '删除用户组成功！');
             } catch (Exception $e) {
                 // 出错回滚
@@ -69,6 +73,12 @@ class GroupController extends Controller
         {
             return back()->with('message', '用户组下有用户！');
         }
-        
+    }
+    // 缓存会员组信息
+    public function groupCache()
+    {
+        $data = Group::where('status',1)->select('id','name','points','discount')->get()->keyBy('id')->toArray();
+        // 更新缓存
+        Cache::forever('group',$data);
     }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>吉鲜商城管理中心</title>
+    <title>{{ cache('config')['sitename'] }}管理中心</title>
     <meta name="author" content="李潇喃：www.www.xi-yi.ren" />
     <!-- IE最新兼容 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@
 <body class="box">
     <div class="mainbox">
         <header class="top clearfix overh">
-            <h1 class="logo overh">吉鲜商城</h1>
+            <h1 class="logo overh">{{ cache('config')['sitename'] }}</h1>
             <nav class="menu clearfix overh">
                 <ul id="mainmenu" class="clearfix">
                 @foreach($mainmenu as $mm)

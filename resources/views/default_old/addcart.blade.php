@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>购物车成功-吉鲜商城</title>
+    <title>购物车成功-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 

@@ -6,6 +6,7 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormatRequest;
 use App\Http\Requests\GoodRequest;
+use App\Models\Cart;
 use App\Models\CateAttr;
 use App\Models\Good;
 use App\Models\GoodAttr;
@@ -91,18 +92,22 @@ class GoodController extends Controller
             $date = date('Y-m-d H:i:s');
             // 规格对应的值
             $spec_item = $res->input('spec_item');
-            $tmp_spec = [];
-            foreach ($spec_item as $sk => $sv) {
-                $tmp_spec[] = ['good_id'=>$good->id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+            if (is_array($spec_item)) {
+                $tmp_spec = [];
+                foreach ($spec_item as $sk => $sv) {
+                    $tmp_spec[] = ['good_id'=>$id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+                }
+                GoodSpecPrice::insert($tmp_spec);
             }
-            // 属性对应的值
             $good_attr = $res->input('good_attr');
-            $tmp_attr = [];
-            foreach ($good_attr as $ak => $av) {
-                $tmp_attr[] = ['good_id'=>$good->id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+            // 属性对应的值
+            if (is_array($good_attr)) {
+                $tmp_attr = [];
+                foreach ($good_attr as $ak => $av) {
+                    $tmp_attr[] = ['good_id'=>$id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+                }
+                GoodsAttr::insert($tmp_attr);
             }
-            GoodSpecPrice::insert($tmp_spec);
-            GoodsAttr::insert($tmp_attr);
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
@@ -140,21 +145,40 @@ class GoodController extends Controller
             $date = date('Y-m-d H:i:s');
             // 如果分类变了要删除所有属性重新添加
             // 规格对应的值
-            GoodSpecPrice::where('good_id',$id)->delete();
             $spec_item = $res->input('spec_item');
-            $tmp_spec = [];
-            foreach ($spec_item as $sk => $sv) {
-                $tmp_spec[] = ['good_id'=>$id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+            GoodSpecPrice::where('good_id',$id)->delete();
+            if (is_array($spec_item)) {
+                $tmp_spec = [];
+                foreach ($spec_item as $sk => $sv) {
+                    $tmp_spec[] = ['good_id'=>$id,'key'=>$sk,'key_name'=>$sv['key_name'],'price'=>$sv['price'],'store'=>$sv['store'],'created_at'=>$date,'updated_at'=>$date];
+                }
+                GoodSpecPrice::insert($tmp_spec);
             }
+            $good_attr = $res->input('good_attr');
             // 属性对应的值
             GoodsAttr::where('good_id',$id)->delete();
-            $good_attr = $res->input('good_attr');
-            $tmp_attr = [];
-            foreach ($good_attr as $ak => $av) {
-                $tmp_attr[] = ['good_id'=>$id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+            if (is_array($good_attr)) {
+                $tmp_attr = [];
+                foreach ($good_attr as $ak => $av) {
+                    $tmp_attr[] = ['good_id'=>$id,'good_attr_id'=>$ak,'good_attr_value'=>json_encode($av),'created_at'=>$date,'updated_at'=>$date];
+                }
+                GoodsAttr::insert($tmp_attr);
             }
-            GoodSpecPrice::insert($tmp_spec);
-            GoodsAttr::insert($tmp_attr);
+            // 同步修改购物车里的价格
+            $good_spec_names = GoodSpecPrice::where('good_id',$id)->get()->keyBy('key_name')->toArray();
+            $carts = Cart::where('good_id',$id)->get();
+            foreach ($carts as $k => $v) {
+                if ($v->good_spec_name != '' && isset($good_spec_names[$v->good_spec_name])) {
+                    $price = $good_spec_names[$v->good_spec_name]['price'];
+                    $total_prices = $v->nums * $price;
+                    Cart::where('good_id',$v->good_id)->where('good_spec_name',$v->good_spec_name)->update(['price'=>$price,'total_prices'=>$total_prices]);
+                }
+                else
+                {
+                    $total_prices = $v->nums * $data['price'];
+                    Cart::where('good_id',$v->good_id)->update(['price'=>$data['price'],'total_prices'=>$total_prices]);
+                }
+            }
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表

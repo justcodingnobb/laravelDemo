@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <title>提交订单成功-吉鲜商城</title>
+    <title>提交订单成功-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 

@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>退货管理-吉鲜商城</title>
+    <title>退货管理-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 @section('content')

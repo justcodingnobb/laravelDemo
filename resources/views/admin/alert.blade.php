@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>吉鲜商城-弹出</title>
+    <title>{{ cache('config')['sitename'] }}-弹出</title>
     <meta name="author" content="李潇喃：www.www.xi-yi.ren" />
     <!-- IE最新兼容 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

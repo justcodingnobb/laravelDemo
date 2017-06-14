@@ -10,6 +10,7 @@ use App\Http\Requests\User\AddressRequest;
 use App\Models\Address;
 use App\Models\Card;
 use App\Models\Consume;
+use App\Models\Group;
 use App\Models\Order;
 use App\Models\ReturnGood;
 use App\Models\Type;
@@ -59,6 +60,13 @@ class UserController extends BaseController
 		    	return back()->with('message','密码不正确！');
 		    }
             User::where('id',$user->id)->update(['last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
+            // 计算折扣比例
+            /*$points = session('member')->points;
+            $discount = Group::where('points','<=',$points)->orderBy('points','desc')->value('discount');
+            if (is_null($discount)) {
+                $discount = Group::orderBy('points','desc')->value('discount');
+            }
+            $user->discount = $discount;*/
 	    	session()->put('member',$user);
             // 更新购物车
             $this->updateCart($user->id);
@@ -101,6 +109,8 @@ class UserController extends BaseController
     	$email = $res->input('data.email');
     	try {
 	    	$user = User::create(['username'=>$username,'password'=>$pwd,'email'=>$email,'last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
+            // 计算折扣比例
+            // $user->discount = 100;
 	    	session()->put('member',$user);
             // 更新购物车
             $this->updateCart($user->id);

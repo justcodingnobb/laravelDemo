@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"pr",
+				"price"
+			],
+			[
+				"text-su",
+				"text-success \tBootstrap 3 Class"
+			],
+			[
+				"order",
+				"order_id"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"good_s",
+				"good_spec_name"
+			],
+			[
+				"good",
+				"good_spec_name"
+			],
+			[
+				"good_spec",
+				"good_spec_name"
+			],
+			[
+				"good_sp",
+				"good_spec_names"
+			],
+			[
+				"GoodSp",
+				"GoodSpecPrice"
+			],
+			[
+				"img-",
+				"img-rounded \tBootstrap 3 Class"
+			],
+			[
 				"pay",
 				"paymod"
 			],
@@ -128,10 +168,6 @@
 				"form-control \tBootstrap 3 Class"
 			],
 			[
-				"order",
-				"orderstatus"
-			],
-			[
 				"colo",
 				"color_l\t(order.blade.php)"
 			],
@@ -166,10 +202,6 @@
 			[
 				"cart_n",
 				"cart_num_\t(cart.blade.php)"
-			],
-			[
-				"img-",
-				"img-thumbnail \tBootstrap 3 Class"
 			],
 			[
 				"bdrz",
@@ -268,10 +300,6 @@
 				"yhqid"
 			],
 			[
-				"pr",
-				"previous\t(Homeurl.php)"
-			],
-			[
 				"conta",
 				"container-fluid"
 			],
@@ -310,10 +338,6 @@
 			[
 				"Car",
 				"Carbon"
-			],
-			[
-				"good",
-				"goodlists"
 			],
 			[
 				"numb",
@@ -490,30 +514,6 @@
 			[
 				"noti",
 				"notify_url"
-			],
-			[
-				"string",
-				"stringToBeSigned"
-			],
-			[
-				"d",
-				"decimal"
-			],
-			[
-				"andro",
-				"android_log"
-			],
-			[
-				"over",
-				"overtime"
-			],
-			[
-				"color-",
-				"color-warning"
-			],
-			[
-				"max",
-				"maxage"
 			]
 		]
 	},
@@ -544,9 +544,17 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "close",
 		"selected_items":
 		[
+			[
+				"close",
+				"File: Close All"
+			],
+			[
+				"sava",
+				"File: Save All"
+			],
 			[
 				"save",
 				"File: Save All"
@@ -562,10 +570,6 @@
 			[
 				"ren",
 				"File: Rename"
-			],
-			[
-				"close",
-				"File: Close All"
 			],
 			[
 				"remov",
@@ -739,28 +743,103 @@
 	[
 		"/F/wwwroot/jxf",
 		"/F/wwwroot/jxf/app",
-		"/F/wwwroot/jxf/app/Http",
-		"/F/wwwroot/jxf/app/Http/Controllers"
+		"/F/wwwroot/jxf/resources"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
+		"/F/wwwroot/jxf/app/Models/Good.php",
+		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
+		"/F/wwwroot/jxf/node_modules/adjust-sourcemap-loader/node_modules/lodash.defaults/node_modules/lodash.assign/index.js",
+		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GroupController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/ConfigController.php",
+		"/F/wwwroot/jxf/resources/views/admin/group/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/group/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/group/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Requests/GroupRequest.php",
+		"/F/wwwroot/jxf/database/migrations/2017_06_14_171603_add_points_discount_to_group.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/CardController.php",
+		"/F/wwwroot/jxf/app/Models/Order.php",
+		"/F/wwwroot/jxf/resources/views/admin/tui/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/card/index.blade.php",
+		"/F/wwwroot/jxf/routes/web.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
+		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/index/consume.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
+		"/F/wwwroot/jxf/resources/views/admin/member/chong.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
+		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/addcart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/addorder.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/cart_empty.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/foot.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/good_comment.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/pay.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/paylist.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/tui.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/addcart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/addorder.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/cart_empty.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/foot.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/good.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/good_comment.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/pay.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/paylist.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/tuan.blade.php",
+		"/F/wwwroot/jxf/resources/views/default_old/tui.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/addcart.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/addorder.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/cart.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/order.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/pay.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/default_old/paylist.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/register.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/resources/views/old/wx/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address_add.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/address_edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/card.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/info.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/register.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/returngood.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/union.blade.php",
+		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/wx/login.blade.php",
+		"/F/wwwroot/jxf/resources/views/default/layout.blade.php",
+		"/G/soft/FlashFXP4/Cache/~flashfxp/C7A3DAAA_edit.tmp/footer.html",
 		"/F/wwwroot/jxf/.gitignore",
 		"/F/wwwroot/jxf/config/filesystems.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/ShopController.php",
-		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/public/statics/home/js/com.js",
 		"/F/wwwroot/jxf/app/Http/Controllers/PayController.php",
 		"/F/wwwroot/jxf/resources/views/admin/pay/unionpay.blade.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/ACBF3D30_edit.tmp/unionpay.log",
-		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/resources/views/user/union.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
 		"/F/wwwroot/jxf/config/app.php",
 		"/F/wwwroot/jxf/vendor/omnipay/common/src/Omnipay/Omnipay.php",
 		"/F/wwwroot/jxf/app/Http/Middleware/VerifyCsrfToken.php",
 		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
 		"/F/wwwroot/jxf/public/statics/home/css/home.css",
-		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
 		"/F/wwwroot/jxf/readme.md",
 		"/F/wwwroot/jxf/app/Http/Controllers/Pay/AlipayController.php",
 		"/G/soft/FlashFXP4/Cache/~flashfxp/AE78CF85_edit.tmp/unionpay.log",
@@ -782,96 +861,20 @@
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.429/multiKeyDemo.php",
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.249/multiCertDemo.php",
 		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.665/getdir.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
-		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
-		"/F/wwwroot/jxf/app/Models/Order.php",
-		"/F/wwwroot/jxf/resources/views/admin/card/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/CardController.php",
-		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
-		"/F/wwwroot/jxf/resources/views/default/good.blade.php",
 		"/F/希夷/吉鲜蜂/密码.txt",
 		"/F/wwwroot/jxf/app/Http/Controllers/TuanController.php",
 		"/F/wwwroot/laravelDemo/readme.md",
 		"/F/wwwroot/jxf/app/Http/Controllers/HuodongController.php",
 		"/F/wwwroot/jxf/resources/views/admin/good/goodattr.blade.php",
 		"/F/wwwroot/jxf/sftp-config.json",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/jxf/resources/views/admin/good/goodspec.blade.php",
 		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
 		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wamp64/bin/mysql/mysql5.7.9/my.ini",
 		"/E/迅雷下载/www/安装前必看.txt",
-		"/F/wwwroot/jxf/resources/views/admin/index/consume.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/member/consume.blade.php",
 		"/F/wwwroot/jxf/database/factories/ModelFactory.php",
-		"/F/wwwroot/jxf/app/Models/Consume.php",
-		"/F/wwwroot/jxf/app/Models/User.php",
-		"/F/wwwroot/jxf/resources/views/admin/log/index.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/UserController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
-		"/F/wwwroot/jxf/app/Services/ComService.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_10_112030_add_type_to_consume.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
-		"/F/wwwroot/jxf/resources/views/admin/member/address.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/member/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/member/consume.php",
-		"/F/wwwroot/jxf/resources/views/admin/member/index.blade - 副本.php",
-		"/F/wwwroot/jxf/app/Models/Zitidian.php",
-		"/F/wwwroot/jxf/app/Models/Address.php",
-		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/tuan/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/usercenter.blade.php",
-		"/F/wwwroot/jxf/app/Http/Requests/Good/UserCardRequest.php",
-		"/F/wwwroot/jxf/resources/views/user/card.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/card/add.blade.php",
-		"/F/wwwroot/jxf/app/Models/Card.php",
-		"/F/wwwroot/jxf/app/Http/Requests/Good/CardRequest.php",
-		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
-		"/F/wwwroot/jxf/app/Ecs/Card.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/HomeController.php",
-		"/E/迅雷下载/www.hsjixianfeng.com.sql",
-		"/F/wamp64/logs/mysql.log",
-		"/C/Users/Administrator/Desktop/card.sql",
-		"/F/wwwroot/jxf/database/migrations/2017_06_09_145751_create_consume.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Pay/WxpayController.php",
-		"/F/wwwroot/jxf/resources/views/default/order.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/tui/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/user/returngood.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/order/ship.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/tui/status.blade.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_09_145709_create_return_good.php",
-		"/F/wwwroot/jxf/app/Models/ReturnGood.php",
-		"/F/wwwroot/jxf/app/Models/Good.php",
-		"/F/wwwroot/jxf/app/Models/TuanUser.php",
-		"/F/wwwroot/jxf/app/Http/Requests/Good/TuiRequest.php",
-		"/F/wwwroot/jxf/resources/views/admin/tui/add.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/tui.blade.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_09_145816_create_cards.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_09_145427_add_mark_to_orders.php",
-		"/C/Users/Administrator/Documents/WeChat Files/lzg_1989/Files/近7日阅读量排行.txt",
-		"/F/wwwroot/jxf/resources/views/default/home.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
-		"/F/wwwroot/jxf/app/Services/TagService.php",
-		"/F/scss/bootstrap/css/home.scss",
-		"/F/scss/bootstrap/css/bootstrap.css",
-		"/F/scss/pure/css/reset.scss",
-		"/F/scss/pure/css/reset.css",
-		"/F/scss/pure/css/pure-min.css",
-		"/C/Users/Administrator/Downloads/config.json",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
-		"/F/scss/bootstrap/index.html",
-		"/F/scss/bootstrap/css/bootstrap.min.css",
-		"/F/xi-yi(1).txt",
-		"/F/scss/bootstrap/css/home.css",
-		"/F/scss/bootstrap/css/iconfont.css",
-		"/C/Users/Administrator/Downloads/淘宝ICON/demo_fontclass.html",
-		"/C/Users/Administrator/Downloads/淘宝ICON/demo_symbol.html",
-		"/C/Users/Administrator/Downloads/淘宝ICON/demo.css",
-		"/C/Users/Administrator/Downloads/淘宝ICON/iconfont.js"
+		"/F/wwwroot/jxf/app/Models/Consume.php"
 	],
 	"find":
 	{
@@ -882,6 +885,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\jxf\\resources\\views",
 			"F:\\wwwroot\\jxf\\vendor",
 			"F:\\wwwroot\\jxf\\vendor\\omnipay",
 			"F:\\wwwroot\\jxf\\vendor\\omnipay\\common\\src\\Omnipay",
@@ -974,6 +978,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"group",
+			"$info['",
+			"required|integer",
+			"returngood/",
+			"order/tui",
+			"status",
+			"addorder",
+			"$starttime = $req->input('starttime',date('Y-m-d 00:00:00'));",
+			"$endtime = $req->input('endtime',date('Y-m-d 24:00:00'));",
+			"endtime",
+			"form_excel",
+			"btn_order",
+			"data.pwd",
+			"user_money",
+			"address",
+			"num",
+			"吉鲜蜂",
+			"{{ cache('config.sitename') }}",
+			"吉鲜商城",
 			"remove_cart",
 			"unionpay",
 			"$order->total_prices * 100",
@@ -1082,26 +1105,7 @@
 			"col-xs-4",
 			"icon",
 			"div",
-			"yhq",
-			"label label-warning",
-			"pd10",
-			"E32EA1",
-			"span class=\"label label-warning mt5\"",
-			"alert",
-			"btn-fastbuy",
-			"alert",
-			"btn-fastbuy",
-			"order/over",
-			"order/tui",
-			"span",
-			"tmp_goods",
-			"->",
-			".single1",
-			"{IMG_PATH}",
-			"></img",
-			".navbar",
-			"center-block",
-			"col-xs-12"
+			"yhq"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1109,6 +1113,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"$starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');",
+			"$endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');",
+			"$starttime = $req->input('starttime',date('Y-m-d 00:00:00'));\n        $endtime = $req->input('endtime',date('Y-m-d 24:00:00'));",
+			"{{ cache('config')['sitename'] }}",
+			"吉鲜蜂",
 			"`date` ",
 			"`date`",
 			"",
@@ -1271,6 +1280,42 @@
 		"selected_items":
 		[
 			[
+				"default.in",
+				"node_modules\\adjust-sourcemap-loader\\node_modules\\lodash.defaults\\node_modules\\lodash.assign\\index.js"
+			],
+			[
+				"card/in",
+				"resources\\views\\admin\\card\\index.blade.php"
+			],
+			[
+				"tui/in",
+				"resources\\views\\admin\\tui\\index.blade.php"
+			],
+			[
+				"consume",
+				"resources\\views\\admin\\index\\consume.blade.php"
+			],
+			[
+				"main",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"indexcon",
+				"app\\Http\\Controllers\\Admin\\IndexController.php"
+			],
+			[
+				"main.b",
+				"resources\\views\\admin\\index\\main.blade.php"
+			],
+			[
+				"member/chon",
+				"resources\\views\\admin\\member\\chong.blade.php"
+			],
+			[
+				"order/ind",
+				"resources\\views\\admin\\order\\index.blade.php"
+			],
+			[
 				"com.js",
 				"public\\statics\\home\\js\\com.js"
 			],
@@ -1363,20 +1408,12 @@
 				"resources\\views\\admin\\tuan\\index.blade.php"
 			],
 			[
-				"main.b",
-				"resources\\views\\admin\\index\\main.blade.php"
-			],
-			[
 				"userce",
 				"resources\\views\\user\\usercenter.blade.php"
 			],
 			[
 				"usercent",
 				"resources\\views\\user\\usercenter.blade.php"
-			],
-			[
-				"card/in",
-				"resources\\views\\admin\\card\\index.blade.php"
 			],
 			[
 				"yuhuiquan/inde",
@@ -1505,10 +1542,6 @@
 			[
 				"default/or",
 				"resources\\views\\default\\order.blade.php"
-			],
-			[
-				"order/ind",
-				"resources\\views\\admin\\order\\index.blade.php"
 			],
 			[
 				"goodcate/in",
@@ -1757,30 +1790,6 @@
 			[
 				"admin/app/",
 				"resources\\views\\admin\\app\\index.blade.php"
-			],
-			[
-				"comment",
-				"resources\\views\\article\\comment.blade.php"
-			],
-			[
-				"jss",
-				"public\\statics\\common\\js\\js_sdk.js"
-			],
-			[
-				"js_",
-				"public\\statics\\common\\js\\js_sdk.js"
-			],
-			[
-				"article/show",
-				"resources\\views\\article\\show.blade.php"
-			],
-			[
-				"user/pwd",
-				"resources\\views\\admin\\user\\pwd.blade.php"
-			],
-			[
-				"user/edit",
-				"resources\\views\\admin\\user\\edit.blade.php"
 			]
 		],
 		"width": 0.0

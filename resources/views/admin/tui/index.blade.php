@@ -4,7 +4,7 @@
 @section('content')
 <!-- 选出栏目 -->
 <div class="clearfix">
-	<form action="" class="form-inline pull-left" method="get">
+	<form action="" class="form-inline pull-left form_excel" method="get">
 		<select name="status" id="status" class="form-control mr10">
 			<option value="">请选择状态</option>
 			<option value="0">未处理</option>
@@ -14,6 +14,9 @@
 		开始时间：<input type="text" name="starttime" class="form-control mr10" value="" id="laydate">
 		到：<input type="text" name="endtime" class="form-control" value="" id="laydate2">
 		<button class="btn btn-info">查找</button>
+		@if(App::make('com')->ifCan('returngood-excel'))
+		<button class="btn btn-primary btn_order">导出</button>
+		@endif
 	</form>
 </div>
 <form action="" class="form-inline form_submit" method="get">
@@ -92,6 +95,10 @@
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
+		$('.btn_order').click(function(){
+			$('.form_excel').attr('action',"{{ url('/xyshop/returngood/excel') }}").submit();
+		});
+
 		$("#dosubmit").on('click',function(){
 			$('#form-tuan').submit();
 		});

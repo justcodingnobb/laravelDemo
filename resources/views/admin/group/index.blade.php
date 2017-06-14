@@ -12,6 +12,8 @@
 		<tr class="success">
 			<th width="50">ID</th>
 			<th width="200">用户组</th>
+			<th width="200">所需积分</th>
+			<th>折扣</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -20,6 +22,8 @@
 		<tr>
 			<td>{{ $m->id }}</td>
 			<td>{{ $m->name }}</td>
+			<td>{{ $m->points }}</td>
+			<td class="text-success">{{ $m->discount }}%</td>
 			<td>
 				@if(App::make('com')->ifCan('group-edit'))
 				<a href="{{ url('/xyshop/group/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>

@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>{{ $info->seotitle }}</title>
+    <title>@if($info->seotitle != ''){{ $info->seotitle }}@else{{ $info->name }}@endif</title>
     <meta name="keywords" content="{{ $info->keyword }}">
     <meta name="description" content="{{ $info->describe }}">
 @endsection

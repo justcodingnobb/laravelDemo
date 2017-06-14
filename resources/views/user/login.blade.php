@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>会员登陆-吉鲜商城</title>
+    <title>会员登陆-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 

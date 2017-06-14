@@ -170,11 +170,13 @@ Route::group(['prefix'=>'xyshop'],function(){
 Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     // 会员卡
     Route::get('card/index', 'Good\CardController@getIndex');
+    Route::get('card/excel', 'Good\CardController@getCardExcel');
     Route::get('card/add', 'Good\CardController@getAdd');
     Route::post('card/add', 'Good\CardController@postAdd');
     Route::post('card/del', 'Good\CardController@postAlldel');
     // 退货管理
     Route::get('returngood/index', 'Good\RetrunGoodController@getIndex');
+    Route::get('returngood/excel', 'Good\RetrunGoodController@getExcel');
     Route::get('returngood/status/{id}', 'Good\RetrunGoodController@getStatus');
     Route::post('returngood/status/{id}', 'Good\RetrunGoodController@postStatus');
     // 今日消费情况
@@ -247,7 +249,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('order/del/{id}', 'Admin\OrderController@getDel');
     Route::get('order/ship/{id}', 'Admin\OrderController@getShip');
     Route::post('order/ship/{id}', 'Admin\OrderController@postShip');
-    Route::get('order/tui/{id}', 'Admin\OrderController@getTui');
+    // Route::get('order/tui/{id}', 'Admin\OrderController@getTui');
     Route::get('order/ziti/{id}', 'Admin\OrderController@getZiti');
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');

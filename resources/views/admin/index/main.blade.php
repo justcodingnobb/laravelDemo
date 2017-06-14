@@ -33,8 +33,12 @@
 	<form action="{{ url('/xyshop/index/excel_goods') }}" class="form-inline form_excel" method="get">
 		开始时间：<input type="text" name="starttime" class="form-control mr10" value="" id="laydate">
 		到：<input type="text" name="endtime" class="form-control" value="" id="laydate2">
+		@if(App::make('com')->ifCan('index-excel_goods'))
 		<button class="btn btn-success">导出销售统计表</button>
-		<button class="btn btn-primary btn_order">导出订单表</button>		
+		@endif
+		@if(App::make('com')->ifCan('index-excel_order'))
+		<button class="btn btn-primary btn_order">导出订单表</button>
+		@endif
 	</form>
 </div>
 

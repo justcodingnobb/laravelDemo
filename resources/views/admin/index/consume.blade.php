@@ -22,7 +22,9 @@
 		开始时间：<input type="text" name="starttime" class="form-control mr10" value="{{ $starttime }}" id="laydate">
 		到：<input type="text" name="endtime" class="form-control" value="{{ $endtime }}" id="laydate2">
 		<button class="btn btn-success">查询</button>
+		@if(App::make('com')->ifCan('index-excel_consume'))
 		<button class="btn btn-primary btn_order">导出表格</button>
+		@endif
 	</form>
 </div>
 

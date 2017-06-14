@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>修改收货地址-吉鲜商城</title>
+    <title>修改收货地址-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 

@@ -62,6 +62,10 @@ class UserController extends Controller
     }
     public function postChong(Request $req,$id = '')
     {
+        $pwd = $req->pwd;
+        if ($pwd != decrypt(session('user')->password)) {
+            return back()->with('message','密码错误');
+        }
         $money = $req->input('data.user_money');
         User::where('id',$id)->increment('user_money',$money);
         return back()->with('message', '会员充值成功！');

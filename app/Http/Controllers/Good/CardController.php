@@ -7,6 +7,7 @@ use App\Http\Requests\Good\CardRequest;
 use App\Models\Card;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Excel;
 
 class CardController extends Controller
 {
@@ -38,7 +39,37 @@ class CardController extends Controller
             })->orderBy('id','desc')->paginate(15);
     	return view('admin.card.index',compact('title','list','starttime','endtime','status','q'));
     }
-    // 处理
+    // 导出卡
+    public function getCardExcel(Request $req)
+    {
+        // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
+        $status = $req->input('status','');
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('1970-00-00 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
+        $cards = Card::with(['user'=>function($q){
+                    $q->select('id','username','nickname','openid','phone');
+                }])->where(function($q)use($status){
+                    if ($status != '') {
+                        $q->where('status',$status);
+                    }
+                })->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('id','desc')->get();
+        $tmp = [];
+        foreach ($cards as $v) {
+            $username = is_null($v->user) ? '' : $v->user->username.' - '.$v->user->nickname;
+            $status = $v->status ? '已开' : '未开';
+            $tmp[] = [$v->card_id,$v->card_pwd,$v->price,$status,$username,$v->init_time,$v->created_at];
+        }
+
+        $cellData = array_merge(
+            [['卡号','密码','金额','状态','用户','开卡时间','建卡时间']],$tmp
+        );
+        Excel::create('会员卡表',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
+    }
+    // 添加新卡
     public function getAdd()
     {
     	return view('admin.card.add');

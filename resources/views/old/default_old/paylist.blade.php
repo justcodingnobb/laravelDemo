@@ -1,7 +1,7 @@
 @extends('default.layout')
 
 @section('title')
-    <title>选择支付方式-吉鲜商城</title>
+    <title>选择支付方式-{{ cache('config')['sitename'] }}</title>
 @endsection
 
 

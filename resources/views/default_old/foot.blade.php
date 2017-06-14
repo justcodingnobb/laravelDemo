@@ -26,5 +26,5 @@
         <li><a href="{{ url('cate',['url'=>$c->url]) }}">{{ $c->name }}</a></li>
         @endforeach
     </ul> -->
-    <p>版权所有：吉鲜商城 冀ICP备15021375号-4</p>
+    <p>版权所有：{{ cache('config')['sitename'] }} 冀ICP备15021375号-4</p>
 </footer>

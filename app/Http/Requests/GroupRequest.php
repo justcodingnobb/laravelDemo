@@ -25,6 +25,8 @@ class GroupRequest extends FormRequest
     {
         return [
             'data.name' => 'required|unique:groups,name,'.$this->segment('4'),
+            'data.points' => 'required|integer',
+            'data.discount' => 'required|integer',
         ];
     }
     
@@ -32,6 +34,8 @@ class GroupRequest extends FormRequest
     {
         return [
             'data.name' => '会员组',
+            'data.points' => '所需积分',
+            'data.discount' => '折扣',
         ];
     }
 }

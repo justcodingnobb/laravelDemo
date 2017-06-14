@@ -10,6 +10,7 @@ use App\Models\Consume;
 use App\Models\Good;
 use App\Models\GoodAttr;
 use App\Models\GoodFormat;
+use App\Models\Group;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderGood;
@@ -62,8 +63,8 @@ class IndexController extends Controller
     {
         $title = '消费情况';
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
-        $starttime = isset($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
-        $endtime = isset($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $consume = Consume::with(['user'=>function($q){
                     $q->select('id','username','nickname','openid','phone');
                 }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('user_id','asc')->get();
@@ -77,8 +78,8 @@ class IndexController extends Controller
     {
         $title = '消费情况';
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
-        $starttime = isset($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
-        $endtime = isset($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $consume = Consume::with(['user'=>function($q){
                     $q->select('id','username','nickname','openid','phone');
                 }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('user_id','asc')->get();
@@ -147,8 +148,8 @@ class IndexController extends Controller
     public function getExcelGoods(Request $req)
     {
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
-        $starttime = $req->starttime;
-        $endtime = $req->endtime;
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->where('created_at','>',$starttime)->where('created_at','<',$endtime)->pluck('id');
         $goods = OrderGood::whereIn('order_id',$order_ids)->get();
 
@@ -191,8 +192,8 @@ class IndexController extends Controller
     public function getExcelOrders(Request $req)
     {
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
-        $starttime = $req->starttime;
-        $endtime = $req->endtime;
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $orders = Order::with(['address'=>function($q){
                         $q->select('id','area','address','phone','people');
                     },'zitidian'=>function($q){
@@ -324,6 +325,9 @@ class IndexController extends Controller
         echo "<p class='color-green'>更新商品分类缓存成功...</p>";
         App::make('com')->updateCache(new App\Models\Type,'typeCache');
         echo "<p class='color-green'>更新分类缓存成功...</p>";
+        $data = Group::where('status',1)->select('id','name','points','discount')->get()->keyBy('id')->toArray();
+        Cache::forever('group',$data);
+        echo "<p class='color-green'>更新会员组缓存成功...</p>";
         echo "<p class='color-red'>更新缓存完成...</p>";
     }
 }

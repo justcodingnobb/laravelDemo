@@ -16,6 +16,7 @@ use App\Models\GoodComment;
 use App\Models\GoodFormat;
 use App\Models\GoodSpecItem;
 use App\Models\GoodSpecPrice;
+use App\Models\Group;
 use App\Models\Manzeng;
 use App\Models\Order;
 use App\Models\OrderGood;
@@ -145,17 +146,28 @@ class ShopController extends BaseController
             $price = $req->gp;
             $userid = !is_null(session('member')) ? session('member')->id : 0;
             $nums = $num;
-            $total_prices = $price * $nums;
+            $old_prices = $price * $nums;
+            // 算折扣
+            try {
+                $points = session('member')->points;
+                $discount = Group::where('points','<=',$points)->orderBy('points','desc')->value('discount');
+                if (is_null($discount)) {
+                    $discount = Group::orderBy('points','desc')->value('discount');
+                }
+            } catch (\Exception $e) {
+                $discount = 100;
+            }
+            $prices = ($old_prices * $discount) / 100;
             $area = Address::where('id',$req->aid)->value('area');
             // 创建订单
             $order_id = app('com')->orderid();
-            $order = ['order_id'=>$order_id,'user_id'=>$userid,'yhq_id'=>'0','yh_price'=>0,'old_prices'=>$total_prices,'total_prices'=>$total_prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
+            $order = ['order_id'=>$order_id,'user_id'=>$userid,'yhq_id'=>'0','yh_price'=>0,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
         
             $order = Order::create($order);
             $spec_key_name = GoodSpecPrice::where('good_id',$id)->where('key',$spec_key)->value('key_name');
             $good_title = Good::where('id',$id)->value('title');
             // 组合order_goods数组
-            $order_goods = ['user_id'=>$userid,'order_id'=>$order->id,'good_id'=>$id,'good_title'=>$good_title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices];
+            $order_goods = ['user_id'=>$userid,'order_id'=>$order->id,'good_id'=>$id,'good_title'=>$good_title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$prices];
             // 插入
             OrderGood::create($order_goods);
             // 没出错，提交事务
@@ -228,6 +240,8 @@ class ShopController extends BaseController
         if (count($ids) == 0) {
             return back()->with('message','购物车里是空的，请先购物！');
         }
+        // 关掉一天以前的未付款订单
+        Order::where('orderstatus',1)->where('created_at','<',Carbon::now()->subday())->update(['orderstatus'=>0]);
         // 所有产品总价
         $old_prices = Cart::whereIn('id',$ids)->sum('total_prices');
         $carts = Cart::whereIn('id',$ids)->orderBy('updated_at','desc')->get();
@@ -236,12 +250,22 @@ class ShopController extends BaseController
         $order_id = app('com')->orderid();
         // 查出优惠券优惠多少
         $yh_price = 0;
-        $prices = $old_prices;
+        // 算折扣
+        try {
+            $points = session('member')->points;
+            $discount = Group::where('points','<=',$points)->orderBy('points','desc')->value('discount');
+            if (is_null($discount)) {
+                $discount = Group::orderBy('points','desc')->value('discount');
+            }
+        } catch (\Exception $e) {
+            $discount = 100;
+        }
+        $prices = ($old_prices * $discount) / 100;
         $yhq_id = isset($req->yid) ? $req->yid : 0;
         if ($yhq_id) {
             $yh = YhqUser::where('id',$req->yid)->first();
             $yh_price = $yh->yhq->lessprice;
-            $prices = $old_prices - $yh_price;
+            $prices = $prices - $yh_price;
         }
         $area = Address::where('id',$req->aid)->value('area');
         $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area,'mark'=>$req->mark];
