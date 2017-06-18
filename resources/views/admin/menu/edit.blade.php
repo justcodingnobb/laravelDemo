@@ -1,7 +1,6 @@
 <form action="" method="post" id="form_ajax">
 	{{ csrf_field() }}
-	<input type="hidden" name="oldparentid" value="{{ $info->
-	parentid }}">
+	<input type="hidden" name="oldparentid" value="{{ $info->parentid }}">
 	<div class="form-group">
 		<label for="parentid">
 			父菜单：

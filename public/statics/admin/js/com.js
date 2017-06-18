@@ -35,7 +35,6 @@ function ajax_submit_form(form_id,submit_url)
 		data: $('#' + form_id).serialize(), // 你的formid                
 		error: function(v) {
 			// 提示信息转为json对象，并弹出提示
-			console.log(v);
 		    var errors = $.parseJSON(v.responseText);
 		    $.each(errors, function(index, value) {
 		    	// 弹出提示

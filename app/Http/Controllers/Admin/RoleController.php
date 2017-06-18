@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App;
-use App\Models\Admin;
-use App\Models\Cate;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests;
 use App\Http\Requests\RoleRequest;
+use App\Models\Admin;
+use App\Models\Cate;
 use App\Models\Menu;
 use App\Models\Priv;
 use App\Models\Role;
@@ -15,7 +15,7 @@ use App\Models\RoleUser;
 use DB;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class RoleController extends BaseController
 {
     /**
      * 构造函数
@@ -47,21 +47,20 @@ class RoleController extends Controller
     {
         $data = $request->input('data');
         $this->role->create($data);
-        return redirect('xycmf/role/index')->with('message', '添加角色成功！');
+        return $this->ajaxReturn(1,'添加角色成功！',url('/xycmf/role/index'));
     }
     // 修改角色
     public function getEdit($rid)
     {
         $title = '修改角色';
         // 拼接返回用的url参数
-        $ref = '?page='.old('page');
         $info = $this->role->findOrFail($rid);
-        return view('admin.role.edit',compact('title','info','ref'));
+        return view('admin.role.edit',compact('title','info'));
     }
     public function postEdit(RoleRequest $request,$rid)
     {
         $this->role->where('id',$rid)->update($request->input('data'));
-        return redirect('xycmf/role/index'.$request->input('ref'))->with('message', '修改角色成功！');
+        return $this->ajaxReturn(1,'修改角色成功！');
     }
     // 删除角色
     public function getDel($rid)

@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('role-add'))
 @section('rmenu')
-	<a href="{{ url('/xycmf/role/add') }}" class="btn btn-info">添加角色</a>
+	<div data-url="{{ url('/xycmf/role/add') }}" data-title="添加角色" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加角色</div>
 @endsection
 @endif
 
@@ -37,7 +37,7 @@
 				<a href="{{ url('/xycmf/role/catepriv',$m->id) }}" class="btn btn-sm btn-info">栏目权限</a>
 				@endif -->
 				@if(App::make('com')->ifCan('role-edit'))
-				<a href="{{ url('/xycmf/role/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xycmf/role/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-warning btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('role-del') && $m->id != 1)
 				<a href="{{ url('/xycmf/role/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

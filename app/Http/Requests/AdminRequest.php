@@ -28,12 +28,8 @@ class AdminRequest extends Request
             'data.name' => 'sometimes|required|min:5|unique:admins,name,'.$this->segment('4'),
             'data.email' => 'sometimes|required|email|unique:admins,email,'.$this->segment('4'),
             'data.password' => 'sometimes|required|confirmed|min:6|max:15|alpha_dash',
-            'data.phone' => 'sometimes|integer|min:7',
+            'data.phone' => 'sometimes|integer',
             'data.realname' => 'sometimes|min:2|alpha_num',
-
-            'datas.email' => 'sometimes|required|email|unique:admins,email,'.session('user')->id,
-            'datas.phone' => 'sometimes|integer|min:7',
-            'datas.realname' => 'sometimes|min:2|alpha_num',
         ];
     }
     

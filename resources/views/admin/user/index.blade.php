@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('admin-add'))
 @section('rmenu')
-	<a href="{{ url('/xycmf/admin/add') }}" class="btn btn-info">添加用户</a>
+	<div data-url="{{ url('/xycmf/admin/add') }}" data-title="添加用户" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加用户</div>
 @endsection
 @endif
 
@@ -59,10 +59,10 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('admin-edit'))
-				<a href="{{ url('/xycmf/admin/edit',$m->id) }}" class="btn btn-sm btn-info">修改资料</a>
+				<div data-url="{{ url('/xycmf/admin/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('admin-pwd'))
-				<a href="{{ url('/xycmf/admin/pwd',$m->id) }}" class="btn btn-sm btn-info">修改密码</a>
+				<div data-url="{{ url('/xycmf/admin/pwd',$m->id) }}" data-title="修改密码" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-warning btn_modal">修改密码</div>
 				@endif
 				@if($m->id != 1 && App::make('com')->ifCan('admin-del'))
 				<a href="{{ url('/xycmf/admin/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

@@ -57,6 +57,17 @@
     <!-- 提示层 -->
     <div class="alert alert-success dn" id="success_alert" role="alert"></div>
     <div class="alert alert-danger dn" id="error_alert" role="alert"></div>
+
+    @if(session('message'))
+    <div class="alert_top alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
+    <script type="text/javascript">
+        $(function(){
+            $('div.alert_top').delay(1500).slideUp(300);
+        })
+    </script>
 </body>
 
 </html>
