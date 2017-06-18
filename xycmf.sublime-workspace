@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"sub",
+				"submit\t.submit()"
+			],
+			[
 				"pass",
 				"password_confirmation"
 			],
@@ -510,10 +514,6 @@
 			[
 				"data",
 				"dataDiff"
-			],
-			[
-				"is_n",
-				"is_null"
 			]
 		]
 	},
@@ -738,42 +738,55 @@
 	"expanded_folders":
 	[
 		"/F/wwwroot/laravelDemo",
-		"/F/wwwroot/laravelDemo/public/statics",
-		"/F/wwwroot/laravelDemo/public/statics/admin",
-		"/F/wwwroot/laravelDemo/resources"
+		"/F/wwwroot/laravelDemo/app",
+		"/F/wwwroot/laravelDemo/app/Http",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers",
+		"/F/wwwroot/laravelDemo/resources",
+		"/F/wwwroot/laravelDemo/resources/views",
+		"/F/wwwroot/laravelDemo/resources/views/admin",
+		"/F/wwwroot/laravelDemo/resources/views/admin/member"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/laravelDemo/public/statics/admin/js/com.js",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/UserController.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/member/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/member/index.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/group/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/menu/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/menu/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/role/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/section/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/section/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/user/add.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/user/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/user/pwd.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/group/edit.blade.php",
+		"/F/wwwroot/laravelDemo/.env",
+		"/F/wwwroot/jxf/.env",
+		"/F/wwwroot/laravelDemo/resources/views/admin/role/edit.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/group/index.blade.php",
+		"/F/wwwroot/laravelDemo/resources/views/admin/role/index.blade.php",
+		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/GroupController.php",
 		"/F/wwwroot/laravelDemo/public/statics/admin/css/reset.scss",
+		"/F/wwwroot/jxf/app/Providers/ComServiceProvider.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/right.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/right.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/MenuController.php",
-		"/F/wwwroot/laravelDemo/public/statics/admin/js/com.js",
 		"/F/wwwroot/laravelDemo/resources/views/admin/menu/index.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/ConfigController.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/config/index.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/CateController.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/cate/index.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/role/index.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/section/add.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/section/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/role/add.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/RoleController.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/SectionController.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/section/index.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/role/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/user/add.blade.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/user/index.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/AdminController.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/user/pwd.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/user/edit.blade.php",
 		"/F/wwwroot/laravelDemo/resources/views/admin/index.blade.php",
 		"/F/wwwroot/laravelDemo/app/Http/Requests/AdminRequest.php",
 		"/F/wwwroot/laravelDemo/app/Http/Controllers/Admin/BaseController.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/menu/edit.blade.php",
-		"/F/wwwroot/laravelDemo/resources/views/admin/menu/add.blade.php",
 		"/F/wamp64/bin/apache/apache2.4.17/conf/extra/httpd-vhosts.conf",
-		"/F/wwwroot/laravelDemo/.env",
 		"/C/Windows/System32/drivers/etc/hosts",
 		"/F/wwwroot/laravelDemo/app/Http/Requests/MenuRequest.php",
 		"/F/wwwroot/laravelDemo/sql/XYCMF-INIT.sql",
@@ -862,16 +875,7 @@
 		"/F/wwwroot/l53/routes/console.php",
 		"/F/wwwroot/l54/app/Http/Kernel.php",
 		"/F/wwwroot/l54/app/Providers/RouteServiceProvider.php",
-		"/F/wwwroot/l54/routes/channels.php",
-		"/F/wwwroot/l54/app/Providers/AppServiceProvider.php",
-		"/F/wwwroot/l54/app/Providers/AuthServiceProvider.php",
-		"/F/wwwroot/l54/app/Http/Middleware/EncryptCookies.php",
-		"/F/wwwroot/l54/app/Http/Middleware/VerifyCsrfToken.php",
-		"/F/wwwroot/l54/app/Exceptions/Handler.php",
-		"/F/wwwroot/l54/.env",
-		"/F/wwwroot/l54/sql/CMS-init.sql",
-		"/F/wwwroot/l54/composer.json",
-		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.363/Kernel.php"
+		"/F/wwwroot/l54/routes/channels.php"
 	],
 	"find":
 	{
@@ -882,6 +886,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"F:\\wwwroot\\laravelDemo\\resources\\views\\admin",
 			"F:\\wwwroot\\l54\\app\\Http\\Controllers\\Admin",
 			"F:\\wwwroot\\l54\\resources\\views\\admin",
 			"D:\\www\\laravel53\\resources\\views\\admin",
@@ -958,6 +963,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<form action=\"\" method=\"post\" id=\"form_ajax\">",
+			"form_ajax",
+			"添加角色",
 			"pages",
 			"menu",
 			"添加角色",
@@ -1082,10 +1090,7 @@
 			"wxlinkage/",
 			"Add",
 			"multiimage",
-			"application/x-shockwave-flash",
-			"object",
-			"KindEditor_SWFUpload_0",
-			"allowFileManager"
+			"application/x-shockwave-flash"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1093,6 +1098,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"<form action=\"javascript:ajax_submit();\" method=\"post\" id=\"form_ajax\">",
 			"xycms/",
 			"{{ $sites['static']}}",
 			"xycms/",
@@ -1241,6 +1247,26 @@
 		"selected_items":
 		[
 			[
+				"com.js",
+				"public\\statics\\admin\\js\\com.js"
+			],
+			[
+				"usercon",
+				"app\\Http\\Controllers\\Admin\\UserController.php"
+			],
+			[
+				"member/in",
+				"resources\\views\\admin\\member\\index.blade.php"
+			],
+			[
+				"group/ed",
+				"resources\\views\\admin\\group\\edit.blade.php"
+			],
+			[
+				"reset",
+				"public\\statics\\admin\\css\\reset.scss"
+			],
+			[
 				"reset.scss",
 				"public\\statics\\admin\\css\\reset.scss"
 			],
@@ -1269,20 +1295,12 @@
 				"resources\\views\\admin\\index.blade.php"
 			],
 			[
-				"com.js",
-				"public\\statics\\admin\\js\\com.js"
-			],
-			[
 				"menu/edit.b",
 				"resources\\views\\admin\\menu\\edit.blade.php"
 			],
 			[
 				"menu/add",
 				"resources\\views\\admin\\menu\\add.blade.php"
-			],
-			[
-				"reset",
-				"public\\statics\\admin\\css\\reset.scss"
 			],
 			[
 				"menu/in",
@@ -1739,18 +1757,6 @@
 			[
 				"admin/user/add",
 				"resources\\views\\admin\\user\\add.blade.php"
-			],
-			[
-				"type/add",
-				"resources\\views\\admin\\type\\add.blade.php"
-			],
-			[
-				"update/edit",
-				"resources\\views\\admin\\update\\edit.blade.php"
-			],
-			[
-				"update/ad",
-				"resources\\views\\admin\\update\\add.blade.php"
 			]
 		],
 		"width": 0.0

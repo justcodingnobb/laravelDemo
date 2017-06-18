@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="{{ url('/xycmf/role/edit',['id'=>$info->id]) }}" method="post" id="form_ajax">
     {{ csrf_field() }}
     <div class="form-group">
 		<label for="name">
@@ -20,6 +20,7 @@
 			禁用</label>
 	</div>
 	@endif
+
 	<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <div onclick='ajax_submit_form("form_ajax","{{ url('/xycmf/role/edit',['id'=>$info->id]) }}")' name="dosubmit" class="btn btn-info">提交</div>

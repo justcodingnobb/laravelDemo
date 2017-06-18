@@ -18,6 +18,13 @@ $(function(){
 		return;
 	});
 });
+/*
+阻止默认的提交，使用ajax提交
+ */
+function ajax_submit()
+{
+	$("div[name='dosubmit']").trigger('click');
+}
 //导航高亮
 function highlight_subnav(url){
     $('.left_list').find('a[href="'+url+'"]').addClass('active').closest('li').addClass('active');

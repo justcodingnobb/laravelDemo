@@ -43,7 +43,7 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('user-edit'))
-				<a href="{{ url('/xycmf/user/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xycmf/user/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 			</td>
 		</tr>

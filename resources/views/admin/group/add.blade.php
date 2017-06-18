@@ -1,25 +1,12 @@
-@extends('admin.right')
-
-@section('content')
-<form action="" class="pure-form pure-form-stacked" method="post">
-	{{ csrf_field() }}
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
+    {{ csrf_field() }}
 	<div class="form-group">
 		<label for="name">会员组名称：<span class="color-red">*</span></label>
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<input type="text" name="data[name]" class="form-control" value="{{ old('data.name') }}">
-			</div>
-		</div>
-		@if ($errors->has('data.name'))
-	        <span class="help-block">
-	        	{{ $errors->first('data.name') }}
-	        </span>
-	    @endif
+		<input type="text" name="data[name]" class="form-control" value="{{ old('data.name') }}">
 	</div>
 
-	<div class="btn-group mt10">
-        <button type="reset" name="reset" class="btn btn-warning">重填</button>
-        <button type="submit" name="dosubmit" class="btn btn-info">提交</button>
+	<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <div onclick='ajax_submit_form("form_ajax","{{ url('/xycmf/group/add') }}")' name="dosubmit" class="btn btn-info">提交</div>
     </div>
 </form>
-@endsection
