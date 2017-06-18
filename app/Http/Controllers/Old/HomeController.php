@@ -66,7 +66,7 @@ class HomeController extends BaseController
         return view($this->theme.'.post',compact('info','aside_name'));
     }
 
-     public function database()
+    public function database()
     {
         /*
         * 插入用户

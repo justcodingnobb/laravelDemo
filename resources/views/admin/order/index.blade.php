@@ -65,7 +65,7 @@
     	<a href="{{ url('/xyshop/order/ziti',['id'=>$o->id]) }}" class="btn btn-sm btn-warning confirm">已自提</a>
 		@endif
 		@if(App::make('com')->ifCan('order-ship') && $o->ziti == 0 && $o->shipstatus == 0)
-    	<a href="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" class="btn btn-sm btn-success">发货</a>
+		<div data-url="{{ url('/xyshop/order/ship',['id'=>$o->id]) }}" data-title="发货" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-success btn_modal">发货</div>
 		@endif
 		@endif
     	</td>

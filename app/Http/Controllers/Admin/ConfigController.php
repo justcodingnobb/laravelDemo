@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Config;
-use Illuminate\Http\Request;
 use Cache;
+use Illuminate\Http\Request;
 
-class ConfigController extends Controller
+class ConfigController extends BaseController
 {
     public function index(Request $req)
     {
@@ -21,6 +22,6 @@ class ConfigController extends Controller
     	Config::where('id',1)->update($data);
     	// 更新缓存
     	Cache::forever('config',$data);
-    	return back()->with('message','更新成功');
+    	return $this->ajaxReturn(1,'更新成功');
     }
 }

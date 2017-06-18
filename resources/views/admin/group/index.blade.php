@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('group-add'))
 @section('rmenu')
-	<a href="{{ url('/xyshop/group/add') }}" class="btn btn-info">添加用户组</a>
+	<div data-url="{{ url('/xyshop/group/add') }}" data-title="添加用户组" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加用户组</div>
 @endsection
 @endif
 
@@ -26,7 +26,7 @@
 			<td class="text-success">{{ $m->discount }}%</td>
 			<td>
 				@if(App::make('com')->ifCan('group-edit'))
-				<a href="{{ url('/xyshop/group/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xyshop/group/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('group-del'))
 				<a href="{{ url('/xyshop/group/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

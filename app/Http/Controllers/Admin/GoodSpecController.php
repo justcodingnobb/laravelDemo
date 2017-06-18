@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\GoodAttrRequest;
 use App\Http\Requests\GoodSpecRequest;
 use App\Models\GoodAttr;
@@ -12,7 +12,7 @@ use App\Models\GoodSpecItem;
 use DB;
 use Illuminate\Http\Request;
 
-class GoodSpecController extends Controller
+class GoodSpecController extends BaseController
 {
     public function getIndex(Request $res)
     {
@@ -49,20 +49,18 @@ class GoodSpecController extends Controller
         	}
         	GoodSpecItem::insert($goodspecitem);
         });
-        return redirect('xyshop/goodspec/index')->with('message', '添加商品规格成功！');
+        return $this->ajaxReturn(1,'添加商品规格成功！',url('/xyshop/goodspec/index'));
     }
     // 修改商品规格
     public function getEdit(Request $req,$id)
     {
         $title = '修改商品规格';
-        // 拼接返回用的url参数
-        $ref = session('backurl');
         $info = GoodSpec::with('goodspecitem')->findOrFail($id);
         // 商品分类
         $all = GoodCate::where('status',1)->orderBy('sort','asc')->get();
         $tree = app('com')->toTree($all,'0');
         $treeHtml = app('com')->toTreeSelect($tree,0);
-        return view('admin.goodspec.edit',compact('title','info','ref','id','treeHtml'));
+        return view('admin.goodspec.edit',compact('title','info','id','treeHtml'));
     }
     public function postEdit(GoodSpecRequest $req,$id)
     {
@@ -81,8 +79,7 @@ class GoodSpecController extends Controller
         	}
         	GoodSpecItem::insert($goodspecitem);
         });
-
-        return redirect($req->input('ref'))->with('message', '修改商品规格成功！');
+        return $this->ajaxReturn(1,'修改商品规格成功！');
     }
     // 删除商品规格
     public function getDel($id)

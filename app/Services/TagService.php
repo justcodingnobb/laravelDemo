@@ -59,8 +59,8 @@ class TagService
         $good = Good::where(function($q)use($cid){
                 if($cid != '')
                 {
-                    $cid = explode(',',$cid);
-                    $q->whereIn('cate_id',$cid);
+                    $cid = GoodCate::where('id',$cid)->value('arrchildid');
+                    $q->whereIn('cate_id',explode(',',$cid));
                 }
             })->where('status',1)->select('id','title','thumb','price','isxs','isxl','tags')->limit($num)->orderBy($order,$desc)->get();
         return $good;

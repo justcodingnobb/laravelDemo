@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('menu-add'))
 @section('rmenu')
-	<a href="{{ url('/xyshop/menu/add') }}" class="btn btn-info">添加菜单</a>
+	<div data-url="{{ url('/xyshop/menu/add') }}" data-title="添加菜单" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加菜单</div>
 @endsection
 @endif
 

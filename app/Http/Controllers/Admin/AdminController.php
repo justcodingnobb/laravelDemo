@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\Admin;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests;
 use App\Http\Requests\AdminRequest;
+use App\Models\Admin;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\Section;
@@ -14,7 +14,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     /**
      * 构造函数
@@ -67,11 +67,11 @@ class AdminController extends Controller
             RoleUser::insert($rdata);
             // 没出错，提交事务
             DB::commit();
-            return redirect('xyshop/admin/index')->with('message', '添加用户成功！');
+            return $this->ajaxReturn(1,'添加用户成功！',url('/xyshop/admin/index'));
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();
-            return back()->with('message','添加失败，请稍后再试！');
+            return $this->ajaxReturn(0,'添加失败，请稍后再试！');
         }
     }
     // 修改资料
@@ -79,7 +79,6 @@ class AdminController extends Controller
     {
         $title = '修改资料';
         // 拼接返回用的url参数
-        $ref = '?page='.old('page');
         $rolelist = $this->role->where('status',1)->get();
         $section = Section::where('status',1)->get();
         $info = $this->admin->with('role')->findOrFail($uid);
@@ -87,7 +86,7 @@ class AdminController extends Controller
         foreach ($info->role as $r) {
             $rids .= "'".$r->id."',";
         }
-        return view('admin.user.edit',compact('title','info','rolelist','ref','section','rids'));
+        return view('admin.user.edit',compact('title','info','rolelist','section','rids'));
     }
     public function postEdit(AdminRequest $request,$uid)
     {
@@ -108,11 +107,11 @@ class AdminController extends Controller
             RoleUser::insert($rdata);
             // 没出错，提交事务
             DB::commit();
-            return redirect('xyshop/admin/index'.$request->input('ref'))->with('message', '修改用户成功！');
+            return $this->ajaxReturn(1,'修改用户成功！');
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();
-            return back()->with('message','添加失败，请稍后再试！');
+            return $this->ajaxReturn(0,'修改失败，请稍后再试！');
         }
     }
     // 修改密码
@@ -120,14 +119,13 @@ class AdminController extends Controller
     {
         $title = '修改密码';
         // 拼接返回用的url参数
-        $ref = '?page='.old('page');
         $info = $this->admin->findOrFail($uid);
-        return view('admin.user.pwd',compact('title','info','ref'));
+        return view('admin.user.pwd',compact('title','info'));
     }
     public function postPwd(AdminRequest $request,$uid)
     {
         $this->admin->where('id',$uid)->update(['password'=>encrypt($request->data['password'])]);
-        return redirect('xyshop/admin/index'.$request->input('ref'))->with('message', '修改密码成功！');
+        return $this->ajaxReturn(1,'修改密码成功！');
     }
     // 删除用户
     public function getDel($uid)

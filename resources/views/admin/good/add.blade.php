@@ -34,6 +34,16 @@
             </div>
 
             <div class="form-group">
+                <label for="pronums">商品编码：<span class="color-red">*</span></label>
+                <input type="text" name="data[pronums]" value="{{ old('data.pronums') }}" class="form-control">
+                @if ($errors->has('data.pronums'))
+                    <span class="help-block">
+                        {{ $errors->first('data.pronums') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
                 <label for="keyword">关键字：不超过255字符</label>
                 <textarea name="data[keyword]" class="form-control">{{ old('data.keyword') }}</textarea> 
                 @if ($errors->has('data.keyword'))

@@ -8,7 +8,7 @@ use App\Models\Consume;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function getIndex(Request $res)
     {
@@ -32,10 +32,8 @@ class UserController extends Controller
     public function getEdit($id)
     {
         $title = '修改会员';
-        // 拼接返回用的url参数
-        $ref = session('backurl');
         $info = User::findOrFail($id);
-        return view('admin.member.edit',compact('title','info','ref'));
+        return view('admin.member.edit',compact('title','info'));
     }
     public function postEdit(Request $req,$id)
     {
@@ -43,32 +41,32 @@ class UserController extends Controller
         $rpwd = $req->input('data.repassword');
         if(strlen($pwd) < 6)
         {
-            return back()->with('message', '密码长度小于6位');
+            return $this->ajaxReturn(0,'密码长度小于6位');
         }
         if ($pwd == $rpwd) {
             User::where('id',$id)->update(['password'=>encrypt($rpwd)]);
-            return redirect($req->input('ref'))->with('message', '修改会员成功！');
+            return $this->ajaxReturn(1,'改密码成功！');
         }
         else
         {
-            return back()->with('message', '两次密码不相同，请重新输入');
+            return $this->ajaxReturn(0,'两次密码不相同，请重新输入');
         }
     }
     // 会员充值
     public function getChong($id = '')
     {
         $title = '会员充值';
-        return view('admin.member.chong',compact('title'));
+        return view('admin.member.chong',compact('title','id'));
     }
     public function postChong(Request $req,$id = '')
     {
         $pwd = $req->pwd;
         if ($pwd != decrypt(session('user')->password)) {
-            return back()->with('message','密码错误');
+            return $this->ajaxReturn(0,'密码错误！');
         }
         $money = $req->input('data.user_money');
         User::where('id',$id)->increment('user_money',$money);
-        return back()->with('message', '会员充值成功！');
+        return $this->ajaxReturn(1,'会员充值成功！');
     }
     // 消费记录
     public function getConsume($id = '')

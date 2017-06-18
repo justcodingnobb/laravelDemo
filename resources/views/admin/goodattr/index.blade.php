@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('goodattr-add'))
 @section('rmenu')
-	<a href="{{ url('/xyshop/goodattr/add') }}" class="btn btn-info">添加商品属性</a>
+	<div data-url="{{ url('/xyshop/goodattr/add') }}" data-title="添加商品属性" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加商品属性</div>
 @endsection
 @endif
 
@@ -26,7 +26,7 @@
 			<td>{{ $m->value }}</td>
 			<td>
 				@if(App::make('com')->ifCan('goodattr-edit'))
-				<a href="{{ url('/xyshop/goodattr/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xyshop/goodattr/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('goodattr-del'))
 				<a href="{{ url('/xyshop/goodattr/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

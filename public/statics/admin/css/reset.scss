@@ -53,6 +53,8 @@ ul {list-style:none;}
         margin-bottom: 20px;
     }
 }
+.dn {display: none;}
+#success_alert ,#error_alert {position: fixed; top:30%; left:50%; width:30%; margin-left: -15%; text-align:center;z-index: 10000;}
 /* 主体框架 */
 body.box {overflow: hidden; padding: 0;}
 .mainbox { height: auto; min-height: 100%; position: relative;}
@@ -201,71 +203,18 @@ thead {font-weight: bold;}
     margin-left: 10px;
     margin-top: 5px;
 }
-.pages {
-    a {
-        display: block;
-    }
+.pages {float: right;
+    .pagination {margin:0;}
+}
+.page-submit {
+    width:3em;
+    margin-left: 4px;
     height: 2em;
-    line-height: 2em;
-    float: right;
-    span{
-        padding:0 0.8em;
-        background: #eee;
-        margin-left: 2px;
-    }
-    .pagination {
-        float: right;
-        margin:0;
-        span {
-            padding:0 0.8em;
-            background: none;
-            margin-left: 0;
-            display: block;
-        }
-        li {
-            background: #eee;
-            margin-left: 2px;
-            float: left;
-            cursor: pointer;
-            a {
-                display: block;
-                padding:0 0.8em;
-            }
-            &.active,&:hover {
-                color:#FFF;
-                background-color: #4BBD00;
-                a,span {
-                    color:#FFF;
-                    background-color: #4BBD00;
-                    border:#4BBD00 solid 1px;
-                    display: block;
-                    padding:0 0.8em;
-                }
-            }
-        }
-    }
-    .page-submit {
-        width:3em;
-        margin-left: 4px;
-        height: 2em;
-        border:#CCCCCC solid 1px;
-        border-radius: 3px;
-    }
+    border:#CCCCCC solid 1px;
+    border-radius: 3px;
 }
 .alert_top {
-    background-color: #DFF0D8;
-    border-radius: 5px;
-    height: 3em;
-    line-height: 3em;
-    text-indent: 1em;
-    color:#3C763D;
-    margin-bottom: 15px;
-    position: fixed;
-    top:0px;
-    width:100%;
-    margin:0;
-    padding:0;
-    z-index: 1000;
+    position: fixed; top:30%; left:50%; width:30%; margin-left: -15%; text-align:center;z-index: 10000;
 }
 .list_group_user {
     margin-bottom: 15px;

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\GroupRequest;
 use App\Models\Group;
 use App\Models\User;
-use Illuminate\Http\Request;
-use DB;
 use Cache;
+use DB;
+use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class GroupController extends BaseController
 {
     public function getIndex(Request $res)
     {
@@ -31,22 +31,21 @@ class GroupController extends Controller
         $data = $request->input('data');
         Group::create($data);
         $this->groupCache();
-        return redirect('xyshop/group/index')->with('message', '添加用户组成功！');
+        return $this->ajaxReturn(1,'添加用户组成功！',url('/xyshop/group/index'));
     }
     // 修改用户组
     public function getEdit($id)
     {
         $title = '修改用户组';
         // 拼接返回用的url参数
-        $ref = session('backurl');
         $info = Group::findOrFail($id);
-        return view('admin.group.edit',compact('title','info','ref'));
+        return view('admin.group.edit',compact('title','info'));
     }
     public function postEdit(GroupRequest $request,$id)
     {
         Group::where('id',$id)->update($request->input('data'));
         $this->groupCache();
-        return redirect($request->input('ref'))->with('message', '修改用户组成功！');
+        return $this->ajaxReturn(1,'修改用户组成功！');
     }
     // 删除用户组
     public function getDel($id)

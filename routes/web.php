@@ -12,7 +12,7 @@
 */
 
 Route::get('/vue','VueController@index');
-
+Route::get('/import','VueController@database');
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');

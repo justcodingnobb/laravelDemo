@@ -136,11 +136,11 @@
 			@endforeach
 		</div>
 	</div>
-	<!-- 新鲜蔬菜 -->
+	<!-- 地方特产 -->
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
-			@foreach(app('tag')->good(1127,6) as $l)
+			@foreach(app('tag')->good(1180,6) as $l)
 			<div class="col-xs-6 pr">
 				<!-- 如果有标签，加标签 -->
 				@if($l->tags != '')
@@ -173,11 +173,11 @@
 			@endforeach
 		</div>
 	</div>
-	<!-- 新鲜水果 -->
+	<!-- 新品推荐 -->
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
-			@foreach(app('tag')->good(1126,6) as $l)
+			@foreach($news as $l)
 			<div class="col-xs-6 pr">
 				@if($l->tags != '')
 				<div class="ps good_tag">
@@ -208,8 +208,8 @@
 			@endforeach
 		</div>
 	</div>
-	
-	<!-- 酒水饮料 -->
+	<!-- 
+	酒水饮料
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
@@ -244,7 +244,7 @@
 			@endforeach
 		</div>
 	</div>
-	<!-- 大地农场系列	修改 -->
+	大地农场系列	修改
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
@@ -278,6 +278,6 @@
 			</div>
 			@endforeach
 		</div>
-	</div>
+	</div> -->
 @include('default.foot')
 @endsection

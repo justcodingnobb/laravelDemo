@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\ShipRequest;
 use App\Models\GoodAttr;
 use App\Models\GoodFormat;
@@ -12,7 +12,7 @@ use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     public function index(Request $req)
     {
@@ -75,14 +75,13 @@ class OrderController extends Controller
     public function getShip($id = '')
     {
     	$title = '快递单号';
-    	$ref = session('backurl');
-    	return view('admin.order.ship',compact('title','id','ref'));
+    	return view('admin.order.ship',compact('title','id'));
     }
     public function postShip(Request $req,$id = '')
     {
     	// 更新为已经发货
     	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark'),'ship_at'=>date('Y-m-d H:i:s')]);
-    	return redirect($req->ref)->with('message','发货成功！');
+        return $this->ajaxReturn(1,'发货成功！');
     }
     /*// 退货
     public function getTui($id = '')

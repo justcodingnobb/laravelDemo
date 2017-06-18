@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GoodAttrRequest;
 use App\Models\GoodAttr;
 use App\Models\GoodCate;
 use Illuminate\Http\Request;
 
-class GoodAttrController extends Controller
+class GoodAttrController extends BaseController
 {
     public function getIndex(Request $res)
     {
@@ -35,27 +36,25 @@ class GoodAttrController extends Controller
         $data = $req->input('data');
         $data['value'] = app('com')->trim_value($data['value']);
         GoodAttr::create($data);
-        return redirect('xyshop/goodattr/index')->with('message', '添加商品属性成功！');
+        return $this->ajaxReturn(1,'添加商品属性成功！',url('/xyshop/goodattr/index'));
     }
     // 修改商品属性
     public function getEdit(Request $req,$id)
     {
         $title = '修改商品属性';
-        // 拼接返回用的url参数
-        $ref = session('backurl');
         $info = GoodAttr::findOrFail($id);
         // 商品分类
         $all = GoodCate::where('status',1)->orderBy('sort','asc')->get();
         $tree = app('com')->toTree($all,'0');
         $treeHtml = app('com')->toTreeSelect($tree,0);
-        return view('admin.goodattr.edit',compact('title','info','ref','id','treeHtml'));
+        return view('admin.goodattr.edit',compact('title','info','id','treeHtml'));
     }
     public function postEdit(GoodAttrRequest $req,$id)
     {
         $data = $req->input('data');
         $data['value'] = app('com')->trim_value($data['value']);
         GoodAttr::where('id',$id)->update($data);
-        return redirect($req->input('ref'))->with('message', '修改商品属性成功！');
+        return $this->ajaxReturn(1,'修改商品属性成功！');
     }
     // 删除商品属性
     public function getDel($id)

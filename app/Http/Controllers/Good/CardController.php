@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\CardRequest;
 use App\Models\Card;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Excel;
+use Illuminate\Http\Request;
 
-class CardController extends Controller
+class CardController extends BaseController
 {
     // 查列表
     public function getIndex(Request $req)
@@ -84,7 +84,7 @@ class CardController extends Controller
     		$tmp[] = ['card_id'=>app('com')->random(8),'card_pwd'=>app('com')->random(6),'price'=>$prices,'created_at'=>$date,'updated_at'=>$date];
     	}
     	Card::insert($tmp);
-    	return back()->with('message','处理成功！');
+    	return $this->ajaxReturn(1,'添加成功！');
     }
     // 批量删除
     public function postAlldel(Request $req)

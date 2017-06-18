@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\SectionRequest;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
-class SectionController extends Controller
+class SectionController extends BaseController
 {
     public function getIndex(Request $res)
     {
@@ -29,7 +29,7 @@ class SectionController extends Controller
     {
         $data = $request->input('data');
         Section::create($data);
-        return redirect('xyshop/section/index')->with('message', '添加部门成功！');
+        return $this->ajaxReturn(1,'添加部门成功！',url('/xyshop/section/index'));
     }
     // 修改部门
     public function getEdit($id)
@@ -43,7 +43,7 @@ class SectionController extends Controller
     public function postEdit(SectionRequest $request,$id)
     {
         Section::where('id',$id)->update($request->input('data'));
-        return redirect('xyshop/section/index'.$request->input('ref'))->with('message', '修改部门成功！');
+        return $this->ajaxReturn(1,'修改部门成功！');
     }
     // 删除部门
     public function getDel($id)

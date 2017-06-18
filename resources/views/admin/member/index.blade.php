@@ -47,10 +47,10 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('user-chong'))
-				<div data-url="{{ url('/xyshop/user/chong',$m->id) }}" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-success btn_chong">充值</div>
+				<div data-url="{{ url('/xyshop/user/chong',$m->id) }}" data-title="充值" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-success btn_modal">充值</div>
 				@endif
 				@if(App::make('com')->ifCan('user-edit'))
-				<a href="{{ url('/xyshop/user/edit',$m->id) }}" class="btn btn-sm btn-info">改密码</a>
+				<div data-url="{{ url('/xyshop/user/edit',$m->id) }}" data-title="改密码" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">改密码</div>
 				@endif
 				@if(App::make('com')->ifCan('user-consume'))
 				<a href="{{ url('/xyshop/user/consume',$m->id) }}" class="btn btn-sm btn-warning">消费记录</a>
@@ -67,33 +67,4 @@
 <div class="pages clearfix">
 {!! $list->links() !!}
 </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">充值</h4>
-      </div>
-      <div class="modal-body">
-      	<iframe src="" id="hd_good" frameborder="0" width="100%" height="600" scrolling="auto" allowtransparency="true"></iframe>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-	$(function(){
-		// 满赠
-		$('.btn_chong').click(function(){
-			var url = $(this).attr('data-url');
-			$('#hd_good').attr("src",url);
-			return;
-		});
-	})
-</script>
 @endsection

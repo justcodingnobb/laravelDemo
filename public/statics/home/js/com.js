@@ -171,6 +171,16 @@ $(function(){
 		// 	}
 		// });
 	});
+	/*
+	图片高度调整
+	 */
+	$(document).ready(function(){
+		var imgs = $('.good_thumb img').first();
+		var imgW = imgs.width();
+		imgW = imgW == 0 ? '400' : imgW;
+		var imgH = imgW == 400 ? 'auto' : imgW;
+		$('.good_thumb img').width(imgW).height(imgH);
+	});
 })
 // 更新总价
 function total_prices()

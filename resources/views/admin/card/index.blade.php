@@ -2,7 +2,7 @@
 
 @section('rmenu')
 @if(App::make('com')->ifCan('card-add'))
-<div data-url="{{ url('/xyshop/card/add') }}" class="btn btn-info btn_tuan" data-toggle="modal" data-target="#myModal">添加新卡</div>
+<div data-url="{{ url('/xyshop/card/add') }}" data-title="添加新卡" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加新卡</div>
 @endif
 
 @endsection
@@ -70,7 +70,6 @@
 <div class="pull-left" data-toggle="buttons">
 	<label class="btn btn-primary">
 	<input type="checkbox" autocomplete="off" class="checkall">全选</label>
-
 	@if(App::make('com')->ifCan('card-del'))
 	<span class="btn btn-danger btn_del">批量删除</span>
 	@endif
@@ -79,23 +78,6 @@
 {!! $list->appends(['status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel_1"></h4>
-      </div>
-      <div class="modal-body" id="hd_good">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button class="btn btn-primary" id="dosubmit">提交</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
@@ -122,18 +104,6 @@
 					$(".check_s").eq(s).prop("checked",false);
 				});
 			}
-		});
-
-		$("#dosubmit").on('click',function(){
-			$('#form-tuan').submit();
-		});
-
-		// 添加新卡
-		$('.btn_tuan').click(function(){
-			var url = $(this).attr('data-url');
-			$('#hd_good').load(url);
-			$('#myModalLabel_1').text('添加新卡');
-			return;
 		});
 	});
 	laydate({

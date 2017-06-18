@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('section-add'))
 @section('rmenu')
-	<a href="{{ url('/xyshop/section/add') }}" class="btn btn-info">添加部门</a>
+	<div data-url="{{ url('/xyshop/section/add') }}" data-title="添加部门" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加部门</div>
 @endsection
 @endif
 
@@ -30,7 +30,7 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('section-edit'))
-				<a href="{{ url('/xyshop/section/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xyshop/section/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('section-del'))
 				<a href="{{ url('/xyshop/section/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

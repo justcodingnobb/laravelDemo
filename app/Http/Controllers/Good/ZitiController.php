@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\ZitiRequest;
 use App\Models\Type;
 use App\Models\Zitidian;
 use Illuminate\Http\Request;
 
-class ZitiController extends Controller
+class ZitiController extends BaseController
 {
     /**
      * 自提管理
@@ -48,22 +48,21 @@ class ZitiController extends Controller
     {
     	$data = $req->input('data');
     	Zitidian::create($data);
-    	return redirect('xyshop/ziti/index')->with('message','添加成功！');
+        return $this->ajaxReturn(1,'添加成功！',url('/xyshop/ziti/index'));
     }
     // 修改自提
     public function getEdit($id = '')
     {
     	$title = '修改自提';
-    	$ref = session('backurl');
         $area = Type::where('parentid',4)->get();
     	$info = Zitidian::findOrFail($id);
-    	return view('admin.ziti.edit',compact('title','info','ref','area'));
+    	return view('admin.ziti.edit',compact('title','info','area'));
     }
     public function postEdit(ZitiRequest $req,$id = '')
     {
     	$data = $req->input('data');
     	Zitidian::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+        return $this->ajaxReturn(1,'修改成功！');
     }
     // 删除
     public function getDel($id = '')

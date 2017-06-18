@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\TuiRequest;
 use App\Models\Order;
 use App\Models\ReturnGood;
 use App\Models\User;
 use DB;
-use Illuminate\Http\Request;
 use Excel;
+use Illuminate\Http\Request;
 
-class RetrunGoodController extends Controller
+class RetrunGoodController extends BaseController
 {
     // 查列表
     public function getIndex(Request $req)
@@ -98,6 +98,6 @@ class RetrunGoodController extends Controller
                 app('com')->consume($order->user_id,$order->order_id,$order->total_prices,'退货返现',1);
             }
         });
-    	return back()->with('message','处理成功！');
+        return $this->ajaxReturn(1,'处理成功！');
     }
 }

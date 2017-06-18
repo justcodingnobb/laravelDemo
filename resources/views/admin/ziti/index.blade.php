@@ -2,7 +2,7 @@
 
 @section('rmenu')
 @if(App::make('com')->ifCan('ziti-add'))
-	<a href="{{ url('/xyshop/ziti/add') }}" class="btn btn-info">添加自提点</a>
+	<div data-url="{{ url('/xyshop/ziti/add') }}" data-title="添加自提点" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加自提点</div>
 @endif
 
 @endsection
@@ -61,7 +61,7 @@
 			<td>{{ $a->updated_at }}</td>
 			<td>
 				@if(App::make('com')->ifCan('ziti-edit'))
-				<a href="{{ url('/xyshop/ziti/edit',$a->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xyshop/ziti/edit',$a->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('ziti-del'))
 				<a href="{{ url('/xyshop/ziti/del',$a->id) }}" class="confirm btn btn-sm btn-danger">删除</a>
@@ -80,7 +80,6 @@
 	@if(App::make('com')->ifCan('ziti-sort'))
 	<span class="btn btn-warning btn_sort">排序</span>
 	@endif
-
 </div>
 <!-- 分页，appends是给分页添加参数 -->
 <div class="pages clearfix">

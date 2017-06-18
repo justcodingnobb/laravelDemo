@@ -2,7 +2,7 @@
 
 @if(App::make('com')->ifCan('goodspec-add'))
 @section('rmenu')
-	<a href="{{ url('/xyshop/goodspec/add') }}" class="btn btn-info">添加商品规格</a>
+	<div data-url="{{ url('/xyshop/goodspec/add') }}" data-title="添加商品规格" data-toggle='modal' data-target='#myModal' class="btn btn-info btn_modal">添加商品规格</div>
 @endsection
 @endif
 
@@ -30,7 +30,7 @@
 			</td>
 			<td>
 				@if(App::make('com')->ifCan('goodspec-edit'))
-				<a href="{{ url('/xyshop/goodspec/edit',$m->id) }}" class="btn btn-sm btn-info">修改</a>
+				<div data-url="{{ url('/xyshop/goodspec/edit',$m->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 				@if(App::make('com')->ifCan('goodspec-del'))
 				<a href="{{ url('/xyshop/goodspec/del',$m->id) }}" class="confirm btn btn-sm btn-danger">删除</a>

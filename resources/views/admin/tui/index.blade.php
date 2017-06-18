@@ -62,7 +62,7 @@
 			<td>{{ $a->return_time }}</td>
 			<td>
 				@if(App::make('com')->ifCan('returngood-status') && $a->status == 0)
-				<div data-url="{{ url('/xyshop/returngood/status',$a->id) }}" class="btn btn-sm btn-primary btn_tuan" data-toggle="modal" data-target="#myModal">处理</div>
+				<div data-url="{{ url('/xyshop/returngood/status',$a->id) }}" data-title="修改" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">修改</div>
 				@endif
 			</td>
 		</tr>
@@ -75,40 +75,11 @@
 {!! $list->appends(['status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel_1"></h4>
-      </div>
-      <div class="modal-body" id="hd_good">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button class="btn btn-primary" id="dosubmit">提交</button>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
 		$('.btn_order').click(function(){
 			$('.form_excel').attr('action',"{{ url('/xyshop/returngood/excel') }}").submit();
-		});
-
-		$("#dosubmit").on('click',function(){
-			$('#form-tuan').submit();
-		});
-
-		// 处理退货请求
-		$('.btn_tuan').click(function(){
-			var url = $(this).attr('data-url');
-			$('#hd_good').load(url);
-			$('#myModalLabel_1').text('处理退货请求');
-			return;
 		});
 	});
 	laydate({
