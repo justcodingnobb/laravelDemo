@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="area">区域：<span class="color-red">*</span></label>

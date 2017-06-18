@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
 	{{ csrf_field() }}
 	<input type="hidden" name="oldparentid" value="{{ $info->parentid }}">
 	<div class="form-group">

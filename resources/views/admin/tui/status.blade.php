@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
     <div class="form-group">
         <textarea name="data[shopmark]" placeholder="处理意见" class="form-control" rows="4"></textarea>

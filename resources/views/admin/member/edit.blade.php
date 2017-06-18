@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
 	<div class="form-group">
         <label for="password">密码：<span class="color-red">*</span>6位及以上</label>

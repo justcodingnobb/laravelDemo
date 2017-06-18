@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="prices">金额：<span class="color-red">*</span>数字，每张多少钱</label>

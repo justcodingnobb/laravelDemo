@@ -22,6 +22,13 @@ $(function(){
 function highlight_subnav(url){
     $('.left_list').find('a[href="'+url+'"]').addClass('active').closest('li').addClass('active');
 }
+/*
+阻止默认的提交，使用ajax提交
+ */
+function ajax_submit()
+{
+	$("div[name='dosubmit']").trigger('click');
+}
 var before_request = 1; // 标识上一次ajax 请求有没回来, 没有回来不再进行下一次
 // 通用表单提交
 function ajax_submit_form(form_id,submit_url)

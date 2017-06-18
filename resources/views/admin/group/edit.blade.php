@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
 	<div class="form-group">
 		<label for="name">会员组名称：<span class="color-red">*</span></label>

@@ -1,4 +1,4 @@
-<form action="" method="post" id="form_ajax">
+<form action="javascript:ajax_submit();" method="post" id="form_ajax">
     {{ csrf_field() }}
 	<div class="form-group">
     	<input type="hidden" name="data[order_id]" value="{{ $id }}">
