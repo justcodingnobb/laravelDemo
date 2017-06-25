@@ -15,14 +15,14 @@
 	        <div id="carousel" class="carousel slide" data-ride="carousel">
 	            <!-- Indicators -->
 	            <ol class="carousel-indicators">
-	            @foreach(app('tag')->ad(2,5) as $k => $c)
+	            @foreach(app('tag')->ad(2,6) as $k => $c)
 	            <li data-target="#carousel" data-slide-to="{{ $k }}" class="@if($k == 0) active @endif"></li>
 	            @endforeach
 	            </ol>
 
 	            <!-- Wrapper for slides -->
 	            <div class="carousel-inner" role="listbox">
-	            @foreach(app('tag')->ad(2,5) as $k => $c)
+	            @foreach(app('tag')->ad(2,6) as $k => $c)
 	            <div class="item @if($k == 0) active @endif">
 	              <a href="{{ $c->url }}"><img src="{{ $c->thumb }}" alt="{{ $c->title }}"></a>
 	            </div>
@@ -48,20 +48,20 @@
     </header>
 	
 	<!-- 搜索 -->
-<!-- 	<section class="search container-fluid overh">
-	<form action="#" class="form-inline mt10">
-		<div class="row">
-			<div class="col-xs-9">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search something">
+	<section class="search container-fluid overh">
+		<form action="{{ url('search') }}" class="form-inline mt10">
+			<div class="row">
+				<div class="col-xs-9">
+					<div class="form-group">
+						<input type="text" name="q" class="form-control" placeholder="搜索...">
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<button type="submit" class="btn btn-success">搜索</button>
 				</div>
 			</div>
-			<div class="col-xs-3">
-				<button type="submit" class="btn btn-success">Search</button>
-			</div>
-		</div>
-	</form>
-</section> -->
+		</form>
+	</section>
 	<!-- 主分类 -->
 	<section class="container-fluid mt10 goodcate">
 		@foreach(app('tag')->goodcate(0,8) as $c)
@@ -85,6 +85,7 @@
 		</div>
 	</div>
 	<!-- 活动 -->
+	@if(app('tag')->hd(5)->count() > 0)
 	<div class="container-fluid mt10">
 		<h2 class="h_t mb10"><a href="{{ url('shop/hd/index') }}"><img src="{{ $sites['static']}}home/images/hd_t.png" class="img-responsive" alt=""></a></h2>
 		@foreach(app('tag')->hd(5) as $l)
@@ -97,7 +98,9 @@
 		</div>
 		@endforeach
 	</div>
+	@endif
 	<!-- 团 -->
+	@if(app('tag')->tuan(6)->count() > 0)
 	<div class="container-fluid cate_list">
 		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/tuan_t.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
@@ -136,19 +139,19 @@
 			@endforeach
 		</div>
 	</div>
-	<!-- 地方特产 -->
+	@endif
+	<!-- 分类里的 -->
+	@foreach($cates as $c)
 	<div class="container-fluid cate_list">
-		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
+		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_{{ $c->id }}.png" class="img-responsive" alt=""></h2>
 		<div class="row good_list">
-			@foreach(app('tag')->good(1180,6) as $l)
+			@foreach(app('tag')->good($c->id,6) as $l)
 			<div class="col-xs-6 pr">
-				<!-- 如果有标签，加标签 -->
 				@if($l->tags != '')
 				<div class="ps good_tag">
 					{{ $l->tags }}
 				</div>
 				@endif
-
 				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
 				<div class="good_info clearfix">
 					<h4 class="good_title text-nowarp">
@@ -172,112 +175,10 @@
 			</div>
 			@endforeach
 		</div>
+		<a href="{{ url('/shop/goodlist',['id'=>$c->id]) }}" class="home_more mb10 text-center mt10 btn btn-default center-block">查看更多 >></a>
 	</div>
-	<!-- 新品推荐 -->
-	<div class="container-fluid cate_list">
-		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
-		<div class="row good_list">
-			@foreach($news as $l)
-			<div class="col-xs-6 pr">
-				@if($l->tags != '')
-				<div class="ps good_tag">
-					{{ $l->tags }}
-				</div>
-				@endif
-				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
-				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp">
-					@if($l->isxs)
-					<span class="tags">限时</span>
-					@endif
-					@if($l->isxl)
-					<span class="tags">限量</span>
-					@endif
-					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
-					<div class="row">
-						<div class="col-xs-9">
-							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-						</div>
-						<div class="col-xs-3">
-							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			@endforeach
-		</div>
-	</div>
-	<!-- 
-	酒水饮料
-	<div class="container-fluid cate_list">
-		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
-		<div class="row good_list">
-			@foreach(app('tag')->good(1129,6) as $l)
-			<div class="col-xs-6 pr">
-				@if($l->tags != '')
-				<div class="ps good_tag">
-					{{ $l->tags }}
-				</div>
-				@endif
-				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
-				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp">
-					@if($l->isxs)
-					<span class="tags">限时</span>
-					@endif
-					@if($l->isxl)
-					<span class="tags">限量</span>
-					@endif
-					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
-					<div class="row">
-						<div class="col-xs-9">
-							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-						</div>
-						<div class="col-xs-3">
-							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			@endforeach
-		</div>
-	</div>
-	大地农场系列	修改
-	<div class="container-fluid cate_list">
-		<h2 class="h_t"><img src="{{ $sites['static']}}home/images/t_2.png" class="img-responsive" alt=""></h2>
-		<div class="row good_list">
-			@foreach(app('tag')->good(1188,6) as $l)
-			<div class="col-xs-6 pr">
-				@if($l->tags != '')
-				<div class="ps good_tag">
-					{{ $l->tags }}
-				</div>
-				@endif
-				<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="good_thumb"><img src="{{ $l->thumb }}" class="img-responsive" alt=""></a>
-				<div class="good_info clearfix">
-					<h4 class="good_title text-nowarp">
-					@if($l->isxs)
-					<span class="tags">限时</span>
-					@endif
-					@if($l->isxl)
-					<span class="tags">限量</span>
-					@endif
-					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
-					<div class="row">
-						<div class="col-xs-9">
-							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
-						</div>
-						<div class="col-xs-3">
-							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			@endforeach
-		</div>
-	</div> -->
+	@endforeach
+	
+	
 @include('default.foot')
 @endsection

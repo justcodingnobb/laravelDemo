@@ -16,6 +16,7 @@ Route::get('/import','VueController@database');
 // 
 Route::group([],function(){
     Route::get('/','HomeController@index');
+    Route::get('/search','HomeController@getSearch');
     Route::get('/cate/{url}','HomeController@getCate');
     Route::get('/post/{url}','HomeController@getPost');
 });
@@ -182,6 +183,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     // 今日消费情况
     Route::get('index/consume', 'Admin\IndexController@getConsume');
     Route::get('index/excel_consume', 'Admin\IndexController@getExcelConsume');
+    // 导出库房用表
+    Route::get('index/excel_store', 'Admin\IndexController@getExcelStore');
     // 导出出货量
     Route::get('index/excel_goods', 'Admin\IndexController@getExcelGoods');
     // 导出待打印订单
@@ -251,6 +254,10 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::post('order/ship/{id}', 'Admin\OrderController@postShip');
     // Route::get('order/tui/{id}', 'Admin\OrderController@getTui');
     Route::get('order/ziti/{id}', 'Admin\OrderController@getZiti');
+    // 批量自提、发货、关闭
+    Route::post('order/allship', 'Admin\OrderController@postAllShip');
+    Route::post('order/allziti', 'Admin\OrderController@postAllZiti');
+    Route::post('order/allclose', 'Admin\OrderController@postAllDel');
     // 支付配置
     Route::get('pay/index', 'Admin\PayController@getIndex');
     Route::get('pay/edit/{id}', 'Admin\PayController@getEdit');
@@ -286,9 +293,12 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::post('good/add/{id?}', 'Admin\GoodController@postAdd');
     Route::get('good/edit/{id?}', 'Admin\GoodController@getEdit');
     Route::post('good/edit/{id?}', 'Admin\GoodController@postEdit');
-    Route::get('good/del/{id?}', 'Admin\GoodController@getDel');
+    Route::get('good/del/{id}/{status}', 'Admin\GoodController@getDel');
     Route::post('good/sort', 'Admin\GoodController@postSort');
     Route::post('good/alldel', 'Admin\GoodController@postAlldel');
+    // 商品批量上下架
+    Route::post('good/allstatus', 'Admin\GoodController@postAllStatus');
+    Route::post('good/allcate', 'Admin\GoodController@postAllCate');
     // 取商品分类及规格
     Route::get('good/goodattr', 'Admin\GoodController@getGoodAttr');
     Route::get('good/goodspec', 'Admin\GoodController@getGoodSpec');
@@ -302,6 +312,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('good/editformat/{id}', 'Admin\GoodController@getEditformat');
     Route::post('good/editformat/{id}', 'Admin\GoodController@postEditformat');
     Route::get('good/delformat/{id}', 'Admin\GoodController@getDelformat');
+
+    
     // Index
     Route::get('index/index', 'Admin\IndexController@getIndex');
     Route::get('index/main', 'Admin\IndexController@getMain');
@@ -397,6 +409,8 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('user/status/{id}/{status}', 'Admin\UserController@getStatus');
     Route::get('user/chong/{id}', 'Admin\UserController@getChong');
     Route::post('user/chong/{id}', 'Admin\UserController@postChong');
+    Route::get('user/consumed/{id}', 'Admin\UserController@getConsumed');
+    Route::post('user/consumed/{id}', 'Admin\UserController@postConsumed');
     Route::get('user/consume/{id}', 'Admin\UserController@getConsume');
     Route::get('user/address/{id}', 'Admin\UserController@getAddress');
 });

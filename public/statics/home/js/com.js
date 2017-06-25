@@ -16,6 +16,7 @@ $(function(){
 				cartnum();
 		    	// 更新end
 		    	$('.total_price_' + gid).html(new_prices.toFixed(2));
+		    	$('.total_price_' + gid).attr('data-price',new_prices.toFixed(2));
 		    	that.val(d);
 		    	total_prices();
 			}
@@ -24,6 +25,22 @@ $(function(){
 				alert('修改数量失败，请稍后再试！');
 			}
 		});
+		return;
+	});
+	// 点选择及取消时改价格
+	$('.selected_checkbox').change(function(event) {
+		var that = $(this);
+    	var gid = that.attr('data-gid');
+		// 判断是选中还是没选中
+		if (that.is(':checked')) {
+			var price = $('.total_price_' + gid).attr('data-price');
+			$('.total_price_' + gid).text(price);
+		}
+		else
+		{
+    		$('.total_price_' + gid).text('0');
+		}
+    	total_prices();
 		return;
 	});
 	/*打开添加购物车*/
@@ -123,14 +140,8 @@ $(function(){
 		var num = $('input[name="num"]').val();
 		var spec_key = $('.spec_key').val();
 		var gp = $('input[name="gp"]').val();
-		var aid = $('input[name="aid"]').val();
-		var ziti = $('input[name="ziti"]').val();
 		var token = $('input[name="_token"]').val();
 		var url = $('.form_addcart').attr('data-firstorder');
-		if (aid == 0 && ziti == 0) {
-			alert('请选择送货地址！');
-			return;
-		}
 		$('.form_addcart').attr('action',url).submit();
 	});
 	// 直接购买数量

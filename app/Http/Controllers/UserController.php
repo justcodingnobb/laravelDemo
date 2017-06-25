@@ -56,9 +56,13 @@ class UserController extends BaseController
 	    }
 	    else
 	    {
-		    if ($pwd != decrypt($user->password)) {
-		    	return back()->with('message','密码不正确！');
-		    }
+		    try {
+                if ($pwd != decrypt($user->password)) {
+                    return back()->with('message','密码不正确！');
+                }       
+            } catch (\Exception $e) {
+                return back()->with('message','密码不正确！');
+            }
             User::where('id',$user->id)->update(['last_ip'=>$res->ip(),'last_time'=>Carbon::now()]);
             // 计算折扣比例
             /*$points = session('member')->points;

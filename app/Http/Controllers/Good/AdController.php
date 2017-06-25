@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Good;
 
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Good\AdRequest;
 use App\Models\Ad;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
-class AdController extends Controller
+class AdController extends BaseController
 {
     /**
      * 广告管理
@@ -63,7 +64,7 @@ class AdController extends Controller
     {
     	$data = $req->input('data');
     	Ad::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+        return $this->ajaxReturn(1,'修改成功！',$req->ref);
     }
     // 删除
     public function getDel($id = '')

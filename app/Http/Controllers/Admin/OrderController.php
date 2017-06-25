@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\ShipRequest;
+use App\Models\Address;
 use App\Models\GoodAttr;
 use App\Models\GoodFormat;
 use App\Models\Order;
+use App\Models\OrderGood;
 use App\Models\Ship;
 use App\Models\User;
 use DB;
@@ -18,19 +20,27 @@ class OrderController extends BaseController
     {
     	$title = '订单列表';
         $q = $req->input('q');
+        $key = $req->input('key');
     	$starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
         $shipstatus = $req->input('shipstatus');
+        $paystatus = $req->input('paystatus');
         $ziti = $req->input('ziti');
         // 找出订单
         $orders = Order::with(['good'=>function($q){
                     $q->select('id','user_id','order_id','good_id','good_title','good_spec_key','good_spec_name','nums','price','total_prices');
                 },'address','zitidian'])->where(function($r) use($q){
                     if ($q != '') {
-                        // 查出来用户ID
-                        $uid = User::where('nickname','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
-                        $r->whereIn('user_id',$uid);
+                        // 查出来收货人ID
+                        $uid = Address::where('people','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
+                        $r->whereIn('address_id',$uid);
+                    }
+                })->where(function($r) use($key){
+                    if ($key != '') {
+                        // 查出来订单ID
+                        $oids = OrderGood::where('good_title','like',"%$key%")->pluck('order_id')->toArray();
+                        $r->whereIn('id',$oids)->orWhere('order_id','like',"%$key%");
                     }
                 })->where(function($q) use($starttime){
 	                if ($starttime != '') {
@@ -48,6 +58,10 @@ class OrderController extends BaseController
                     if ($shipstatus != '') {
                         $q->where('shipstatus',$shipstatus);
                     }
+                })->where(function($q) use($paystatus){
+                    if ($paystatus != '') {
+                        $q->where('paystatus',$paystatus);
+                    }
                 })->where(function($q) use($ziti){
                     if ($ziti != 0 && $ziti != '') {
                         $q->where('ziti','!=',0);
@@ -57,7 +71,28 @@ class OrderController extends BaseController
                         $q->where('ziti',0);
                     }
                 })->where('status',1)->orderBy('id','desc')->paginate(10);
-        return view('admin.order.index',compact('title','orders','q','status','starttime','endtime','ziti'));
+        return view('admin.order.index',compact('title','orders','q','status','starttime','endtime','ziti','paystatus','shipstatus','key'));
+    }
+    // 批量发货
+    public function postAllShip(Request $req)
+    {
+        $sids = $req->sids;
+        Order::whereIn('id',$sids)->update(['shipstatus'=>1,'ship_at'=>date('Y-m-d H:i:s')]);
+        return back()->with('message','发货成功！');
+    }
+    // 批量自提
+    public function postAllZiti(Request $req)
+    {
+        $sids = $req->sids;
+        Order::whereIn('id',$sids)->update(['orderstatus'=>2]);
+        return back()->with('message','设置自提成功！');
+    }
+    // 批量关闭
+    public function postAllDel(Request $req)
+    {
+        $sids = $req->sids;
+        Order::whereIn('id',$sids)->update(['orderstatus'=>0]);
+        return back()->with('message','关闭成功！');
     }
     // 关闭
     public function getDel($id = '')

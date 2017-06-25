@@ -18,21 +18,35 @@ class RetrunGoodController extends BaseController
     {
     	$title = '退货管理';
         // 搜索关键字
+        $q = $req->input('q');
+        $key = $req->input('key');
         $starttime = $req->input('starttime');
         $endtime = $req->input('endtime');
         $status = $req->input('status');
 		$list = ReturnGood::with(['user'=>function($q){
-				$q->select('id','nickname','username');
-			}])->where(function($q) use($starttime,$endtime){
-                if ($starttime != '' && $endtime != '') {
-                    $q->where('starttime','>=',$starttime)->where('starttime','<=',$endtime);
-                }
-            })->where(function($q) use($status){
-                if ($status != '') {
-                    $q->where('status',$status);
-                }
-            })->where('del',1)->orderBy('id','desc')->paginate(15);
-    	return view('admin.tui.index',compact('title','list','starttime','endtime','status'));
+    				$q->select('id','nickname','username');
+    			},'order'=>function($q){
+                    $q->select('id','order_id');
+                }])->where(function($r) use($q){
+                    if ($q != '') {
+                        // 查出来用户ID
+                        $uid = User::where('nickname','like',"%$q%")->orWhere('phone','like',"%$q%")->pluck('id')->toArray();
+                        $r->whereIn('user_id',$uid);
+                    }
+                })->where(function($q) use($starttime,$endtime){
+                    if ($starttime != '' && $endtime != '') {
+                        $q->where('created_at','>=',$starttime)->where('created_at','<=',$endtime);
+                    }
+                })->where(function($q) use($key){
+                    if ($key != '') {
+                        $q->where('good_title','like',"%$key%");
+                    }
+                })->where(function($q) use($status){
+                    if ($status != '') {
+                        $q->where('status',$status);
+                    }
+                })->where('del',1)->orderBy('id','desc')->paginate(15);
+    	return view('admin.tui.index',compact('title','list','starttime','endtime','status','q','key'));
     }
     // 导出
     public function getExcel(Request $req)

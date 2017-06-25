@@ -16,6 +16,8 @@ use App\Models\GoodSpec;
 use App\Models\GoodSpecItem;
 use App\Models\GoodSpecPrice;
 use App\Models\GoodsAttr;
+use App\Models\HdGood;
+use App\Models\Tuan;
 use App\Models\Type;
 use DB;
 use Illuminate\Http\Request;
@@ -41,7 +43,8 @@ class GoodController extends Controller
     	$cate = App::make('com')->toTreeSelect($tree);
 		$list = Good::where(function($q) use($cate_id){
                 if ($cate_id != '') {
-                    $q->where('cate_id',$cate_id);
+                    $ids = GoodCate::where('id',$cate_id)->value('arrchildid');
+                    $q->whereIn('cate_id',explode(',',$ids));
                 }
             })->where(function($q) use($key){
                 if ($key != '') {
@@ -60,7 +63,18 @@ class GoodController extends Controller
                     $q->where('status',$status);
                 }
             })->orderBy('id','desc')->paginate(15);
-    	return view('admin.good.index',compact('title','list','cate','cate_id','key','starttime','endtime','status'));
+        $count = Good::where(function($q) use($cate_id){if ($cate_id != '') {
+                    $q->where('cate_id',$cate_id);
+                }})->where(function($q) use($key){if ($key != '') {
+                    $q->where('title','like','%'.$key.'%');
+                }})->where(function($q) use($starttime){if ($starttime != '') {
+                    $q->where('created_at','>',$starttime);
+                }})->where(function($q) use($endtime){if ($endtime != '') {
+                    $q->where('created_at','<',$endtime);
+                }})->where(function($q) use($status){if ($status != '') {
+                    $q->where('status',$status);
+                }})->count();
+    	return view('admin.good.index',compact('title','list','cate','cate_id','key','starttime','endtime','status','count'));
     }
 
     /**
@@ -171,12 +185,12 @@ class GoodController extends Controller
                 if ($v->good_spec_name != '' && isset($good_spec_names[$v->good_spec_name])) {
                     $price = $good_spec_names[$v->good_spec_name]['price'];
                     $total_prices = $v->nums * $price;
-                    Cart::where('good_id',$v->good_id)->where('good_spec_name',$v->good_spec_name)->update(['price'=>$price,'total_prices'=>$total_prices]);
+                    Cart::where('good_id',$v->good_id)->where('good_spec_name',$v->good_spec_name)->update(['good_title'=>$data['title'],'price'=>$price,'total_prices'=>$total_prices]);
                 }
                 else
                 {
                     $total_prices = $v->nums * $data['price'];
-                    Cart::where('good_id',$v->good_id)->update(['price'=>$data['price'],'total_prices'=>$total_prices]);
+                    Cart::where('good_id',$v->good_id)->update(['good_title'=>$data['title'],'price'=>$data['price'],'total_prices'=>$total_prices]);
                 }
             }
             // 没出错，提交事务
@@ -190,10 +204,15 @@ class GoodController extends Controller
         }
     }
     // 删除
-    public function getDel($id)
+    public function getDel(Request $req,$id = '',$status = '')
     {
-    	Good::where('id',$id)->update(['status'=>0]);
-    	return back()->with('message','下架成功！');
+    	Good::where('id',$id)->update(['status'=>$status]);
+        /*Good::where('id',$id)->delete();
+        // 活动
+        HdGood::where('good_id',$id)->delete();
+        // 团购
+        Tuan::where('good_id',$id)->delete();*/
+    	return back()->with('message','删除成功！');
     }
 
     // 排序
@@ -213,6 +232,58 @@ class GoodController extends Controller
             return back()->with('message', '请先选择商品！');
         }
     }
+    // 批量上下架
+    public function postAllStatus(Request $req)
+    {
+        $ids = $req->input('sids');
+        $status = $req->status;
+        // 是数组更新数据，不是返回
+        if(is_array($ids))
+        {
+            // 开启事务
+            DB::beginTransaction();
+            try {
+                Good::whereIn('id',$ids)->update(['status'=>$status]);
+                // 没出错，提交事务
+                DB::commit();
+                return back()->with('message', '批量操作完成！');
+            } catch (Exception $e) {
+                // 出错回滚
+                DB::rollBack();
+                return back()->with('message','操作失败，请稍后再试！');
+            }
+        }
+        else
+        {
+            return back()->with('message','请选择商品！');
+        }
+    }
+    // 批量修改分类
+    public function postAllCate(Request $req)
+    {
+        $ids = $req->input('sids');
+        $cate_id = $req->cate_id;
+        // 是数组更新数据，不是返回
+        if(is_array($ids))
+        {
+            // 开启事务
+            DB::beginTransaction();
+            try {
+                Good::whereIn('id',$ids)->update(['cate_id'=>$cate_id]);
+                // 没出错，提交事务
+                DB::commit();
+                return back()->with('message', '批量修改分类完成！');
+            } catch (Exception $e) {
+                // 出错回滚
+                DB::rollBack();
+                return back()->with('message','操作失败，请稍后再试！');
+            }
+        }
+        else
+        {
+            return back()->with('message','请选择商品！');
+        }
+    }
     // 批量删除
     public function postAlldel(Request $req)
     {
@@ -223,7 +294,12 @@ class GoodController extends Controller
             // 开启事务
             DB::beginTransaction();
             try {
-                Good::whereIn('id',$ids)->update(['status'=>0]);
+                // Good::whereIn('id',$ids)->update(['status'=>0]);
+                Good::whereIn('id',$ids)->delete();
+                // 活动
+                HdGood::whereIn('good_id',$ids)->delete();
+                // 团购
+                Tuan::whereIn('good_id',$ids)->delete();
                 // 没出错，提交事务
                 DB::commit();
                 return back()->with('message', '批量删除完成！');

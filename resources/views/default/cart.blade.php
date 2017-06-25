@@ -63,7 +63,7 @@
 				<div class="mt5 good_cart_list_div">
 					<div class="checkbox pull-left mr10" style="padding-top: 30px;">
 					<label>
-					    <input type="checkbox" name="cid[]" @if($l->selected) checked="checked"@endif value="{{ $l->id }}">
+					    <input type="checkbox" class="selected_checkbox" data-gid="{{ $l->id }}" name="cid[]" @if($l->selected) checked="checked"@endif value="{{ $l->id }}">
 				  	</label>
 					</div>
 					<div class="media">
@@ -80,7 +80,7 @@
 									<!-- 价格 -->
 									<p class="fs12">价格：<span class="good_prices color_l">￥{{ $l->price }}</span></p>
 
-									<span class="one_total_price hidden total_price_{{ $l->id }}">{{ $l->total_prices }}</span>
+									<span class="one_total_price hidden total_price_{{ $l->id }}" data-price="{{ $l->total_prices }}">{{ $l->total_prices }}</span>
 								</div>
 
 								<div class="col-xs-6">

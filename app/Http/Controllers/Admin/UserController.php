@@ -52,6 +52,24 @@ class UserController extends BaseController
             return $this->ajaxReturn(0,'两次密码不相同，请重新输入');
         }
     }
+    // 会员消费
+    public function getConsumed($id = '')
+    {
+        $title = '会员消费';
+        return view('admin.member.consumed',compact('title','id'));
+    }
+    public function postConsumed(Request $req,$id = '')
+    {
+        $pwd = $req->pwd;
+        if ($pwd != decrypt(session('user')->password)) {
+            return $this->ajaxReturn(0,'密码错误！');
+        }
+        $money = $req->input('data.user_money');
+        User::where('id',$id)->decrement('user_money',$money);
+        // 消费记录
+        app('com')->consume($id,'0',$money,'后台消费',0);
+        return $this->ajaxReturn(1,'会员消费成功！');
+    }
     // 会员充值
     public function getChong($id = '')
     {
@@ -66,6 +84,8 @@ class UserController extends BaseController
         }
         $money = $req->input('data.user_money');
         User::where('id',$id)->increment('user_money',$money);
+        // 消费记录
+        app('com')->consume($id,0,$money,'后台充值',1);
         return $this->ajaxReturn(1,'会员充值成功！');
     }
     // 消费记录

@@ -30,6 +30,7 @@ class GoodRequest extends FormRequest
             'data.describe'  => 'max:255',
             'data.thumb'  => 'max:255',
             'data.content'  => 'required',
+            'data.price'  => 'required|numeric|min:0.01',
         ];
     }
     
@@ -42,6 +43,7 @@ class GoodRequest extends FormRequest
             'data.describe'  => '描述',
             'data.thumb'  => '缩略图',
             'data.content'  => '内容',
+            'data.price'  => '价格',
         ];
     }
 }

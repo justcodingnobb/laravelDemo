@@ -138,7 +138,7 @@ class GoodCateController extends Controller
         // 开启事务
         DB::beginTransaction();
         try {
-            GoodCate::whereIn('id',$childs)->update(['status'=>0]);
+            GoodCate::whereIn('id',$childs)->delete();
             // 没出错，提交事务
             DB::commit();
             return back()->with('message', '删除成功！');

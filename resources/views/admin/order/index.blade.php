@@ -12,6 +12,11 @@
 			<option value="1">正常</option>
 			<option value="2">完成</option>
 		</select>
+		<select name="paystatus" id="paystatus" class="form-control">
+			<option value="">付款状态</option>
+			<option value="0">未付</option>
+			<option value="1">已付</option>
+		</select>
 		<select name="shipstatus" id="shipstatus" class="form-control">
 			<option value="">发货状态</option>
 			<option value="0">未发货</option>
@@ -22,10 +27,9 @@
 			<option value="0">不自提</option>
 			<option value="1">自提</option>
 		</select>
-		开始时间：
-		<input name="starttime" class="form-control" id="laydate">
-		结束时间：
-		<input name="endtime" class="form-control" id="laydate2">
+		<input name="starttime" placeholder="开始时间" class="form-control" id="laydate">
+		<input name="endtime" placeholder="结束时间" class="form-control" id="laydate2">
+		<input type="text" name="key" value="{{ $key }}" class="form-control" placeholder="请输入商品名或订单号查询..">
 		<button class="btn btn-sm btn-info">查找</button>
 	</form>
 
@@ -35,8 +39,11 @@
 	</form>
 </div>
 
+<form action="" class="form-inline form_submit" method="get">
+{{ csrf_field() }}
 <table class="table table-bordered table-striped mt15">
 	<tr>
+		<th width="30"><input type="checkbox" class="checkall"></th>
 		<th>订单状态</th>
 		<th>操作</th>
 		<th>订单号</th>
@@ -47,6 +54,7 @@
 	</tr>
 	@foreach($orders as $o)
     <tr>
+    	<td><input type="checkbox" name="sids[]" class="check_s" value="{{ $o->id }}"></td>
     	<td>
             @if($o->orderstatus == 0)
         	<span class="color-red">已关闭</span>
@@ -88,7 +96,7 @@
         <td>{{ $o->created_at }}</td>
     </tr>
 	<tr>
-		<td colspan="7">
+		<td colspan="8">
 			@if(!is_null($o->address))
     		<p>{{ $o->address->area }}{{ $o->address->address }}</p>
     		<p>{{ $o->address->people }}：{{ $o->address->phone }}</p>
@@ -100,7 +108,7 @@
     	</td>
 	</tr>
     <tr>
-    	<td colspan="7">
+    	<td colspan="8">
     		<table class="table">
     		@foreach($o->good as $l)
 			<tr>
@@ -121,19 +129,76 @@
     </tr>
 		@endforeach
 </table>
+</form>
+<div class="pull-left" data-toggle="buttons">
+	<label class="btn btn-primary">
+	<input type="checkbox" autocomplete="off" class="checkall">全选</label>
+	@if(App::make('com')->ifCan('order-allship'))
+	<span class="btn btn-success btn_allship">发货</span>
+	@endif
+	@if(App::make('com')->ifCan('order-allziti'))
+	<span class="btn btn-info btn_ziti">自提</span>
+	@endif
+	@if(App::make('com')->ifCan('order-allclose'))
+	<span class="btn btn-warning btn_close">关闭</span>
+	@endif
+</div>
 <div class="pages">
-    {!! $orders->appends(['q'=>$q,'status'=>$status,'ziti'=>$ziti,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
+    {!! $orders->appends(['q'=>$q,'key'=>$key,'status'=>$status,'ziti'=>$ziti,'starttime'=>$starttime,'endtime'=>$endtime,'shipstatus'=>$shipstatus,'paystatus'=>$paystatus])->links() !!}
 </div>
 <script>
+	$(function(){
+		// 确实要全都关闭吗
+		$('.btn_close').click(function(){
+			if (!confirm("确实要全都关闭吗?")){
+				return false;
+			}else{
+				$('.form_submit').attr({'action':"{{ url('/xyshop/order/allclose') }}",'method':'post'}).submit();
+			}
+		});
+		// 确实要全都发货吗
+		$('.btn_allship').click(function(){
+			if (!confirm("确实要全都发货吗?")){
+				return false;
+			}else{
+				$('.form_submit').attr({'action':"{{ url('/xyshop/order/allship') }}",'method':'post'}).submit();
+			}
+		});
+		// 确实要全都自提吗
+		$('.btn_ziti').click(function(){
+			if (!confirm("确实要全都自提吗?")){
+				return false;
+			}else{
+				$('.form_submit').attr({'action':"{{ url('/xyshop/order/allziti') }}",'method':'post'}).submit();
+			}
+		});
+		// 全选
+		$(".checkall").bind('change',function(){
+			if($(this).is(":checked"))
+			{
+				$(".check_s").each(function(s){
+					$(".check_s").eq(s).prop("checked",true);
+				});
+			}
+			else
+			{
+				$(".check_s").each(function(s){
+					$(".check_s").eq(s).prop("checked",false);
+				});
+			}
+		});
+	})
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
-        istime: true,
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+        istime:true,
+        istoday: true, //是否显示今天
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
+        istoday: true, //是否显示今天
     });
 </script>
 @endsection

@@ -34,8 +34,8 @@
 					<span class="tags">限量</span>
 					@endif
 					<a href="{{ url('shop/good',['id'=>$info->id]) }}">{{ $info->title }}</a></h1>
-				<!-- <h4>{{ $info->pronums }}</h4> -->
-				<form action="{{ url('shop/addcart') }}" data-firstorder="{{ url('shop/firstorder') }}" class="form_addcart">
+					<!-- <h4>{{ $info->pronums }}</h4> -->
+					<form action="{{ url('shop/addcart') }}" data-firstorder="{{ url('shop/firstorder') }}" class="form_addcart">
 					{{ csrf_field() }}
 					
 					<!-- 规格开始 -->
@@ -239,33 +239,6 @@
       <div class="modal-body">
       	<h4>{{ $info->title }}</h4>
       	<div class="clearfix mt10">
-      		<!-- 送货地址 -->
-      		<h3 class="h3_cate"><span class="h3_cate_span">配送至</span></h3>
-      		<ul class="mt10">
-      			@foreach($address as $y)
-      			<li class="radio ship_li">
-      			  <label>
-      			    <input type="radio" name="addid" value="{{ $y->id }}" class="addressid">
-      			    <h4>{{ $y->people }}：{{ $y->phone }}</h4>
-      			    <p class="mt5">{{ $y->address }}</p>
-      			  </label>
-      			</li>
-      			@endforeach
-      		</ul>
-      		
-      		<!-- 自提点 -->
-      		<h3 class="h3_cate"><span class="h3_cate_span">自提</span></h3>
-      		<ul class="mt10">
-      			@foreach($ziti as $y)
-      			<li class="radio ship_li">
-      			  <label>
-      			    <input type="radio" name="ziti" value="{{ $y->id }}" class="zitiid">
-      			    <h4>{{ $y->address }}</h4>
-      			    <p class="mt5">{{ $y->phone }}</p>
-      			  </label>
-      			</li>
-      			@endforeach
-      		</ul>
 	      	<!-- 数量 -->
 	        <div class="cart_nums clearfix pull-left">
 	        	<div class="pull-left">数量：</div>

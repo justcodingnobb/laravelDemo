@@ -38,10 +38,12 @@
 	<thead>
 		<tr class="success">
 			<th width="30"><input type="checkbox" class="checkall"></th>
-			<th>排序</th>
+			<th width="80">排序</th>
 			<th width="50">ID</th>
 			<th>标题</th>
 			<th width="100">分类</th>
+			<th width="100">价格</th>
+			<th width="100">库存</th>
 			<th width="80">状态</th>
 			<th width="180">修改时间</th>
 			<th width="280">操作</th>
@@ -54,6 +56,7 @@
 			<td><input type="text" min="0" name="sort[{{$a->id}}]" value="{{ $a->sort }}" class="form-control input-listorder"></td>
 			<td>{{ $a->id }}</td>
 			<td>
+				<img src="{{ $a->thumb }}" width="100" height="auto" class="img-responsive pull-left img-rounded mr10" alt="">
 				@if($a->tags == '')
 				<span class="text-danger">{{ $a->tags }}</span>
 				@endif
@@ -65,7 +68,9 @@
 				@endif
 				{{ $a->title }}
 			</td>
-			<td>{{ cache('goodcateCache')[$a->cate_id]['name'] }}</td>
+			<td>@if(isset(cache('goodcateCache')[$a->cate_id])){{ cache('goodcateCache')[$a->cate_id]['name'] }}@endif</td>
+			<td>￥{{ $a->price }}</td>
+			<td>{{ $a->store }}</td>
 			<td>
 				@if($a->status == 1)
 				<span class="color-green">在售</span>
@@ -84,11 +89,12 @@
 				@if(App::make('com')->ifCan('tuan-add'))
 				<div data-url="{{ url('/xyshop/tuan/add',['id'=>$a->id]) }}" class="btn btn-sm btn-primary btn_tuan" data-toggle="modal" data-target="#myModal">团购</div>
 				@endif
-				@if(App::make('com')->ifCan('good-format'))
-				<a href="{{ url('/xyshop/good/format',['id'=>$a->id]) }}" class="btn btn-sm btn-warning">属性</a>
+				<a href="{{ url('/shop/good',['id'=>$a->id]) }}" target="_blank" class="btn btn-sm btn-warning">查看</a>
+				@if(App::make('com')->ifCan('good-del') && $a->status == 0)
+				<a href="{{ url('/xyshop/good/del',['id'=>$a->id,'status'=>1]) }}" class="confirm btn btn-sm btn-danger">上架</a>
 				@endif
-				@if(App::make('com')->ifCan('good-del'))
-				<a href="{{ url('/xyshop/good/del',$a->id) }}" class="confirm btn btn-sm btn-danger">下架</a>
+				@if(App::make('com')->ifCan('good-del') && $a->status == 1)
+				<a href="{{ url('/xyshop/good/del',['id'=>$a->id,'status'=>0]) }}" class="confirm btn btn-sm btn-danger">下架</a>
 				@endif
 			</td>
 		</tr>
@@ -100,12 +106,32 @@
 	<label class="btn btn-primary">
 	<input type="checkbox" autocomplete="off" class="checkall">全选</label>
 	
+	<select name="cate_id" id="catid" class="form-control">
+		<option value="">请选择栏目</option>
+		{!! $cate !!}
+	</select>
+	
+	@if(App::make('com')->ifCan('good-allcate'))
+	<span class="btn btn-info btn_allcate">修改分类</span>
+	@endif
+
+
 	@if(App::make('com')->ifCan('good-sort'))
 	<span class="btn btn-warning btn_sort">排序</span>
 	@endif
 
 	@if(App::make('com')->ifCan('huodong-good'))
 	<span class="btn btn-success btn_huodong" data-toggle="modal" data-target="#myModal_hd">添加到活动</span>
+	@endif
+
+
+	@if(App::make('com')->ifCan('good-allstatus'))
+	<span class="btn btn-info btn_allstatus_1">批量上架</span>
+	@endif
+	<input type="hidden" name="status" class="allstatus">
+
+	@if(App::make('com')->ifCan('good-allstatus'))
+	<span class="btn btn-warning btn_allstatus_2">批量下架</span>
 	@endif
 
 	@if(App::make('com')->ifCan('good-alldel'))
@@ -115,14 +141,8 @@
 </form>
 <!-- 分页，appends是给分页添加参数 -->
 <div class="pages clearfix">
-<div class="pull-right page-div">
-<form action="" class="form-inline" method="get">
-<input type="hidden" name="cate_id" value="{{ $cate_id }}">
-<input type="text" name="page" class="form-control input-listorder">
-<button class="btn btn-info">跳转</button>
-</form>
-</div>
-{!! $list->appends(['cate_id' =>$cate_id,'q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
+	<div class="pull-left mr10 mt5">总共 {{ $count }} 条</div>
+	{!! $list->appends(['cate_id' =>$cate_id,'q'=>$key,'status'=>$status,'starttime'=>$starttime,'endtime'=>$endtime])->links() !!}
 </div>
 
 
@@ -165,6 +185,31 @@
 <!-- 选中当前栏目 -->
 <script>
 	$(function(){
+		// 下、上架
+		$('.btn_allcate').click(function(){
+			if (!confirm("确实要修改分类吗?")){
+				return false;
+			}else{
+				$('.form_submit').attr({'action':"{{ url('/xyshop/good/allcate') }}",'method':'post'}).submit();
+			}
+		});
+		// 下、上架
+		$('.btn_allstatus_2').click(function(){
+			if (!confirm("确实要下架吗?")){
+				return false;
+			}else{
+				$('.allstatus').val('0');
+				$('.form_submit').attr({'action':"{{ url('/xyshop/good/allstatus') }}",'method':'post'}).submit();
+			}
+		});
+		$('.btn_allstatus_1').click(function(){
+			if (!confirm("确实要上架吗?")){
+				return false;
+			}else{
+				$('.allstatus').val('1');
+				$('.form_submit').attr({'action':"{{ url('/xyshop/good/allstatus') }}",'method':'post'}).submit();
+			}
+		});
 
 		$("#dosubmit").on('click',function(){
 			var postData = $('#form-tuan').serializeArray();

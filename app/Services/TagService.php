@@ -54,22 +54,22 @@ class TagService
     }
 
     // 取商品列表
-    public function good($cid = '',$num = 10,$order = 'id',$desc = 'desc')
+    public function good($cid = '',$num = 10)
     {
         $good = Good::where(function($q)use($cid){
                 if($cid != '')
                 {
-                    $cid = GoodCate::where('id',$cid)->value('arrchildid');
+                    $cid = GoodCate::where('id',$cid)->where('status',1)->value('arrchildid');
                     $q->whereIn('cate_id',explode(',',$cid));
                 }
-            })->where('status',1)->select('id','title','thumb','price','isxs','isxl','tags')->limit($num)->orderBy($order,$desc)->get();
+            })->where('status',1)->select('id','title','thumb','price','isxs','isxl','tags')->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
         return $good;
     }
 
     // 取商品分类列表
     public function goodcate($pid = 0,$num = 10)
     {
-        $goodcate = GoodCate::where('parentid',$pid)->select('id','name','sort','thumb')->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
+        $goodcate = GoodCate::where('parentid',$pid)->select('id','name','sort','thumb')->where('status',1)->limit($num)->orderBy('sort','asc')->orderBy('id','desc')->get();
         return $goodcate;
     }
     

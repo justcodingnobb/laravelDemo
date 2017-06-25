@@ -1,7 +1,7 @@
 @extends('admin.right')
 
 @section('content')
-<form action="" class="pure-form pure-form-stacked" method="post">
+<form action="" id="form_ajax" method="post">
     {{ csrf_field() }}
     <!-- 提交返回用的url参数 -->
     <input type="hidden" name="ref" value="{!! $ref !!}">
@@ -78,10 +78,9 @@
     </div>
 
 
-
     <div class="btn-group mt10">
         <button type="reset" name="reset" class="btn btn-warning">重填</button>
-        <button type="submit" name="dosubmit" class="btn btn-info">提交</button>
+        <div onclick='ajax_submit_form("form_ajax","{{ url('/xyshop/ad/edit',['id'=>$info->id]) }}")' name="dosubmit" class="btn btn-info">提交</div>
     </div>
 </form>
 

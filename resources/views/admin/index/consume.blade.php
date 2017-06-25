@@ -12,9 +12,9 @@
 </style>
 
 <div class="todays">
-	<span class="label label-info">今日已收款数：<span class="nums">{{ $today_inc }}</span> 元</span>
-	<span class="label label-warning">今日充值数：<span class="nums">{{ $today_dec }}</span> 元</span>
-	<span class="label label-danger">今日结余：<span class="nums">{{ $today_over }}</span> 元</span>
+	<span class="label label-info">已收款数：<span class="nums">{{ $today_inc }}</span> 元</span>
+	<span class="label label-warning">充值数：<span class="nums">{{ $today_dec }}</span> 元</span>
+	<span class="label label-danger">结余：<span class="nums">{{ $today_over }}</span> 元</span>
 </div>
 
 <div class="todays mt10">
@@ -56,13 +56,15 @@
 	})
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:mm:00', // 分隔符可以任意定义，该例子表示只显示年月
-        istime: true,
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+        istime:true,
+        istoday: true, //是否显示今天
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:mm:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
+        istoday: true, //是否显示今天
     });
 </script>
 

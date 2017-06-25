@@ -47,4 +47,9 @@ class Order extends Model
     {
         return $this->belongsTo('\App\Models\User','user_id','id');
     }
+    // 退货单
+    public function return()
+    {
+        return $this->hasMany('\App\Models\ReturnGood','order_id','id');
+    }
 }

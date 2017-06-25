@@ -124,65 +124,85 @@ class ShopController extends BaseController
         $havyhq = Youhuiquan::where('starttime','<',date('Y-m-d H:i:s'))->where('endtime','>',date('Y-m-d H:i:s'))->where('nums','>',0)->where('status',1)->where('del',1)->orderBy('sort','asc')->orderBy('id','desc')->limit(2)->get();
         
         $info->pid = 0;
-        $address = [];
-        if (session()->has('member')) {
-            // 送货地址
-            $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
-        }
-        // 自提点
-        $ziti = Zitidian::where('status',1)->where('del',1)->orderBy('sort','asc')->get();
-        return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec','ziti','address'));
+        return view($this->theme.'.good',compact('info','goodcomment','havyhq','good_spec_price','filter_spec'));
     }
     // 直接购买
     public function getFirstOrder(Request $req)
     {
-        // 查看有没有在购物车里，有累计数量
-        DB::beginTransaction();
         try {
+            // 先清除一天以上的无用购物车
+            Cart::where('user_id',0)->where('updated_at','<',Carbon::now()->subday())->delete();
+            // 清除完成
             $sid = session()->getId();
             $id = $req->gid;
+            // 规格key
             $spec_key = $req->spec_key;
             $num = $req->num;
-            $price = $req->gp;
             $userid = !is_null(session('member')) ? session('member')->id : 0;
-            $nums = $num;
-            $old_prices = $price * $nums;
-            // 算折扣
-            try {
-                $points = session('member')->points;
-                $discount = Group::where('points','<=',$points)->orderBy('points','desc')->value('discount');
-                if (is_null($discount)) {
-                    $discount = Group::orderBy('points','desc')->value('discount');
+            $price = $req->gp;
+            // 如果用户已经登陆，查以前的购物车
+            if ($userid) {
+                // 查看是否限时，限购
+                $good = Good::findOrFail($id);
+                if ($good->isxs && strtotime($good->endtime) < time()) {
+                    echo '限时抢购，已经结束！';
+                    return;
                 }
-            } catch (\Exception $e) {
-                $discount = 100;
+                // 购物车里有，过往30天订单里有，都算已经购买过
+                if ($good->isxl && (Cart::where('good_id',$id)->where('user_id',$userid)->sum('nums') >= $good->xlnums || OrderGood::where('good_id',$id)->where('user_id',$userid)->where('status',1)->where('created_at','>',Carbon::now()->subday(30))->sum('nums') >= $good->xlnums)) {
+                    echo '限量购买，已购买过了！';
+                    return;
+                }
+                // 当前用户此次登陆添加的
+                $tmp = Cart::where('session_id',$sid)->where('user_id',$userid)->where('good_id',$id)->where('good_spec_key',$spec_key)->orderBy('id','desc')->first();
+                // 如果没有，看以前有没有添加过这类商品
+                if(is_null($tmp))
+                {
+                    $tmp = Cart::where('user_id',$userid)->where('good_id',$id)->where('good_spec_key',$spec_key)->orderBy('id','desc')->first();
+                }
             }
-            $prices = ($old_prices * $discount) / 100;
-            $area = Address::where('id',$req->aid)->value('area');
-            // 创建订单
-            $order_id = app('com')->orderid();
-            $order = ['order_id'=>$order_id,'user_id'=>$userid,'yhq_id'=>'0','yh_price'=>0,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area];
-        
-            $order = Order::create($order);
+            else
+            {
+                echo "请先登陆！";
+                return;
+            }
+/*            // 如果用户已经登陆，查以前的购物车
+            if (session()->has('member')) {
+                
+            }
+            else
+            {
+                $tmp = Cart::where('session_id',$sid)->where('tuan_id',0)->where('good_id',$id)->where('format_id',$formatid)->orderBy('id','desc')->first();
+            }*/
+            // 查看有没有在购物车里，有累计数量
+            if (!is_null($tmp)) {
+                $nums = $num + $tmp->nums;
+            }
+            else
+            {
+                $nums = $num;
+            }
+            $total_prices = $price * $nums;
+            // 规格信息
             $spec_key_name = GoodSpecPrice::where('good_id',$id)->where('key',$spec_key)->value('key_name');
-            $good_title = Good::where('id',$id)->value('title');
-            // 组合order_goods数组
-            $order_goods = ['user_id'=>$userid,'order_id'=>$order->id,'good_id'=>$id,'good_title'=>$good_title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$prices];
-            // 插入
-            OrderGood::create($order_goods);
-            // 没出错，提交事务
-            DB::commit();
-
-            $info = (object)['pid'=>3];
-            $paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
-
-            return view($this->theme.'.addorder',compact('info','order','paylist'));
+            $a = ['session_id'=>$sid,'user_id'=>$userid,'good_id'=>$id,'good_title'=>$good->title,'good_spec_key'=>$spec_key,'good_spec_name'=>$spec_key_name,'nums'=>$nums,'price'=>$price,'total_prices'=>$total_prices,'selected'=>1,'type'=>0];
+            // 查看有没有在购物车里，有累计数量
+            if (!is_null($tmp)) {
+                Cart::where('id',$tmp->id)->update($a);
+            }
+            else
+            {
+                Cart::create($a);
+            }
+            return redirect('/shop/cart');
         } catch (\Exception $e) {
-            // 出错回滚
-            DB::rollBack();
-            // return back()->with('message','添加失败，请稍后再试！');
-            dd($e->getMessage());
+            // echo '添加失败，请稍后再试！';
+            return back()->with('message','购买失败，请稍后再试！');
         }
+        // 找出所有商品来
+        // return back()->with('message','添加购物车成功！');
+        // $info = (object) ['pid'=>0];
+        // return view($this->theme.'.addcart',compact('info'));
     }
     // 购物车
     public function getCart()

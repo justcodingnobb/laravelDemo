@@ -69,6 +69,7 @@ class HuodongController extends Controller
     public function getDel($id = '')
     {
     	Huodong::where('id',$id)->update(['del'=>0]);
+        HdGood::where('hd_id',$id)->delete();
     	return back()->with('message','删除成功！');
     }
     // 取出来所有活动

@@ -15,7 +15,7 @@
 			@endif
 		</div>
 		<div class="col-xs-9">
-			<h4 class="mt20">@if($info->nickname != '') {{ $info->nickname }} @else {{ $info->username }} @endif</h4>
+			<h4 class="mt20">@if($info->nickname != '') {{ $info->nickname }} @else {{ $info->username }} @endif - {{ $info->groupname }}</h4>
 			<p> {{ $info->phone }}</p>
 		</div>
 	</div>

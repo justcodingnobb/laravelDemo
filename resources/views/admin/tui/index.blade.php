@@ -13,10 +13,16 @@
 		</select>
 		开始时间：<input type="text" name="starttime" class="form-control mr10" value="" id="laydate">
 		到：<input type="text" name="endtime" class="form-control" value="" id="laydate2">
+		<input type="text" name="key" value="{{ $key }}" class="form-control" placeholder="请输入商品名查询..">
 		<button class="btn btn-info">查找</button>
 		@if(App::make('com')->ifCan('returngood-excel'))
 		<button class="btn btn-primary btn_order">导出</button>
 		@endif
+	</form>
+
+	<form action="" class="form-inline pull-right" method="get">
+		<input type="text" name="q" value="{{ $q }}" class="form-control" placeholder="请输入手机号或昵称查询..">
+		<button class="btn btn-sm btn-info">搜索</button>
 	</form>
 </div>
 <form action="" class="form-inline form_submit" method="get">
@@ -26,6 +32,7 @@
 		<tr class="success">
 			<th width="50">ID</th>
 			<th width="150">用户</th>
+			<th width="150">订单号</th>
 			<th width="200">商品名</th>
 			<th width="200">备注</th>
 			<th width="200">处理意见</th>
@@ -42,6 +49,7 @@
 		<tr>
 			<td>{{ $a->id }}</td>
 			<td>@if(!is_null($a->user)){{ $a->user->username }}<br />{{ $a->user->nickname }}@endif</td>
+			<td>{{ $a->order->order_id }}</td>
 			<td>
 				{{ $a->good_title }} —— {{ $a->good_spec_name }}
 			</td>
@@ -58,7 +66,7 @@
 				<span class="text-warning">不退货</span>
 				@endif
 			</td>
-			<td>{{ $a->starttime }}</td>
+			<td>{{ $a->created_at }}</td>
 			<td>{{ $a->return_time }}</td>
 			<td>
 				@if(App::make('com')->ifCan('returngood-status') && $a->status == 0)
@@ -84,13 +92,15 @@
 	});
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
-        istime: true,
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+        istime:true,
+        istoday: true, //是否显示今天
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
+        istoday: true, //是否显示今天
     });
 </script>
 @endsection

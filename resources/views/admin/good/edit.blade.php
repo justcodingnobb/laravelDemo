@@ -42,6 +42,96 @@
                 @endif
             </div>
 
+
+            <div class="form-group">
+                <label for="price">价格：<span class="color-red">*</span>数字</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[price]" value="{{ $info->price }}" class="form-control">
+                    </div>
+                </div>
+                @if ($errors->has('data.price'))
+                    <span class="help-block">
+                        {{ $errors->first('data.price') }}
+                    </span>
+                @endif
+            </div>
+
+
+            <div class="form-group">
+                <label for="store">库存：数字</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[store]" value="{{ $info->store }}" class="form-control">
+                    </div>
+                </div>
+                @if ($errors->has('data.store'))
+                    <span class="help-block">
+                        {{ $errors->first('data.store') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="weight">单件重量：数字</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[weight]" value="{{ $info->weight }}" class="form-control">
+                    </div>
+                </div>
+                @if ($errors->has('data.weight'))
+                    <span class="help-block">
+                        {{ $errors->first('data.weight') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="isxs">是否限时抢购：</label>
+                <label class="radio-inline"><input type="radio" name="data[isxs]"@if($info->isxs == 1) checked="checked"@endif class="input-radio" value="1">
+                    启用</label>
+                <label class="radio-inline"><input type="radio" name="data[isxs]"@if($info->isxs == 0) checked="checked"@endif class="input-radio" value="0">禁用</label>
+            </div>
+
+            <div class="form-group">
+                <label for="starttime">开始时间：</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[starttime]" class="form-control" value="{{ $info->starttime }}" id="laydate">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="endtime">结束时间：</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[endtime]" class="form-control" value="{{ $info->endtime }}" id="laydate2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="isxl">是否限量抢购：</label>
+                <label class="radio-inline"><input type="radio" name="data[isxl]"@if($info->isxl == 1) checked="checked"@endif class="input-radio" value="1">
+                    启用</label>
+                <label class="radio-inline"><input type="radio" name="data[isxl]"@if($info->isxl == 0) checked="checked"@endif class="input-radio" value="0">禁用</label>
+            </div>
+            
+            <div class="form-group">
+                <label for="xlnums">限制数量：数字，0为不限制</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" name="data[xlnums]" value="{{ $info->xlnums }}" class="form-control">
+                    </div>
+                </div>
+                @if ($errors->has('data.xlnums'))
+                    <span class="help-block">
+                        {{ $errors->first('data.xlnums') }}
+                    </span>
+                @endif
+            </div>
+
             <div class="form-group">
                 <label for="keyword">关键字：不超过255字符</label>
                 <textarea name="data[keyword]" class="form-control">{{ $info->keyword }}</textarea> 
@@ -92,34 +182,6 @@
     </div>
 
     
-    <div class="form-group">
-        <label for="price">价格：数字</label>
-        <div class="row">
-            <div class="col-xs-2">
-                <input type="text" name="data[price]" value="{{ $info->price }}" class="form-control">
-            </div>
-        </div>
-        @if ($errors->has('data.price'))
-            <span class="help-block">
-                {{ $errors->first('data.price') }}
-            </span>
-        @endif
-    </div>
-
-
-    <div class="form-group">
-        <label for="store">库存：数字</label>
-        <div class="row">
-            <div class="col-xs-1">
-                <input type="text" name="data[store]" value="{{ $info->store }}" class="form-control">
-            </div>
-        </div>
-        @if ($errors->has('data.store'))
-            <span class="help-block">
-                {{ $errors->first('data.store') }}
-            </span>
-        @endif
-    </div>
 
     <!-- 产品规格 -->
     <div id="good_spec" class="form-group">
@@ -129,34 +191,6 @@
     <!-- 产品属性 -->
     <div id="good_attr" class="form-group">
         
-    </div>
-
-    <div class="form-group">
-        <label for="weight">单件重量：数字</label>
-        <div class="row">
-            <div class="col-xs-1">
-                <input type="text" name="data[weight]" value="{{ $info->weight }}" class="form-control">
-            </div>
-        </div>
-        @if ($errors->has('data.weight'))
-            <span class="help-block">
-                {{ $errors->first('data.weight') }}
-            </span>
-        @endif
-    </div>
-
-    <div class="form-group">
-        <label for="sort">排序：</label>
-        <div class="row">
-            <div class="col-xs-1">
-                <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
-            </div>
-        </div>
-        @if ($errors->has('data.sort'))
-            <span class="help-block">
-                {{ $errors->first('data.sort') }}
-            </span>
-        @endif
     </div>
 
     <div class="form-group">
@@ -178,52 +212,20 @@
         @endif
     </div>
 
-
     <div class="form-group">
-        <label for="isxs">是否限时抢购：</label>
-        <label class="radio-inline"><input type="radio" name="data[isxs]"@if($info->isxs == 1) checked="checked"@endif class="input-radio" value="1">
-            启用</label>
-        <label class="radio-inline"><input type="radio" name="data[isxs]"@if($info->isxs == 0) checked="checked"@endif class="input-radio" value="0">禁用</label>
-    </div>
-
-    <div class="form-group">
-        <label for="starttime">开始时间：</label>
-        <div class="row">
-            <div class="col-xs-3">
-                <input type="text" name="data[starttime]" class="form-control" value="{{ $info->starttime }}" id="laydate">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="endtime">结束时间：</label>
-        <div class="row">
-            <div class="col-xs-3">
-                <input type="text" name="data[endtime]" class="form-control" value="{{ $info->endtime }}" id="laydate2">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="isxl">是否限量抢购：</label>
-        <label class="radio-inline"><input type="radio" name="data[isxl]"@if($info->isxl == 1) checked="checked"@endif class="input-radio" value="1">
-            启用</label>
-        <label class="radio-inline"><input type="radio" name="data[isxl]"@if($info->isxl == 0) checked="checked"@endif class="input-radio" value="0">禁用</label>
-    </div>
-    
-    <div class="form-group">
-        <label for="xlnums">限制数量：数字，0为不限制</label>
+        <label for="sort">排序：</label>
         <div class="row">
             <div class="col-xs-1">
-                <input type="text" name="data[xlnums]" value="{{ $info->xlnums }}" class="form-control">
+                <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
             </div>
         </div>
-        @if ($errors->has('data.xlnums'))
+        @if ($errors->has('data.sort'))
             <span class="help-block">
-                {{ $errors->first('data.xlnums') }}
+                {{ $errors->first('data.sort') }}
             </span>
         @endif
     </div>
+
 
     <div class="btn-group mt10">
         <button type="reset" name="reset" class="btn btn-warning">重填</button>

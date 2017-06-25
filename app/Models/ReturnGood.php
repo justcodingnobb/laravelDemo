@@ -40,4 +40,9 @@ class ReturnGood extends Model
     {
         return $this->belongsTo('\App\Models\Good','good_id','id');
     }
+    // 订单
+    public function order()
+    {
+        return $this->belongsTo('\App\Models\Order','order_id','id');
+    }
 }

@@ -14,14 +14,14 @@
 	<thead>
 		<tr class="success">
 			<th width="50">ID</th>
+			<th width="80">会员等级</th>
 			<th width="100">会员名</th>
 			<th width="140">OpenID</th>
-			<th width="120">昵称</th>
-			<th width="220">邮箱</th>
-			<th width="220">电话</th>
+			<th width="100">昵称</th>
+			<th width="200">邮箱</th>
+			<th width="200">电话</th>
 			<th>余额</th>
 			<th>积分</th>
-			<th>最后登陆时间</th>
 			<th>修改状态</th>
 			<th>操作</th>
 		</tr>
@@ -30,6 +30,7 @@
 	@foreach($list as $m)
 		<tr>
 			<td>{{ $m->id }}</td>
+			<td>{{ $m->groupname }}</td>
 			<td>{{ $m->username }}</td>
 			<td>{{ $m->openid }}</td>
 			<td>{{ $m->nickname }}</td>
@@ -37,7 +38,6 @@
 			<td>{{ $m->phone }}</td>
 			<td>{{ $m->user_money }} ￥</td>
 			<td>{{ $m->points }}</td>
-			<td>{{ $m->last_time }}</td>
 			<td>
 				@if($m->status == 0)
 				<span class="color-red">禁用</span> -> <a href="{{ url('/xyshop/user/status',['id'=>$m->id,'status'=>1]) }}" class="color-green">正常</a>
@@ -48,6 +48,9 @@
 			<td>
 				@if(App::make('com')->ifCan('user-chong'))
 				<div data-url="{{ url('/xyshop/user/chong',$m->id) }}" data-title="充值" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-success btn_modal">充值</div>
+				@endif
+				@if(App::make('com')->ifCan('user-consumed'))
+				<div data-url="{{ url('/xyshop/user/consumed',$m->id) }}" data-title="消费" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-warning btn_modal">消费</div>
 				@endif
 				@if(App::make('com')->ifCan('user-edit'))
 				<div data-url="{{ url('/xyshop/user/edit',$m->id) }}" data-title="改密码" data-toggle='modal' data-target='#myModal' class="btn btn-sm btn-info btn_modal">改密码</div>

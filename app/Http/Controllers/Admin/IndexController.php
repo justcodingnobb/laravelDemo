@@ -40,7 +40,7 @@ class IndexController extends Controller
     public function getIndex()
     {
         $allUrl = $this->allPriv();
-        $main = $this->menu->where('parentid','=','0')->where('display','=','1')->orderBy('listorder','asc')->get()->toArray();
+        $main = $this->menu->where('parentid','=','0')->where('display','=','1')->orderBy('listorder','asc')->orderBy('id','asc')->get()->toArray();
         if (in_array(1, session('user')->allRole))
         {
             $mainmenu = $main;
@@ -67,7 +67,7 @@ class IndexController extends Controller
         $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $consume = Consume::with(['user'=>function($q){
                     $q->select('id','username','nickname','openid','phone');
-                }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('user_id','asc')->get();
+                }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('id','desc')->get();
         // 今日总入账、出账、结余
         $today_inc = Consume::where('created_at','>',$starttime)->where('created_at','<',$endtime)->where('type',0)->orderBy('user_id','asc')->sum('price');
         $today_dec = Consume::where('created_at','>',$starttime)->where('created_at','<',$endtime)->where('type',1)->orderBy('user_id','asc')->sum('price');
@@ -82,7 +82,7 @@ class IndexController extends Controller
         $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         $consume = Consume::with(['user'=>function($q){
                     $q->select('id','username','nickname','openid','phone');
-                }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('user_id','asc')->get();
+                }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->orderBy('id','desc')->get();
         $tmp = [];
         foreach ($consume as $v) {
             $username = is_null($v->user) ? '' : $v->user->nickname;
@@ -102,26 +102,26 @@ class IndexController extends Controller
     /**
      * 主要信息展示
      */
-    public function getMain()
+    public function getMain(Request $req)
     {
         $title = '系统信息';
         $data = [];
-        $starttime = date('Y-m-d 00:00:00');
-        $endtime = date('Y-m-d 24:00:00');
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
         // $starttime = date('2017-05-01 00:00:00');
         // $endtime = date('2017-06-12 24:00:00');
         // 今日总订单量
-        $data['today_ordernum'] = Order::where('orderstatus','>',0)->where('created_at','>',date('Y-m-d 00:00:00'))->count();
+        $data['today_ordernum'] = Order::where('orderstatus','>',0)->where('created_at','>',$starttime)->count();
         // 今日销售额
-        $data['today_prices'] = Order::where('orderstatus','>',0)->where('created_at','>',date('Y-m-d 00:00:00'))->sum('total_prices');
+        $data['today_prices'] = Order::where('orderstatus','>',0)->where('created_at','>',$starttime)->sum('total_prices');
         // 今日已收款数
         $data['today_prices_real'] = Consume::where('created_at','>',$starttime)->where('created_at','<',$endtime)->where('type',0)->orderBy('user_id','asc')->sum('price');
         // 今日未收款数
         $data['today_prices_no'] = $data['today_prices'] - $data['today_prices_real'];
         // 今日待发货
-        $data['today_ship'] = Order::where('orderstatus',1)->where('shipstatus',0)->where('ziti',0)->where('created_at','>',date('Y-m-d 00:00:00'))->where('paystatus',1)->count();
+        $data['today_ship'] = Order::where('orderstatus',1)->where('shipstatus',0)->where('ziti',0)->where('created_at','>',$starttime)->where('paystatus',1)->count();
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
-        $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->where('created_at','>',date('Y-m-d 00:00:00'))->pluck('id');
+        $order_ids = Order::where('orderstatus',1)->where('paystatus',1)->where('created_at','<',$endtime)->where('created_at','>',$starttime)->pluck('id');
         $goods = OrderGood::whereIn('order_id',$order_ids)->get();
         // 循环出来每一个产品的重量值，并去重累加
         $good_ship = [];
@@ -189,6 +189,66 @@ class IndexController extends Controller
             });
         })->export('xls');
     }
+    // 库房表
+    public function getExcelStore(Request $req)
+    {
+        // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
+        $starttime = isset($req->starttime) && !is_null($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) && !is_null($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
+        $orders = Order::with(['address'=>function($q){
+                        $q->select('id','area','address','phone','people');
+                    },'zitidian'=>function($q){
+                        $q->select('id','area','address','phone');
+                    },'user'=>function($q){
+                        $q->select('id','nickname','address','phone','user_money');
+                    }])->where('orderstatus',1)->where('paystatus',1)->where('created_at','>',$starttime)->where('created_at','<',$endtime)->get();
+        // ->where('orderstatus',1)->where('paystatus',1)
+        $goods = OrderGood::whereIn('order_id',$orders->pluck('id'))->get();
+        $pronums = Good::whereIn('id',$goods->pluck('good_id'))->select('id','pronums')->get()->keyBy('id')->toArray();
+        // 循环每个订单的订单信息
+        $excel = [];
+        foreach ($orders as $k => $v) {
+            // 查有几个商品
+            $tmp_good = $goods->where('order_id',$v->id)->all();
+            try {
+                $first_gid = $goods->where('order_id',$v->id)->first()->good_id;
+                foreach ($tmp_good as $kg => $g) {
+                    $tmp = [];
+                    $title = $g['good_title'];
+                    // 判断是否有规格
+                    if ($g['good_spec_key'] != '') {
+                        $title .= ' - '.$g['good_spec_name'];
+                    }
+                    // 第一个订单产品写出详细信息来
+                    $tmp_pronums = isset($pronums[$g['good_id']]) ? $pronums[$g['good_id']]['pronums'] : '';
+                    if ($g->good_id == $first_gid) {
+                        // 判断是自提还是配送
+                        $name = is_null($v->user) ? '' : $v->user->nickname;
+                        $user_money = is_null($v->user) ? '' : $v->user->user_money;
+                        $people = is_null($v->address) ? '' : $v->address->people;
+                        $tmp = [$v->order_id,$v->created_at,$name,$user_money,$title,$tmp_pronums,$g['good_spec_name'],$g['price'],$g['nums'],$v->total_prices,$people];
+                        $excel[] = $tmp;
+                    }
+                    else
+                    {
+                        $tmp = ['','','','',$title,$tmp_pronums,$g['good_spec_name'],$g['price'],$g['nums'],'',''];
+                        $excel[] = $tmp;
+                    }
+                }
+                $tmp_good = null;
+            } catch (\Exception $e) {
+                dd($e->getMessage());
+                continue;
+            }
+        }
+        $cellData = array_merge([['订单编号','下单时间','会员','会员余额','订单商品名称','商家编码','规格','单价','数量','实收款','收货人姓名']],$excel);
+        Excel::create('库房专用表',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
+    }
+    // 订单表
     public function getExcelOrders(Request $req)
     {
         // 今日销售统计表，先查出今天的已付款订单，再按订单查出所有产品及属性
@@ -262,7 +322,7 @@ class IndexController extends Controller
         // 权限url
         $allUrl = $this->allPriv();
         // 二级菜单
-        $left = $this->menu->where('parentid','=',$pid)->where('display','=','1')->orderBy('listorder','asc')->get()->toArray();
+        $left = $this->menu->where('parentid','=',$pid)->where('display','=','1')->orderBy('listorder','asc')->orderBy('id','asc')->get()->toArray();
         $leftmenu = array();
         // 判断权限
         if (!in_array(1, session('user')->allRole))
@@ -282,7 +342,7 @@ class IndexController extends Controller
         // 三级菜单
         foreach ($leftmenu as $k => $v) {
             // 取所有下级菜单
-            $res = $this->menu->where('parentid','=',$v['id'])->where('display','=','1')->orderBy('listorder','asc')->get()->toArray();
+            $res = $this->menu->where('parentid','=',$v['id'])->where('display','=','1')->orderBy('listorder','asc')->orderBy('id','asc')->get()->toArray();
             // 进行权限判断
             if (!in_array(1, session('user')->allRole))
             {

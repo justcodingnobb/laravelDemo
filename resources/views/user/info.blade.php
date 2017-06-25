@@ -49,7 +49,7 @@
 	            </div>
 
 	            <div class="form-group">
-	            	<input type="date" name="data[birthday]" value="{{ $info->birthday }}" placeholder="出生日期" class="form-control">
+	            	<input type="text" name="data[birthday]" value="{{ $info->birthday }}" placeholder="出生日期" class="form-control">
 	            	@if ($errors->has('data.birthday'))
 	                    <span class="help-block">
 	                    	{{ $errors->first('data.birthday') }}
@@ -58,10 +58,10 @@
 	            </div>
 
 	            <div class="form-group">
-	                <label for="default">性别：</label>
-	                <label class="radio-inline"><input type="radio" name="data[default]"@if($info->default == '1') checked="checked" @endif class="input-radio" value="1">
+	                <label for="sex">性别：</label>
+	                <label class="radio-inline"><input type="radio" name="data[sex]"@if($info->sex == '1') checked="checked" @endif class="input-radio" value="1">
 	                    男</label>
-	                <label class="radio-inline"><input type="radio" name="data[default]"@if($info->default == '2') checked="checked" @endif class="input-radio" value="2">女</label>
+	                <label class="radio-inline"><input type="radio" name="data[sex]"@if($info->sex == '2') checked="checked" @endif class="input-radio" value="2">女</label>
 	            </div>
 
 
