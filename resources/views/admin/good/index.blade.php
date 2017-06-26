@@ -67,10 +67,29 @@
 				<span class="text-success">[限量]</span>
 				@endif
 				{{ $a->title }}
+				@foreach($a->goodspecprice as $gp)
+				<br /><span class="label label-info">{{ $gp->key_name }}</span>
+				@endforeach
 			</td>
 			<td>@if(isset(cache('goodcateCache')[$a->cate_id])){{ cache('goodcateCache')[$a->cate_id]['name'] }}@endif</td>
-			<td>￥{{ $a->price }}</td>
-			<td>{{ $a->store }}</td>
+			<td>
+			@if($a->goodspecprice->count() == 0)
+			￥{{ $a->price }}
+			@else
+			@foreach($a->goodspecprice as $gp)
+			<p>￥{{ $gp->price }}</p>
+			@endforeach
+			@endif
+			</td>
+			<td>
+			@if($a->goodspecprice->count() == 0)
+			{{ $a->store }}
+			@else
+			@foreach($a->goodspecprice as $gp)
+			<p>{{ $gp->store }}</p>
+			@endforeach
+			@endif
+			</td>
 			<td>
 				@if($a->status == 1)
 				<span class="color-green">在售</span>
@@ -266,12 +285,12 @@
 			$('#hd_good').load(url,function(){
 				laydate({
 			        elem: '#laydate_t_1',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			    laydate({
 			        elem: '#laydate_t_2',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			});
@@ -284,12 +303,12 @@
 			$('#hd_good').load(url,function(){
 				laydate({
 			        elem: '#laydate_t_1',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			    laydate({
 			        elem: '#laydate_t_2',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			});
@@ -322,12 +341,12 @@
 	})
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
 </script>

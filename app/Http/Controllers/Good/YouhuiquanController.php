@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\YouhuiquanRequest;
 use App\Models\Youhuiquan;
 use Illuminate\Http\Request;
 
-class YouhuiquanController extends Controller
+class YouhuiquanController extends BaseController
 {
     /**
      * 优惠券管理
@@ -46,7 +46,7 @@ class YouhuiquanController extends Controller
     {
     	$data = $req->input('data');
     	Youhuiquan::create($data);
-    	return redirect('xyshop/youhuiquan/index')->with('message','添加成功！');
+        return $this->ajaxReturn(1,'添加成功！','xyshop/youhuiquan/index');
     }
     // 修改优惠券
     public function getEdit($id = '')
@@ -60,7 +60,7 @@ class YouhuiquanController extends Controller
     {
     	$data = $req->input('data');
     	Youhuiquan::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+        return $this->ajaxReturn(1,'修改成功！',$req->ref);
     }
     // 删除
     public function getDel($id = '')

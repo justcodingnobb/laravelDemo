@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\FormatRequest;
 use App\Http\Requests\GoodRequest;
 use App\Models\Cart;
@@ -23,7 +23,7 @@ use DB;
 use Illuminate\Http\Request;
 use Storage;
 
-class GoodController extends Controller
+class GoodController extends BaseController
 {
     /**
      * 商品列表
@@ -41,7 +41,7 @@ class GoodController extends Controller
         $cats = GoodCate::where('status',1)->orderBy('sort','asc')->get();
     	$tree = App::make('com')->toTree($cats,'0');
     	$cate = App::make('com')->toTreeSelect($tree);
-		$list = Good::where(function($q) use($cate_id){
+		$list = Good::with('goodspecprice')->where(function($q) use($cate_id){
                 if ($cate_id != '') {
                     $ids = GoodCate::where('id',$cate_id)->value('arrchildid');
                     $q->whereIn('cate_id',explode(',',$ids));
@@ -64,7 +64,10 @@ class GoodController extends Controller
                 }
             })->orderBy('id','desc')->paginate(15);
         $count = Good::where(function($q) use($cate_id){if ($cate_id != '') {
-                    $q->where('cate_id',$cate_id);
+                    if ($cate_id != '') {
+                        $ids = GoodCate::where('id',$cate_id)->value('arrchildid');
+                        $q->whereIn('cate_id',explode(',',$ids));
+                    }
                 }})->where(function($q) use($key){if ($key != '') {
                     $q->where('title','like','%'.$key.'%');
                 }})->where(function($q) use($starttime){if ($starttime != '') {
@@ -125,7 +128,7 @@ class GoodController extends Controller
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
-            return redirect('/xyshop/good/index?cate_id='.$res->input('data.catid'))->with('message', '添加商品成功！');
+            return $this->ajaxReturn(1,'添加商品成功！','/xyshop/good/index?cate_id='.$res->input('data.catid'));
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();
@@ -196,10 +199,11 @@ class GoodController extends Controller
             // 没出错，提交事务
             DB::commit();
             // 跳转回添加的栏目列表
-            return redirect($res->ref)->with('message', '修改商品商品成功！');
+            return $this->ajaxReturn(1,'修改商品商品成功！',$res->ref);
         } catch (Exception $e) {
             // 出错回滚
             DB::rollBack();
+            // return $this->ajaxReturn(0,$e->getMessage());
             return back()->with('message','修改失败，请稍后再试！');
         }
     }

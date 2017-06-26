@@ -221,12 +221,12 @@
 			$('#hd_good').load(url,function(){
 				laydate({
 			        elem: '#laydate_t_1',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			    laydate({
 			        elem: '#laydate_t_2',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			});
@@ -239,12 +239,12 @@
 			$('#hd_good').load(url,function(){
 				laydate({
 			        elem: '#laydate_t_1',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			    laydate({
 			        elem: '#laydate_t_2',
-			        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+			        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
 			        istime: true,
 			    });
 			});
@@ -277,12 +277,12 @@
 	})
 	laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
 </script>

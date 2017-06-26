@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\HuodongRequest;
 use App\Models\Good;
 use App\Models\HdGood;
@@ -10,7 +10,7 @@ use App\Models\Huodong;
 use DB;
 use Illuminate\Http\Request;
 
-class HuodongController extends Controller
+class HuodongController extends BaseController
 {
     /**
      * 活动列表
@@ -49,7 +49,7 @@ class HuodongController extends Controller
     {
     	$data = $req->input('data');
     	Huodong::create($data);
-    	return redirect('xyshop/huodong/index')->with('message','添加成功！');
+        return $this->ajaxReturn(1,'添加成功！','xyshop/huodong/index');
     }
     // 修改活动
     public function getEdit($id = '')
@@ -63,7 +63,7 @@ class HuodongController extends Controller
     {
     	$data = $req->input('data');
     	Huodong::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+    	return $this->ajaxReturn(1,'修改成功！',$req->ref);
     }
     // 删除
     public function getDel($id = '')

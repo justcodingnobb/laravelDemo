@@ -64,7 +64,8 @@ class TuanController extends Controller
     {
     	$data = $req->input('data');
     	Tuan::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+    	return $this->ajaxReturn(1,'修改成功！',$req->ref);
+        
     }
     // 删除
     public function getDel($id = '')

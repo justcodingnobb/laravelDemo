@@ -15,21 +15,11 @@
                     <option value="{{ $p->id }}"@if($info->pos_id == $p->id) selected="selected" @endif>{{ $p->name }}</option>
                     @endforeach
                 </select>
-                @if ($errors->has('data.pos_id'))
-                    <span class="help-block">
-                        {{ $errors->first('data.pos_id') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="title">标题：<span class="color-red">*</span>不超过255字符</label>
                 <input type="text" name="data[title]" value="{{ $info->title }}" class="form-control">
-                @if ($errors->has('data.title'))
-                    <span class="help-block">
-                        {{ $errors->first('data.title') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -41,31 +31,16 @@
                     <div value="选择图片" id="image3"></div>
                 </div>
                 <img src="{{ $info->thumb }}" class="thumb-src mt10" alt="">
-                @if ($errors->has('data.thumb'))
-                    <span class="help-block">
-                        {{ $errors->first('data.thumb') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="url">链接：<span class="color-red">*</span>URL</label>
                 <input type="text" name="data[url]" value="{{ $info->url }}" class="form-control">
-                @if ($errors->has('data.url'))
-                    <span class="help-block">
-                        {{ $errors->first('data.url') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="sort">排序：数字</label>
                 <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
-                @if ($errors->has('data.sort'))
-                    <span class="help-block">
-                        {{ $errors->first('data.sort') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">

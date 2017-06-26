@@ -4,12 +4,20 @@
 		"selected_items":
 		[
 			[
-				"tm",
-				"tmp_pronums"
+				"lab",
+				"label-info \tBootstrap 3 Class"
 			],
 			[
 				"img-r",
-				"img-rounded \tBootstrap 3 Class"
+				"img-responsive \tBootstrap 3 Class"
+			],
+			[
+				"app",
+				"append\t.append()"
+			],
+			[
+				"tm",
+				"tmp_pronums"
 			],
 			[
 				"group",
@@ -506,14 +514,6 @@
 			[
 				"he",
 				"height\tAttr"
-			],
-			[
-				"Wx",
-				"Wxgroup\t(WxgroupController.php)"
-			],
-			[
-				"all",
-				"alldata"
 			]
 		]
 	},
@@ -544,16 +544,16 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "mov",
+		"last_filter": "save",
 		"selected_items":
 		[
 			[
-				"mov",
-				"File: Move"
-			],
-			[
 				"save",
 				"File: Save All"
+			],
+			[
+				"mov",
+				"File: Move"
 			],
 			[
 				"close",
@@ -744,24 +744,60 @@
 		"/F/wwwroot/jxf",
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
-		"/F/wwwroot/jxf/app/Http/Controllers"
+		"/F/wwwroot/jxf/app/Http/Controllers",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin",
+		"/F/wwwroot/jxf/app/Models",
+		"/F/wwwroot/jxf/resources"
 	],
 	"file_history":
 	[
-		"/F/wwwroot/jxf/resources/views/admin/ad/edit.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/jxf/readme.md",
+		"/F/wwwroot/jxf/resources/views/admin/good/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/good/edit.blade.php",
+		"/F/wwwroot/jxf/public/statics/admin/js/com.js",
+		"/C/Users/Administrator/Desktop/ddd.html",
+		"/F/wwwroot/jxf/app/Http/Requests/GoodRequest.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Good/AdController.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/goodattr/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/goodspec/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/huodong/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/huodong/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/ad/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/art/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/attr/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/good_old/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/good_old/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/good_old/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/huodong/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/add_old.blade.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/TuanController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/ManzengController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/HuodongController.php",
+		"/F/wwwroot/jxf/app/Http/Controllers/Good/YouhuiquanController.php",
+		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/youhuiquan/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/manzeng/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/manzeng/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/manzeng/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/ad/edit.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/index.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/tuan/add.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/ad/add.blade.php",
+		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.212.3339/HZ$D.212.3342/wstmall_v1.9.3_170613/Apps/Admin/Action/ArticleCatsAction.class.php",
+		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.212.3339/HZ$D.212.3341/wstmall_v1.9.3_170613/Apps/Home/Common/function.php",
+		"/C/Users/Administrator/AppData/Local/Temp/HZ$D.212.3339/HZ$D.212.3340/wstmall_v1.9.3_170613/admin.php",
 		"/F/wwwroot/jxf/resources/views/admin/config/index.blade.php",
 		"/F/wwwroot/jxf/routes/web.php",
-		"/F/wwwroot/jxf/public/statics/admin/js/com.js",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/BaseController.php",
 		"/F/wwwroot/jxf/app/Http/Middleware/Backurl.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wwwroot/jxf/public/statics/home/js/com.js",
 		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/good/edit.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/member/edit.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
@@ -791,19 +827,15 @@
 		"/E/迅雷下载/tpshop_v1.2.9/www/index.php",
 		"/E/迅雷下载/tpshop_v1.2.9/www/a.html",
 		"/E/迅雷下载/tpshop_v1.2.9/www/安装前必看.txt",
-		"/F/wwwroot/jxf/resources/views/admin/good/add.blade.php",
 		"/F/wwwroot/jxf/app/Http/Middleware/Homeurl.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodCateController.php",
 		"/F/wwwroot/jxf/app/Services/ComService.php",
 		"/F/wwwroot/jxf/resources/views/default/search.blade.php",
-		"/F/wwwroot/jxf/app/Http/Requests/GoodRequest.php",
 		"/F/wwwroot/jxf/public/statics/admin/css/reset.css",
 		"/F/wwwroot/jxf/public/statics/admin/css/reset.scss",
-		"/F/wwwroot/jxf/resources/views/admin/art/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController_old.php",
 		"/F/wwwroot/jxf/app/Models/HdGood.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GroupController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Good/HuodongController.php",
 		"/F/wwwroot/jxf/app/Services/TagService.php",
 		"/F/wwwroot/jxf/public/statics/home/css/home.scss",
 		"/F/wwwroot/jxf/public/statics/home/css/home.css",
@@ -831,8 +863,6 @@
 		"/F/wwwroot/jxf/resources/views/admin/ziti/add.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/ziti/edit.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodAttrController.php",
-		"/F/wwwroot/jxf/resources/views/admin/goodspec/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/goodattr/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/group/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodSpecController.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/RoleController.php",
@@ -848,34 +878,7 @@
 		"/F/wwwroot/laravelDemo/public/statics/admin/js/com.js",
 		"/F/wwwroot/laravelDemo/public/statics/admin/css/reset.scss",
 		"/F/wwwroot/jxf/resources/views/admin/menu/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/role/index.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/section/index.blade.php",
-		"/F/wwwroot/jxf/config/filesystems.php",
-		"/F/wwwroot/jxf/sql/20170616-import.sql",
-		"/F/wwwroot/jxf/app/Http/Controllers/VueController.php",
-		"/F/wwwroot/jxf/public/upload/media.json",
-		"/F/wwwroot/jxf/config/database.php",
-		"/F/希夷/吉鲜蜂/旧数据/www.hsjixianfeng.com/data/config.php",
-		"/F/希夷/吉鲜蜂/旧数据/www.hsjixianfeng.com20170615.sql",
-		"/F/希夷/吉鲜蜂/密码.txt",
-		"/F/wwwroot/jxf/app/Http/Controllers/Old/HomeController.php",
-		"/F/wwwroot/jxf/app/Models/Good.php",
-		"/F/wwwroot/jxf/node_modules/adjust-sourcemap-loader/node_modules/lodash.defaults/node_modules/lodash.assign/index.js",
-		"/F/wwwroot/jxf/app/Http/Controllers/BaseController.php",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin/ConfigController.php",
-		"/F/wwwroot/jxf/app/Http/Requests/GroupRequest.php",
-		"/F/wwwroot/jxf/database/migrations/2017_06_14_171603_add_points_discount_to_group.php",
-		"/F/wwwroot/jxf/resources/views/user/consume.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/goodcate.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/goodlist.blade.php",
-		"/F/wwwroot/jxf/resources/views/admin/alert.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/addcart.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/cart_empty.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/foot.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/good_comment.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/pay.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/tuan.blade.php",
-		"/F/wwwroot/jxf/resources/views/default/tui.blade.php"
+		"/F/wwwroot/jxf/resources/views/admin/role/index.blade.php"
 	],
 	"find":
 	{
@@ -982,6 +985,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"span",
+			"p",
+			"thumb-src",
+			"00:00",
 			"redirect",
 			"id",
 			"ajax",
@@ -1105,11 +1112,7 @@
 			"order",
 			"ii",
 			"phone",
-			"people",
-			"id",
-			"form_submit",
-			"Status",
-			"status"
+			"people"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1117,6 +1120,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"mm:ss",
 			"",
 			"删除",
 			"<form action=\"javascript:ajax_submit();\" method=\"post\" id=\"form_ajax\">",
@@ -1288,6 +1292,10 @@
 		"selected_items":
 		[
 			[
+				"com.js",
+				"public\\statics\\admin\\js\\com.js"
+			],
+			[
 				"ad/edit",
 				"resources\\views\\admin\\ad\\edit.blade.php"
 			],
@@ -1298,10 +1306,6 @@
 			[
 				"config/in",
 				"resources\\views\\admin\\config\\index.blade.php"
-			],
-			[
-				"com.js",
-				"public\\statics\\home\\js\\com.js"
 			],
 			[
 				"main.bl",

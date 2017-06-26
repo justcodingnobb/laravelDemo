@@ -1,7 +1,7 @@
 @extends('admin.right')
 
 @section('content')
-<form action="" class="pure-form pure-form-stacked" method="post">
+<form action="" id="form_ajax" method="post">
     {{ csrf_field() }}
     <!-- 提交返回用的url参数 -->
     <input type="hidden" name="ref" value="{!! $ref !!}">
@@ -11,52 +11,27 @@
             <div class="form-group">
                 <label for="title">标题：<span class="color-red">*</span>不超过255字符</label>
                 <input type="text" name="data[title]" value="{{ $info->title }}" class="form-control">
-                @if ($errors->has('data.title'))
-                    <span class="help-block">
-                        {{ $errors->first('data.title') }}
-                    </span>
-                @endif
             </div>
 
 
             <div class="form-group">
                 <label for="nums">团购量：<span class="color-red">*</span>数字</label>
                 <input type="number" min="0" name="data[nums]" value="{{ $info->nums }}" class="form-control">
-                @if ($errors->has('data.nums'))
-                    <span class="help-block">
-                        {{ $errors->first('data.nums') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="havnums">参团量：<span class="color-red">*</span>数字</label>
                 <input type="number" min="0" name="data[havnums]" value="{{ $info->havnums }}" class="form-control">
-                @if ($errors->has('data.havnums'))
-                    <span class="help-block">
-                        {{ $errors->first('data.havnums') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="store">库存：<span class="color-red">*</span>数字</label>
                 <input type="number" min="0" name="data[store]" value="{{ $info->store }}" class="form-control">
-                @if ($errors->has('data.store'))
-                    <span class="help-block">
-                        {{ $errors->first('data.store') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="prices">价格：<span class="color-red">*</span>数字</label>
                 <input type="number" min="0" name="data[prices]" value="{{ $info->prices }}" class="form-control">
-                @if ($errors->has('data.prices'))
-                    <span class="help-block">
-                        {{ $errors->first('data.prices') }}
-                    </span>
-                @endif
             </div>
 
 
@@ -73,11 +48,6 @@
             <div class="form-group">
                 <label for="sort">排序：</label>
                 <input type="text" name="data[sort]" value="{{ $info->sort }}" class="form-control">
-                @if ($errors->has('data.sort'))
-                    <span class="help-block">
-                        {{ $errors->first('data.sort') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -89,7 +59,7 @@
 
             
             <div class="form-group">
-                <label for="good_id">赠品：</label>
+                <label for="good_id">商品：</label>
                 <p>{{ $info->good->title }}</p>
                 <img src="{{ $info->good->thumb }}" alt="">
             </div>
@@ -100,7 +70,7 @@
 
     <div class="btn-group mt10">
         <button type="reset" name="reset" class="btn btn-warning">重填</button>
-        <button type="submit" name="dosubmit" class="btn btn-info">提交</button>
+        <div onclick='ajax_submit_form("form_ajax","{{ url('/xyshop/tuan/edit',['id'=>$info->id]) }}")' name="dosubmit" class="btn btn-info">提交</div>
     </div>
 </form>
 
@@ -109,12 +79,12 @@
 <script type="text/javascript">
     laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
 </script>

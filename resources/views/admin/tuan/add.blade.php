@@ -1,4 +1,3 @@
-
 <form action="{{ url('/xyshop/tuan/add',['id'=>$id]) }}" class="pure-form-stacked" id="form-tuan" method="post">
 	{{ csrf_field() }}
     <input type="hidden" name="data[good_id]" value="{{ $id }}">

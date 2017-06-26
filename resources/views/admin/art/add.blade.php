@@ -148,7 +148,7 @@
         festival: true,
         istoday: true,
         max: laydate.now(), //最大日期
-        start: laydate.now('0, "YYYY-MM-DD hh:00:00"'),
+        start: laydate.now('0, "YYYY-MM-DD hh:mm:ss"'),
         istime: true,
     });*/
 </script>

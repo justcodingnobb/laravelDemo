@@ -1,7 +1,7 @@
 @extends('admin.right')
 
 @section('content')
-<form action="" class="" method="post">
+<form action="" id="form_ajax" method="post">
 	{{ csrf_field() }}
     
     <div class="row">
@@ -13,11 +13,6 @@
             		<option value="0">选择分类</option>
             		{!! $cate !!}
             	</select>
-            	@if ($errors->has('data.catid'))
-                    <span class="help-block">
-                    	{{ $errors->first('data.catid') }}
-                    </span>
-                @endif
                 @else
                 <input type="hidden" name="data[cate_id]" value="{{ $id }}"/>
                 @endif
@@ -26,21 +21,11 @@
             <div class="form-group">
                 <label for="title">商品标题：<span class="color-red">*</span>不超过255字符</label>
             	<input type="text" name="data[title]" value="{{ old('data.title') }}" class="form-control">
-            	@if ($errors->has('data.title'))
-                    <span class="help-block">
-                    	{{ $errors->first('data.title') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="pronums">商品编码：<span class="color-red">*</span></label>
                 <input type="text" name="data[pronums]" value="{{ old('data.pronums') }}" class="form-control">
-                @if ($errors->has('data.pronums'))
-                    <span class="help-block">
-                        {{ $errors->first('data.pronums') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -50,11 +35,6 @@
                         <input type="text" name="data[price]" value="" class="form-control">
                     </div>
                 </div>
-                @if ($errors->has('data.price'))
-                    <span class="help-block">
-                        {{ $errors->first('data.price') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -64,11 +44,6 @@
                         <input type="text" name="data[store]" value="10000" class="form-control">
                     </div>
                 </div>
-                @if ($errors->has('data.store'))
-                    <span class="help-block">
-                        {{ $errors->first('data.store') }}
-                    </span>
-                @endif
             </div>
 
 
@@ -79,11 +54,6 @@
                         <input type="text" name="data[weight]" value="1" class="form-control">
                     </div>
                 </div>
-                @if ($errors->has('data.weight'))
-                    <span class="help-block">
-                        {{ $errors->first('data.weight') }}
-                    </span>
-                @endif
             </div>
 
 
@@ -101,11 +71,6 @@
                         </select>
                     </div>
                 </div>
-                @if ($errors->has('data.tags'))
-                    <span class="help-block">
-                        {{ $errors->first('data.tags') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -147,32 +112,17 @@
                         <input type="text" name="data[xlnums]" value="0" class="form-control">
                     </div>
                 </div>
-                @if ($errors->has('data.xlnums'))
-                    <span class="help-block">
-                        {{ $errors->first('data.xlnums') }}
-                    </span>
-                @endif
             </div>
 
 
             <div class="form-group">
                 <label for="keyword">关键字：不超过255字符</label>
                 <textarea name="data[keyword]" class="form-control">{{ old('data.keyword') }}</textarea> 
-                @if ($errors->has('data.keyword'))
-                    <span class="help-block">
-                        {{ $errors->first('data.keyword') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
             	<label for="describe">描述：不超过255字符</label>
             	<textarea name="data[describe]" class="form-control" rows="4">{{ old('data.describe') }}</textarea> 
-            	@if ($errors->has('data.describe'))
-                    <span class="help-block">
-                    	{{ $errors->first('data.describe') }}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -183,12 +133,7 @@
                     </div>
                     <div value="选择图片" id="image3"></div>
                 </div>
-                <img src="" class="pure-image thumb-src hidden"" alt="">
-                @if ($errors->has('data.thumb'))
-                    <span class="help-block">
-                        {{ $errors->first('data.thumb') }}
-                    </span>
-                @endif
+                <img src=""  width="150" class="img-responsive thumb-src hidden"" alt="">
             </div>
         </div>
     </div>
@@ -197,11 +142,6 @@
         <label for="content">内容：<span class="color-red">*</span></label>
         <!-- 加载编辑器的容器 -->
         <textarea name="data[content]" class="form-control" id="editor_id">{{ old('data.content') }}</textarea> 
-    	@if ($errors->has('data.content'))
-            <span class="help-block">
-            	{{ $errors->first('data.content') }}
-            </span>
-        @endif
     </div>
     
     
@@ -244,16 +184,11 @@
                 <input type="text" name="data[sort]" value="0" class="form-control">
             </div>
         </div>
-        @if ($errors->has('data.sort'))
-            <span class="help-block">
-                {{ $errors->first('data.sort') }}
-            </span>
-        @endif
     </div>
 
     <div class="btn-group mt10">
         <button type="reset" name="reset" class="btn btn-warning">重填</button>
-        <button type="submit" name="dosubmit" class="btn btn-info">提交</button>
+        <div onclick='ajax_submit_form("form_ajax","{{ url('/xyshop/good/add') }}")' name="dosubmit" class="btn btn-info">提交</div>
     </div>
 </form>
 
@@ -295,12 +230,12 @@
     });
     laydate({
         elem: '#laydate',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
     laydate({
         elem: '#laydate2',
-        format: 'YYYY-MM-DD hh:00:00', // 分隔符可以任意定义，该例子表示只显示年月
+        format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
         istime: true,
     });
 </script>

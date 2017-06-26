@@ -13,7 +13,7 @@
 			<th width="50">ID</th>
 			<th width="150">商品分类</th>
 			<th width="150">名称</th>
-			<th width="150">规格项</th>
+			<th>规格项</th>
 			<th>操作</th>
 		</tr>
 	</thead>

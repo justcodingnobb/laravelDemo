@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Good;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Requests\Good\ManzengRequest;
 use App\Models\Manzeng;
 use Illuminate\Http\Request;
 
-class ManzengController extends Controller
+class ManzengController extends BaseController
 {
     /**
      * 满赠管理
@@ -60,7 +60,7 @@ class ManzengController extends Controller
     {
     	$data = $req->input('data');
     	Manzeng::where('id',$id)->update($data);
-    	return redirect($req->ref)->with('message','修改成功！');
+        return $this->ajaxReturn(1,'修改成功！',$req->ref);
     }
     // 删除
     public function getDel($id = '')

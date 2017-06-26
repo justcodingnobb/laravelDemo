@@ -49,7 +49,7 @@ class AdController extends BaseController
     {
     	$data = $req->input('data');
     	Ad::create($data);
-    	return redirect('xyshop/ad/index')->with('message','添加成功！');
+        return $this->ajaxReturn(1,'添加成功！','xyshop/ad/index');
     }
     // 修改广告
     public function getEdit($id = '')
