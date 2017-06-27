@@ -745,12 +745,16 @@
 		"/F/wwwroot/jxf/app",
 		"/F/wwwroot/jxf/app/Http",
 		"/F/wwwroot/jxf/app/Http/Controllers",
-		"/F/wwwroot/jxf/app/Http/Controllers/Admin",
-		"/F/wwwroot/jxf/app/Models",
-		"/F/wwwroot/jxf/resources"
+		"/F/wwwroot/jxf/resources",
+		"/F/wwwroot/jxf/resources/views",
+		"/F/wwwroot/jxf/resources/views/admin",
+		"/F/wwwroot/jxf/resources/views/admin/index",
+		"/F/wwwroot/jxf/resources/views/admin/order"
 	],
 	"file_history":
 	[
+		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
+		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/GoodController.php",
 		"/F/wwwroot/jxf/resources/views/admin/good/index.blade.php",
 		"/F/wwwroot/jxf/readme.md",
@@ -797,7 +801,6 @@
 		"/F/wwwroot/jxf/app/Http/Middleware/Backurl.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/IndexController.php",
 		"/F/wwwroot/jxf/public/statics/home/js/com.js",
-		"/F/wwwroot/jxf/resources/views/admin/index/main.blade.php",
 		"/F/wwwroot/jxf/resources/views/default/cart.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/member/edit.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/UserController.php",
@@ -813,7 +816,6 @@
 		"/F/wwwroot/jxf/resources/views/user/info.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/member/chong.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Admin/OrderController.php",
-		"/F/wwwroot/jxf/resources/views/admin/order/index.blade.php",
 		"/F/wwwroot/jxf/resources/views/admin/card/index.blade.php",
 		"/F/wwwroot/jxf/app/Http/Controllers/Good/RetrunGoodController.php",
 		"/F/wwwroot/jxf/resources/views/admin/tui/index.blade.php",

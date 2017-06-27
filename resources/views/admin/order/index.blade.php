@@ -5,7 +5,7 @@
 
 <!-- 选出栏目 -->
 <div class="clearfix">
-	<form action="" class="form-inline pull-left" method="get">
+	<form action="" class="form-inline form_excel pull-left" method="get">
 		<select name="status" id="status" class="form-control">
 			<option value="">订单状态</option>
 			<option value="0">关闭</option>
@@ -31,6 +31,9 @@
 		<input name="endtime" placeholder="结束时间" class="form-control" id="laydate2">
 		<input type="text" name="key" value="{{ $key }}" class="form-control" placeholder="请输入商品名或订单号查询..">
 		<button class="btn btn-sm btn-info">查找</button>
+		@if(App::make('com')->ifCan('index-excel_order'))
+		<button class="btn btn-sm btn-primary btn_order">导出订单表</button>
+		@endif
 	</form>
 
 	<form action="" class="form-inline pull-right" method="get">
@@ -148,6 +151,10 @@
 </div>
 <script>
 	$(function(){
+		// 导出订单表
+		$('.btn_order').click(function(){
+			$('.form_excel').attr('action',"{{ url('/xyshop/index/excel_order') }}").submit();
+		});
 		// 确实要全都关闭吗
 		$('.btn_close').click(function(){
 			if (!confirm("确实要全都关闭吗?")){

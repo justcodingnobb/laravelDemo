@@ -37,9 +37,6 @@
 		@if(App::make('com')->ifCan('index-excel_goods'))
 		<button class="btn btn-success btn_goods">导出销售统计表</button>
 		@endif
-		@if(App::make('com')->ifCan('index-excel_order'))
-		<button class="btn btn-primary btn_order">导出订单表</button>
-		@endif
 		@if(App::make('com')->ifCan('index-excel_store'))
 		<button class="btn btn-warning btn_store">导出库房表</button>
 		@endif
@@ -74,9 +71,6 @@
 	$(function(){
 		$('.btn_goods').click(function(){
 			$('.form_excel').attr('action',"{{ url('/xyshop/index/excel_goods') }}").submit();
-		});
-		$('.btn_order').click(function(){
-			$('.form_excel').attr('action',"{{ url('/xyshop/index/excel_order') }}").submit();
 		});
 		$('.btn_store').click(function(){
 			$('.form_excel').attr('action',"{{ url('/xyshop/index/excel_store') }}").submit();
