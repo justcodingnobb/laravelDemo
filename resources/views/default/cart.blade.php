@@ -10,6 +10,18 @@
 	<div class="container-fluid pb50 mt10">
 		<!-- 选择送货方式 -->
 		<div class="bgf ship">
+			<div class="ship_con">
+	  			@foreach($address as $y)
+	  			@if($y->default)
+				<h3 class="h3_cate"><span class="h3_cate_span">配送至</span></h3>
+	  			  <label>
+	  			    <input type="radio" name="addid" value="{{ $y->id }}" checked="checked" class="addressid">
+	  			    <h4>{{ $y->people }}：{{ $y->phone }}</h4>
+	  			    <p class="mt5">{{ $y->address }}</p>
+	  			  </label>
+	  			@endif
+	  			@endforeach
+	  		</div>
 			<p class="text-center btn_ship"><span class="glyphicon glyphicon-plus"></span> 选择送货方式</p>
 		</div>
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -166,7 +178,7 @@
 			var aid = $(this).val();
 			$('.aid').val(aid);
 			var html = '<h3 class="h3_cate"><span class="h3_cate_span">送货至</span></h3>' + $(this).parent('label').parent('.ship_li').html();
-			$('.ship').html(html);
+			$('.ship_con').html(html);
 			$('#myModal').modal('hide');
 		});
 
@@ -175,7 +187,7 @@
 			$('.ziti').val(aid);
 			$('.aid').val(0);
 			var html = '<h3 class="h3_cate"><span class="h3_cate_span">自提点</span></h3>' + $(this).parent('label').parent('.ship_li').html();
-			$('.ship').html(html);
+			$('.ship_con').html(html);
 			$('#myModal').modal('hide');
 		});
 		$('.btn_ship').click(function(){

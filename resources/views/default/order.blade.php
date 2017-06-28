@@ -17,16 +17,21 @@
                 <span class="label label-success">团</span>
                 @endif
             </h5>
-            <p class="clearfix"><span class="order_font">订单总价：</span><strong class="color_2">￥{{ $o->total_prices }}</strong>
+            <p class="clearfix"><span class="order_font">订单总价：</span><strong class="color_2">￥{{ $o->total_prices }}</strong></p>
+            <p class="created_at"><span class="order_font">下单时间：</span>{{ $o->created_at }}</p>
+            @if($o->shipstatus == 1)
+            <p class="created_at"><span class="order_font">发货时间：</span>{{ $o->ship_at }}</p>
+            @endif
+            @if($o->orderstatus == 2 || $o->orderstatus == 0)
+            <p class="created_at"><span class="order_font">完成时间：</span>{{ $o->confirm_at }}</p>
+            @endif
             @if($status == 1)
-            	<a href="{{ url('shop/order/pay',['oid'=>$o->id]) }}" class="text-danger pull-right topay"><span class="glyphicon glyphicon-jpy topay"></span>去支付</a>
-            	<a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
-            </p>
+        	<a href="{{ url('shop/order/pay',['oid'=>$o->id]) }}" class="btn btn-sm btn-success topay"><span class="glyphicon glyphicon-jpy topay"></span>去支付</a>
+        	<a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="btn btn-sm btn-default topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
             @endif
             @if($status == 2)
-            	<span class="color_l pull-right">已支付</span>
-                <a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
-        	</p>
+        	<span class="color_l pull-right">已支付</span>
+            <a href="{{ url('user/order/over',['id'=>$o->id]) }}" class="btn btn-sm btn-default topay"><span class="glyphicon glyphicon-remove-circle"></span>取消</a>
 <!--             <p><span class="order_font">发货状态：</span>
 	@if($o->shipstatus == 0)
 	<span class="color-green">未发货</span>
@@ -36,7 +41,7 @@
 </p> -->
             @endif
             @if($status == 3)
-            <a href="{{ url('shop/order/ship',['oid'=>$o->id]) }}" class="text-danger pull-right"><span class="glyphicon glyphicon-compressed topay"></span>确认收货</a>
+            <a href="{{ url('shop/order/ship',['oid'=>$o->id]) }}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-compressed topay"></span>确认收货</a>
         	</p>
             @endif
             @if($status == 4 || $status == 5)
@@ -55,13 +60,6 @@
             	@endif
             </p>
             @endif
-            <p class="created_at"><span class="order_font">下单时间：</span>{{ $o->created_at }}</p>
-            @if($o->shipstatus == 1)
-            <p class="created_at"><span class="order_font">发货时间：</span>{{ $o->ship_at }}</p>
-            @endif
-            @if($o->orderstatus == 2 || $o->orderstatus == 0)
-            <p class="created_at"><span class="order_font">完成时间：</span>{{ $o->confirm_at }}</p>
-            @endif
         </div>
 			<div class="good_cart_list good_cart_list_order overh">
 			@foreach($o->good as $l)
@@ -76,13 +74,15 @@
                         <p class="fs12">价格：<span class="good_prices color_l">￥{{ $l->price }}</span></p>
                         <p class="fs12">数量：<span class="good_prices color_l">￥{{ $l->nums }}</span></p>
                         <p class="fs12">小计：<span class="good_prices color_l">￥{{ $l->total_prices }}</span></p>
-                        @if($l->commentstatus == 0 && $o->orderstatus == 2)
-                        <p><a href="{{ url('shop/good/comment',['oid'=>$o->id,'gid'=>$l->good->id]) }}" class="text-success pull-left"><span class="glyphicon glyphicon-edit"></span>提交评价</a></p>
-                        @endif
-                        <!-- 三天内完成的可申请退货 -->
-                        @if($o->orderstatus == 2 && (time() - strtotime($o->updated_at)) < 259200 && $l->status == 1)
-                        <a href="{{ url('user/order/tui',['id'=>$o->id,'gid'=>$l->good->id]) }}" class="text-info pull-right topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
-                        @endif
+                        <p class="clearfix fs12">
+                            @if($l->commentstatus == 0 && $o->orderstatus == 2)
+                            <a href="{{ url('shop/good/comment',['oid'=>$o->id,'gid'=>$l->good->id]) }}" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit"></span>提交评价</a>
+                            @endif
+                            <!-- 三天内完成的可申请退货 -->
+                            @if($o->orderstatus == 2 && (time() - strtotime($o->updated_at)) < 259200 && $l->status == 1)
+                            <a href="{{ url('user/order/tui',['id'=>$o->id,'gid'=>$l->good->id]) }}" class="btn btn-sm btn-default topay"><span class="glyphicon glyphicon-transfer"></span>申请退货</a>
+                            @endif
+                        </p>
 					</div>
 				</div>
 			</div>

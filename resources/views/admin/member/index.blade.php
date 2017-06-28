@@ -1,5 +1,14 @@
 @extends('admin.right')
 
+@section('rmenu')
+	@if(App::make('com')->ifCan('user-ranking'))
+	<a href="{{ url('/xyshop/user/ranking') }}" class="btn btn-info btn_modal">消费排行</a>
+	@endif
+	@if(App::make('com')->ifCan('user-excel'))
+	<a href="{{ url('/xyshop/user/excel') }}" class="btn btn-info btn_modal">导出用户</a>
+	@endif
+
+@endsection
 
 @section('content')
 

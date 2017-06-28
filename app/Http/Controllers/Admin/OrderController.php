@@ -77,6 +77,8 @@ class OrderController extends BaseController
     public function postAllShip(Request $req)
     {
         $sids = $req->sids;
+        // 找出这里边所有已经付款的
+        $sids = Order::whereIn('id',$sids)->where('paystatus',1)->pluck('id');
         Order::whereIn('id',$sids)->update(['shipstatus'=>1,'ship_at'=>date('Y-m-d H:i:s')]);
         return back()->with('message','发货成功！');
     }
@@ -84,6 +86,7 @@ class OrderController extends BaseController
     public function postAllZiti(Request $req)
     {
         $sids = $req->sids;
+        $sids = Order::whereIn('id',$sids)->where('paystatus',1)->pluck('id');
         Order::whereIn('id',$sids)->update(['orderstatus'=>2]);
         return back()->with('message','设置自提成功！');
     }
@@ -115,8 +118,11 @@ class OrderController extends BaseController
     public function postShip(Request $req,$id = '')
     {
     	// 更新为已经发货
-    	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark'),'ship_at'=>date('Y-m-d H:i:s')]);
-        return $this->ajaxReturn(1,'发货成功！');
+        if (Order::where('id',$id)->value('paystatus') == 1) {
+        	Order::where('id',$id)->update(['shipstatus'=>1,'shopmark'=>$req->input('data.shopmark'),'ship_at'=>date('Y-m-d H:i:s')]);
+            return $this->ajaxReturn(1,'发货成功！');
+        }
+        return $this->ajaxReturn(0,'还未付款！');
     }
     /*// 退货
     public function getTui($id = '')

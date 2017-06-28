@@ -13,8 +13,6 @@ class SectionController extends BaseController
     {
     	$title = '部门列表';
         $list = Section::orderBy('id','desc')->paginate(15);
-        // 保存一次性数据，url参数，供编辑完成后跳转用
-        $res->flash();
         return view('admin.section.index',compact('list','title'));
     }
 
@@ -36,9 +34,8 @@ class SectionController extends BaseController
     {
         $title = '修改部门';
         // 拼接返回用的url参数
-        $ref = '?page='.old('page');
         $info = Section::findOrFail($id);
-        return view('admin.section.edit',compact('title','info','ref'));
+        return view('admin.section.edit',compact('title','info'));
     }
     public function postEdit(SectionRequest $request,$id)
     {

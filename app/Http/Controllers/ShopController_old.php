@@ -374,7 +374,8 @@ class ShopController_old extends BaseController
     public function getComment($oid = '',$gid = '')
     {
         $info = (object) ['pid'=>4];
-        $ref = session('homeurl');
+        // 记录上次请求的url path，返回时用
+        $ref = url()->previous();
         return view($this->theme.'.good_comment',compact('info','gid','oid','ref'));
     }
     public function postComment(GoodCommentRequest $req,$oid = '',$gid = '')

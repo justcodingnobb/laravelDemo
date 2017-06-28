@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Consume;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Excel;
 
 class UserController extends BaseController
 {
@@ -20,6 +21,40 @@ class UserController extends BaseController
         	}
         })->orderBy('id','desc')->paginate(15);
         return view('admin.member.index',compact('list','title'));
+    }
+    // 导出用户信息
+    public function getExcel(Request $req)
+    {
+        $user = User::where('status',1)->get();
+        $tmp = [];
+        foreach ($user as $v) {
+            $sex = $v->sex == 2 ? '女' : '男';
+            $tmp[] = [$v->id,$v->groupname,$v->username,$v->nickname,$sex,$v->phone,$v->email,$v->address];
+        }
+        $cellData = array_merge(
+            [['ID','会员级别','账号','昵称','性别','电话','邮箱','地址']],$tmp
+        );
+        Excel::create('用户信息',function($excel) use ($cellData){
+            $excel->sheet('score', function($sheet) use ($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls');
+    }
+    // 消费排名
+    public function getConsumeRanking(Request $req)
+    {
+        $title = '消费排名';
+        $starttime = isset($req->starttime) ? $req->starttime : date('Y-m-d 00:00:00');
+        $endtime = isset($req->endtime) ? $req->endtime : date('Y-m-d 24:00:00');
+        $list = Consume::where('created_at','>',$starttime)->where('created_at','<',$endtime)->where('type',0)->get();
+        $user = Consume::with(['user'=>function($q){
+                    $q->select('id','nickname','phone','points');
+                }])->where('created_at','>',$starttime)->where('created_at','<',$endtime)->where('type',0)->groupBy('user_id')->get()->unique()->toArray();
+        foreach ($user as $k => $v) {
+            $user[$k]['total'] = $list->where('user_id',$v['user_id'])->sum('price');
+        }
+        $user = collect($user)->sortByDesc('total');
+        return view('admin.member.ranking',compact('user','title'));
     }
 
     // 审核会员

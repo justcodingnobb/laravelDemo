@@ -160,6 +160,12 @@ $(function(){
 	});
 	// 添加到团购
 	$('.tuan_addcart').click(function(event) {
+		// 判断登陆
+		if ($(this).attr('data-login') == 0) {
+			alert('请先登陆！');
+			window.location.href = host + "user/login";
+			return;
+		}
 		$('#myModal').modal('show');
 		// var gid = $('input[name="gid"]').val();
 		// var num = $('input[name="num"]').val();

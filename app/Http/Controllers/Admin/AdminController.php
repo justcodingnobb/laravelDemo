@@ -34,8 +34,6 @@ class AdminController extends BaseController
                 $d->where('name','like','%'.$key.'%')->orWhere('realname','like','%'.$key.'%');
             }
         })->paginate(15);
-        // 保存一次性数据，url参数，供编辑完成后跳转用
-        $res->flash();
         return view('admin.user.index',compact('list','title','key'));
     }
     // 添加用户
@@ -78,7 +76,6 @@ class AdminController extends BaseController
     public function getEdit($uid)
     {
         $title = '修改资料';
-        // 拼接返回用的url参数
         $rolelist = $this->role->where('status',1)->get();
         $section = Section::where('status',1)->get();
         $info = $this->admin->with('role')->findOrFail($uid);

@@ -164,7 +164,7 @@
 					<a href="{{ url('/shop/good',['id'=>$l->id]) }}">{{ $l->title }}</a></h4>
 					<div class="row">
 						<div class="col-xs-9">
-							<p class="good_pric">蜜蜂会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
+							<p class="good_pric">会员价：<strong class="good_pric_span color_2">￥{{ $l->price }}</strong></p>
 						</div>
 						<div class="col-xs-3">
 							<a href="{{ url('/shop/good',['id'=>$l->id]) }}" class="glyphicon glyphicon-shopping-cart addcart">

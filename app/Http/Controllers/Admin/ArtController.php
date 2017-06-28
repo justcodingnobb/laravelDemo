@@ -57,8 +57,8 @@ class ArtController extends Controller
                     $q->where('status',$status);
                 }
             })->orderBy('id','desc')->paginate(15);
-        // 保存一次性数据，url参数，供编辑完成后跳转用
-        $res->flash();
+        // 记录上次请求的url path，返回时用
+        session()->put('backurl',$res->fullUrl());
     	return view('admin.art.index',compact('title','list','cate','catid','key','starttime','endtime','status'));
     }
 
@@ -107,7 +107,7 @@ class ArtController extends Controller
     {
         $title = '修改文章';
         // 拼接返回用的url参数
-        $ref = '?catid='.old('catid').'&page='.old('page');
+        $ref = session('backurl');
         $info = $this->art->findOrFail($id);
         $cats = $this->cate->get();
         $tree = App::make('com')->toTree($cats,'0');
@@ -161,7 +161,7 @@ class ArtController extends Controller
     {
         $title = '查看文章详情';
         // 拼接返回用的url参数
-        $ref = '?catid='.old('catid').'&page='.old('page');
+        $ref = session('backurl');
         $info = $this->art->with('comment')->findOrFail($id);
         return view('admin.art.show',compact('title','info','ref'));
     }

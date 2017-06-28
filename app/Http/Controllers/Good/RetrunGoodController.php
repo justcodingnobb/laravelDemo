@@ -82,10 +82,10 @@ class RetrunGoodController extends BaseController
                 $ss = $orders[$v->order_id]['address'];
                 $address .= $ss['people'].' : '.$ss['phone'].' — '.$ss['area'].$ss['address'];
             }
-            $tmp[] = [$v->id,$orders[$v->order_id]['order_id'],$v->good_title.' - '.$v->good_spec_name,$v->nums,$v->total_prices,$status,$username,$address,$v->created_at,$v->return_time];
+            $tmp[] = [$v->id,$orders[$v->order_id]['order_id'],$v->good_title.' - '.$v->good_spec_name,$v->nums,$v->total_prices,$status,$username,$v->mark,$address,$v->created_at,$v->return_time,$v->shopmark];
         }
         $cellData = array_merge(
-            [['ID','单号','商品','数量','金额','状态','用户','地址','申请时间','处理时间']],$tmp
+            [['ID','单号','商品','数量','金额','状态','用户','用户备注','地址','申请时间','处理时间','处理意见']],$tmp
         );
         Excel::create('退货表',function($excel) use ($cellData){
             $excel->sheet('score', function($sheet) use ($cellData){

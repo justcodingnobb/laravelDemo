@@ -62,7 +62,7 @@ class GoodController extends BaseController
                 if ($status != '') {
                     $q->where('status',$status);
                 }
-            })->orderBy('id','desc')->paginate(15);
+            })->orderBy('sort','asc')->orderBy('id','desc')->paginate(15);
         $count = Good::where(function($q) use($cate_id){if ($cate_id != '') {
                     if ($cate_id != '') {
                         $ids = GoodCate::where('id',$cate_id)->value('arrchildid');
@@ -77,7 +77,35 @@ class GoodController extends BaseController
                 }})->where(function($q) use($status){if ($status != '') {
                     $q->where('status',$status);
                 }})->count();
+        // 记录上次请求的url path，返回时用
+        session()->put('backurl',$res->fullUrl());
     	return view('admin.good.index',compact('title','list','cate','cate_id','key','starttime','endtime','status','count'));
+    }
+
+    /**
+     * 商品列表
+     * @return [type] [description]
+     */
+    public function getNostore(Request $res)
+    {
+        $title = '无库存商品列表';
+        $list = Good::with('goodspecprice')->where('status',1)->where('store',0)->orderBy('id','desc')->get()->keyBy('id');
+        // 取出来所有id,对比有库存的
+        $gids = $list->pluck('id');
+        $ggids = GoodSpecPrice::where('store','!=',0)->whereIn('good_id',$gids)->pluck('good_id')->toArray();
+        $ggids = array_unique($ggids);
+        // 要排除的ID
+        foreach ($ggids as $v) {
+            $list->forget($v);
+        }
+        // 规格里库存为0的
+        $ids = GoodSpecPrice::where('store',0)->pluck('good_id')->toArray();
+        $ids = array_unique($ids);
+        $list_to = Good::with('goodspecprice')->whereIn('id',$ids)->get();
+        $count = $list->count() + $list_to->count();
+        // 记录上次请求的url path，返回时用
+        session()->put('backurl',$res->fullUrl());
+        return view('admin.good.nostore',compact('title','list','list_to','count'));
     }
 
     /**

@@ -36,15 +36,15 @@ function ajax_submit_form(form_id,submit_url)
 	if(before_request == 0)
     return false;
 	var data = $('#' + form_id).serializeArray();
-	if ($('#editor_id')) {
-		data.push({name:'data[content]',value:$('#editor_id').html()});
+	if ($('#editor_id').length > 0) {
+		data.push({name:'data[content]',value:$('#editor_id').text()});
 	}
     $.ajax({
 		type: "POST",
 		url: submit_url,
 		data: data, // 你的formid                
 		error: function(v) {
-			// console.log(v.responseText);
+			console.log(v.responseText);
 			// 提示信息转为json对象，并弹出提示
 		    var errors = $.parseJSON(v.responseText);
 		    $.each(errors, function(index, value) {

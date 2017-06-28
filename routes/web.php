@@ -29,7 +29,7 @@ Route::group(['prefix' => 'wx'],function(){
 
 
 // 会员功能
-Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
+Route::group(['prefix'=>'user'],function(){
     // 注册
     Route::get('register','UserController@getRegister');
     Route::post('register','UserController@postRegister');
@@ -39,7 +39,7 @@ Route::group(['prefix'=>'user','middleware' => ['homeurl']],function(){
 });
 
 // 会员功能
-Route::group(['prefix'=>'user','middleware' => ['homeurl','member']],function(){
+Route::group(['prefix'=>'user','middleware' => ['member']],function(){
     // 消费记录
     Route::get('consume','UserController@getConsume');
     // 充值卡激活
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'oauth'],function(){
 
 
 // 商城功能
-Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
+Route::group(['prefix'=>'shop'],function(){
     // 活动
     Route::get('hd/index','HuodongController@getIndex');
     Route::get('hd/list/{id}','HuodongController@getList');
@@ -103,15 +103,15 @@ Route::group(['prefix'=>'shop','middleware' => ['homeurl']],function(){
     Route::get('good/{id}/{format?}','ShopController@getGood');
     // 取购物车数量
     Route::get('cartnums','ShopController@getCartnums');
+    // 团购商品
+    Route::get('tuan/{tid}/{gid}','TuanController@getGood');
 });
 // 添加购物车
 Route::post('shop/addcart','ShopController@getAddcart');
 // 商城功能-登陆后的
-Route::group(['prefix'=>'shop','middleware' => ['homeurl','member']],function(){
+Route::group(['prefix'=>'shop','middleware' => ['member']],function(){
     // 直接购买
     Route::get('firstorder','ShopController@getFirstOrder');
-    // 团购商品
-    Route::get('tuan/{tid}/{gid}','TuanController@getGood');
     // 团购下单
     Route::get('tuan/addorder','TuanController@getAddorder');
     // 订单评价
@@ -168,7 +168,7 @@ Route::group(['prefix'=>'xyshop'],function(){
 
 
 
-Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
+Route::group(['prefix'=>'xyshop','middleware' => ['rbac']],function(){
     // 会员卡
     Route::get('card/index', 'Good\CardController@getIndex');
     Route::get('card/excel', 'Good\CardController@getCardExcel');
@@ -289,6 +289,7 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::get('goodattr/del/{id?}', 'Admin\GoodAttrController@getDel');
     // 商品
     Route::get('good/index', 'Admin\GoodController@getIndex');
+    Route::get('good/nostore', 'Admin\GoodController@getNostore');
     Route::get('good/add/{id?}', 'Admin\GoodController@getAdd');
     Route::post('good/add/{id?}', 'Admin\GoodController@postAdd');
     Route::get('good/edit/{id?}', 'Admin\GoodController@getEdit');
@@ -413,4 +414,6 @@ Route::group(['prefix'=>'xyshop','middleware' => ['rbac','backurl']],function(){
     Route::post('user/consumed/{id}', 'Admin\UserController@postConsumed');
     Route::get('user/consume/{id}', 'Admin\UserController@getConsume');
     Route::get('user/address/{id}', 'Admin\UserController@getAddress');
+    Route::get('user/ranking', 'Admin\UserController@getConsumeRanking');
+    Route::get('user/excel', 'Admin\UserController@getExcel');
 });

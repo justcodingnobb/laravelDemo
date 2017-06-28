@@ -62,6 +62,8 @@ class WxController extends BaseController
             AuthTmp::create(['auth_id'=>$sid,'overtime'=>time() + 300]);
         }*/
         // snsapi_base,snsapi_userinfo,?sid='.$sid
+        // 记录上次请求的url path，返回时用
+        $ref = session()->put('homeurl',url()->previous());
         return Socialite::driver('wechat')->scopes(['snsapi_userinfo'])->withRedirectUrl(config('app.url').'/oauth/wx/callback')->redirect();
     }
 
@@ -106,6 +108,8 @@ class WxController extends BaseController
         session()->put('member',$user);
         // 更新购物车
         $this->updateCart($user->id);
-        return redirect('/');
+        // 如果电话、邮箱、地址都为空，跳转到用户中心去完善
+        if($user->phone == '' && $user->email == '' && $user->address == ''){return redirect('/user/info');}
+        return redirect(session('homeurl'));
     }
 }

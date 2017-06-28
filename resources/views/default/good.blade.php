@@ -40,13 +40,13 @@
 					
 					<!-- 规格开始 -->
 					@if(count($filter_spec) > 0)
-					<table class="table">
+					<table class="table mt5">
 					@foreach($filter_spec as $ks => $gs)
 						<tr>
 							<td width="80" class="text-right">{{ $ks }}：</td>
 							<td>
 								@foreach($gs as $kks => $ggs)
-								<span onclick="select_filter(this);" class="label label-default @if($kks == 0) label-success @endif spec_item" data-item_id="{{ $ggs['item_id'] }}"><input type="radio" name="goods_spec[{{$ks}}]" class="hidden"@if($kks == 0) checked="checked"@endif value="{{ $ggs['item_id'] }}">{{ $ggs['item'] }}</span>
+								<span onclick="select_filter(this);" class="label label-default good_label @if($kks == 0) label-success @endif spec_item" data-item_id="{{ $ggs['item_id'] }}"><input type="radio" name="goods_spec[{{$ks}}]" class="hidden"@if($kks == 0) checked="checked"@endif value="{{ $ggs['item_id'] }}">{{ $ggs['item'] }}</span>
 								@endforeach
 								<input type="hidden" name="spec_key" class="spec_key" value="">
 							</td>

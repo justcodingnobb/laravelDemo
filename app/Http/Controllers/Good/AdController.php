@@ -36,6 +36,8 @@ class AdController extends BaseController
                     $q->where('status',$status);
                 }
             })->where('del',1)->orderBy('id','desc')->paginate(15);
+        // 记录上次请求的url path，返回时用
+        session()->put('backurl',$res->fullUrl());
     	return view('admin.ad.index',compact('title','list','key','starttime','endtime','status'));
     }
     // 添加广告

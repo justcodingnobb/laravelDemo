@@ -1,4 +1,4 @@
-<form action="javascript:ajax_submit();" method="post" id="form_ajax">
+<form action="" method="post" id="form_ajax">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="good_cate_id">商品分类：<span class="color-red">*</span></label>

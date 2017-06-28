@@ -57,7 +57,13 @@ class TuanController extends BaseController
                 $q->select('id','nickname','thumb','username');
             }])->where('good_id',$gid)->where('del',1)->orderBy('id','desc')->limit(20)->get();
         // 送货地址
-        $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        if (session()->has('member')) {
+            $address = Address::where('user_id',session('member')->id)->where('del',1)->get();
+        }
+        else
+        {
+            $address = [];
+        }
         // 自提点
         $ziti = Zitidian::where('status',1)->where('del',1)->orderBy('sort','asc')->get();
         $info->pid = 0;

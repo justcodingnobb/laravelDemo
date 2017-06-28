@@ -287,6 +287,13 @@ class ShopController extends BaseController
             $yh_price = $yh->yhq->lessprice;
             $prices = $prices - $yh_price;
         }
+        // 没有优惠券时查有没有赠品
+        else
+        {
+            $mz = Manzeng::with(['good'=>function($q){
+                    $q->select('id','price','title');
+                }])->where('price','<=',$prices)->where('status',1)->where('endtime','>=',date('Y-m-d H:i:s'))->orderBy('price','desc')->first();
+        }
         $area = Address::where('id',$req->aid)->value('area');
         $order = ['order_id'=>$order_id,'user_id'=>$uid,'yhq_id'=>$yhq_id,'yh_price'=>$yh_price,'old_prices'=>$old_prices,'total_prices'=>$prices,'create_ip'=>$req->ip(),'address_id'=>$req->aid,'ziti'=>$req->ziti,'area'=>$area,'mark'=>$req->mark];
         // 事务
@@ -301,6 +308,14 @@ class ShopController extends BaseController
                 $order_goods[$k] = ['user_id'=>$uid,'order_id'=>$order->id,'good_id'=>$v->good_id,'good_title'=>$v->good_title,'good_spec_key'=>$v->good_spec_key,'good_spec_name'=>$v->good_spec_name,'nums'=>$v->nums,'price'=>$v->price,'total_prices'=>$v->total_prices,'created_at'=>$date,'updated_at'=>$date];
                 $clear_ids[] = $v->id;
             }
+            // 如果有赠品，加上赠品
+            if (!is_null($mz) && !is_null($mz->good)) {
+                $mz_good_spec = GoodSpecPrice::where('good_id',$mz->good_id)->orderBy('price','asc')->first();
+                $good_spec_key = is_null($mz_good_spec) ? '' : $mz_good_spec->good_spec_key;
+                $good_spec_name = is_null($mz_good_spec) ? '' : $mz_good_spec->good_spec_name;
+                $price = is_null($mz_good_spec) ? $mz->good->price : $mz_good_spec->price;
+                $order_goods[] = ['user_id'=>$uid,'order_id'=>$order->id,'good_id'=>$mz->good_id,'good_title'=>'赠品-'.$mz->good->title,'good_spec_key'=>$good_spec_key,'good_spec_name'=>$good_spec_name,'nums'=>1,'price'=>$price,'total_prices'=>0,'created_at'=>$date,'updated_at'=>$date];
+            }
             // 插入
             OrderGood::insert($order_goods);
             // 清空购物车里的这几个产品
@@ -308,9 +323,7 @@ class ShopController extends BaseController
             // 没出错，提交事务
             DB::commit();
             $info = (object)['pid'=>3];
-
             $paylist = Pay::where('status',1)->where('paystatus',1)->orderBy('id','asc')->get();
-
             return view($this->theme.'.addorder',compact('info','order','paylist'));
         } catch (\Exception $e) {
             // 出错回滚
@@ -335,7 +348,9 @@ class ShopController extends BaseController
                             break;
                         // 待收货
                         case '3':
-                            $q->where('paystatus',1)->where('orderstatus',1)->where('shipstatus',1)->orWhere('ziti','!=',0);
+                            $q->where('paystatus',1)->where('orderstatus',1)->where(function($ss){
+                                $ss->where('shipstatus',1)->orWhere('ziti','!=',0);
+                            });
                             break;
                         // 待发货
                         case '2':
@@ -383,7 +398,8 @@ class ShopController extends BaseController
     public function getComment($oid = '',$gid = '')
     {
         $info = (object) ['pid'=>4];
-        $ref = session('homeurl');
+        // 记录上次请求的url path，返回时用
+        $ref = url()->previous();
         return view($this->theme.'.good_comment',compact('info','gid','oid','ref'));
     }
     public function postComment(GoodCommentRequest $req,$oid = '',$gid = '')

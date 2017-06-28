@@ -58,8 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'rbac' => \App\Http\Middleware\BetoAdmin::class,
-        'backurl'=> \App\Http\Middleware\Backurl::class,
-        'homeurl'=> \App\Http\Middleware\Homeurl::class,
         // 网站用户认证
         'member'=> \App\Http\Middleware\Member::class,
         // APP用户认证
