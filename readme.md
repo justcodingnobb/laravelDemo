@@ -6,7 +6,7 @@
 
 rbac中间件控制打开页面是否有权限，auth:admin判断是否登陆，App:make('com')->ifCan()控制细节显示与否
 
-添加调试工具Debugbar http://laravelacademy.org/post/2774.html，主页里关闭调试
+添加调试工具Debugbar http://laravelacademy.org/post/2774.html ，主页里关闭调试
 
 提示信息，使用一次性session，在back()或者redirect()后->with('message','信息');
 
